@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en"><head>
+<html lang="gl"><head>
 <script src="../site_libs/clipboard/clipboard.min.js"></script>
 <script src="../site_libs/quarto-html/tabby.min.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -11,7 +11,7 @@
 
   <meta name="author" content="ProcessSim Engineering Lab">
   <meta name="dcterms.date" content="2026-10-25">
-  <title>ProcessSim // Engineering Lab – Simulación de un Reactor CSTR de Esterificación en DWSIM</title>
+  <title>ProcessSim // Laboratorio de Enxeñaría – Simulación dun Reactor CSTR de Esterificación en DWSIM</title>
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
@@ -36,7 +36,7 @@
       vertical-align: middle;
     }
   </style>
-  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-980265fcdcd58094082da66679749489.css">
+  <link rel="stylesheet" href="../site_libs/revealjs/dist/theme/quarto-e3c6f39049167673690b4fa4c405f64d.css">
   <link rel="stylesheet" href="../styles/custom.scss">
   <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
   <script>document.addEventListener("DOMContentLoaded", function () {
@@ -151,8 +151,8 @@
     <div class="slides">
 
 <section id="title-slide" class="quarto-title-block center">
-  <h1 class="title">Simulación de un Reactor CSTR de Esterificación en DWSIM</h1>
-  <p class="subtitle">Modelado Cinético Homogéneo y Balances con Paquete Termodinámico NRTL</p>
+  <h1 class="title">Simulación dun Reactor CSTR de Esterificación en DWSIM</h1>
+  <p class="subtitle">Modelado Cinético Homoxéneo e Balances con Paquete Termodinámico NRTL</p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -164,39 +164,39 @@ ProcessSim Engineering Lab
 
   <p class="date">2026-10-25</p>
 </section>
-<section id="planteamiento-del-proceso" class="slide level2 slide-title-gradient">
-<h2>Planteamiento del Proceso</h2>
-<h3 id="objetivo-de-la-simulación">Objetivo de la Simulación</h3>
-<p>Modelado en código abierto (DWSIM v8) de la síntesis de acetato de etilo a partir de ácido acético y etanol catalizada por ácido, con balance térmico de chaqueta y control de conversión.</p>
+<section id="prantexamento-do-proceso" class="slide level2 slide-title-gradient">
+<h2>Prantexamento do Proceso</h2>
+<h3 id="obxectivo-da-simulación">Obxectivo da Simulación</h3>
+<p>Modelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de conversión.</p>
 <div class="columns">
 <div class="column" style="width:60%;">
 <ul>
 <li><strong>Plataforma:</strong> <code>DWSIM</code></li>
 <li><strong>Dominio:</strong> <code>Reactores</code></li>
-<li><strong>Entorno de convergencia:</strong> Tolerancia estricta <span class="math inline">&lt; 10^{-6}</span></li>
+<li><strong>Contorno de converxencia:</strong> Tolerancia estrita <span class="math inline">&lt; 10^{-6}</span></li>
 </ul>
 </div><div class="column" style="width:40%;">
 <blockquote>
-<p>[!NOTE] Todos los balances fueron resueltos en condiciones estacionarias garantizando consistencia termodinámica.</p>
+<p>[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica.</p>
 </blockquote>
 </div></div>
 </section>
 <section id="fundamento-termodinámico" class="slide level2 slide-title-gradient">
 <h2>Fundamento Termodinámico</h2>
-<p>Las condiciones de equilibrio líquido-vapor (ELV) se determinan resolviendo la función objetivo de Rachford-Rice junto con el cálculo de coeficientes de fugacidad:</p>
+<p>As condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:</p>
 <p><span class="math display">
-\text{CH}_3\text{COOH (Ácido)} + \text{C}_2\text{H}_5\text{OH (Etanol)} \underset{k_b}{\overset{k_f}{\rightleftharpoons}} \text{CH}_3\text{COOC}_2\text{H}_5 \text{ (Acetato)} + \text{H}_2\text{O (Agua)}
+\text{CH}_3\text{COOH (Ácido)} + \text{C}_2\text{H}_5\text{OH (Etanol)} \underset{k_b}{\overset{k_f}{\rightleftharpoons}} \text{CH}_3\text{COOC}_2\text{H}_5 \text{ (Acetato)} + \text{H}_2\text{O (Auga)}
 </span></p>
 <p><span class="math display">
-r = k_f C_A C_B - k_b C_C C_D = k_0 \exp\left(-\frac{E_a}{RT}\right) \left[ C_{\text{Ácido}} C_{\text{Etanol}} - \frac{C_{\text{Acetato}} C_{\text{Agua}}}{K_{eq}(T)} \right]
+r = k_f C_A C_B - k_b C_C C_D = k_0 \exp\left(-\frac{E_a}{RT}\right) \left[ C_{\text{Ácido}} C_{\text{Etanol}} - \frac{C_{\text{Acetato}} C_{\text{Auga}}}{K_{eq}(T)} \right]
 </span></p>
 <ul>
 <li>Coeficientes de distribución: <span class="math inline">K_i = \phi_i^L / \phi_i^V</span></li>
 <li>Fracción vaporizada: <span class="math inline">\psi = V / F \in [0, 1]</span></li>
 </ul>
 </section>
-<section id="resultados-clave-del-balance" class="slide level2 slide-title-gradient">
-<h2>Resultados Clave del Balance</h2>
+<section id="resultados-clave-do-balance" class="slide level2 slide-title-gradient">
+<h2>Resultados Clave do Balance</h2>
 <div class="quarto-layout-panel" data-layout-ncol="2">
 <div class="quarto-layout-row">
 <div class="slide-metric-box quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -222,7 +222,7 @@ Temperatura Reactor
 2.45 h
 </div>
 <div class="slide-metric-label">
-Tiempo de Residencia (τ)
+Tempo de Residencia (τ)
 </div>
 </div>
 <div class="slide-metric-box quarto-layout-cell" style="flex-basis: 50.0%;justify-content: flex-start;">
@@ -236,19 +236,12 @@ Remoción Térmica (Q)
 </div>
 </div>
 </section>
-<section id="tabla-de-corrientes-del-proceso" class="slide level2 slide-title-gradient">
-<h2>Tabla de Corrientes del Proceso</h2>
+<section id="táboa-de-correntes-do-proceso" class="slide level2 slide-title-gradient">
+<h2>Táboa de Correntes do Proceso</h2>
 <table class="caption-top">
-<colgroup>
-<col style="width: 16%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-<col style="width: 20%">
-</colgroup>
 <thead>
 <tr class="header">
-<th style="text-align: left;">Corriente</th>
+<th style="text-align: left;">Corrente</th>
 <th style="text-align: center;">Temp (°C)</th>
 <th style="text-align: center;">Presión (bar)</th>
 <th style="text-align: center;">Flujo (kmol/h)</th>
@@ -280,15 +273,15 @@ Remoción Térmica (Q)
 </tbody>
 </table>
 </section>
-<section id="conclusiones-operacionales" class="slide level2 slide-title-gradient">
-<h2>Conclusiones Operacionales</h2>
+<section id="conclusións-operacionais" class="slide level2 slide-title-gradient">
+<h2>Conclusións Operacionais</h2>
 <ol type="1">
-<li><strong>Eficiencia de Separación:</strong> Se logró una separación nítida con recuperación superior al 91% del componente más volátil en la fase vapor.</li>
-<li><strong>Estabilidad Térmica:</strong> La sensibilidad ante perturbaciones de presión de <span class="math inline">\pm 10\%</span> demostró una variación de temperatura inferior a <span class="math inline">1.8^\circ\text{C}</span>.</li>
-<li><strong>Reproducibilidad:</strong> El caso cuenta con código ejecutable e integración directa en el blog.</li>
+<li><strong>Eficiencia de Separación:</strong> Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.</li>
+<li><strong>Estabilidade Térmica:</strong> A sensibilidade ante perturbacións de presión de <span class="math inline">\pm 10\%</span> amosou unha variación de temperatura inferior a <span class="math inline">1.8^\circ\text{C}</span>.</li>
+<li><strong>Reproducibilidade:</strong> O caso conta con código executable e integración directa no blog.</li>
 </ol>
 <div style="margin-top: 2rem; text-align: center;">
-<p><a href="../posts/caso-dwsim-reactor-cstr-esterificacion.html">📖 Ver Artículo Completo en el Blog</a> &nbsp;|&nbsp; <a href="https://github.com/anxosanchez/sopqblog">💻 Repositorio GitHub</a></p>
+<p><a href="../posts/caso-dwsim-reactor-cstr-esterificacion.html">📖 Ver Artigo Completo no Blog</a> &nbsp;|&nbsp; <a href="https://github.com/anxosanchez/sopqblog">💻 Repositorio GitHub</a></p>
 </div>
 
 

@@ -2,6 +2,28 @@
   {
     "listing": "/index.html",
     "items": [
+      "/posts/caso-destilacion-flash.en.html",
+      "/posts/caso-destilacion-flash.es.html",
+      "/posts/caso-destilacion-flash.html",
+      "/posts/caso-hysys-columna-debutanizadora.html",
+      "/posts/caso-dwsim-reactor-cstr-esterificacion.html"
+    ]
+  },
+  {
+    "listing": "/index.en.html",
+    "items": [
+      "/posts/caso-destilacion-flash.en.html",
+      "/posts/caso-destilacion-flash.es.html",
+      "/posts/caso-destilacion-flash.html",
+      "/posts/caso-hysys-columna-debutanizadora.html",
+      "/posts/caso-dwsim-reactor-cstr-esterificacion.html"
+    ]
+  },
+  {
+    "listing": "/index.es.html",
+    "items": [
+      "/posts/caso-destilacion-flash.en.html",
+      "/posts/caso-destilacion-flash.es.html",
       "/posts/caso-destilacion-flash.html",
       "/posts/caso-hysys-columna-debutanizadora.html",
       "/posts/caso-dwsim-reactor-cstr-esterificacion.html"
