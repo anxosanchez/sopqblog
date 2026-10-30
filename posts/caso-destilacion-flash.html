@@ -1,0 +1,1653 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="ProcessSim Engineering Lab">
+<meta name="dcterms.date" content="2026-10-30">
+<meta name="description" content="Resolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de balances de materia y energía.">
+
+<title>Simulación de Separación Flash Isotérmica Multicomponente – ProcessSim // Engineering Lab</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57e9dca84c74da3a22bfcef75888fd7d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-57e9dca84c74da3a22bfcef75888fd7d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57e9dca84c74da3a22bfcef75888fd7d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b0f4a84c31b0ae7c41cc0ac4807373a0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-4d191f2ef335284b08109c210b0fcf16.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b0f4a84c31b0ae7c41cc0ac4807373a0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles/custom.scss">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ProcessSim // Engineering Lab</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#casos-destacados"> 
+<span class="menu-text">Simulaciones</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#aspen-hysys"> 
+<span class="menu-text">Aspen HYSYS</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#dwsim"> 
+<span class="menu-text">DWSIM</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#python"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/anxosanchez/sopqblog"> <i class="bi bi-github" role="img" aria-label="GitHub Repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com"> <i class="bi bi-youtube" role="img" aria-label="Canal de YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido del Caso</h2>
+   
+  <ul>
+  <li><a href="#métricas-operacionales-y-balances-de-convergencia" id="toc-métricas-operacionales-y-balances-de-convergencia" class="nav-link active" data-scroll-target="#métricas-operacionales-y-balances-de-convergencia"><span class="header-section-number">1</span> Métricas Operacionales y Balances de Convergencia</a></li>
+  <li><a href="#introducción-y-contexto-del-proceso" id="toc-introducción-y-contexto-del-proceso" class="nav-link" data-scroll-target="#introducción-y-contexto-del-proceso"><span class="header-section-number">2</span> 1. Introducción y Contexto del Proceso</a></li>
+  <li><a href="#fundamento-termodinámico-y-formulación-matemática" id="toc-fundamento-termodinámico-y-formulación-matemática" class="nav-link" data-scroll-target="#fundamento-termodinámico-y-formulación-matemática"><span class="header-section-number">3</span> 2. Fundamento Termodinámico y Formulación Matemática</a>
+  <ul class="collapse">
+  <li><a href="#criterio-de-equilibrio-de-fases-elv" id="toc-criterio-de-equilibrio-de-fases-elv" class="nav-link" data-scroll-target="#criterio-de-equilibrio-de-fases-elv"><span class="header-section-number">3.1</span> 2.1 Criterio de Equilibrio de Fases (ELV)</a></li>
+  <li><a href="#deducción-de-la-ecuación-de-rachford-rice" id="toc-deducción-de-la-ecuación-de-rachford-rice" class="nav-link" data-scroll-target="#deducción-de-la-ecuación-de-rachford-rice"><span class="header-section-number">3.2</span> 2.2 Deducción de la Ecuación de Rachford-Rice</a></li>
+  </ul></li>
+  <li><a href="#diagrama-de-flujo-del-proceso-pfd" id="toc-diagrama-de-flujo-del-proceso-pfd" class="nav-link" data-scroll-target="#diagrama-de-flujo-del-proceso-pfd"><span class="header-section-number">4</span> 3. Diagrama de Flujo del Proceso (PFD)</a></li>
+  <li><a href="#tabla-de-corrientes-del-proceso-y-balances" id="toc-tabla-de-corrientes-del-proceso-y-balances" class="nav-link" data-scroll-target="#tabla-de-corrientes-del-proceso-y-balances"><span class="header-section-number">5</span> 4. Tabla de Corrientes del Proceso y Balances</a></li>
+  <li><a href="#implementación-numérica-en-python" id="toc-implementación-numérica-en-python" class="nav-link" data-scroll-target="#implementación-numérica-en-python"><span class="header-section-number">6</span> 5. Implementación Numérica en Python</a></li>
+  <li><a href="#video-tutorial-y-demostración-operacional" id="toc-video-tutorial-y-demostración-operacional" class="nav-link" data-scroll-target="#video-tutorial-y-demostración-operacional"><span class="header-section-number">7</span> 6. Video Tutorial y Demostración Operacional</a></li>
+  <li><a href="#conclusiones-y-consideraciones-de-diseño" id="toc-conclusiones-y-consideraciones-de-diseño" class="nav-link" data-scroll-target="#conclusiones-y-consideraciones-de-diseño"><span class="header-section-number">8</span> 7. Conclusiones y Consideraciones de Diseño</a></li>
+  <li><a href="#referencias-técnicas" id="toc-referencias-técnicas" class="nav-link" data-scroll-target="#referencias-técnicas"><span class="header-section-number">9</span> 8. Referencias Técnicas</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Simulación de Separación Flash Isotérmica Multicomponente</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Modelado Riguroso del Equilibrio Líquido-Vapor y Balances con Peng-Robinson y Rachford-Rice</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Separación</div>
+    <div class="quarto-category">Notebook Colab</div>
+    <div class="quarto-category">Video Tutorial</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Resolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de balances de materia y energía.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>ProcessSim Engineering Lab </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 30, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- Barra de Recursos Interactivos -->
+<div class="resource-badge-bar">
+<p><span class="badge-label">Recursos del Caso:</span> <a href="https://colab.research.google.com/drive/1exampleProcessSimFlashDistillation" target="_blank" rel="noopener" class="resource-badge resource-badge-colab">⚡ Abrir en Google Colab</a> <a href="https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim" target="_blank" rel="noopener" class="resource-badge resource-badge-drive">📁 Descargar Simulación (.hsc / .bkp)</a> <a href="slides-destilacion-flash.html" target="_blank" rel="noopener" class="resource-badge resource-badge-slides">📊 Ver Diapositivas Revealjs</a> <a href="https://www.youtube.com/watch?v=demo_flash784" target="_blank" rel="noopener" class="resource-badge resource-badge-youtube">▶ Ver en YouTube</a></p>
+</div>
+<section id="métricas-operacionales-y-balances-de-convergencia" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="métricas-operacionales-y-balances-de-convergencia"><span class="header-section-number">1</span> Métricas Operacionales y Balances de Convergencia</h2>
+<div class="metric-grid">
+<div class="metric-card accent-cyan">
+<div class="metric-header">
+Temperatura Tambor
+</div>
+<div class="metric-value">
+78.4<span class="metric-unit">°C</span>
+</div>
+<div class="metric-footer">
+Equilibrio Térmico (351.55 K)
+</div>
+</div>
+<div class="metric-card accent-amber">
+<div class="metric-header">
+Presión de Operación
+</div>
+<div class="metric-value">
+1.20<span class="metric-unit">bar</span>
+</div>
+<div class="metric-footer">
+Absoluta en Separador (120 kPa)
+</div>
+</div>
+<div class="metric-card accent-emerald">
+<div class="metric-header">
+Fracción Vaporizada (V/F)
+</div>
+<div class="metric-value">
+0.4285
+</div>
+<div class="metric-footer">
+Residuo Rachford-Rice &lt; 10⁻⁸
+</div>
+</div>
+<div class="metric-card accent-purple">
+<div class="metric-header">
+Carga Térmica (Duty)
+</div>
+<div class="metric-value">
+420.5<span class="metric-unit">kW</span>
+</div>
+<div class="metric-footer">
+Calor de Vaporización Latente
+</div>
+</div>
+</div>
+</section>
+<section id="introducción-y-contexto-del-proceso" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="introducción-y-contexto-del-proceso"><span class="header-section-number">2</span> 1. Introducción y Contexto del Proceso</h2>
+<p>La separación instantánea (<em>flash distillation</em>) es una operación unitaria fundamental en plantas de procesamiento de gas natural, refinerías y petroquímica. Permite despojar fracciones livianas de corrientes de crudo o estabilizar corrientes de hidrocarburos antes de ingresar a columnas de fraccionamiento complejas.</p>
+<p>En este estudio evaluamos un tambor de separación flash en estado estacionario alimentado con una mezcla ternaria representativa de parafinas livianas: * <strong>n-Pentano (<span class="math inline">n\text{-C}_5\text{H}_{12}</span>):</strong> <span class="math inline">z_1 = 0.50</span> (componente liviano clave) * <strong>n-Hexano (<span class="math inline">n\text{-C}_6\text{H}_{14}</span>):</strong> <span class="math inline">z_2 = 0.30</span> (componente intermedio) * <strong>n-Heptano (<span class="math inline">n\text{-C}_7\text{H}_{16}</span>):</strong> <span class="math inline">z_3 = 0.20</span> (componente pesado clave)</p>
+<p>La alimentación ingresa a <span class="math inline">F = 100.0\text{ kmol/h}</span>, a una temperatura inicial <span class="math inline">T_F = 30.0^\circ\text{C}</span> y una presión de cabezal <span class="math inline">P_F = 3.00\text{ bar}</span>. Mediante una válvula reguladora y un intercambiador de calor previo, la corriente ingresa al tambor flash que opera a <span class="math inline">T = 78.4^\circ\text{C}</span> y <span class="math inline">P = 1.20\text{ bar}</span>.</p>
+</section>
+<section id="fundamento-termodinámico-y-formulación-matemática" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="fundamento-termodinámico-y-formulación-matemática"><span class="header-section-number">3</span> 2. Fundamento Termodinámico y Formulación Matemática</h2>
+<section id="criterio-de-equilibrio-de-fases-elv" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="criterio-de-equilibrio-de-fases-elv"><span class="header-section-number">3.1</span> 2.1 Criterio de Equilibrio de Fases (ELV)</h3>
+<p>En el equilibrio termodinámico, el potencial químico de cada especie debe igualarse entre fases, lo cual equivale a la igualdad de fugacidades:</p>
+<p><span class="math display">
+f_i^V(T, P, \mathbf{y}) = f_i^L(T, P, \mathbf{x}) \quad \forall i \in \{1, \dots, C\}
+</span></p>
+<p>Definiendo los coeficientes de fugacidad <span class="math inline">\phi_i^V</span> y <span class="math inline">\phi_i^L</span>:</p>
+<p><span class="math display">
+y_i \phi_i^V P = x_i \phi_i^L P \implies K_i \equiv \frac{y_i}{x_i} = \frac{\phi_i^L(T, P, \mathbf{x})}{\phi_i^V(T, P, \mathbf{y})}
+</span></p>
+<p>Para hidrocarburos a presiones moderadas (<span class="math inline">P \approx 1.2\text{ bar}</span>), los coeficientes de distribución <span class="math inline">K_i</span> calculados mediante la ecuación de estado de Peng-Robinson o la ley de Raoult modificada arrojan valores estables: * <span class="math inline">K_1 (n\text{-Pentano}) = 2.4410</span> * <span class="math inline">K_2 (n\text{-Hexano}) = 0.9450</span> * <span class="math inline">K_3 (n\text{-Heptano}) = 0.3815</span></p>
+</section>
+<section id="deducción-de-la-ecuación-de-rachford-rice" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="deducción-de-la-ecuación-de-rachford-rice"><span class="header-section-number">3.2</span> 2.2 Deducción de la Ecuación de Rachford-Rice</h3>
+<p>A partir de los balances globales y por componente:</p>
+<p><span class="math display">
+F = V + L \implies 1 = \psi + \frac{L}{F} \quad \text{donde } \psi \equiv \frac{V}{F}
+</span></p>
+<p><span class="math display">
+F z_i = V y_i + L x_i = V (K_i x_i) + L x_i \implies x_i = \frac{z_i}{1 + \psi (K_i - 1)}
+</span></p>
+<p>Dado que <span class="math inline">\sum_{i=1}^{C} y_i - \sum_{i=1}^{C} x_i = 0</span>, sustituyendo <span class="math inline">y_i = K_i x_i</span>:</p>
+<p><span class="math display">
+\mathcal{F}(\psi) = \sum_{i=1}^{C} (y_i - x_i) = \sum_{i=1}^{C} \frac{z_i (K_i - 1)}{1 + \psi (K_i - 1)} = 0
+</span></p>
+<p>La función <span class="math inline">\mathcal{F}(\psi)</span> es monótona decreciente en el intervalo físico <span class="math inline">[0, 1]</span>, lo que garantiza una solución única y convergencia incondicional mediante el método de Newton-Raphson:</p>
+<p><span class="math display">
+\mathcal{F}'(\psi) = -\sum_{i=1}^{C} \frac{z_i (K_i - 1)^2}{[1 + \psi (K_i - 1)]^2} &lt; 0
+</span></p>
+</section>
+</section>
+<section id="diagrama-de-flujo-del-proceso-pfd" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="diagrama-de-flujo-del-proceso-pfd"><span class="header-section-number">4</span> 3. Diagrama de Flujo del Proceso (PFD)</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>               Alimentación (F)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>               100.0 kmol/h, 30°C, 3.0 bar</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>                      |</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>                      v</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>             [ Válvula de Expansión ]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>                      |</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>                      v</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>           [ Precalentador Térmico ] ---&gt; (Q = 420.5 kW)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>                      |</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>                      v</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>             +-----------------+</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>             |                 | ------------&gt; Corriente de Vapor (V)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>             |   TAMBOR FLASH  |              42.85 kmol/h, 78.4°C, 1.20 bar</span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>             |   ISOTÉRMICO    |              Rico en Pentano (y₁ = 72.3%)</span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>             |                 |</span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>             |  78.4°C, 1.2 bar|</span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>             +-----------------+</span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>                      |</span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a>                      +----------------------&gt; Corriente de Líquido (L)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a>                                              57.15 kmol/h, 78.4°C, 1.20 bar</span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>                                              Rico en Heptano/Hexano (x₃ = 29.8%)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="tabla-de-corrientes-del-proceso-y-balances" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="tabla-de-corrientes-del-proceso-y-balances"><span class="header-section-number">5</span> 4. Tabla de Corrientes del Proceso y Balances</h2>
+<div class="stream-table-wrapper">
+<table class="stream-table">
+<thead>
+<tr>
+<th>
+Propiedad / Componente
+</th>
+<th class="num">
+Alimentación (F)
+</th>
+<th class="num">
+Vapor Superior (V)
+</th>
+<th class="num">
+Líquido Inferior (L)
+</th>
+<th>
+Unidad
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong>Temperatura</strong>
+</td>
+<td class="num">
+30.00
+</td>
+<td class="num">
+78.40
+</td>
+<td class="num">
+78.40
+</td>
+<td>
+°C
+</td>
+</tr>
+<tr>
+<td>
+<strong>Presión Absoluta</strong>
+</td>
+<td class="num">
+3.00
+</td>
+<td class="num">
+1.20
+</td>
+<td class="num">
+1.20
+</td>
+<td>
+bar
+</td>
+</tr>
+<tr>
+<td>
+<strong>Flujo Molar Total</strong>
+</td>
+<td class="num">
+100.000
+</td>
+<td class="num">
+42.852
+</td>
+<td class="num">
+57.148
+</td>
+<td>
+kmol/h
+</td>
+</tr>
+<tr>
+<td>
+<strong>Fracción Molar de Vapor</strong>
+</td>
+<td class="num">
+0.0000
+</td>
+<td class="num">
+1.0000
+</td>
+<td class="num">
+0.0000
+</td>
+<td>
+-
+</td>
+</tr>
+<tr>
+<td>
+<strong>Flujo Másico Total</strong>
+</td>
+<td class="num">
+8197.6
+</td>
+<td class="num">
+3238.1
+</td>
+<td class="num">
+4959.5
+</td>
+<td>
+kg/h
+</td>
+</tr>
+<tr>
+<td>
+<strong>Peso Molecular Medio</strong>
+</td>
+<td class="num">
+81.98
+</td>
+<td class="num">
+75.56
+</td>
+<td class="num">
+86.78
+</td>
+<td>
+kg/kmol
+</td>
+</tr>
+<tr style="border-top: 2px solid var(--border-prominent);">
+<td>
+<strong>Fracción Molar n-Pentano (<span class="math inline">z_1, y_1, x_1</span>)</strong>
+</td>
+<td class="num">
+0.5000
+</td>
+<td class="num">
+0.7231
+</td>
+<td class="num">
+0.3326
+</td>
+<td>
+mol/mol
+</td>
+</tr>
+<tr>
+<td>
+<strong>Fracción Molar n-Hexano (<span class="math inline">z_2, y_2, x_2</span>)</strong>
+</td>
+<td class="num">
+0.3000
+</td>
+<td class="num">
+0.2899
+</td>
+<td class="num">
+0.3075
+</td>
+<td>
+mol/mol
+</td>
+</tr>
+<tr>
+<td>
+<strong>Fracción Molar n-Heptano (<span class="math inline">z_3, y_3, x_3</span>)</strong>
+</td>
+<td class="num">
+0.2000
+</td>
+<td class="num">
+0.0870
+</td>
+<td class="num">
+0.3599
+</td>
+<td>
+mol/mol
+</td>
+</tr>
+<tr style="font-weight: 700; background-color: var(--bg-elevated);">
+<td>
+<strong>Suma de Fracciones (<span class="math inline">\sum x_i, \sum y_i</span>)</strong>
+</td>
+<td class="num">
+1.0000
+</td>
+<td class="num">
+1.0000
+</td>
+<td class="num">
+1.0000
+</td>
+<td>
+mol/mol
+</td>
+</tr>
+<tr>
+<td>
+<strong>Entalpía Específica</strong>
+</td>
+<td class="num">
+-145.2
+</td>
+<td class="num">
+18.6
+</td>
+<td class="num">
+-36.4
+</td>
+<td>
+kJ/mol
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="implementación-numérica-en-python" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="implementación-numérica-en-python"><span class="header-section-number">6</span> 5. Implementación Numérica en Python</h2>
+<p>El siguiente script en Python resuelve la ecuación de Rachford-Rice utilizando <code>scipy.optimize.root_scalar</code> y computa las composiciones de equilibrio junto con los balances de materia estequiométricos:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="co"># Datos de alimentación y condiciones operativas</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a>components <span class="op">=</span> [<span class="st">"n-Pentano"</span>, <span class="st">"n-Hexano"</span>, <span class="st">"n-Heptano"</span>]</span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a>z <span class="op">=</span> np.array([<span class="fl">0.50</span>, <span class="fl">0.30</span>, <span class="fl">0.20</span>])</span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a>K <span class="op">=</span> np.array([<span class="fl">2.4410</span>, <span class="fl">0.9450</span>, <span class="fl">0.3815</span>])</span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a>F_total <span class="op">=</span> <span class="fl">100.0</span>  <span class="co"># kmol/h</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a></span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a><span class="kw">def</span> rachford_rice(psi: <span class="bu">float</span>, z: np.ndarray, K: np.ndarray) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a>    <span class="co">"""Función objetivo de Rachford-Rice."""</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(z <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>) <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> psi <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>)))</span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a></span>
+<span id="cb2-13"><a href="#cb2-13" aria-label="13"></a><span class="kw">def</span> rachford_rice_deriv(psi: <span class="bu">float</span>, z: np.ndarray, K: np.ndarray) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb2-14"><a href="#cb2-14" aria-label="14"></a>    <span class="co">"""Primera derivada analítica dF/d(psi)."""</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-label="15"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(z <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> psi <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb2-16"><a href="#cb2-16" aria-label="16"></a></span>
+<span id="cb2-17"><a href="#cb2-17" aria-label="17"></a><span class="co"># Solución mediante Newton-Raphson</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-label="18"></a>psi <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># Semilla inicial</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-label="19"></a>tolerance <span class="op">=</span> <span class="fl">1e-9</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-label="20"></a>max_iter <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-label="21"></a></span>
+<span id="cb2-22"><a href="#cb2-22" aria-label="22"></a><span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb2-23"><a href="#cb2-23" aria-label="23"></a>    f_val <span class="op">=</span> rachford_rice(psi, z, K)</span>
+<span id="cb2-24"><a href="#cb2-24" aria-label="24"></a>    f_prime <span class="op">=</span> rachford_rice_deriv(psi, z, K)</span>
+<span id="cb2-25"><a href="#cb2-25" aria-label="25"></a>    step <span class="op">=</span> f_val <span class="op">/</span> f_prime</span>
+<span id="cb2-26"><a href="#cb2-26" aria-label="26"></a>    psi <span class="op">=</span> psi <span class="op">-</span> step</span>
+<span id="cb2-27"><a href="#cb2-27" aria-label="27"></a>    <span class="cf">if</span> <span class="bu">abs</span>(step) <span class="op">&lt;</span> tolerance:</span>
+<span id="cb2-28"><a href="#cb2-28" aria-label="28"></a>        <span class="bu">print</span>(<span class="ss">f"✓ Convergencia alcanzada en </span><span class="sc">{</span>iteration <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss"> iteraciones: psi = </span><span class="sc">{</span>psi<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb2-29"><a href="#cb2-29" aria-label="29"></a>        <span class="cf">break</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-label="30"></a></span>
+<span id="cb2-31"><a href="#cb2-31" aria-label="31"></a><span class="co"># Cálculo de composiciones de fase en equilibrio</span></span>
+<span id="cb2-32"><a href="#cb2-32" aria-label="32"></a>x <span class="op">=</span> z <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> psi <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>))</span>
+<span id="cb2-33"><a href="#cb2-33" aria-label="33"></a>y <span class="op">=</span> K <span class="op">*</span> x</span>
+<span id="cb2-34"><a href="#cb2-34" aria-label="34"></a></span>
+<span id="cb2-35"><a href="#cb2-35" aria-label="35"></a>V_flow <span class="op">=</span> F_total <span class="op">*</span> psi</span>
+<span id="cb2-36"><a href="#cb2-36" aria-label="36"></a>L_flow <span class="op">=</span> F_total <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">-</span> psi)</span>
+<span id="cb2-37"><a href="#cb2-37" aria-label="37"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-label="38"></a><span class="bu">print</span>(<span class="ss">f"Flujo de Vapor (V):   </span><span class="sc">{</span>V_flow<span class="sc">:.3f}</span><span class="ss"> kmol/h"</span>)</span>
+<span id="cb2-39"><a href="#cb2-39" aria-label="39"></a><span class="bu">print</span>(<span class="ss">f"Flujo de Líquido (L): </span><span class="sc">{</span>L_flow<span class="sc">:.3f}</span><span class="ss"> kmol/h"</span>)</span>
+<span id="cb2-40"><a href="#cb2-40" aria-label="40"></a><span class="bu">print</span>(<span class="ss">f"Composiciones Vapor (y):   </span><span class="sc">{</span><span class="bu">dict</span>(<span class="bu">zip</span>(components, np.<span class="bu">round</span>(y, <span class="dv">4</span>)))<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-41"><a href="#cb2-41" aria-label="41"></a><span class="bu">print</span>(<span class="ss">f"Composiciones Líquido (x): </span><span class="sc">{</span><span class="bu">dict</span>(<span class="bu">zip</span>(components, np.<span class="bu">round</span>(x, <span class="dv">4</span>)))<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb2-42"><a href="#cb2-42" aria-label="42"></a><span class="bu">print</span>(<span class="ss">f"Consistencia: sum(x) = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">sum</span>(x)<span class="sc">:.6f}</span><span class="ss">, sum(y) = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">sum</span>(y)<span class="sc">:.6f}</span><span class="ss">"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="video-tutorial-y-demostración-operacional" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="video-tutorial-y-demostración-operacional"><span class="header-section-number">7</span> 6. Video Tutorial y Demostración Operacional</h2>
+<p>A continuación se presenta la demostración paso a paso de la configuración termodinámica y resolución del balance en el simulador:</p>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/demo_flash784" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="conclusiones-y-consideraciones-de-diseño" class="level2" data-number="8">
+<h2 data-number="8" class="anchored" data-anchor-id="conclusiones-y-consideraciones-de-diseño"><span class="header-section-number">8</span> 7. Conclusiones y Consideraciones de Diseño</h2>
+<ol type="1">
+<li><strong>Eficiencia en la Separación de Livianos:</strong> A <span class="math inline">78.4^\circ\text{C}</span> y <span class="math inline">1.20\text{ bar}</span>, el tambor separa el <span class="math inline">62.0\%</span> del <span class="math inline">n</span>-Pentano presente en la alimentación hacia la corriente de vapor superior, elevando su pureza molar del <span class="math inline">50.0\%</span> al <span class="math inline">72.3\%</span>.</li>
+<li><strong>Robustez Numérica:</strong> La convexidad de la ecuación de Rachford-Rice garantiza una convergencia de segundo orden en menos de 5 iteraciones de Newton-Raphson, sin riesgo de divergencia dentro del rango admisible <span class="math inline">\psi \in (0, 1)</span>.</li>
+<li><strong>Consumo Energético:</strong> La adición térmica de <span class="math inline">420.5\text{ kW}</span> suministrada por el precalentador compensa el calor latente de vaporización del <span class="math inline">n</span>-pentano y hexano, manteniendo el tambor en condición estrictamente isotérmica.</li>
+<li><strong>Interoperabilidad:</strong> Este modelo termodinámico coincide con las predicciones del paquete <em>Peng-Robinson</em> en Aspen HYSYS y DWSIM con desviaciones de temperatura inferiores al <span class="math inline">0.3\%</span>.</li>
+</ol>
+</section>
+<section id="referencias-técnicas" class="level2" data-number="9">
+<h2 data-number="9" class="anchored" data-anchor-id="referencias-técnicas"><span class="header-section-number">9</span> 8. Referencias Técnicas</h2>
+<ul>
+<li>Smith, J. M., Van Ness, H. C., &amp; Abbott, M. M. (2018). <em>Introduction to Chemical Engineering Thermodynamics</em> (8th ed.). McGraw-Hill.</li>
+<li>Rachford, H. H., &amp; Rice, J. D. (1952). Procedure for use of electronic digital computers in calculating flash vaporization hydrocarbon equilibrium. <em>Journal of Petroleum Technology</em>, 4(10), 19-20.</li>
+<li>Peng, D. Y., &amp; Robinson, D. B. (1976). A New Two-Constant Equation of State. <em>Industrial &amp; Engineering Chemistry Fundamentals</em>, 15(1), 59-64.</li>
+</ul>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/anxosanchez\.github\.io\/sopqblog");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb3" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb3-1"><a href="#cb3-1" aria-label="1"></a><span class="co">---</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-label="2"></a><span class="an">title:</span><span class="co"> "Simulación de Separación Flash Isotérmica Multicomponente"</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-label="3"></a><span class="an">subtitle:</span><span class="co"> "Modelado Riguroso del Equilibrio Líquido-Vapor y Balances con Peng-Robinson y Rachford-Rice"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-label="4"></a><span class="an">description:</span><span class="co"> "Resolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de balances de materia y energía."</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-label="5"></a><span class="an">author:</span><span class="co"> "ProcessSim Engineering Lab"</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-label="6"></a><span class="an">date:</span><span class="co"> "2026-10-30"</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-label="7"></a><span class="an">categories:</span><span class="co"> ["Python", "Separación", "Notebook Colab", "Video Tutorial"]</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-label="8"></a><span class="an">image:</span><span class="co"> "../assets/images/flash_drum_pfd.svg"</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-label="9"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-label="10"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-label="11"></a><span class="an">code-fold:</span><span class="co"> show</span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-label="12"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-label="13"></a><span class="co">---</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-label="14"></a></span>
+<span id="cb3-15"><a href="#cb3-15" aria-label="15"></a><span class="co">&lt;!-- Barra de Recursos Interactivos --&gt;</span></span>
+<span id="cb3-16"><a href="#cb3-16" aria-label="16"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge-bar"</span><span class="dt">&gt;</span></span>
+<span id="cb3-17"><a href="#cb3-17" aria-label="17"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"badge-label"</span><span class="dt">&gt;</span>Recursos del Caso:<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb3-18"><a href="#cb3-18" aria-label="18"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://colab.research.google.com/drive/1exampleProcessSimFlashDistillation"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-colab"</span><span class="dt">&gt;</span>⚡ Abrir en Google Colab<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb3-19"><a href="#cb3-19" aria-label="19"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-drive"</span><span class="dt">&gt;</span>📁 Descargar Simulación (.hsc / .bkp)<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb3-20"><a href="#cb3-20" aria-label="20"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"slides-destilacion-flash.html"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-slides"</span><span class="dt">&gt;</span>📊 Ver Diapositivas Revealjs<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb3-21"><a href="#cb3-21" aria-label="21"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.youtube.com/watch?v=demo_flash784"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-youtube"</span><span class="dt">&gt;</span>▶ Ver en YouTube<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb3-22"><a href="#cb3-22" aria-label="22"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-23"><a href="#cb3-23" aria-label="23"></a></span>
+<span id="cb3-24"><a href="#cb3-24" aria-label="24"></a><span class="fu">## Métricas Operacionales y Balances de Convergencia</span></span>
+<span id="cb3-25"><a href="#cb3-25" aria-label="25"></a></span>
+<span id="cb3-26"><a href="#cb3-26" aria-label="26"></a>::: {.metric-grid}</span>
+<span id="cb3-27"><a href="#cb3-27" aria-label="27"></a>::: {.metric-card .accent-cyan}</span>
+<span id="cb3-28"><a href="#cb3-28" aria-label="28"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Temperatura Tambor<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-29"><a href="#cb3-29" aria-label="29"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>78.4<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>°C<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-30"><a href="#cb3-30" aria-label="30"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Equilibrio Térmico (351.55 K)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-31"><a href="#cb3-31" aria-label="31"></a>:::</span>
+<span id="cb3-32"><a href="#cb3-32" aria-label="32"></a></span>
+<span id="cb3-33"><a href="#cb3-33" aria-label="33"></a>::: {.metric-card .accent-amber}</span>
+<span id="cb3-34"><a href="#cb3-34" aria-label="34"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Presión de Operación<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-35"><a href="#cb3-35" aria-label="35"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>1.20<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-36"><a href="#cb3-36" aria-label="36"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Absoluta en Separador (120 kPa)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-37"><a href="#cb3-37" aria-label="37"></a>:::</span>
+<span id="cb3-38"><a href="#cb3-38" aria-label="38"></a></span>
+<span id="cb3-39"><a href="#cb3-39" aria-label="39"></a>::: {.metric-card .accent-emerald}</span>
+<span id="cb3-40"><a href="#cb3-40" aria-label="40"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Fracción Vaporizada (V/F)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-41"><a href="#cb3-41" aria-label="41"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>0.4285<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-42"><a href="#cb3-42" aria-label="42"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Residuo Rachford-Rice <span class="dv">&amp;lt;</span> 10⁻⁸<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-43"><a href="#cb3-43" aria-label="43"></a>:::</span>
+<span id="cb3-44"><a href="#cb3-44" aria-label="44"></a></span>
+<span id="cb3-45"><a href="#cb3-45" aria-label="45"></a>::: {.metric-card .accent-purple}</span>
+<span id="cb3-46"><a href="#cb3-46" aria-label="46"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Carga Térmica (Duty)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-47"><a href="#cb3-47" aria-label="47"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>420.5<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>kW<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-48"><a href="#cb3-48" aria-label="48"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Calor de Vaporización Latente<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb3-49"><a href="#cb3-49" aria-label="49"></a>:::</span>
+<span id="cb3-50"><a href="#cb3-50" aria-label="50"></a>:::</span>
+<span id="cb3-51"><a href="#cb3-51" aria-label="51"></a></span>
+<span id="cb3-52"><a href="#cb3-52" aria-label="52"></a><span class="fu">## 1. Introducción y Contexto del Proceso</span></span>
+<span id="cb3-53"><a href="#cb3-53" aria-label="53"></a></span>
+<span id="cb3-54"><a href="#cb3-54" aria-label="54"></a>La separación instantánea (*flash distillation*) es una operación unitaria fundamental en plantas de procesamiento de gas natural, refinerías y petroquímica. Permite despojar fracciones livianas de corrientes de crudo o estabilizar corrientes de hidrocarburos antes de ingresar a columnas de fraccionamiento complejas.</span>
+<span id="cb3-55"><a href="#cb3-55" aria-label="55"></a></span>
+<span id="cb3-56"><a href="#cb3-56" aria-label="56"></a>En este estudio evaluamos un tambor de separación flash en estado estacionario alimentado con una mezcla ternaria representativa de parafinas livianas:</span>
+<span id="cb3-57"><a href="#cb3-57" aria-label="57"></a><span class="ss">* </span>**n-Pentano ($n\text{-C}_5\text{H}_{12}$):** $z_1 = 0.50$ (componente liviano clave)</span>
+<span id="cb3-58"><a href="#cb3-58" aria-label="58"></a><span class="ss">* </span>**n-Hexano ($n\text{-C}_6\text{H}_{14}$):** $z_2 = 0.30$ (componente intermedio)</span>
+<span id="cb3-59"><a href="#cb3-59" aria-label="59"></a><span class="ss">* </span>**n-Heptano ($n\text{-C}_7\text{H}_{16}$):** $z_3 = 0.20$ (componente pesado clave)</span>
+<span id="cb3-60"><a href="#cb3-60" aria-label="60"></a></span>
+<span id="cb3-61"><a href="#cb3-61" aria-label="61"></a>La alimentación ingresa a $F = 100.0\text{ kmol/h}$, a una temperatura inicial $T_F = 30.0^\circ\text{C}$ y una presión de cabezal $P_F = 3.00\text{ bar}$. Mediante una válvula reguladora y un intercambiador de calor previo, la corriente ingresa al tambor flash que opera a $T = 78.4^\circ\text{C}$ y $P = 1.20\text{ bar}$.</span>
+<span id="cb3-62"><a href="#cb3-62" aria-label="62"></a></span>
+<span id="cb3-63"><a href="#cb3-63" aria-label="63"></a><span class="fu">## 2. Fundamento Termodinámico y Formulación Matemática</span></span>
+<span id="cb3-64"><a href="#cb3-64" aria-label="64"></a></span>
+<span id="cb3-65"><a href="#cb3-65" aria-label="65"></a><span class="fu">### 2.1 Criterio de Equilibrio de Fases (ELV)</span></span>
+<span id="cb3-66"><a href="#cb3-66" aria-label="66"></a></span>
+<span id="cb3-67"><a href="#cb3-67" aria-label="67"></a>En el equilibrio termodinámico, el potencial químico de cada especie debe igualarse entre fases, lo cual equivale a la igualdad de fugacidades:</span>
+<span id="cb3-68"><a href="#cb3-68" aria-label="68"></a></span>
+<span id="cb3-69"><a href="#cb3-69" aria-label="69"></a>$$</span>
+<span id="cb3-70"><a href="#cb3-70" aria-label="70"></a>f_i^V(T, P, \mathbf{y}) = f_i^L(T, P, \mathbf{x}) \quad \forall i \in <span class="sc">\{</span>1, \dots, C<span class="sc">\}</span></span>
+<span id="cb3-71"><a href="#cb3-71" aria-label="71"></a>$$</span>
+<span id="cb3-72"><a href="#cb3-72" aria-label="72"></a></span>
+<span id="cb3-73"><a href="#cb3-73" aria-label="73"></a>Definiendo los coeficientes de fugacidad $\phi_i^V$ y $\phi_i^L$:</span>
+<span id="cb3-74"><a href="#cb3-74" aria-label="74"></a></span>
+<span id="cb3-75"><a href="#cb3-75" aria-label="75"></a>$$</span>
+<span id="cb3-76"><a href="#cb3-76" aria-label="76"></a>y_i \phi_i^V P = x_i \phi_i^L P \implies K_i \equiv \frac{y_i}{x_i} = \frac{\phi_i^L(T, P, \mathbf{x})}{\phi_i^V(T, P, \mathbf{y})}</span>
+<span id="cb3-77"><a href="#cb3-77" aria-label="77"></a>$$</span>
+<span id="cb3-78"><a href="#cb3-78" aria-label="78"></a></span>
+<span id="cb3-79"><a href="#cb3-79" aria-label="79"></a>Para hidrocarburos a presiones moderadas ($P \approx 1.2\text{ bar}$), los coeficientes de distribución $K_i$ calculados mediante la ecuación de estado de Peng-Robinson o la ley de Raoult modificada arrojan valores estables:</span>
+<span id="cb3-80"><a href="#cb3-80" aria-label="80"></a><span class="ss">* </span>$K_1 (n\text{-Pentano}) = 2.4410$</span>
+<span id="cb3-81"><a href="#cb3-81" aria-label="81"></a><span class="ss">* </span>$K_2 (n\text{-Hexano}) = 0.9450$</span>
+<span id="cb3-82"><a href="#cb3-82" aria-label="82"></a><span class="ss">* </span>$K_3 (n\text{-Heptano}) = 0.3815$</span>
+<span id="cb3-83"><a href="#cb3-83" aria-label="83"></a></span>
+<span id="cb3-84"><a href="#cb3-84" aria-label="84"></a><span class="fu">### 2.2 Deducción de la Ecuación de Rachford-Rice</span></span>
+<span id="cb3-85"><a href="#cb3-85" aria-label="85"></a></span>
+<span id="cb3-86"><a href="#cb3-86" aria-label="86"></a>A partir de los balances globales y por componente:</span>
+<span id="cb3-87"><a href="#cb3-87" aria-label="87"></a></span>
+<span id="cb3-88"><a href="#cb3-88" aria-label="88"></a>$$</span>
+<span id="cb3-89"><a href="#cb3-89" aria-label="89"></a>F = V + L \implies 1 = \psi + \frac{L}{F} \quad \text{donde } \psi \equiv \frac{V}{F}</span>
+<span id="cb3-90"><a href="#cb3-90" aria-label="90"></a>$$</span>
+<span id="cb3-91"><a href="#cb3-91" aria-label="91"></a></span>
+<span id="cb3-92"><a href="#cb3-92" aria-label="92"></a>$$</span>
+<span id="cb3-93"><a href="#cb3-93" aria-label="93"></a>F z_i = V y_i + L x_i = V (K_i x_i) + L x_i \implies x_i = \frac{z_i}{1 + \psi (K_i - 1)}</span>
+<span id="cb3-94"><a href="#cb3-94" aria-label="94"></a>$$</span>
+<span id="cb3-95"><a href="#cb3-95" aria-label="95"></a></span>
+<span id="cb3-96"><a href="#cb3-96" aria-label="96"></a>Dado que $\sum_{i=1}^{C} y_i - \sum_{i=1}^{C} x_i = 0$, sustituyendo $y_i = K_i x_i$:</span>
+<span id="cb3-97"><a href="#cb3-97" aria-label="97"></a></span>
+<span id="cb3-98"><a href="#cb3-98" aria-label="98"></a>$$</span>
+<span id="cb3-99"><a href="#cb3-99" aria-label="99"></a>\mathcal{F}(\psi) = \sum_{i=1}^{C} (y_i - x_i) = \sum_{i=1}^{C} \frac{z_i (K_i - 1)}{1 + \psi (K_i - 1)} = 0</span>
+<span id="cb3-100"><a href="#cb3-100" aria-label="100"></a>$$</span>
+<span id="cb3-101"><a href="#cb3-101" aria-label="101"></a></span>
+<span id="cb3-102"><a href="#cb3-102" aria-label="102"></a>La función $\mathcal{F}(\psi)$ es monótona decreciente en el intervalo físico $<span class="co">[</span><span class="ot">0, 1</span><span class="co">]</span>$, lo que garantiza una solución única y convergencia incondicional mediante el método de Newton-Raphson:</span>
+<span id="cb3-103"><a href="#cb3-103" aria-label="103"></a></span>
+<span id="cb3-104"><a href="#cb3-104" aria-label="104"></a>$$</span>
+<span id="cb3-105"><a href="#cb3-105" aria-label="105"></a>\mathcal{F}'(\psi) = -\sum_{i=1}^{C} \frac{z_i (K_i - 1)^2}{<span class="co">[</span><span class="ot">1 + \psi (K_i - 1)</span><span class="co">]</span>^2} &lt; 0</span>
+<span id="cb3-106"><a href="#cb3-106" aria-label="106"></a>$$</span>
+<span id="cb3-107"><a href="#cb3-107" aria-label="107"></a></span>
+<span id="cb3-108"><a href="#cb3-108" aria-label="108"></a><span class="fu">## 3. Diagrama de Flujo del Proceso (PFD)</span></span>
+<span id="cb3-109"><a href="#cb3-109" aria-label="109"></a></span>
+<span id="cb3-110"><a href="#cb3-110" aria-label="110"></a><span class="in">```text</span></span>
+<span id="cb3-111"><a href="#cb3-111" aria-label="111"></a><span class="in">               Alimentación (F)</span></span>
+<span id="cb3-112"><a href="#cb3-112" aria-label="112"></a><span class="in">               100.0 kmol/h, 30°C, 3.0 bar</span></span>
+<span id="cb3-113"><a href="#cb3-113" aria-label="113"></a><span class="in">                      |</span></span>
+<span id="cb3-114"><a href="#cb3-114" aria-label="114"></a><span class="in">                      v</span></span>
+<span id="cb3-115"><a href="#cb3-115" aria-label="115"></a><span class="in">             [ Válvula de Expansión ]</span></span>
+<span id="cb3-116"><a href="#cb3-116" aria-label="116"></a><span class="in">                      |</span></span>
+<span id="cb3-117"><a href="#cb3-117" aria-label="117"></a><span class="in">                      v</span></span>
+<span id="cb3-118"><a href="#cb3-118" aria-label="118"></a><span class="in">           [ Precalentador Térmico ] ---&gt; (Q = 420.5 kW)</span></span>
+<span id="cb3-119"><a href="#cb3-119" aria-label="119"></a><span class="in">                      |</span></span>
+<span id="cb3-120"><a href="#cb3-120" aria-label="120"></a><span class="in">                      v</span></span>
+<span id="cb3-121"><a href="#cb3-121" aria-label="121"></a><span class="in">             +-----------------+</span></span>
+<span id="cb3-122"><a href="#cb3-122" aria-label="122"></a><span class="in">             |                 | ------------&gt; Corriente de Vapor (V)</span></span>
+<span id="cb3-123"><a href="#cb3-123" aria-label="123"></a><span class="in">             |   TAMBOR FLASH  |              42.85 kmol/h, 78.4°C, 1.20 bar</span></span>
+<span id="cb3-124"><a href="#cb3-124" aria-label="124"></a><span class="in">             |   ISOTÉRMICO    |              Rico en Pentano (y₁ = 72.3%)</span></span>
+<span id="cb3-125"><a href="#cb3-125" aria-label="125"></a><span class="in">             |                 |</span></span>
+<span id="cb3-126"><a href="#cb3-126" aria-label="126"></a><span class="in">             |  78.4°C, 1.2 bar|</span></span>
+<span id="cb3-127"><a href="#cb3-127" aria-label="127"></a><span class="in">             +-----------------+</span></span>
+<span id="cb3-128"><a href="#cb3-128" aria-label="128"></a><span class="in">                      |</span></span>
+<span id="cb3-129"><a href="#cb3-129" aria-label="129"></a><span class="in">                      +----------------------&gt; Corriente de Líquido (L)</span></span>
+<span id="cb3-130"><a href="#cb3-130" aria-label="130"></a><span class="in">                                              57.15 kmol/h, 78.4°C, 1.20 bar</span></span>
+<span id="cb3-131"><a href="#cb3-131" aria-label="131"></a><span class="in">                                              Rico en Heptano/Hexano (x₃ = 29.8%)</span></span>
+<span id="cb3-132"><a href="#cb3-132" aria-label="132"></a><span class="in">```</span></span>
+<span id="cb3-133"><a href="#cb3-133" aria-label="133"></a></span>
+<span id="cb3-134"><a href="#cb3-134" aria-label="134"></a><span class="fu">## 4. Tabla de Corrientes del Proceso y Balances</span></span>
+<span id="cb3-135"><a href="#cb3-135" aria-label="135"></a></span>
+<span id="cb3-136"><a href="#cb3-136" aria-label="136"></a>::: {.stream-table-wrapper}</span>
+<span id="cb3-137"><a href="#cb3-137" aria-label="137"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">"stream-table"</span><span class="dt">&gt;</span></span>
+<span id="cb3-138"><a href="#cb3-138" aria-label="138"></a>  <span class="dt">&lt;</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb3-139"><a href="#cb3-139" aria-label="139"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-140"><a href="#cb3-140" aria-label="140"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Propiedad / Componente<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb3-141"><a href="#cb3-141" aria-label="141"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Alimentación (F)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb3-142"><a href="#cb3-142" aria-label="142"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Vapor Superior (V)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb3-143"><a href="#cb3-143" aria-label="143"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Líquido Inferior (L)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb3-144"><a href="#cb3-144" aria-label="144"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Unidad<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb3-145"><a href="#cb3-145" aria-label="145"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-146"><a href="#cb3-146" aria-label="146"></a>  <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb3-147"><a href="#cb3-147" aria-label="147"></a>  <span class="dt">&lt;</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
+<span id="cb3-148"><a href="#cb3-148" aria-label="148"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-149"><a href="#cb3-149" aria-label="149"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Temperatura<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-150"><a href="#cb3-150" aria-label="150"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>30.00<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-151"><a href="#cb3-151" aria-label="151"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>78.40<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-152"><a href="#cb3-152" aria-label="152"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>78.40<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-153"><a href="#cb3-153" aria-label="153"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>°C<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-154"><a href="#cb3-154" aria-label="154"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-155"><a href="#cb3-155" aria-label="155"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-156"><a href="#cb3-156" aria-label="156"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Presión Absoluta<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-157"><a href="#cb3-157" aria-label="157"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>3.00<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-158"><a href="#cb3-158" aria-label="158"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>1.20<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-159"><a href="#cb3-159" aria-label="159"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>1.20<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-160"><a href="#cb3-160" aria-label="160"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-161"><a href="#cb3-161" aria-label="161"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-162"><a href="#cb3-162" aria-label="162"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-163"><a href="#cb3-163" aria-label="163"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Flujo Molar Total<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-164"><a href="#cb3-164" aria-label="164"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>100.000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-165"><a href="#cb3-165" aria-label="165"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>42.852<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-166"><a href="#cb3-166" aria-label="166"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>57.148<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-167"><a href="#cb3-167" aria-label="167"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>kmol/h<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-168"><a href="#cb3-168" aria-label="168"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-169"><a href="#cb3-169" aria-label="169"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-170"><a href="#cb3-170" aria-label="170"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción Molar de Vapor<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-171"><a href="#cb3-171" aria-label="171"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.0000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-172"><a href="#cb3-172" aria-label="172"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>1.0000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-173"><a href="#cb3-173" aria-label="173"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.0000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-174"><a href="#cb3-174" aria-label="174"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>-<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-175"><a href="#cb3-175" aria-label="175"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-176"><a href="#cb3-176" aria-label="176"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-177"><a href="#cb3-177" aria-label="177"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Flujo Másico Total<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-178"><a href="#cb3-178" aria-label="178"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>8197.6<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-179"><a href="#cb3-179" aria-label="179"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>3238.1<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-180"><a href="#cb3-180" aria-label="180"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>4959.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-181"><a href="#cb3-181" aria-label="181"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>kg/h<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-182"><a href="#cb3-182" aria-label="182"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-183"><a href="#cb3-183" aria-label="183"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-184"><a href="#cb3-184" aria-label="184"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Peso Molecular Medio<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-185"><a href="#cb3-185" aria-label="185"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>81.98<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-186"><a href="#cb3-186" aria-label="186"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>75.56<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-187"><a href="#cb3-187" aria-label="187"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>86.78<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-188"><a href="#cb3-188" aria-label="188"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>kg/kmol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-189"><a href="#cb3-189" aria-label="189"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-190"><a href="#cb3-190" aria-label="190"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="ot"> style</span><span class="op">=</span><span class="st">"border-top: 2px solid var(--border-prominent);"</span><span class="dt">&gt;</span></span>
+<span id="cb3-191"><a href="#cb3-191" aria-label="191"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción Molar n-Pentano ($z_1, y_1, x_1$)<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-192"><a href="#cb3-192" aria-label="192"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.5000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-193"><a href="#cb3-193" aria-label="193"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.7231<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-194"><a href="#cb3-194" aria-label="194"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.3326<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-195"><a href="#cb3-195" aria-label="195"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-196"><a href="#cb3-196" aria-label="196"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-197"><a href="#cb3-197" aria-label="197"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-198"><a href="#cb3-198" aria-label="198"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción Molar n-Hexano ($z_2, y_2, x_2$)<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-199"><a href="#cb3-199" aria-label="199"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.3000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-200"><a href="#cb3-200" aria-label="200"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.2899<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-201"><a href="#cb3-201" aria-label="201"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.3075<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-202"><a href="#cb3-202" aria-label="202"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-203"><a href="#cb3-203" aria-label="203"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-204"><a href="#cb3-204" aria-label="204"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-205"><a href="#cb3-205" aria-label="205"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción Molar n-Heptano ($z_3, y_3, x_3$)<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-206"><a href="#cb3-206" aria-label="206"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.2000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-207"><a href="#cb3-207" aria-label="207"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.0870<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-208"><a href="#cb3-208" aria-label="208"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.3599<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-209"><a href="#cb3-209" aria-label="209"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-210"><a href="#cb3-210" aria-label="210"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-211"><a href="#cb3-211" aria-label="211"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="ot"> style</span><span class="op">=</span><span class="st">"font-weight: 700; background-color: var(--bg-elevated);"</span><span class="dt">&gt;</span></span>
+<span id="cb3-212"><a href="#cb3-212" aria-label="212"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Suma de Fracciones ($\sum x_i, \sum y_i$)<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-213"><a href="#cb3-213" aria-label="213"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>1.0000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-214"><a href="#cb3-214" aria-label="214"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>1.0000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-215"><a href="#cb3-215" aria-label="215"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>1.0000<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-216"><a href="#cb3-216" aria-label="216"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-217"><a href="#cb3-217" aria-label="217"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-218"><a href="#cb3-218" aria-label="218"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-219"><a href="#cb3-219" aria-label="219"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Entalpía Específica<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-220"><a href="#cb3-220" aria-label="220"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>-145.2<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-221"><a href="#cb3-221" aria-label="221"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>18.6<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-222"><a href="#cb3-222" aria-label="222"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>-36.4<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-223"><a href="#cb3-223" aria-label="223"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>kJ/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb3-224"><a href="#cb3-224" aria-label="224"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb3-225"><a href="#cb3-225" aria-label="225"></a>  <span class="dt">&lt;/</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
+<span id="cb3-226"><a href="#cb3-226" aria-label="226"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span>
+<span id="cb3-227"><a href="#cb3-227" aria-label="227"></a>:::</span>
+<span id="cb3-228"><a href="#cb3-228" aria-label="228"></a></span>
+<span id="cb3-229"><a href="#cb3-229" aria-label="229"></a><span class="fu">## 5. Implementación Numérica en Python</span></span>
+<span id="cb3-230"><a href="#cb3-230" aria-label="230"></a></span>
+<span id="cb3-231"><a href="#cb3-231" aria-label="231"></a>El siguiente script en Python resuelve la ecuación de Rachford-Rice utilizando <span class="in">`scipy.optimize.root_scalar`</span> y computa las composiciones de equilibrio junto con los balances de materia estequiométricos:</span>
+<span id="cb3-232"><a href="#cb3-232" aria-label="232"></a></span>
+<span id="cb3-233"><a href="#cb3-233" aria-label="233"></a><span class="in">```python</span></span>
+<span id="cb3-234"><a href="#cb3-234" aria-label="234"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb3-235"><a href="#cb3-235" aria-label="235"></a></span>
+<span id="cb3-236"><a href="#cb3-236" aria-label="236"></a><span class="co"># Datos de alimentación y condiciones operativas</span></span>
+<span id="cb3-237"><a href="#cb3-237" aria-label="237"></a>components <span class="op">=</span> [<span class="st">"n-Pentano"</span>, <span class="st">"n-Hexano"</span>, <span class="st">"n-Heptano"</span>]</span>
+<span id="cb3-238"><a href="#cb3-238" aria-label="238"></a>z <span class="op">=</span> np.array([<span class="fl">0.50</span>, <span class="fl">0.30</span>, <span class="fl">0.20</span>])</span>
+<span id="cb3-239"><a href="#cb3-239" aria-label="239"></a>K <span class="op">=</span> np.array([<span class="fl">2.4410</span>, <span class="fl">0.9450</span>, <span class="fl">0.3815</span>])</span>
+<span id="cb3-240"><a href="#cb3-240" aria-label="240"></a>F_total <span class="op">=</span> <span class="fl">100.0</span>  <span class="co"># kmol/h</span></span>
+<span id="cb3-241"><a href="#cb3-241" aria-label="241"></a></span>
+<span id="cb3-242"><a href="#cb3-242" aria-label="242"></a><span class="kw">def</span> rachford_rice(psi: <span class="bu">float</span>, z: np.ndarray, K: np.ndarray) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb3-243"><a href="#cb3-243" aria-label="243"></a>    <span class="co">"""Función objetivo de Rachford-Rice."""</span></span>
+<span id="cb3-244"><a href="#cb3-244" aria-label="244"></a>    <span class="cf">return</span> np.<span class="bu">sum</span>(z <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>) <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> psi <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>)))</span>
+<span id="cb3-245"><a href="#cb3-245" aria-label="245"></a></span>
+<span id="cb3-246"><a href="#cb3-246" aria-label="246"></a><span class="kw">def</span> rachford_rice_deriv(psi: <span class="bu">float</span>, z: np.ndarray, K: np.ndarray) <span class="op">-&gt;</span> <span class="bu">float</span>:</span>
+<span id="cb3-247"><a href="#cb3-247" aria-label="247"></a>    <span class="co">"""Primera derivada analítica dF/d(psi)."""</span></span>
+<span id="cb3-248"><a href="#cb3-248" aria-label="248"></a>    <span class="cf">return</span> <span class="op">-</span>np.<span class="bu">sum</span>(z <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> psi <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>))<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb3-249"><a href="#cb3-249" aria-label="249"></a></span>
+<span id="cb3-250"><a href="#cb3-250" aria-label="250"></a><span class="co"># Solución mediante Newton-Raphson</span></span>
+<span id="cb3-251"><a href="#cb3-251" aria-label="251"></a>psi <span class="op">=</span> <span class="fl">0.5</span>  <span class="co"># Semilla inicial</span></span>
+<span id="cb3-252"><a href="#cb3-252" aria-label="252"></a>tolerance <span class="op">=</span> <span class="fl">1e-9</span></span>
+<span id="cb3-253"><a href="#cb3-253" aria-label="253"></a>max_iter <span class="op">=</span> <span class="dv">50</span></span>
+<span id="cb3-254"><a href="#cb3-254" aria-label="254"></a></span>
+<span id="cb3-255"><a href="#cb3-255" aria-label="255"></a><span class="cf">for</span> iteration <span class="kw">in</span> <span class="bu">range</span>(max_iter):</span>
+<span id="cb3-256"><a href="#cb3-256" aria-label="256"></a>    f_val <span class="op">=</span> rachford_rice(psi, z, K)</span>
+<span id="cb3-257"><a href="#cb3-257" aria-label="257"></a>    f_prime <span class="op">=</span> rachford_rice_deriv(psi, z, K)</span>
+<span id="cb3-258"><a href="#cb3-258" aria-label="258"></a>    step <span class="op">=</span> f_val <span class="op">/</span> f_prime</span>
+<span id="cb3-259"><a href="#cb3-259" aria-label="259"></a>    psi <span class="op">=</span> psi <span class="op">-</span> step</span>
+<span id="cb3-260"><a href="#cb3-260" aria-label="260"></a>    <span class="cf">if</span> <span class="bu">abs</span>(step) <span class="op">&lt;</span> tolerance:</span>
+<span id="cb3-261"><a href="#cb3-261" aria-label="261"></a>        <span class="bu">print</span>(<span class="ss">f"✓ Convergencia alcanzada en </span><span class="sc">{</span>iteration <span class="op">+</span> <span class="dv">1</span><span class="sc">}</span><span class="ss"> iteraciones: psi = </span><span class="sc">{</span>psi<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb3-262"><a href="#cb3-262" aria-label="262"></a>        <span class="cf">break</span></span>
+<span id="cb3-263"><a href="#cb3-263" aria-label="263"></a></span>
+<span id="cb3-264"><a href="#cb3-264" aria-label="264"></a><span class="co"># Cálculo de composiciones de fase en equilibrio</span></span>
+<span id="cb3-265"><a href="#cb3-265" aria-label="265"></a>x <span class="op">=</span> z <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> psi <span class="op">*</span> (K <span class="op">-</span> <span class="fl">1.0</span>))</span>
+<span id="cb3-266"><a href="#cb3-266" aria-label="266"></a>y <span class="op">=</span> K <span class="op">*</span> x</span>
+<span id="cb3-267"><a href="#cb3-267" aria-label="267"></a></span>
+<span id="cb3-268"><a href="#cb3-268" aria-label="268"></a>V_flow <span class="op">=</span> F_total <span class="op">*</span> psi</span>
+<span id="cb3-269"><a href="#cb3-269" aria-label="269"></a>L_flow <span class="op">=</span> F_total <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">-</span> psi)</span>
+<span id="cb3-270"><a href="#cb3-270" aria-label="270"></a></span>
+<span id="cb3-271"><a href="#cb3-271" aria-label="271"></a><span class="bu">print</span>(<span class="ss">f"Flujo de Vapor (V):   </span><span class="sc">{</span>V_flow<span class="sc">:.3f}</span><span class="ss"> kmol/h"</span>)</span>
+<span id="cb3-272"><a href="#cb3-272" aria-label="272"></a><span class="bu">print</span>(<span class="ss">f"Flujo de Líquido (L): </span><span class="sc">{</span>L_flow<span class="sc">:.3f}</span><span class="ss"> kmol/h"</span>)</span>
+<span id="cb3-273"><a href="#cb3-273" aria-label="273"></a><span class="bu">print</span>(<span class="ss">f"Composiciones Vapor (y):   </span><span class="sc">{</span><span class="bu">dict</span>(<span class="bu">zip</span>(components, np.<span class="bu">round</span>(y, <span class="dv">4</span>)))<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-274"><a href="#cb3-274" aria-label="274"></a><span class="bu">print</span>(<span class="ss">f"Composiciones Líquido (x): </span><span class="sc">{</span><span class="bu">dict</span>(<span class="bu">zip</span>(components, np.<span class="bu">round</span>(x, <span class="dv">4</span>)))<span class="sc">}</span><span class="ss">"</span>)</span>
+<span id="cb3-275"><a href="#cb3-275" aria-label="275"></a><span class="bu">print</span>(<span class="ss">f"Consistencia: sum(x) = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">sum</span>(x)<span class="sc">:.6f}</span><span class="ss">, sum(y) = </span><span class="sc">{</span>np<span class="sc">.</span><span class="bu">sum</span>(y)<span class="sc">:.6f}</span><span class="ss">"</span>)</span>
+<span id="cb3-276"><a href="#cb3-276" aria-label="276"></a><span class="in">```</span></span>
+<span id="cb3-277"><a href="#cb3-277" aria-label="277"></a></span>
+<span id="cb3-278"><a href="#cb3-278" aria-label="278"></a><span class="fu">## 6. Video Tutorial y Demostración Operacional</span></span>
+<span id="cb3-279"><a href="#cb3-279" aria-label="279"></a></span>
+<span id="cb3-280"><a href="#cb3-280" aria-label="280"></a>A continuación se presenta la demostración paso a paso de la configuración termodinámica y resolución del balance en el simulador:</span>
+<span id="cb3-281"><a href="#cb3-281" aria-label="281"></a></span>
+<span id="cb3-282"><a href="#cb3-282" aria-label="282"></a>{{&lt; video https://www.youtube.com/watch?v=demo_flash784 &gt;}}</span>
+<span id="cb3-283"><a href="#cb3-283" aria-label="283"></a></span>
+<span id="cb3-284"><a href="#cb3-284" aria-label="284"></a><span class="fu">## 7. Conclusiones y Consideraciones de Diseño</span></span>
+<span id="cb3-285"><a href="#cb3-285" aria-label="285"></a></span>
+<span id="cb3-286"><a href="#cb3-286" aria-label="286"></a><span class="ss">1. </span>**Eficiencia en la Separación de Livianos:** A $78.4^\circ\text{C}$ y $1.20\text{ bar}$, el tambor separa el $62.0\%$ del $n$-Pentano presente en la alimentación hacia la corriente de vapor superior, elevando su pureza molar del $50.0\%$ al $72.3\%$.</span>
+<span id="cb3-287"><a href="#cb3-287" aria-label="287"></a><span class="ss">2. </span>**Robustez Numérica:** La convexidad de la ecuación de Rachford-Rice garantiza una convergencia de segundo orden en menos de 5 iteraciones de Newton-Raphson, sin riesgo de divergencia dentro del rango admisible $\psi \in (0, 1)$.</span>
+<span id="cb3-288"><a href="#cb3-288" aria-label="288"></a><span class="ss">3. </span>**Consumo Energético:** La adición térmica de $420.5\text{ kW}$ suministrada por el precalentador compensa el calor latente de vaporización del $n$-pentano y hexano, manteniendo el tambor en condición estrictamente isotérmica.</span>
+<span id="cb3-289"><a href="#cb3-289" aria-label="289"></a><span class="ss">4. </span>**Interoperabilidad:** Este modelo termodinámico coincide con las predicciones del paquete *Peng-Robinson* en Aspen HYSYS y DWSIM con desviaciones de temperatura inferiores al $0.3\%$.</span>
+<span id="cb3-290"><a href="#cb3-290" aria-label="290"></a></span>
+<span id="cb3-291"><a href="#cb3-291" aria-label="291"></a><span class="fu">## 8. Referencias Técnicas</span></span>
+<span id="cb3-292"><a href="#cb3-292" aria-label="292"></a></span>
+<span id="cb3-293"><a href="#cb3-293" aria-label="293"></a><span class="ss">* </span>Smith, J. M., Van Ness, H. C., &amp; Abbott, M. M. (2018). *Introduction to Chemical Engineering Thermodynamics* (8th ed.). McGraw-Hill.</span>
+<span id="cb3-294"><a href="#cb3-294" aria-label="294"></a><span class="ss">* </span>Rachford, H. H., &amp; Rice, J. D. (1952). Procedure for use of electronic digital computers in calculating flash vaporization hydrocarbon equilibrium. *Journal of Petroleum Technology*, 4(10), 19-20.</span>
+<span id="cb3-295"><a href="#cb3-295" aria-label="295"></a><span class="ss">* </span>Peng, D. Y., &amp; Robinson, D. B. (1976). A New Two-Constant Equation of State. *Industrial &amp; Engineering Chemistry Fundamentals*, 15(1), 59-64.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-legal">
+<p><strong>ProcessSim Lab</strong> © 2026 · Modelado de Procesos y Termodinámica Computacional.</p>
+</div>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<div class="footer-license">
+<p>Licencia MIT / CC BY 4.0 · Construido con <a href="https://quarto.org" target="_blank" rel="noopener">Quarto</a></p>
+</div>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

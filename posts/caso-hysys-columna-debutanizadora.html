@@ -1,0 +1,1338 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.10.18">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="ProcessSim Engineering Lab">
+<meta name="dcterms.date" content="2026-10-28">
+<meta name="description" content="Modelado riguroso de una torre de destilación de 30 platos para separar propano/butanos de gasolinas estabilizadas, optimizando la tasa de reflujo y los consumos energéticos de condensador y rehervidor.">
+
+<title>Simulación de una Columna Debutanizadora en Aspen HYSYS – ProcessSim // Engineering Lab</title>
+<style>
+/* Default styles provided by pandoc.
+** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
+*/
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: 1.5em;}
+div.column{flex: auto;}
+@media screen {
+div.columns{gap: min(4vw, 1.5em);}
+div.column{overflow-x: auto;}
+}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57e9dca84c74da3a22bfcef75888fd7d.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-57e9dca84c74da3a22bfcef75888fd7d.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57e9dca84c74da3a22bfcef75888fd7d.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-b0f4a84c31b0ae7c41cc0ac4807373a0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-4d191f2ef335284b08109c210b0fcf16.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-b0f4a84c31b0ae7c41cc0ac4807373a0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../styles/custom.scss">
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">ProcessSim // Engineering Lab</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#casos-destacados"> 
+<span class="menu-text">Simulaciones</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#aspen-hysys"> 
+<span class="menu-text">Aspen HYSYS</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#dwsim"> 
+<span class="menu-text">DWSIM</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#python"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/anxosanchez/sopqblog"> <i class="bi bi-github" role="img" aria-label="GitHub Repository">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com"> <i class="bi bi-youtube" role="img" aria-label="Canal de YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Contenido del Caso</h2>
+   
+  <ul>
+  <li><a href="#métricas-clave-de-operación-y-balance" id="toc-métricas-clave-de-operación-y-balance" class="nav-link active" data-scroll-target="#métricas-clave-de-operación-y-balance"><span class="header-section-number">1</span> Métricas Clave de Operación y Balance</a></li>
+  <li><a href="#introducción-y-descripción-del-proceso" id="toc-introducción-y-descripción-del-proceso" class="nav-link" data-scroll-target="#introducción-y-descripción-del-proceso"><span class="header-section-number">2</span> 1. Introducción y Descripción del Proceso</a></li>
+  <li><a href="#configuración-en-aspen-hysys-y-paquete-de-propiedades" id="toc-configuración-en-aspen-hysys-y-paquete-de-propiedades" class="nav-link" data-scroll-target="#configuración-en-aspen-hysys-y-paquete-de-propiedades"><span class="header-section-number">3</span> 2. Configuración en Aspen HYSYS y Paquete de Propiedades</a>
+  <ul class="collapse">
+  <li><a href="#especificaciones-de-diseño-de-la-torre" id="toc-especificaciones-de-diseño-de-la-torre" class="nav-link" data-scroll-target="#especificaciones-de-diseño-de-la-torre"><span class="header-section-number">3.1</span> Especificaciones de Diseño de la Torre</a></li>
+  </ul></li>
+  <li><a href="#diagrama-de-flujo-pfd-y-perfiles-de-etapa" id="toc-diagrama-de-flujo-pfd-y-perfiles-de-etapa" class="nav-link" data-scroll-target="#diagrama-de-flujo-pfd-y-perfiles-de-etapa"><span class="header-section-number">4</span> 3. Diagrama de Flujo (PFD) y Perfiles de Etapa</a></li>
+  <li><a href="#tabla-de-corrientes-del-proceso" id="toc-tabla-de-corrientes-del-proceso" class="nav-link" data-scroll-target="#tabla-de-corrientes-del-proceso"><span class="header-section-number">5</span> 4. Tabla de Corrientes del Proceso</a></li>
+  <li><a href="#video-tutorial-y-demostración-operacional" id="toc-video-tutorial-y-demostración-operacional" class="nav-link" data-scroll-target="#video-tutorial-y-demostración-operacional"><span class="header-section-number">6</span> 5. Video Tutorial y Demostración Operacional</a></li>
+  <li><a href="#conclusiones-y-lecciones-operativas" id="toc-conclusiones-y-lecciones-operativas" class="nav-link" data-scroll-target="#conclusiones-y-lecciones-operativas"><span class="header-section-number">7</span> 6. Conclusiones y Lecciones Operativas</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Simulación de una Columna Debutanizadora en Aspen HYSYS</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Fraccionamiento de GLP y Control de Especificación RVP con Paquete Peng-Robinson</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Aspen HYSYS</div>
+    <div class="quarto-category">Separación</div>
+    <div class="quarto-category">Caso HSC</div>
+    <div class="quarto-category">Video Tutorial</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Modelado riguroso de una torre de destilación de 30 platos para separar propano/butanos de gasolinas estabilizadas, optimizando la tasa de reflujo y los consumos energéticos de condensador y rehervidor.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>ProcessSim Engineering Lab </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 28, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- Barra de Recursos Interactivos -->
+<div class="resource-badge-bar">
+<p><span class="badge-label">Recursos del Caso:</span> <a href="https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim" target="_blank" rel="noopener" class="resource-badge resource-badge-drive">📁 Descargar Simulación HYSYS (.hsc)</a> <a href="slides-hysys-columna-debutanizadora.html" target="_blank" rel="noopener" class="resource-badge resource-badge-slides">📊 Ver Diapositivas Revealjs</a> <a href="https://www.youtube.com/watch?v=demo_hysys_debutanizer" target="_blank" rel="noopener" class="resource-badge resource-badge-youtube">▶ Ver en YouTube</a></p>
+</div>
+<section id="métricas-clave-de-operación-y-balance" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="métricas-clave-de-operación-y-balance"><span class="header-section-number">1</span> Métricas Clave de Operación y Balance</h2>
+<div class="metric-grid">
+<div class="metric-card accent-cyan">
+<div class="metric-header">
+Pureza C4 Superior
+</div>
+<div class="metric-value">
+98.5<span class="metric-unit">%</span>
+</div>
+<div class="metric-footer">
+Especificación GLP Comercial
+</div>
+</div>
+<div class="metric-card accent-amber">
+<div class="metric-header">
+Presión de Columna
+</div>
+<div class="metric-value">
+11.5<span class="metric-unit">bar</span>
+</div>
+<div class="metric-footer">
+Condensador Total a 48 °C
+</div>
+</div>
+<div class="metric-card accent-emerald">
+<div class="metric-header">
+Relación de Reflujo (R/D)
+</div>
+<div class="metric-value">
+2.40
+</div>
+<div class="metric-footer">
+Óptimo Económico (1.25 Rmin)
+</div>
+</div>
+<div class="metric-card accent-purple">
+<div class="metric-header">
+Carga Rehervidor
+</div>
+<div class="metric-value">
+2.20<span class="metric-unit">MW</span>
+</div>
+<div class="metric-footer">
+Vapor de Media Presión
+</div>
+</div>
+</div>
+</section>
+<section id="introducción-y-descripción-del-proceso" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="introducción-y-descripción-del-proceso"><span class="header-section-number">2</span> 1. Introducción y Descripción del Proceso</h2>
+<p>La columna debutanizadora es un eslabón crítico en el tren de estabilización de hidrocarburos. Su objetivo primordial es recuperar butanos (<span class="math inline">i\text{-C}_4</span> y <span class="math inline">n\text{-C}_4</span>) por cabeza para la producción de gas licuado de petróleo (GLP), mientras que por fondo se obtiene gasolina estabilizada con una presión de vapor Reid (RVP) controlada para cumplir estándares de refinería.</p>
+<p>La corriente de alimentación procede de una despropanizadora y entra en fase mixta a la torre en el plato 14 con un caudal de <span class="math inline">250.0\text{ kmol/h}</span>.</p>
+</section>
+<section id="configuración-en-aspen-hysys-y-paquete-de-propiedades" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="configuración-en-aspen-hysys-y-paquete-de-propiedades"><span class="header-section-number">3</span> 2. Configuración en Aspen HYSYS y Paquete de Propiedades</h2>
+<p>Se utilizó la ecuación de estado de <strong>Peng-Robinson (PR)</strong> con parámetros de interacción binaria (BIP) ajustados por Aspen Properties.</p>
+<section id="especificaciones-de-diseño-de-la-torre" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="especificaciones-de-diseño-de-la-torre"><span class="header-section-number">3.1</span> Especificaciones de Diseño de la Torre</h3>
+<ul>
+<li><strong>Número de etapas teóricas:</strong> 30 platos + condensador total + rehervidor parcial tipo termosifón.</li>
+<li><strong>Plato de alimentación:</strong> Etapa 14 (numerada desde el tope).</li>
+<li><strong>Presión de cima:</strong> <span class="math inline">11.5\text{ bar}</span>.</li>
+<li><strong>Presión de fondo:</strong> <span class="math inline">12.1\text{ bar}</span> (<span class="math inline">\Delta P = 0.6\text{ bar}</span>).</li>
+<li><strong>Especificación de cima:</strong> Fracción molar de <span class="math inline">i\text{-C}_5</span> en destilado <span class="math inline">\le 0.5\%</span>.</li>
+<li><strong>Especificación de fondo:</strong> Fracción molar de <span class="math inline">n\text{-C}_4</span> en fondos <span class="math inline">\le 1.0\%</span>.</li>
+</ul>
+</section>
+</section>
+<section id="diagrama-de-flujo-pfd-y-perfiles-de-etapa" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="diagrama-de-flujo-pfd-y-perfiles-de-etapa"><span class="header-section-number">4</span> 3. Diagrama de Flujo (PFD) y Perfiles de Etapa</h2>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1" aria-label="1"></a>                  [ Condensador Total ] &lt;--- (Qc = -1.85 MW)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-label="2"></a>                           |</span>
+<span id="cb1-3"><a href="#cb1-3" aria-label="3"></a>                           v</span>
+<span id="cb1-4"><a href="#cb1-4" aria-label="4"></a>                   [ Acumulador Cima ]</span>
+<span id="cb1-5"><a href="#cb1-5" aria-label="5"></a>                      |          |</span>
+<span id="cb1-6"><a href="#cb1-6" aria-label="6"></a>         Reflujo (R)  |          v</span>
+<span id="cb1-7"><a href="#cb1-7" aria-label="7"></a>         +------------+    [ Destilado (D) ] ---&gt; GLP (C3/C4)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-label="8"></a>         |                 108.5 kmol/h, 48.2°C, 11.5 bar</span>
+<span id="cb1-9"><a href="#cb1-9" aria-label="9"></a>         v</span>
+<span id="cb1-10"><a href="#cb1-10" aria-label="10"></a>     +-------+ (Etapa 1)</span>
+<span id="cb1-11"><a href="#cb1-11" aria-label="11"></a>     |       |</span>
+<span id="cb1-12"><a href="#cb1-12" aria-label="12"></a>(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)</span>
+<span id="cb1-13"><a href="#cb1-13" aria-label="13"></a>---&gt; |   O   |</span>
+<span id="cb1-14"><a href="#cb1-14" aria-label="14"></a>     |   R   |</span>
+<span id="cb1-15"><a href="#cb1-15" aria-label="15"></a>     |   R   |</span>
+<span id="cb1-16"><a href="#cb1-16" aria-label="16"></a>     |   E   | (Etapa 30)</span>
+<span id="cb1-17"><a href="#cb1-17" aria-label="17"></a>     +-------+</span>
+<span id="cb1-18"><a href="#cb1-18" aria-label="18"></a>         |</span>
+<span id="cb1-19"><a href="#cb1-19" aria-label="19"></a>         +------------&gt; [ Rehervidor ] &lt;--- (Qr = +2.20 MW)</span>
+<span id="cb1-20"><a href="#cb1-20" aria-label="20"></a>         |                  |</span>
+<span id="cb1-21"><a href="#cb1-21" aria-label="21"></a>         v                  v</span>
+<span id="cb1-22"><a href="#cb1-22" aria-label="22"></a>     [ Fondos (B) ] &lt;-------+</span>
+<span id="cb1-23"><a href="#cb1-23" aria-label="23"></a>     Gasolina Estabilizada (C5+)</span>
+<span id="cb1-24"><a href="#cb1-24" aria-label="24"></a>     141.5 kmol/h, 162.8°C, 12.1 bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="tabla-de-corrientes-del-proceso" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="tabla-de-corrientes-del-proceso"><span class="header-section-number">5</span> 4. Tabla de Corrientes del Proceso</h2>
+<div class="stream-table-wrapper">
+<table class="stream-table">
+<thead>
+<tr>
+<th>
+Variable / Corriente
+</th>
+<th class="num">
+Alimentación (F)
+</th>
+<th class="num">
+Destilado GLP (D)
+</th>
+<th class="num">
+Gasolina Fondo (B)
+</th>
+<th>
+Unidad
+</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>
+<strong>Temperatura</strong>
+</td>
+<td class="num">
+92.4
+</td>
+<td class="num">
+48.2
+</td>
+<td class="num">
+162.8
+</td>
+<td>
+°C
+</td>
+</tr>
+<tr>
+<td>
+<strong>Presión</strong>
+</td>
+<td class="num">
+12.5
+</td>
+<td class="num">
+11.5
+</td>
+<td class="num">
+12.1
+</td>
+<td>
+bar
+</td>
+</tr>
+<tr>
+<td>
+<strong>Flujo Molar</strong>
+</td>
+<td class="num">
+250.0
+</td>
+<td class="num">
+108.5
+</td>
+<td class="num">
+141.5
+</td>
+<td>
+kmol/h
+</td>
+</tr>
+<tr>
+<td>
+<strong>Fracción i-C4 + n-C4</strong>
+</td>
+<td class="num">
+0.432
+</td>
+<td class="num">
+0.985
+</td>
+<td class="num">
+0.008
+</td>
+<td>
+mol/mol
+</td>
+</tr>
+<tr>
+<td>
+<strong>Fracción C5+ (Gasolina)</strong>
+</td>
+<td class="num">
+0.568
+</td>
+<td class="num">
+0.005
+</td>
+<td class="num">
+0.992
+</td>
+<td>
+mol/mol
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="video-tutorial-y-demostración-operacional" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="video-tutorial-y-demostración-operacional"><span class="header-section-number">6</span> 5. Video Tutorial y Demostración Operacional</h2>
+<div class="quarto-video ratio ratio-16x9"><iframe data-external="1" src="https://www.youtube.com/embed/demo_hysys_debutanizer" title="" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe></div>
+</section>
+<section id="conclusiones-y-lecciones-operativas" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="conclusiones-y-lecciones-operativas"><span class="header-section-number">7</span> 6. Conclusiones y Lecciones Operativas</h2>
+<ol type="1">
+<li><strong>Control de RVP:</strong> La tasa de reflujo de <span class="math inline">2.40</span> asegura que la gasolina de fondo no exceda <span class="math inline">7.5\text{ psi}</span> de RVP, haciéndola apta para blending directo de verano.</li>
+<li><strong>Optimización Energética:</strong> La integración de un intercambiador de calor alimentación-fondos permite precalentar la carga desde <span class="math inline">65^\circ\text{C}</span> a <span class="math inline">92.4^\circ\text{C}</span>, reduciendo en un <span class="math inline">18\%</span> el consumo de vapor en el rehervidor.</li>
+</ol>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const cellDetails = window.document.querySelectorAll(".cell details.code-fold");
+        for (let i=0; i<cellDetails.length; i++) {
+          const details = cellDetails[i];
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell div.sourceCode.cell-code");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/anxosanchez\.github\.io\/sopqblog");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1" aria-label="1"></a><span class="co">---</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-label="2"></a><span class="an">title:</span><span class="co"> "Simulación de una Columna Debutanizadora en Aspen HYSYS"</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-label="3"></a><span class="an">subtitle:</span><span class="co"> "Fraccionamiento de GLP y Control de Especificación RVP con Paquete Peng-Robinson"</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-label="4"></a><span class="an">description:</span><span class="co"> "Modelado riguroso de una torre de destilación de 30 platos para separar propano/butanos de gasolinas estabilizadas, optimizando la tasa de reflujo y los consumos energéticos de condensador y rehervidor."</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-label="5"></a><span class="an">author:</span><span class="co"> "ProcessSim Engineering Lab"</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-label="6"></a><span class="an">date:</span><span class="co"> "2026-10-28"</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-label="7"></a><span class="an">categories:</span><span class="co"> ["Aspen HYSYS", "Separación", "Caso HSC", "Video Tutorial"]</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-label="8"></a><span class="an">image:</span><span class="co"> "../assets/images/debutanizer_pfd.svg"</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-label="9"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-label="10"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-label="11"></a><span class="an">code-fold:</span><span class="co"> show</span></span>
+<span id="cb2-12"><a href="#cb2-12" aria-label="12"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb2-13"><a href="#cb2-13" aria-label="13"></a><span class="co">---</span></span>
+<span id="cb2-14"><a href="#cb2-14" aria-label="14"></a></span>
+<span id="cb2-15"><a href="#cb2-15" aria-label="15"></a><span class="co">&lt;!-- Barra de Recursos Interactivos --&gt;</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-label="16"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge-bar"</span><span class="dt">&gt;</span></span>
+<span id="cb2-17"><a href="#cb2-17" aria-label="17"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"badge-label"</span><span class="dt">&gt;</span>Recursos del Caso:<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb2-18"><a href="#cb2-18" aria-label="18"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-drive"</span><span class="dt">&gt;</span>📁 Descargar Simulación HYSYS (.hsc)<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb2-19"><a href="#cb2-19" aria-label="19"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"slides-hysys-columna-debutanizadora.html"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-slides"</span><span class="dt">&gt;</span>📊 Ver Diapositivas Revealjs<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb2-20"><a href="#cb2-20" aria-label="20"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.youtube.com/watch?v=demo_hysys_debutanizer"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-youtube"</span><span class="dt">&gt;</span>▶ Ver en YouTube<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb2-21"><a href="#cb2-21" aria-label="21"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-22"><a href="#cb2-22" aria-label="22"></a></span>
+<span id="cb2-23"><a href="#cb2-23" aria-label="23"></a><span class="fu">## Métricas Clave de Operación y Balance</span></span>
+<span id="cb2-24"><a href="#cb2-24" aria-label="24"></a></span>
+<span id="cb2-25"><a href="#cb2-25" aria-label="25"></a>::: {.metric-grid}</span>
+<span id="cb2-26"><a href="#cb2-26" aria-label="26"></a>::: {.metric-card .accent-cyan}</span>
+<span id="cb2-27"><a href="#cb2-27" aria-label="27"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Pureza C4 Superior<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-28"><a href="#cb2-28" aria-label="28"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>98.5<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>%<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-29"><a href="#cb2-29" aria-label="29"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Especificación GLP Comercial<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-30"><a href="#cb2-30" aria-label="30"></a>:::</span>
+<span id="cb2-31"><a href="#cb2-31" aria-label="31"></a></span>
+<span id="cb2-32"><a href="#cb2-32" aria-label="32"></a>::: {.metric-card .accent-amber}</span>
+<span id="cb2-33"><a href="#cb2-33" aria-label="33"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Presión de Columna<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-34"><a href="#cb2-34" aria-label="34"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>11.5<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-35"><a href="#cb2-35" aria-label="35"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Condensador Total a 48 °C<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-36"><a href="#cb2-36" aria-label="36"></a>:::</span>
+<span id="cb2-37"><a href="#cb2-37" aria-label="37"></a></span>
+<span id="cb2-38"><a href="#cb2-38" aria-label="38"></a>::: {.metric-card .accent-emerald}</span>
+<span id="cb2-39"><a href="#cb2-39" aria-label="39"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Relación de Reflujo (R/D)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-40"><a href="#cb2-40" aria-label="40"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>2.40<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-41"><a href="#cb2-41" aria-label="41"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Óptimo Económico (1.25 Rmin)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-42"><a href="#cb2-42" aria-label="42"></a>:::</span>
+<span id="cb2-43"><a href="#cb2-43" aria-label="43"></a></span>
+<span id="cb2-44"><a href="#cb2-44" aria-label="44"></a>::: {.metric-card .accent-purple}</span>
+<span id="cb2-45"><a href="#cb2-45" aria-label="45"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Carga Rehervidor<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-46"><a href="#cb2-46" aria-label="46"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>2.20<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>MW<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-47"><a href="#cb2-47" aria-label="47"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Vapor de Media Presión<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb2-48"><a href="#cb2-48" aria-label="48"></a>:::</span>
+<span id="cb2-49"><a href="#cb2-49" aria-label="49"></a>:::</span>
+<span id="cb2-50"><a href="#cb2-50" aria-label="50"></a></span>
+<span id="cb2-51"><a href="#cb2-51" aria-label="51"></a><span class="fu">## 1. Introducción y Descripción del Proceso</span></span>
+<span id="cb2-52"><a href="#cb2-52" aria-label="52"></a></span>
+<span id="cb2-53"><a href="#cb2-53" aria-label="53"></a>La columna debutanizadora es un eslabón crítico en el tren de estabilización de hidrocarburos. Su objetivo primordial es recuperar butanos ($i\text{-C}_4$ y $n\text{-C}_4$) por cabeza para la producción de gas licuado de petróleo (GLP), mientras que por fondo se obtiene gasolina estabilizada con una presión de vapor Reid (RVP) controlada para cumplir estándares de refinería.</span>
+<span id="cb2-54"><a href="#cb2-54" aria-label="54"></a></span>
+<span id="cb2-55"><a href="#cb2-55" aria-label="55"></a>La corriente de alimentación procede de una despropanizadora y entra en fase mixta a la torre en el plato 14 con un caudal de $250.0\text{ kmol/h}$.</span>
+<span id="cb2-56"><a href="#cb2-56" aria-label="56"></a></span>
+<span id="cb2-57"><a href="#cb2-57" aria-label="57"></a><span class="fu">## 2. Configuración en Aspen HYSYS y Paquete de Propiedades</span></span>
+<span id="cb2-58"><a href="#cb2-58" aria-label="58"></a></span>
+<span id="cb2-59"><a href="#cb2-59" aria-label="59"></a>Se utilizó la ecuación de estado de **Peng-Robinson (PR)** con parámetros de interacción binaria (BIP) ajustados por Aspen Properties.</span>
+<span id="cb2-60"><a href="#cb2-60" aria-label="60"></a></span>
+<span id="cb2-61"><a href="#cb2-61" aria-label="61"></a><span class="fu">### Especificaciones de Diseño de la Torre</span></span>
+<span id="cb2-62"><a href="#cb2-62" aria-label="62"></a><span class="ss">* </span>**Número de etapas teóricas:** 30 platos + condensador total + rehervidor parcial tipo termosifón.</span>
+<span id="cb2-63"><a href="#cb2-63" aria-label="63"></a><span class="ss">* </span>**Plato de alimentación:** Etapa 14 (numerada desde el tope).</span>
+<span id="cb2-64"><a href="#cb2-64" aria-label="64"></a><span class="ss">* </span>**Presión de cima:** $11.5\text{ bar}$.</span>
+<span id="cb2-65"><a href="#cb2-65" aria-label="65"></a><span class="ss">* </span>**Presión de fondo:** $12.1\text{ bar}$ ($\Delta P = 0.6\text{ bar}$).</span>
+<span id="cb2-66"><a href="#cb2-66" aria-label="66"></a><span class="ss">* </span>**Especificación de cima:** Fracción molar de $i\text{-C}_5$ en destilado $\le 0.5\%$.</span>
+<span id="cb2-67"><a href="#cb2-67" aria-label="67"></a><span class="ss">* </span>**Especificación de fondo:** Fracción molar de $n\text{-C}_4$ en fondos $\le 1.0\%$.</span>
+<span id="cb2-68"><a href="#cb2-68" aria-label="68"></a></span>
+<span id="cb2-69"><a href="#cb2-69" aria-label="69"></a><span class="fu">## 3. Diagrama de Flujo (PFD) y Perfiles de Etapa</span></span>
+<span id="cb2-70"><a href="#cb2-70" aria-label="70"></a></span>
+<span id="cb2-71"><a href="#cb2-71" aria-label="71"></a><span class="in">```text</span></span>
+<span id="cb2-72"><a href="#cb2-72" aria-label="72"></a><span class="in">                  [ Condensador Total ] &lt;--- (Qc = -1.85 MW)</span></span>
+<span id="cb2-73"><a href="#cb2-73" aria-label="73"></a><span class="in">                           |</span></span>
+<span id="cb2-74"><a href="#cb2-74" aria-label="74"></a><span class="in">                           v</span></span>
+<span id="cb2-75"><a href="#cb2-75" aria-label="75"></a><span class="in">                   [ Acumulador Cima ]</span></span>
+<span id="cb2-76"><a href="#cb2-76" aria-label="76"></a><span class="in">                      |          |</span></span>
+<span id="cb2-77"><a href="#cb2-77" aria-label="77"></a><span class="in">         Reflujo (R)  |          v</span></span>
+<span id="cb2-78"><a href="#cb2-78" aria-label="78"></a><span class="in">         +------------+    [ Destilado (D) ] ---&gt; GLP (C3/C4)</span></span>
+<span id="cb2-79"><a href="#cb2-79" aria-label="79"></a><span class="in">         |                 108.5 kmol/h, 48.2°C, 11.5 bar</span></span>
+<span id="cb2-80"><a href="#cb2-80" aria-label="80"></a><span class="in">         v</span></span>
+<span id="cb2-81"><a href="#cb2-81" aria-label="81"></a><span class="in">     +-------+ (Etapa 1)</span></span>
+<span id="cb2-82"><a href="#cb2-82" aria-label="82"></a><span class="in">     |       |</span></span>
+<span id="cb2-83"><a href="#cb2-83" aria-label="83"></a><span class="in">(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)</span></span>
+<span id="cb2-84"><a href="#cb2-84" aria-label="84"></a><span class="in">---&gt; |   O   |</span></span>
+<span id="cb2-85"><a href="#cb2-85" aria-label="85"></a><span class="in">     |   R   |</span></span>
+<span id="cb2-86"><a href="#cb2-86" aria-label="86"></a><span class="in">     |   R   |</span></span>
+<span id="cb2-87"><a href="#cb2-87" aria-label="87"></a><span class="in">     |   E   | (Etapa 30)</span></span>
+<span id="cb2-88"><a href="#cb2-88" aria-label="88"></a><span class="in">     +-------+</span></span>
+<span id="cb2-89"><a href="#cb2-89" aria-label="89"></a><span class="in">         |</span></span>
+<span id="cb2-90"><a href="#cb2-90" aria-label="90"></a><span class="in">         +------------&gt; [ Rehervidor ] &lt;--- (Qr = +2.20 MW)</span></span>
+<span id="cb2-91"><a href="#cb2-91" aria-label="91"></a><span class="in">         |                  |</span></span>
+<span id="cb2-92"><a href="#cb2-92" aria-label="92"></a><span class="in">         v                  v</span></span>
+<span id="cb2-93"><a href="#cb2-93" aria-label="93"></a><span class="in">     [ Fondos (B) ] &lt;-------+</span></span>
+<span id="cb2-94"><a href="#cb2-94" aria-label="94"></a><span class="in">     Gasolina Estabilizada (C5+)</span></span>
+<span id="cb2-95"><a href="#cb2-95" aria-label="95"></a><span class="in">     141.5 kmol/h, 162.8°C, 12.1 bar</span></span>
+<span id="cb2-96"><a href="#cb2-96" aria-label="96"></a><span class="in">```</span></span>
+<span id="cb2-97"><a href="#cb2-97" aria-label="97"></a></span>
+<span id="cb2-98"><a href="#cb2-98" aria-label="98"></a><span class="fu">## 4. Tabla de Corrientes del Proceso</span></span>
+<span id="cb2-99"><a href="#cb2-99" aria-label="99"></a></span>
+<span id="cb2-100"><a href="#cb2-100" aria-label="100"></a>::: {.stream-table-wrapper}</span>
+<span id="cb2-101"><a href="#cb2-101" aria-label="101"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">"stream-table"</span><span class="dt">&gt;</span></span>
+<span id="cb2-102"><a href="#cb2-102" aria-label="102"></a>  <span class="dt">&lt;</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb2-103"><a href="#cb2-103" aria-label="103"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-104"><a href="#cb2-104" aria-label="104"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Variable / Corriente<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb2-105"><a href="#cb2-105" aria-label="105"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Alimentación (F)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb2-106"><a href="#cb2-106" aria-label="106"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Destilado GLP (D)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb2-107"><a href="#cb2-107" aria-label="107"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Gasolina Fondo (B)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb2-108"><a href="#cb2-108" aria-label="108"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Unidad<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb2-109"><a href="#cb2-109" aria-label="109"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-110"><a href="#cb2-110" aria-label="110"></a>  <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb2-111"><a href="#cb2-111" aria-label="111"></a>  <span class="dt">&lt;</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
+<span id="cb2-112"><a href="#cb2-112" aria-label="112"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-113"><a href="#cb2-113" aria-label="113"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Temperatura<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-114"><a href="#cb2-114" aria-label="114"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>92.4<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-115"><a href="#cb2-115" aria-label="115"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>48.2<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-116"><a href="#cb2-116" aria-label="116"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>162.8<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-117"><a href="#cb2-117" aria-label="117"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>°C<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-118"><a href="#cb2-118" aria-label="118"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-119"><a href="#cb2-119" aria-label="119"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-120"><a href="#cb2-120" aria-label="120"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Presión<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-121"><a href="#cb2-121" aria-label="121"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>12.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-122"><a href="#cb2-122" aria-label="122"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>11.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-123"><a href="#cb2-123" aria-label="123"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>12.1<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-124"><a href="#cb2-124" aria-label="124"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-125"><a href="#cb2-125" aria-label="125"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-126"><a href="#cb2-126" aria-label="126"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-127"><a href="#cb2-127" aria-label="127"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Flujo Molar<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-128"><a href="#cb2-128" aria-label="128"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>250.0<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-129"><a href="#cb2-129" aria-label="129"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>108.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-130"><a href="#cb2-130" aria-label="130"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>141.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-131"><a href="#cb2-131" aria-label="131"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>kmol/h<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-132"><a href="#cb2-132" aria-label="132"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-133"><a href="#cb2-133" aria-label="133"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-134"><a href="#cb2-134" aria-label="134"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción i-C4 + n-C4<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-135"><a href="#cb2-135" aria-label="135"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.432<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-136"><a href="#cb2-136" aria-label="136"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.985<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-137"><a href="#cb2-137" aria-label="137"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.008<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-138"><a href="#cb2-138" aria-label="138"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-139"><a href="#cb2-139" aria-label="139"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-140"><a href="#cb2-140" aria-label="140"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-141"><a href="#cb2-141" aria-label="141"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción C5+ (Gasolina)<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-142"><a href="#cb2-142" aria-label="142"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.568<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-143"><a href="#cb2-143" aria-label="143"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.005<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-144"><a href="#cb2-144" aria-label="144"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.992<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-145"><a href="#cb2-145" aria-label="145"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb2-146"><a href="#cb2-146" aria-label="146"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb2-147"><a href="#cb2-147" aria-label="147"></a>  <span class="dt">&lt;/</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
+<span id="cb2-148"><a href="#cb2-148" aria-label="148"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span>
+<span id="cb2-149"><a href="#cb2-149" aria-label="149"></a>:::</span>
+<span id="cb2-150"><a href="#cb2-150" aria-label="150"></a></span>
+<span id="cb2-151"><a href="#cb2-151" aria-label="151"></a><span class="fu">## 5. Video Tutorial y Demostración Operacional</span></span>
+<span id="cb2-152"><a href="#cb2-152" aria-label="152"></a></span>
+<span id="cb2-153"><a href="#cb2-153" aria-label="153"></a>{{&lt; video https://www.youtube.com/watch?v=demo_hysys_debutanizer &gt;}}</span>
+<span id="cb2-154"><a href="#cb2-154" aria-label="154"></a></span>
+<span id="cb2-155"><a href="#cb2-155" aria-label="155"></a><span class="fu">## 6. Conclusiones y Lecciones Operativas</span></span>
+<span id="cb2-156"><a href="#cb2-156" aria-label="156"></a></span>
+<span id="cb2-157"><a href="#cb2-157" aria-label="157"></a><span class="ss">1. </span>**Control de RVP:** La tasa de reflujo de $2.40$ asegura que la gasolina de fondo no exceda $7.5\text{ psi}$ de RVP, haciéndola apta para blending directo de verano.</span>
+<span id="cb2-158"><a href="#cb2-158" aria-label="158"></a><span class="ss">2. </span>**Optimización Energética:** La integración de un intercambiador de calor alimentación-fondos permite precalentar la carga desde $65^\circ\text{C}$ a $92.4^\circ\text{C}$, reduciendo en un $18\%$ el consumo de vapor en el rehervidor.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-legal">
+<p><strong>ProcessSim Lab</strong> © 2026 · Modelado de Procesos y Termodinámica Computacional.</p>
+</div>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<div class="footer-license">
+<p>Licencia MIT / CC BY 4.0 · Construido con <a href="https://quarto.org" target="_blank" rel="noopener">Quarto</a></p>
+</div>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>

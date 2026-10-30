@@ -1,0 +1,572 @@
+/*-- scss:defaults --*/
+
+// =============================================================================
+// TYPOGRAPHY & DESIGN SYSTEM TOKENS (Awwwards-Level Technical Editorial)
+// =============================================================================
+@import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;600&family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
+$font-family-sans-serif: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+$font-family-monospace: 'Fira Code', ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+$font-family-serif: 'Instrument Serif', Georgia, Cambria, 'Times New Roman', serif;
+
+// Brand color palette (Process Engineering High-Tech)
+$brand-primary: #0066cc;
+$brand-primary-dark: #00d4aa;
+$brand-cyan: #00d4aa;
+$brand-sapphire: #2563eb;
+$brand-emerald: #059669;
+$brand-amber: #d97706;
+$brand-rose: #e11d48;
+$brand-purple: #7c3aed;
+
+// Semantic tokens
+$primary: $brand-primary;
+$link-color: $brand-primary;
+
+/*-- scss:rules --*/
+
+// =============================================================================
+// CSS CUSTOM PROPERTIES & ROOT VARIABLES
+// =============================================================================
+:root {
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'Fira Code', monospace;
+  --font-display: 'Instrument Serif', Georgia, serif;
+
+  // Base Light Mode
+  --bg-surface: #ffffff;
+  --bg-elevated: #f8fafc;
+  --bg-card: #ffffff;
+  --border-subtle: #e2e8f0;
+  --border-prominent: #cbd5e1;
+  --text-main: #0f172a;
+  --text-muted: #475569;
+  --text-dim: #94a3b8;
+  --accent-primary: #0066cc;
+  --accent-cyan: #00a884;
+  --accent-gradient: linear-gradient(135deg, #0066cc 0%, #00a884 100%);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 12px 28px rgba(0, 0, 0, 0.09);
+  --card-radius: 12px;
+  --badge-radius: 6px;
+  --code-bg: #f1f5f9;
+}
+
+[data-bs-theme="dark"], body.quarto-dark {
+  --bg-surface: #0a0d14;
+  --bg-elevated: #111622;
+  --bg-card: #141b2a;
+  --border-subtle: #232d42;
+  --border-prominent: #37435f;
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --text-dim: #64748b;
+  --accent-primary: #38bdf8;
+  --accent-cyan: #00d4aa;
+  --accent-gradient: linear-gradient(135deg, #38bdf8 0%, #00d4aa 100%);
+  --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-lg: 0 12px 32px rgba(0, 0, 0, 0.65);
+  --code-bg: #0d121c;
+}
+
+// Global Body & Typography
+body {
+  font-family: var(--font-sans);
+  color: var(--text-main);
+  background-color: var(--bg-surface);
+  line-height: 1.7;
+  letter-spacing: -0.01em;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-sans);
+  font-weight: 700;
+  letter-spacing: -0.025em;
+  color: var(--text-main);
+}
+
+.serif-display {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-weight: 400;
+}
+
+// =============================================================================
+// HERO & EXPLORATION HUB STYLES (index.qmd)
+// =============================================================================
+.hero-container {
+  padding: 4.5rem 0 3rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-bottom: 3.5rem;
+  background: radial-gradient(circle at 10% 20%, rgba(56, 189, 248, 0.05) 0%, transparent 40%),
+              radial-gradient(circle at 90% 80%, rgba(0, 212, 170, 0.04) 0%, transparent 40%);
+}
+
+.hero-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 9999px;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-prominent);
+  font-size: 0.78rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-pill .pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--accent-cyan);
+  box-shadow: 0 0 8px var(--accent-cyan);
+  animation: pulseGlow 2s infinite;
+}
+
+@keyframes pulseGlow {
+  0% { transform: scale(0.95); opacity: 0.8; }
+  50% { transform: scale(1.2); opacity: 1; }
+  100% { transform: scale(0.95); opacity: 0.8; }
+}
+
+.hero-title {
+  font-size: clamp(2.5rem, 5vw, 3.8rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  margin-bottom: 1.25rem;
+}
+
+.hero-title .gradient-text {
+  background: var(--accent-gradient);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+}
+
+.hero-lead {
+  font-size: 1.2rem;
+  color: var(--text-muted);
+  max-width: 720px;
+  line-height: 1.6;
+  margin-bottom: 2.25rem;
+}
+
+// Operational Status Cards (Hero Grid)
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1.25rem;
+  margin-top: 2rem;
+}
+
+.status-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: 1.25rem 1.5rem;
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.status-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-md);
+}
+
+.status-card .status-num {
+  font-family: var(--font-mono);
+  font-size: 1.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.status-card .status-label {
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-top: 0.35rem;
+}
+
+.status-card .status-sub {
+  font-size: 0.75rem;
+  color: var(--accent-cyan);
+  margin-top: 0.25rem;
+  font-family: var(--font-mono);
+}
+
+// =============================================================================
+// RESOURCE BADGE BAR (Floating & Interactive)
+// =============================================================================
+.resource-badge-bar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.85rem 1.25rem;
+  margin: 1.75rem 0 2.25rem 0;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-sm);
+}
+
+.resource-badge-bar .badge-label {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  margin-right: 0.25rem;
+  letter-spacing: 0.05em;
+}
+
+.resource-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.4rem 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  border-radius: var(--badge-radius);
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+
+.resource-badge svg,
+.resource-badge i {
+  width: 14px;
+  height: 14px;
+}
+
+.resource-badge-colab {
+  background-color: rgba(249, 171, 0, 0.12);
+  color: #d97706;
+  border-color: rgba(249, 171, 0, 0.35);
+}
+.resource-badge-colab:hover {
+  background-color: #f9ab00;
+  color: #1a1a1a;
+  transform: translateY(-1px);
+}
+
+.resource-badge-drive {
+  background-color: rgba(37, 99, 235, 0.12);
+  color: #2563eb;
+  border-color: rgba(37, 99, 235, 0.35);
+}
+.resource-badge-drive:hover {
+  background-color: #2563eb;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.resource-badge-slides {
+  background-color: rgba(124, 58, 237, 0.12);
+  color: #8b5cf6;
+  border-color: rgba(124, 58, 237, 0.35);
+}
+.resource-badge-slides:hover {
+  background-color: #7c3aed;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.resource-badge-youtube {
+  background-color: rgba(225, 29, 72, 0.12);
+  color: #e11d48;
+  border-color: rgba(225, 29, 72, 0.35);
+}
+.resource-badge-youtube:hover {
+  background-color: #e11d48;
+  color: #ffffff;
+  transform: translateY(-1px);
+}
+
+.resource-badge-github {
+  background-color: rgba(100, 116, 139, 0.12);
+  color: var(--text-main);
+  border-color: var(--border-prominent);
+}
+.resource-badge-github:hover {
+  background-color: var(--text-main);
+  color: var(--bg-surface);
+  transform: translateY(-1px);
+}
+
+// =============================================================================
+// METRIC GRID & METRIC CARDS (Operational Process Balance)
+// =============================================================================
+.metric-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1.5rem 0 2rem 0;
+}
+
+.metric-card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: 1rem 1.25rem;
+  box-shadow: var(--shadow-sm);
+  position: relative;
+  overflow: hidden;
+  border-left: 3px solid var(--accent-primary);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.metric-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-md);
+}
+
+.metric-card.accent-cyan { border-left-color: var(--brand-cyan); }
+.metric-card.accent-amber { border-left-color: var(--brand-amber); }
+.metric-card.accent-emerald { border-left-color: var(--brand-emerald); }
+.metric-card.accent-purple { border-left-color: var(--brand-purple); }
+
+.metric-card .metric-header {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-muted);
+  margin-bottom: 0.35rem;
+}
+
+.metric-card .metric-value {
+  font-family: var(--font-mono);
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.1;
+}
+
+.metric-card .metric-unit {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  margin-left: 0.25rem;
+}
+
+.metric-card .metric-footer {
+  font-size: 0.75rem;
+  color: var(--text-dim);
+  margin-top: 0.4rem;
+  font-family: var(--font-mono);
+}
+
+// =============================================================================
+// THERMODYNAMIC STREAM TABLES & MATRICES
+// =============================================================================
+.stream-table-wrapper {
+  width: 100%;
+  overflow-x: auto;
+  margin: 1.75rem 0;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  box-shadow: var(--shadow-sm);
+  background-color: var(--bg-card);
+}
+
+.stream-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+  margin-bottom: 0 !important;
+}
+
+.stream-table th {
+  background-color: var(--bg-elevated);
+  color: var(--text-main);
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.75rem 1rem;
+  border-bottom: 2px solid var(--border-prominent);
+  white-space: nowrap;
+}
+
+.stream-table td {
+  padding: 0.65rem 1rem;
+  border-bottom: 1px solid var(--border-subtle);
+  color: var(--text-main);
+}
+
+.stream-table td.num,
+.stream-table th.num {
+  font-family: var(--font-mono);
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.stream-table tbody tr:hover {
+  background-color: rgba(56, 189, 248, 0.04);
+}
+
+.stream-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+// =============================================================================
+// RESPONSIVE VIDEO EMBED
+// =============================================================================
+.video-responsive-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: var(--card-radius);
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+  margin: 2rem 0;
+  background-color: #000000;
+}
+
+.video-responsive-container iframe,
+.video-responsive-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+// Quarto video shortcode overrides
+div.quarto-video {
+  border-radius: var(--card-radius);
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  box-shadow: var(--shadow-md);
+  margin: 2rem 0;
+}
+
+// =============================================================================
+// CODE BLOCKS & MONOSPACE ENHANCEMENTS
+// =============================================================================
+pre > code.sourceCode {
+  font-family: var(--font-mono) !important;
+  font-size: 0.88rem !important;
+  line-height: 1.55 !important;
+  border-radius: 8px;
+}
+
+div.sourceCode {
+  background-color: var(--code-bg);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.code-copy-button {
+  border-radius: 6px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.code-copy-button:hover {
+  opacity: 1;
+}
+
+// =============================================================================
+// QUARTO LISTINGS & TABSET ENHANCEMENTS
+// =============================================================================
+.quarto-listing-grid .card {
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  background-color: var(--bg-card);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+
+.quarto-listing-grid .card:hover {
+  transform: translateY(-4px);
+  border-color: var(--accent-primary);
+  box-shadow: var(--shadow-lg);
+}
+
+.quarto-listing-grid .card-title {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.quarto-listing-table {
+  font-size: 0.9rem;
+}
+
+.nav-tabs .nav-link {
+  font-weight: 600;
+  color: var(--text-muted);
+  border-radius: 8px 8px 0 0;
+  padding: 0.65rem 1.25rem;
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+.nav-tabs .nav-link.active {
+  color: var(--accent-primary);
+  border-bottom: 2px solid var(--accent-primary);
+  font-weight: 700;
+}
+
+// =============================================================================
+// REVEALJS PRESENTATION OVERRIDES (Dual Compilation)
+// =============================================================================
+.reveal {
+  font-family: var(--font-sans);
+  color: #f1f5f9;
+
+  h1, h2, h3, h4 {
+    color: #ffffff;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .slide-title-gradient {
+    background: linear-gradient(135deg, #38bdf8 0%, #00d4aa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  .slide-metric-box {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+  }
+
+  .slide-metric-value {
+    font-family: var(--font-mono);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #00d4aa;
+  }
+
+  .slide-metric-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    color: #94a3b8;
+    letter-spacing: 0.05em;
+  }
+}
