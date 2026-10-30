@@ -1,12 +1,12 @@
 ---
-title: "ProcessSim // Thermodynamic Engineering Hub"
-subtitle: "Modelado Riguroso de Procesos, Simulación Térmica & Balances Computacionales"
+title: "ProcessSim // Hub de Enxeñaría Termodinámica"
+subtitle: "Modelado Rigoroso de Procesos, Simulación Térmica e Balances Computacionais"
 page-layout: full
 anchor-sections: false
 toc: false
 listing:
   - id: featured-cases
-    contents:
+    contents: 
       - "posts/caso-*.qmd"
     sort: "date desc"
     type: grid
@@ -56,51 +56,58 @@ listing:
 ---
 
 ::: {.hero-container}
+<div class="lang-switcher-bar">
+  <span class="lang-label">Idioma:</span>
+  <a href="index.html" class="lang-pill active">Galego</a>
+  <a href="index.es.html" class="lang-pill">Castelán</a>
+  <a href="index.en.html" class="lang-pill">English</a>
+</div>
+
 <div class="hero-pill">
-  <span class="pulse-dot"></span> Entorno Operacional Verificado &middot; v3.4 Estacionario
+  <span class="pulse-dot"></span> Contorno Operacional Verificado &middot; v3.4 Estacionario
 </div>
 
 <h1 class="hero-title">
-  Simulación de Procesos &amp; <br />
+  Simulación de Procesos e <br />
   <span class="gradient-text">Termodinámica Computacional</span>
 </h1>
 
 <p class="hero-lead">
-  Repositorio abierto de ingeniería química aplicada: casos reales modelados en <strong>Aspen HYSYS</strong>, 
-  <strong>DWSIM</strong> y <strong>Python</strong> con balances rigurosos de masa y energía, código reproducible, 
-  archivos descargables y presentaciones ejecutivas.
+  Repositorio aberto de enxeñaría química aplicada: casos reais modelados en <strong>Aspen HYSYS</strong>, 
+  <strong>DWSIM</strong> e <strong>Python</strong> con balances rigorosos de materia e enerxía, código reproducible, 
+  ficheiros descargables e presentacións executivas.
 </p>
 
 ::: {.status-grid}
 ::: {.status-card}
 <div class="status-num">100%</div>
 <div class="status-label">Consistencia Termodinámica</div>
-<div class="status-sub">Residuos &lt; 10⁻⁷ en Balances</div>
+<div class="status-sub">Residuos &lt; 10⁻⁷ nos Balances</div>
 :::
 
 ::: {.status-card}
-<div class="status-num">HYSYS &amp; DWSIM</div>
-<div class="status-label">Dual Engine Arquitectura</div>
-<div class="status-sub">Paridad Comercial vs Open Source</div>
+<div class="status-num">HYSYS e DWSIM</div>
+<div class="status-label">Arquitectura Dual Engine</div>
+<div class="status-sub">Paridade Comercial vs Código Aberto</div>
 :::
 
 ::: {.status-card}
-<div class="status-num">EOS &amp; NRTL</div>
+<div class="status-num">EOS e NRTL</div>
 <div class="status-label">Modelos Termodinámicos</div>
-<div class="status-sub">Peng-Robinson, SRK &amp; Actividad</div>
+<div class="status-sub">Peng-Robinson, SRK e Actividade</div>
 :::
 
 ::: {.status-card}
 <div class="status-num">CI/CD Quarto</div>
 <div class="status-label">Automatización Total</div>
-<div class="status-sub">Deploy Continuo en GitHub Pages</div>
+<div class="status-sub">Despregamento Continuo en GitHub Pages</div>
 :::
 :::
 :::
 
 ## 🚀 Casos de Simulación Destacados {#casos-destacados}
 
-Los casos más recientes modelados con especificaciones rigurosas de planta y verificación experimental de equilibrios:
+Os casos máis recentes modelados con especificacións rigorosas de planta e verificación experimental de equilibrios:
 
 ::: {#featured-cases}
 :::
@@ -109,27 +116,27 @@ Los casos más recientes modelados con especificaciones rigurosas de planta y ve
 
 ## 🗂️ Explorador por Plataforma de Simulación {#explorador-plataformas}
 
-Navega a través de las simulaciones filtradas mediante nuestra taxonomía canónica ortogonal de 3 niveles:
+Navega a través das simulacións filtradas mediante a nosa taxonomía canónica ortogonal de 3 niveis:
 
 ::: {.panel-tabset}
 
 ### 🔵 Aspen HYSYS {#aspen-hysys}
 
-Casos de grado industrial modelados en el estándar petroquímico global. Incluyen archivos `.hsc` listos para descargar y perfiles hidráulicos de columnas.
+Casos de grao industrial modelados no estándar petroquímico global. Inclúen ficheiros `.hsc` listos para descargar e perfís hidráulicos de columnas.
 
 ::: {#hysys-cases}
 :::
 
-### 🟢 DWSIM (Open Source) {#dwsim}
+### 🟢 DWSIM (Código Aberto) {#dwsim}
 
-Simulaciones completas resueltas en el software de código abierto DWSIM v8. Accesibilidad total sin licencias restrictivas y con total paridad termodinámica.
+Simulacións completas resoltas no software de código aberto DWSIM v8. Accesibilidade total sen licenzas restritivas e con total paridade termodinámica.
 
 ::: {#dwsim-cases}
 :::
 
-### 🐍 Python & Termodinámica {#python}
+### 🐍 Python e Termodinámica {#python}
 
-Implementaciones analíticas y numéricas en Python (NumPy, SciPy) para resolución de Rachford-Rice, curvas flash isotérmicas y diagramas de fases ternarios.
+Implementacións analíticas e numéricas en Python (NumPy, SciPy) para resolución de Rachford-Rice, curvas flash isotérmicas e diagramas de fases ternarios.
 
 ::: {#python-cases}
 :::

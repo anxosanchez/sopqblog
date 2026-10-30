@@ -1,0 +1,145 @@
+---
+title: "ProcessSim // Thermodynamic Engineering Hub"
+subtitle: "Rigorous Process Modeling, Thermal Simulation & Computational Balances"
+page-layout: full
+anchor-sections: false
+toc: false
+lang: en
+listing:
+  - id: featured-cases
+    contents: 
+      - "posts/caso-*.qmd"
+    sort: "date desc"
+    type: grid
+    grid-columns: 3
+    image-height: "190px"
+    fields: [image, date, title, description, categories, reading-time]
+    page-size: 3
+  - id: hysys-cases
+    contents:
+      - "posts/caso-*.qmd"
+    include:
+      categories: "Aspen HYSYS"
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories, reading-time]
+    field-display-names:
+      title: "Simulation Case"
+      date: "Publication"
+      categories: "Canonical Taxonomy"
+      reading-time: "Read Time"
+  - id: dwsim-cases
+    contents:
+      - "posts/caso-*.qmd"
+    include:
+      categories: "DWSIM"
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories, reading-time]
+    field-display-names:
+      title: "Simulation Case"
+      date: "Publication"
+      categories: "Canonical Taxonomy"
+      reading-time: "Read Time"
+  - id: python-cases
+    contents:
+      - "posts/caso-*.qmd"
+    include:
+      categories: "Python"
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories, reading-time]
+    field-display-names:
+      title: "Simulation Case"
+      date: "Publication"
+      categories: "Canonical Taxonomy"
+      reading-time: "Read Time"
+---
+
+::: {.hero-container}
+<div class="lang-switcher-bar">
+  <span class="lang-label">Language:</span>
+  <a href="index.html" class="lang-pill">Galego</a>
+  <a href="index.es.html" class="lang-pill">Castelán</a>
+  <a href="index.en.html" class="lang-pill active">English</a>
+</div>
+
+<div class="hero-pill">
+  <span class="pulse-dot"></span> Operational Environment Verified &middot; Steady State v3.4
+</div>
+
+<h1 class="hero-title">
+  Process Simulation &amp; <br />
+  <span class="gradient-text">Computational Thermodynamics</span>
+</h1>
+
+<p class="hero-lead">
+  Open chemical engineering repository: industrial cases modeled in <strong>Aspen HYSYS</strong>, 
+  <strong>DWSIM</strong>, and <strong>Python</strong> with rigorous mass and energy balances, reproducible code, 
+  downloadable files, and executive slide decks.
+</p>
+
+::: {.status-grid}
+::: {.status-card}
+<div class="status-num">100%</div>
+<div class="status-label">Thermodynamic Consistency</div>
+<div class="status-sub">Residuals &lt; 10⁻⁷ in Balances</div>
+:::
+
+::: {.status-card}
+<div class="status-num">HYSYS &amp; DWSIM</div>
+<div class="status-label">Dual Engine Architecture</div>
+<div class="status-sub">Commercial vs Open Source Parity</div>
+:::
+
+::: {.status-card}
+<div class="status-num">EOS &amp; NRTL</div>
+<div class="status-label">Thermodynamic Models</div>
+<div class="status-sub">Peng-Robinson, SRK &amp; Activity</div>
+:::
+
+::: {.status-card}
+<div class="status-num">CI/CD Quarto</div>
+<div class="status-label">Full Automation</div>
+<div class="status-sub">Continuous Deployment on GitHub Pages</div>
+:::
+:::
+:::
+
+## 🚀 Featured Simulation Cases {#casos-destacados}
+
+Recent simulation cases modeled with rigorous plant specs and phase equilibrium validation:
+
+::: {#featured-cases}
+:::
+
+<div style="margin: 3.5rem 0 1rem 0; border-top: 1px solid var(--border-subtle);"></div>
+
+## 🗂️ Platform Explorer {#explorador-plataformas}
+
+Browse simulation studies categorized by our 3-tier canonical taxonomy:
+
+::: {.panel-tabset}
+
+### 🔵 Aspen HYSYS {#aspen-hysys}
+
+Industrial grade simulations in the petrochem reference standard. Includes `.hsc` download files and hydraulic stage profiles.
+
+::: {#hysys-cases}
+:::
+
+### 🟢 DWSIM (Open Source) {#dwsim}
+
+Complete unit operations simulated in open-source DWSIM v8. Free accessible software with full thermodynamic consistency.
+
+::: {#dwsim-cases}
+:::
+
+### 🐍 Python & Thermodynamics {#python}
+
+Numerical and analytical solvers in Python (NumPy, SciPy) for Rachford-Rice vapor fraction, isothermal flash curves, and ternary phase equilibria.
+
+::: {#python-cases}
+:::
+
+:::

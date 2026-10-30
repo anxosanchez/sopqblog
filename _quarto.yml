@@ -5,8 +5,8 @@ project:
     - "assets/**"
 
 website:
-  title: "ProcessSim // Engineering Lab"
-  description: "Blog de Ingeniería Química, Simulación de Procesos & Termodinámica Computacional"
+  title: "ProcessSim // Laboratorio de Enxeñaría"
+  description: "Blog de Enxeñaría Química, Simulación de Procesos & Termodinámica Computacional"
   site-url: "https://anxosanchez.github.io/sopqblog"
   repo-url: "https://github.com/anxosanchez/sopqblog"
   repo-branch: main
@@ -19,7 +19,7 @@ website:
     left:
       - text: "Inicio"
         href: index.qmd
-      - text: "Simulaciones"
+      - text: "Simulacións"
         href: index.qmd#casos-destacados
       - text: "Aspen HYSYS"
         href: index.qmd#aspen-hysys
@@ -28,21 +28,29 @@ website:
       - text: "Python"
         href: index.qmd#python
     right:
+      - text: "🌐 Idioma"
+        menu:
+          - text: "Galego (Principal)"
+            href: index.qmd
+          - text: "Castelán"
+            href: index.es.qmd
+          - text: "English"
+            href: index.en.qmd
       - icon: github
         href: https://github.com/anxosanchez/sopqblog
-        aria-label: GitHub Repository
+        aria-label: Repositorio GitHub
       - icon: youtube
         href: https://youtube.com
-        aria-label: Canal de YouTube
+        aria-label: Canle de YouTube
 
   page-footer:
     left: |
       <div class="footer-legal">
-        <strong>ProcessSim Lab</strong> &copy; 2026 &middot; Modelado de Procesos y Termodinámica Computacional.
+        <strong>ProcessSim Lab</strong> &copy; 2026 &middot; Modelado de Procesos e Termodinámica Computacional.
       </div>
     right: |
       <div class="footer-license">
-        Licencia MIT / CC BY 4.0 &middot; Construido con <a href="https://quarto.org" target="_blank" rel="noopener">Quarto</a>
+        Licenza MIT / CC BY 4.0 &middot; Construído con <a href="https://quarto.org" target="_blank" rel="noopener">Quarto</a>
       </div>
     border: true
 
@@ -56,7 +64,7 @@ format:
     body-width: 900px
     toc: true
     toc-depth: 3
-    toc-title: "Contenido del Caso"
+    toc-title: "Índice de Contidos"
     number-sections: true
     code-fold: show
     code-tools: true
@@ -69,6 +77,7 @@ format:
     anchor-sections: true
     link-external-icon: true
     link-external-newwindow: true
+    lang: gl
     grid:
       body-width: 900px
       margin-width: 280px

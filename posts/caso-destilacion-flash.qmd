@@ -1,27 +1,36 @@
 ---
-title: "Simulación de Separación Flash Isotérmica Multicomponente"
-subtitle: "Modelado Riguroso del Equilibrio Líquido-Vapor y Balances con Peng-Robinson y Rachford-Rice"
-description: "Resolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de balances de materia y energía."
+title: "Simulación de Separación Flash Isotérmica Multicompoñente"
+subtitle: "Modelado Rigoroso do Equilibrio Líquido-Vapor e Balances con Peng-Robinson e Rachford-Rice"
+description: "Resolución analítica e computacional dun tambor de separación flash para unha mestura ternaria de hidrocarburos (C5-C7) a 78.4 °C e 1.20 bar, con cálculo estrito de balances de materia e enerxía."
 author: "ProcessSim Engineering Lab"
 date: "2026-10-30"
-categories: ["Python", "Separación", "Notebook Colab", "Video Tutorial"]
+categories: ["Python", "Separación", "Caderno Colab", "Vídeo Titorial"]
 image: "../assets/images/flash_drum_pfd.svg"
 toc: true
 number-sections: true
 code-fold: show
 code-tools: true
+lang: gl
 ---
+
+<!-- Selector de Idioma -->
+<div class="lang-switcher-bar">
+  <span class="lang-label">Idioma:</span>
+  <a href="caso-destilacion-flash.html" class="lang-pill active">Galego</a>
+  <a href="caso-destilacion-flash.es.html" class="lang-pill">Castelán</a>
+  <a href="caso-destilacion-flash.en.html" class="lang-pill">English</a>
+</div>
 
 <!-- Barra de Recursos Interactivos -->
 <div class="resource-badge-bar">
-  <span class="badge-label">Recursos del Caso:</span>
+  <span class="badge-label">Recursos do Caso:</span>
   <a href="https://colab.research.google.com/drive/1exampleProcessSimFlashDistillation" target="_blank" rel="noopener" class="resource-badge resource-badge-colab">⚡ Abrir en Google Colab</a>
   <a href="https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim" target="_blank" rel="noopener" class="resource-badge resource-badge-drive">📁 Descargar Simulación (.hsc / .bkp)</a>
   <a href="slides-destilacion-flash.html" target="_blank" rel="noopener" class="resource-badge resource-badge-slides">📊 Ver Diapositivas Revealjs</a>
   <a href="https://www.youtube.com/watch?v=demo_flash784" target="_blank" rel="noopener" class="resource-badge resource-badge-youtube">▶ Ver en YouTube</a>
 </div>
 
-## Métricas Operacionales y Balances de Convergencia
+## Métricas Operacionais e Balances de Converxencia
 
 ::: {.metric-grid}
 ::: {.metric-card .accent-cyan}
@@ -33,7 +42,7 @@ code-tools: true
 ::: {.metric-card .accent-amber}
 <div class="metric-header">Presión de Operación</div>
 <div class="metric-value">1.20<span class="metric-unit">bar</span></div>
-<div class="metric-footer">Absoluta en Separador (120 kPa)</div>
+<div class="metric-footer">Absoluta no Separador (120 kPa)</div>
 :::
 
 ::: {.metric-card .accent-emerald}
@@ -49,63 +58,63 @@ code-tools: true
 :::
 :::
 
-## 1. Introducción y Contexto del Proceso
+## 1. Introdución e Contexto do Proceso
 
-La separación instantánea (*flash distillation*) es una operación unitaria fundamental en plantas de procesamiento de gas natural, refinerías y petroquímica. Permite despojar fracciones livianas de corrientes de crudo o estabilizar corrientes de hidrocarburos antes de ingresar a columnas de fraccionamiento complejas.
+A separación instantánea (*flash distillation*) é unha operación unitaria fundamental en plantas de procesamento de gas natural, refinarías e petroquímica. Permite desposuír fraccións lixeiras de correntes de cru ou estabilizar correntes de hidrocarburos antes de ingresar a columnas de fraccionamento complexas.
 
-En este estudio evaluamos un tambor de separación flash en estado estacionario alimentado con una mezcla ternaria representativa de parafinas livianas:
-* **n-Pentano ($n\text{-C}_5\text{H}_{12}$):** $z_1 = 0.50$ (componente liviano clave)
-* **n-Hexano ($n\text{-C}_6\text{H}_{14}$):** $z_2 = 0.30$ (componente intermedio)
-* **n-Heptano ($n\text{-C}_7\text{H}_{16}$):** $z_3 = 0.20$ (componente pesado clave)
+Neste estudo avaliamos un tambor de separación flash en réxime estacionario alimentado cunha mestura ternaria representativa de parafinas lixeiras:
+* **n-Pentano ($n\text{-C}_5\text{H}_{12}$):** $z_1 = 0.50$ (compoñente volátil clave)
+* **n-Hexano ($n\text{-C}_6\text{H}_{14}$):** $z_2 = 0.30$ (compoñente intermedio)
+* **n-Heptano ($n\text{-C}_7\text{H}_{16}$):** $z_3 = 0.20$ (compoñente pesado clave)
 
-La alimentación ingresa a $F = 100.0\text{ kmol/h}$, a una temperatura inicial $T_F = 30.0^\circ\text{C}$ y una presión de cabezal $P_F = 3.00\text{ bar}$. Mediante una válvula reguladora y un intercambiador de calor previo, la corriente ingresa al tambor flash que opera a $T = 78.4^\circ\text{C}$ y $P = 1.20\text{ bar}$.
+A alimentación ingresa a $F = 100.0\text{ kmol/h}$, a unha temperatura inicial $T_F = 30.0^\circ\text{C}$ e unha presión de cabeceira $P_F = 3.00\text{ bar}$. Mediante unha válvula reguladora e un intercambiador de calor previo, a corrente ingresa ao tambor flash que opera a $T = 78.4^\circ\text{C}$ e $P = 1.20\text{ bar}$.
 
-## 2. Fundamento Termodinámico y Formulación Matemática
+## 2. Fundamento Termodinámico e Formulación Matemática
 
 ### 2.1 Criterio de Equilibrio de Fases (ELV)
 
-En el equilibrio termodinámico, el potencial químico de cada especie debe igualarse entre fases, lo cual equivale a la igualdad de fugacidades:
+No equilibrio termodinámico, o potencial químico de cada especie debe igualarse entre fases, o cal equivale á igualdade de fugacidades:
 
 $$
 f_i^V(T, P, \mathbf{y}) = f_i^L(T, P, \mathbf{x}) \quad \forall i \in \{1, \dots, C\}
 $$
 
-Definiendo los coeficientes de fugacidad $\phi_i^V$ y $\phi_i^L$:
+Definindo os coeficientes de fugacidade $\phi_i^V$ e $\phi_i^L$:
 
 $$
 y_i \phi_i^V P = x_i \phi_i^L P \implies K_i \equiv \frac{y_i}{x_i} = \frac{\phi_i^L(T, P, \mathbf{x})}{\phi_i^V(T, P, \mathbf{y})}
 $$
 
-Para hidrocarburos a presiones moderadas ($P \approx 1.2\text{ bar}$), los coeficientes de distribución $K_i$ calculados mediante la ecuación de estado de Peng-Robinson o la ley de Raoult modificada arrojan valores estables:
+Para hidrocarburos a presións moderadas ($P \approx 1.2\text{ bar}$), os coeficientes de distribución $K_i$ calculados mediante a ecuación de estado de Peng-Robinson ou a lei de Raoult modificada amosan valores estables:
 * $K_1 (n\text{-Pentano}) = 2.4410$
 * $K_2 (n\text{-Hexano}) = 0.9450$
 * $K_3 (n\text{-Heptano}) = 0.3815$
 
-### 2.2 Deducción de la Ecuación de Rachford-Rice
+### 2.2 Dedución da Ecuación de Rachford-Rice
 
-A partir de los balances globales y por componente:
+A partir dos balances globais e por compoñente:
 
 $$
-F = V + L \implies 1 = \psi + \frac{L}{F} \quad \text{donde } \psi \equiv \frac{V}{F}
+F = V + L \implies 1 = \psi + \frac{L}{F} \quad \text{onde } \psi \equiv \frac{V}{F}
 $$
 
 $$
 F z_i = V y_i + L x_i = V (K_i x_i) + L x_i \implies x_i = \frac{z_i}{1 + \psi (K_i - 1)}
 $$
 
-Dado que $\sum_{i=1}^{C} y_i - \sum_{i=1}^{C} x_i = 0$, sustituyendo $y_i = K_i x_i$:
+Dado que $\sum_{i=1}^{C} y_i - \sum_{i=1}^{C} x_i = 0$, substituíndo $y_i = K_i x_i$:
 
 $$
 \mathcal{F}(\psi) = \sum_{i=1}^{C} (y_i - x_i) = \sum_{i=1}^{C} \frac{z_i (K_i - 1)}{1 + \psi (K_i - 1)} = 0
 $$
 
-La función $\mathcal{F}(\psi)$ es monótona decreciente en el intervalo físico $[0, 1]$, lo que garantiza una solución única y convergencia incondicional mediante el método de Newton-Raphson:
+A función $\mathcal{F}(\psi)$ é monótona decrecente no intervalo físico $[0, 1]$, o que garante unha solución única e converxencia incondicional mediante o método de Newton-Raphson:
 
 $$
 \mathcal{F}'(\psi) = -\sum_{i=1}^{C} \frac{z_i (K_i - 1)^2}{[1 + \psi (K_i - 1)]^2} < 0
 $$
 
-## 3. Diagrama de Flujo del Proceso (PFD)
+## 3. Diagrama de Fluxo do Proceso (PFD)
 
 ```text
                Alimentación (F)
@@ -115,33 +124,33 @@ $$
              [ Válvula de Expansión ]
                       |
                       v
-           [ Precalentador Térmico ] ---> (Q = 420.5 kW)
+           [ Prequentador Térmico ] ---> (Q = 420.5 kW)
                       |
                       v
              +-----------------+
-             |                 | ------------> Corriente de Vapor (V)
+             |                 | ------------> Corrente de Vapor (V)
              |   TAMBOR FLASH  |              42.85 kmol/h, 78.4°C, 1.20 bar
              |   ISOTÉRMICO    |              Rico en Pentano (y₁ = 72.3%)
              |                 |
              |  78.4°C, 1.2 bar|
              +-----------------+
                       |
-                      +----------------------> Corriente de Líquido (L)
+                      +----------------------> Corrente de Líquido (L)
                                               57.15 kmol/h, 78.4°C, 1.20 bar
                                               Rico en Heptano/Hexano (x₃ = 29.8%)
 ```
 
-## 4. Tabla de Corrientes del Proceso y Balances
+## 4. Táboa de Correntes do Proceso e Balances
 
 ::: {.stream-table-wrapper}
 <table class="stream-table">
   <thead>
     <tr>
-      <th>Propiedad / Componente</th>
+      <th>Propiedade / Compoñente</th>
       <th class="num">Alimentación (F)</th>
       <th class="num">Vapor Superior (V)</th>
       <th class="num">Líquido Inferior (L)</th>
-      <th>Unidad</th>
+      <th>Unidade</th>
     </tr>
   </thead>
   <tbody>
@@ -160,7 +169,7 @@ $$
       <td>bar</td>
     </tr>
     <tr>
-      <td><strong>Flujo Molar Total</strong></td>
+      <td><strong>Caudal Molar Total</strong></td>
       <td class="num">100.000</td>
       <td class="num">42.852</td>
       <td class="num">57.148</td>
@@ -174,7 +183,7 @@ $$
       <td>-</td>
     </tr>
     <tr>
-      <td><strong>Flujo Másico Total</strong></td>
+      <td><strong>Caudal Másico Total</strong></td>
       <td class="num">8197.6</td>
       <td class="num">3238.1</td>
       <td class="num">4959.5</td>
@@ -209,7 +218,7 @@ $$
       <td>mol/mol</td>
     </tr>
     <tr style="font-weight: 700; background-color: var(--bg-elevated);">
-      <td><strong>Suma de Fracciones ($\sum x_i, \sum y_i$)</strong></td>
+      <td><strong>Suma de Fraccións ($\sum x_i, \sum y_i$)</strong></td>
       <td class="num">1.0000</td>
       <td class="num">1.0000</td>
       <td class="num">1.0000</td>
@@ -228,27 +237,27 @@ $$
 
 ## 5. Implementación Numérica en Python
 
-El siguiente script en Python resuelve la ecuación de Rachford-Rice utilizando `scipy.optimize.root_scalar` y computa las composiciones de equilibrio junto con los balances de materia estequiométricos:
+O seguinte script en Python resolve a ecuación de Rachford-Rice utilizando o método de Newton-Raphson e computa as composicións de equilibrio xunto cos balances de materia:
 
 ```python
 import numpy as np
 
-# Datos de alimentación y condiciones operativas
+# Datos de alimentación e condicións operativas
 components = ["n-Pentano", "n-Hexano", "n-Heptano"]
 z = np.array([0.50, 0.30, 0.20])
 K = np.array([2.4410, 0.9450, 0.3815])
 F_total = 100.0  # kmol/h
 
 def rachford_rice(psi: float, z: np.ndarray, K: np.ndarray) -> float:
-    """Función objetivo de Rachford-Rice."""
+    """Función obxectivo de Rachford-Rice."""
     return np.sum(z * (K - 1.0) / (1.0 + psi * (K - 1.0)))
 
 def rachford_rice_deriv(psi: float, z: np.ndarray, K: np.ndarray) -> float:
-    """Primera derivada analítica dF/d(psi)."""
+    """Primeira derivada analítica dF/d(psi)."""
     return -np.sum(z * (K - 1.0)**2 / (1.0 + psi * (K - 1.0))**2)
 
 # Solución mediante Newton-Raphson
-psi = 0.5  # Semilla inicial
+psi = 0.5  # Semente inicial
 tolerance = 1e-9
 max_iter = 50
 
@@ -258,35 +267,35 @@ for iteration in range(max_iter):
     step = f_val / f_prime
     psi = psi - step
     if abs(step) < tolerance:
-        print(f"✓ Convergencia alcanzada en {iteration + 1} iteraciones: psi = {psi:.6f}")
+        print(f"✓ Converxencia acadada en {iteration + 1} iteracións: psi = {psi:.6f}")
         break
 
-# Cálculo de composiciones de fase en equilibrio
+# Cálculo de composicións de fase en equilibrio
 x = z / (1.0 + psi * (K - 1.0))
 y = K * x
 
 V_flow = F_total * psi
 L_flow = F_total * (1.0 - psi)
 
-print(f"Flujo de Vapor (V):   {V_flow:.3f} kmol/h")
-print(f"Flujo de Líquido (L): {L_flow:.3f} kmol/h")
-print(f"Composiciones Vapor (y):   {dict(zip(components, np.round(y, 4)))}")
-print(f"Composiciones Líquido (x): {dict(zip(components, np.round(x, 4)))}")
+print(f"Caudal de Vapor (V):   {V_flow:.3f} kmol/h")
+print(f"Caudal de Líquido (L): {L_flow:.3f} kmol/h")
+print(f"Composicións Vapor (y):   {dict(zip(components, np.round(y, 4)))}")
+print(f"Composicións Líquido (x): {dict(zip(components, np.round(x, 4)))}")
 print(f"Consistencia: sum(x) = {np.sum(x):.6f}, sum(y) = {np.sum(y):.6f}")
 ```
 
-## 6. Video Tutorial y Demostración Operacional
+## 6. Vídeo Titorial e Demostración Operacional
 
-A continuación se presenta la demostración paso a paso de la configuración termodinámica y resolución del balance en el simulador:
+A continuación preséntase a demostración paso a paso da configuración termodinámica e resolución do balance no simulador:
 
 {{< video https://www.youtube.com/watch?v=demo_flash784 >}}
 
-## 7. Conclusiones y Consideraciones de Diseño
+## 7. Conclusións e Criterios de Deseño
 
-1. **Eficiencia en la Separación de Livianos:** A $78.4^\circ\text{C}$ y $1.20\text{ bar}$, el tambor separa el $62.0\%$ del $n$-Pentano presente en la alimentación hacia la corriente de vapor superior, elevando su pureza molar del $50.0\%$ al $72.3\%$.
-2. **Robustez Numérica:** La convexidad de la ecuación de Rachford-Rice garantiza una convergencia de segundo orden en menos de 5 iteraciones de Newton-Raphson, sin riesgo de divergencia dentro del rango admisible $\psi \in (0, 1)$.
-3. **Consumo Energético:** La adición térmica de $420.5\text{ kW}$ suministrada por el precalentador compensa el calor latente de vaporización del $n$-pentano y hexano, manteniendo el tambor en condición estrictamente isotérmica.
-4. **Interoperabilidad:** Este modelo termodinámico coincide con las predicciones del paquete *Peng-Robinson* en Aspen HYSYS y DWSIM con desviaciones de temperatura inferiores al $0.3\%$.
+1. **Eficiencia na Separación de Lixeiros:** A $78.4^\circ\text{C}$ e $1.20\text{ bar}$, o tambor separa o $62.0\%$ do $n$-Pentano presente na alimentación cara á corrente de vapor superior, elevando a súa pureza molar do $50.0\%$ ao $72.3\%$.
+2. **Robustez Numérica:** A convexidade da ecuación de Rachford-Rice garante unha converxencia de segundo orde en menos de 5 iteracións de Newton-Raphson, sen risco de diverxencia dentro do rango admisible $\psi \in (0, 1)$.
+3. **Consumo Enerxético:** A achega térmica de $420.5\text{ kW}$ fornecida polo prequentador compensa a calor latente de vaporización do $n$-pentano e hexano, mantendo o tambor en condición estritamente isotérmica.
+4. **Interoperabilidade:** Este modelo termodinámico coincide coas predicións do paquete *Peng-Robinson* en Aspen HYSYS e DWSIM con desviacións de temperatura inferiores ao $0.3\%$.
 
 ## 8. Referencias Técnicas
 

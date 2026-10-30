@@ -149,6 +149,7 @@ title: "{parsed['title']}"
 subtitle: "{parsed['subtitle']}"
 author: "{parsed['author']}"
 date: "{parsed['date']}"
+lang: gl
 format:
   revealjs:
     theme: [night, {self.scss_path}]
@@ -165,21 +166,21 @@ format:
     preview-links: auto
 ---
 
-## Planteamiento del Proceso {{.slide-title-gradient}}
+## Prantexamento do Proceso {{.slide-title-gradient}}
 
-### Objetivo de la Simulación
+### Obxectivo da Simulación
 {summary}
 
 :::: {{.columns}}
 ::: {{.column width="60%"}}
 * **Plataforma:** `{parsed['categories'][0] if parsed['categories'] else 'Python'}`
 * **Dominio:** `{parsed['categories'][1] if len(parsed['categories']) > 1 else 'Termodinámica'}`
-* **Entorno de convergencia:** Tolerancia estricta $< 10^{{-6}}$
+* **Contorno de converxencia:** Tolerancia estrita $< 10^{{-6}}$
 :::
 
 ::: {{.column width="40%"}}
 > [!NOTE]
-> Todos los balances fueron resueltos en condiciones estacionarias garantizando consistencia termodinámica.
+> Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica.
 :::
 ::::
 
@@ -187,7 +188,7 @@ format:
 
 ## Fundamento Termodinámico {{.slide-title-gradient}}
 
-Las condiciones de equilibrio líquido-vapor (ELV) se determinan resolviendo la función objetivo de Rachford-Rice junto con el cálculo de coeficientes de fugacidad:
+As condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:
 
 {equations_content}
 
@@ -196,16 +197,16 @@ Las condiciones de equilibrio líquido-vapor (ELV) se determinan resolviendo la 
 
 ---
 
-## Resultados Clave del Balance {{.slide-title-gradient}}
+## Resultados Clave do Balance {{.slide-title-gradient}}
 
 {metrics_slide_content}
 
 ---
 
-## Tabla de Corrientes del Proceso {{.slide-title-gradient}}
+## Táboa de Correntes do Proceso {{.slide-title-gradient}}
 
 {parsed['table_markdown'] if parsed['table_markdown'] else """
-| Corriente | Temp (°C) | Presión (bar) | Flujo (kmol/h) | Fracc. Vapor |
+| Corrente | Temp (°C) | Presión (bar) | Flujo (kmol/h) | Fracc. Vapor |
 | :--- | :---: | :---: | :---: | :---: |
 | **Alimentación (F)** | 65.0 | 2.50 | 100.0 | 0.00 |
 | **Vapor (V)** | 78.4 | 1.20 | 42.8 | 1.00 |
@@ -214,14 +215,14 @@ Las condiciones de equilibrio líquido-vapor (ELV) se determinan resolviendo la 
 
 ---
 
-## Conclusiones Operacionales {{.slide-title-gradient}}
+## Conclusións Operacionais {{.slide-title-gradient}}
 
-1. **Eficiencia de Separación:** Se logró una separación nítida con recuperación superior al 91% del componente más volátil en la fase vapor.
-2. **Estabilidad Térmica:** La sensibilidad ante perturbaciones de presión de $\\pm 10\\%$ demostró una variación de temperatura inferior a $1.8^\\circ\\text{{C}}$.
-3. **Reproducibilidad:** El caso cuenta con código ejecutable e integración directa en el blog.
+1. **Eficiencia de Separación:** Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.
+2. **Estabilidade Térmica:** A sensibilidade ante perturbacións de presión de $\\pm 10\\%$ amosou unha variación de temperatura inferior a $1.8^\\circ\\text{{C}}$.
+3. **Reproducibilidade:** O caso conta con código executable e integración directa no blog.
 
 ::: {{style="margin-top: 2rem; text-align: center;"}}
-[📖 Ver Artículo Completo en el Blog]({p_path.name}) &nbsp;|&nbsp; [💻 Repositorio GitHub](https://github.com/anxosanchez/sopqblog)
+[📖 Ver Artigo Completo no Blog]({p_path.name}) &nbsp;|&nbsp; [💻 Repositorio GitHub](https://github.com/anxosanchez/sopqblog)
 :::
 """
 

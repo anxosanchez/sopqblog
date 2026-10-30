@@ -1,88 +1,89 @@
 ---
-title: "Simulación de un Reactor CSTR de Esterificación en DWSIM"
-subtitle: "Modelado Cinético Homogéneo y Balances con Paquete Termodinámico NRTL"
-description: "Modelado en código abierto (DWSIM v8) de la síntesis de acetato de etilo a partir de ácido acético y etanol catalizada por ácido, con balance térmico de chaqueta y control de conversión."
+title: "Simulación dun Reactor CSTR de Esterificación en DWSIM"
+subtitle: "Modelado Cinético Homoxéneo e Balances con Paquete Termodinámico NRTL"
+description: "Modelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de conversión."
 author: "ProcessSim Engineering Lab"
 date: "2026-10-25"
-categories: ["DWSIM", "Reactores", "Simulación DWSIM", "Video Tutorial"]
+categories: ["DWSIM", "Reactores", "Simulación DWSIM", "Vídeo Titorial"]
 image: "../assets/images/cstr_pfd.svg"
 toc: true
 number-sections: true
 code-fold: show
 code-tools: true
+lang: gl
 ---
 
 <!-- Barra de Recursos Interactivos -->
 <div class="resource-badge-bar">
-  <span class="badge-label">Recursos del Caso:</span>
-  <a href="https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim" target="_blank" rel="noopener" class="resource-badge resource-badge-drive">📁 Descargar Archivo DWSIM (.dwxml)</a>
+  <span class="badge-label">Recursos do Caso:</span>
+  <a href="https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim" target="_blank" rel="noopener" class="resource-badge resource-badge-drive">📁 Descargar Ficheiro DWSIM (.dwxml)</a>
   <a href="slides-dwsim-reactor-cstr-esterificacion.html" target="_blank" rel="noopener" class="resource-badge resource-badge-slides">📊 Ver Diapositivas Revealjs</a>
   <a href="https://www.youtube.com/watch?v=demo_dwsim_cstr" target="_blank" rel="noopener" class="resource-badge resource-badge-youtube">▶ Ver en YouTube</a>
 </div>
 
-## Métricas Clave de Operación y Balance
+## Métricas Clave de Operación e Balance
 
 ::: {.metric-grid}
 ::: {.metric-card .accent-cyan}
 <div class="metric-header">Conversión de Ácido</div>
 <div class="metric-value">88.5<span class="metric-unit">%</span></div>
-<div class="metric-footer">En Régimen Estacionario</div>
+<div class="metric-footer">En Réxime Estacionario</div>
 :::
 
 ::: {.metric-card .accent-amber}
 <div class="metric-header">Temperatura Reactor</div>
 <div class="metric-value">70.0<span class="metric-unit">°C</span></div>
-<div class="metric-footer">Control Isotérmico con Chaqueta</div>
+<div class="metric-footer">Control Isotérmico con Camisa</div>
 :::
 
 ::: {.metric-card .accent-emerald}
-<div class="metric-header">Tiempo de Residencia (τ)</div>
+<div class="metric-header">Tempo de Residencia (τ)</div>
 <div class="metric-value">2.45<span class="metric-unit">h</span></div>
-<div class="metric-footer">Volumen de Reacción: 5.0 m³</div>
+<div class="metric-footer">Volume de Reacción: 5.0 m³</div>
 :::
 
 ::: {.metric-card .accent-purple}
 <div class="metric-header">Remoción Térmica (Q)</div>
 <div class="metric-value">-45.2<span class="metric-unit">kW</span></div>
-<div class="metric-footer">Chaqueta con Agua Refrigerante</div>
+<div class="metric-footer">Camisa con Auga Refrixerante</div>
 :::
 :::
 
-## 1. Planteamiento de la Reacción y Cinética Química
+## 1. Prantexamento da Reacción e Cinética Química
 
-La reacción de esterificación en fase líquida:
-
-$$
-\text{CH}_3\text{COOH (Ácido)} + \text{C}_2\text{H}_5\text{OH (Etanol)} \underset{k_b}{\overset{k_f}{\rightleftharpoons}} \text{CH}_3\text{COOC}_2\text{H}_5 \text{ (Acetato)} + \text{H}_2\text{O (Agua)}
-$$
-
-La velocidad de reacción intrínseca se formula mediante una ley de potencias basada en concentraciones molares o actividades termodinámicas:
+A reacción de esterificación en fase líquida:
 
 $$
-r = k_f C_A C_B - k_b C_C C_D = k_0 \exp\left(-\frac{E_a}{RT}\right) \left[ C_{\text{Ácido}} C_{\text{Etanol}} - \frac{C_{\text{Acetato}} C_{\text{Agua}}}{K_{eq}(T)} \right]
+\text{CH}_3\text{COOH (Ácido)} + \text{C}_2\text{H}_5\text{OH (Etanol)} \underset{k_b}{\overset{k_f}{\rightleftharpoons}} \text{CH}_3\text{COOC}_2\text{H}_5 \text{ (Acetato)} + \text{H}_2\text{O (Auga)}
 $$
 
-## 2. Configuración en DWSIM (Open Source)
+A velocidade de reacción intrínseca formúlase mediante unha lei de potencias baseada en concentracións molares ou actividades termodinámicas:
 
-En DWSIM v8, se implementó el paquete de propiedades **NRTL** para predecir las desviaciones del comportamiento ideal de la mezcla polar-líquida cuaternaria.
+$$
+r = k_f C_A C_B - k_b C_C C_D = k_0 \exp\left(-\frac{E_a}{RT}\right) \left[ C_{\text{Ácido}} C_{\text{Etanol}} - \frac{C_{\text{Acetato}} C_{\text{Auga}}}{K_{eq}(T)} \right]
+$$
 
-### Parámetros del Reactor
+## 2. Configuración en DWSIM (Código Aberto)
+
+En DWSIM v8, implementouse o paquete de propiedades **NRTL** para predicir as desviacións do comportamento ideal da mestura polar-líquida cuaternaria.
+
+### Parámetros do Reactor
 * **Tipo:** Continuous Stirred Tank Reactor (CSTR).
-* **Volumen útil:** $5.00\text{ m}^3$.
+* **Volume útil:** $5.00\text{ m}^3$.
 * **Caudal de alimentación total:** $2040.8\text{ kg/h}$ ($2.04\text{ m}^3/\text{h}$).
 * **Relación molar etanol / ácido en alimentación:** $1.20 : 1.00$ (exceso de alcohol).
 
-## 3. Diagrama de Flujo del Proceso en DWSIM
+## 3. Diagrama de Fluxo do Proceso en DWSIM
 
 ```text
   Alimentación Ácido Acético (1000 kg/h, 25°C)
   --------------------+
                       v
-                     [ MEZCLADOR ] ---> Alimentación Mixta (70°C precalentada)
+                     [ MESTURADOR ] ---> Alimentación Mixta (70°C prequentada)
                       ^                    |
   --------------------+                    v
   Alimentación Etanol (1040 kg/h, 25°C)    +-------------------+
-                                           |   REACTOR CSTR    | <--- Agua Chaqueta
+                                           |   REACTOR CSTR    | <--- Auga Camisa
                                            |   V = 5.0 m³      |      (Q = -45.2 kW)
                                            |   T = 70°C        |
                                            +-------------------+
@@ -92,17 +93,17 @@ En DWSIM v8, se implementó el paquete de propiedades **NRTL** para predecir las
                                           (88.5% Conversión)
 ```
 
-## 4. Tabla de Corrientes y Balance de Materia
+## 4. Táboa de Correntes e Balance de Materia
 
 ::: {.stream-table-wrapper}
 <table class="stream-table">
   <thead>
     <tr>
-      <th>Componente / Corriente</th>
+      <th>Compoñente / Corrente</th>
       <th class="num">Alimentación Ácido</th>
       <th class="num">Alimentación Etanol</th>
       <th class="num">Efluente CSTR</th>
-      <th>Unidad</th>
+      <th>Unidade</th>
     </tr>
   </thead>
   <tbody>
@@ -121,7 +122,7 @@ En DWSIM v8, se implementó el paquete de propiedades **NRTL** para predecir las
       <td>bar</td>
     </tr>
     <tr>
-      <td><strong>Flujo Másico Total</strong></td>
+      <td><strong>Caudal Másico Total</strong></td>
       <td class="num">1000.0</td>
       <td class="num">1040.8</td>
       <td class="num">2040.8</td>
@@ -149,7 +150,7 @@ En DWSIM v8, se implementó el paquete de propiedades **NRTL** para predecir las
       <td>kmol/h</td>
     </tr>
     <tr>
-      <td><strong>Caudal Agua</strong></td>
+      <td><strong>Caudal Auga</strong></td>
       <td class="num">0.00</td>
       <td class="num">0.00</td>
       <td class="num">14.74</td>
@@ -159,12 +160,12 @@ En DWSIM v8, se implementó el paquete de propiedades **NRTL** para predecir las
 </table>
 :::
 
-## 5. Video Tutorial y Demostración Operacional
+## 5. Vídeo Titorial e Demostración Operacional
 
 {{< video https://www.youtube.com/watch?v=demo_dwsim_cstr >}}
 
-## 6. Conclusiones y Evaluación de Resultados
+## 6. Conclusións e Avaliación de Resultados
 
-1. **Rendimiento de Conversión:** Con un tiempo de residencia de $\tau = 2.45\text{ h}$, el CSTR alcanza un $88.5\%$ de conversión de ácido acético, próximo al límite de equilibrio termodinámico ($92.1\%$).
-2. **Capacidad de Enfriamiento:** La entalpía exotérmica de reacción requiere retirar $45.2\text{ kW}$ de calor continuo mediante la camisa para mantener los $70^\circ\text{C}$ sin oscilaciones dinámicas.
-3. **Validación Open Source:** DWSIM v8 demuestra total paridad en balances de masa y energía frente a códigos comerciales patentados.
+1. **Rendemento de Conversión:** Cun tempo de residencia de $\tau = 2.45\text{ h}$, o CSTR acada un $88.5\%$ de conversión de ácido acético, próximo ao límite de equilibrio termodinámico ($92.1\%$).
+2. **Capacidade de Arrefriamento:** A entalpía exotérmica de reacción require retirar $45.2\text{ kW}$ de calor continuo mediante a camisa para manter os $70^\circ\text{C}$ sen oscilacións dinámicas.
+3. **Validación Código Aberto:** DWSIM v8 demostra total paridade en balances de masa e enerxía fronte a códigos comerciais patentados.

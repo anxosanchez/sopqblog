@@ -60,6 +60,7 @@ CANONICAL_PLATFORMS: Dict[str, str] = {
 CANONICAL_DOMAINS: Dict[str, str] = {
     # Separation
     "separacion": "Separación",
+    "separacion de mesturas": "Separación",
     "separacion de mezclas": "Separación",
     "destilacion": "Separación",
     "distillation": "Separación",
@@ -88,7 +89,10 @@ CANONICAL_DOMAINS: Dict[str, str] = {
     "intercambiadores": "Intercambio Térmico",
     "transferencia de calor": "Intercambio Térmico",
     "heat exchanger": "Intercambio Térmico",
+    "heat transfer": "Intercambio Térmico",
     "reboiler": "Intercambio Térmico",
+    "rehervidor": "Intercambio Térmico",
+    "refervedor": "Intercambio Térmico",
     "condensador": "Intercambio Térmico",
     "redes de intercambio": "Intercambio Térmico",
 
@@ -96,14 +100,19 @@ CANONICAL_DOMAINS: Dict[str, str] = {
     "termodinamica": "Termodinámica",
     "thermodynamics": "Termodinámica",
     "vle": "Termodinámica",
+    "elv": "Termodinámica",
     "lle": "Termodinámica",
+    "ell": "Termodinámica",
     "vlfe": "Termodinámica",
     "equilibrio de fases": "Termodinámica",
+    "ecuacions de estado": "Termodinámica",
     "ecuaciones de estado": "Termodinámica",
+    "equations of state": "Termodinámica",
     "eos": "Termodinámica",
     "peng robinson": "Termodinámica",
     "nrtl": "Termodinámica",
     "srk": "Termodinámica",
+    "actividade": "Termodinámica",
     "actividad": "Termodinámica",
 
     # Process Control & Dynamics
@@ -115,25 +124,33 @@ CANONICAL_DOMAINS: Dict[str, str] = {
     "control avanzado": "Control de Procesos",
 
     # Utilities & Piping
-    "servicios industriales": "Servicios Industriales",
-    "utilities": "Servicios Industriales",
-    "vapor": "Servicios Industriales",
-    "redes de vapor": "Servicios Industriales",
-    "agua de enfriamiento": "Servicios Industriales",
+    "servizos industriais": "Servizos Industriais",
+    "servicios industriales": "Servizos Industriais",
+    "utilities": "Servizos Industriais",
+    "vapor": "Servizos Industriais",
+    "redes de vapor": "Servizos Industriais",
+    "auga de arrefriamento": "Servizos Industriais",
+    "agua de enfriamiento": "Servizos Industriais",
+    "cooling water": "Servizos Industriais",
 
     # Fluid Flow & Turbomachinery
-    "dinamica de fluidos": "Dinámica de Fluidos",
-    "fluidos": "Dinámica de Fluidos",
-    "bombas": "Dinámica de Fluidos",
-    "compresores": "Dinámica de Fluidos",
-    "tuberias": "Dinámica de Fluidos",
-    "caida de presion": "Dinámica de Fluidos",
+    "dinamica de fluidos": "Dinámica de Fluídos",
+    "fluid dynamics": "Dinámica de Fluídos",
+    "fluidos": "Dinámica de Fluídos",
+    "bombas": "Dinámica de Fluídos",
+    "compresores": "Dinámica de Fluídos",
+    "tuberias": "Dinámica de Fluídos",
+    "tubaxes": "Dinámica de Fluídos",
+    "caida de presion": "Dinámica de Fluídos",
+    "perda de carga": "Dinámica de Fluídos",
 
     # Optimization & Synthesis
     "optimizacion": "Optimización",
     "optimization": "Optimización",
+    "analise pinch": "Optimización",
     "analisis pinch": "Optimización",
     "pinch": "Optimización",
+    "integracion enerxetica": "Optimización",
     "integracion energetica": "Optimización",
 }
 
@@ -141,23 +158,27 @@ CANONICAL_DELIVERABLES: Dict[str, str] = {
     "caso hsc": "Caso HSC",
     "hsc": "Caso HSC",
     "archivo hsc": "Caso HSC",
+    "ficheiro hsc": "Caso HSC",
     "aspen case": "Caso HSC",
     "bkp": "Caso HSC",
     
     "simulacion dwsim": "Simulación DWSIM",
     "dwsim file": "Simulación DWSIM",
+    "ficheiro dwsim": "Simulación DWSIM",
     "dwxml": "Simulación DWSIM",
     
-    "notebook colab": "Notebook Colab",
-    "colab notebook": "Notebook Colab",
-    "jupyter notebook": "Notebook Colab",
-    "codigo python": "Notebook Colab",
-    "script python": "Notebook Colab",
+    "caderno colab": "Caderno Colab",
+    "notebook colab": "Caderno Colab",
+    "colab notebook": "Caderno Colab",
+    "jupyter notebook": "Caderno Colab",
+    "codigo python": "Caderno Colab",
+    "script python": "Caderno Colab",
     
-    "video tutorial": "Video Tutorial",
-    "video": "Video Tutorial",
-    "youtube": "Video Tutorial",
-    "screencast": "Video Tutorial",
+    "video titorial": "Vídeo Titorial",
+    "video tutorial": "Vídeo Titorial",
+    "video": "Vídeo Titorial",
+    "youtube": "Vídeo Titorial",
+    "screencast": "Vídeo Titorial",
     
     "slide deck": "Slide Deck",
     "presentacion": "Slide Deck",
@@ -277,15 +298,19 @@ class TaxonomyValidator:
                         res.domains.append("Reactores")
                     matched = True
 
-                if "video" in token or "youtube" in token:
-                    if "Video Tutorial" not in res.deliverables:
-                        res.deliverables.append("Video Tutorial")
+                if "video" in token or "youtube" in token or "titorial" in token:
+                    if "Vídeo Titorial" not in res.deliverables:
+                        res.deliverables.append("Vídeo Titorial")
                     matched = True
                 elif "hsc" in token or "bkp" in token:
                     if "Caso HSC" not in res.deliverables:
                         res.deliverables.append("Caso HSC")
                     matched = True
-                elif "slide" in token or "presentac" in token:
+                elif "colab" in token or "caderno" in token or "notebook" in token:
+                    if "Caderno Colab" not in res.deliverables:
+                        res.deliverables.append("Caderno Colab")
+                    matched = True
+                elif "slide" in token or "presentac" in token or "diapositiva" in token:
                     if "Slide Deck" not in res.deliverables:
                         res.deliverables.append("Slide Deck")
                     matched = True
@@ -300,7 +325,7 @@ class TaxonomyValidator:
         raw_tags: Sequence[str],
         default_platform: str = "Python",
         default_domain: str = "Termodinámica",
-        default_deliverable: str = "Notebook Colab",
+        default_deliverable: str = "Caderno Colab",
     ) -> List[str]:
         """Sanitizes raw tags and returns a guaranteed valid orthogonal category list.
         
@@ -341,7 +366,7 @@ def sanitize_categories(
     raw_categories: Sequence[str],
     default_platform: str = "Python",
     default_domain: str = "Termodinámica",
-    default_deliverable: str = "Notebook Colab",
+    default_deliverable: str = "Caderno Colab",
 ) -> List[str]:
     """Canonical category sanitizer for Quarto posts."""
     return _DEFAULT_VALIDATOR.sanitize(

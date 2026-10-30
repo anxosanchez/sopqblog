@@ -53,11 +53,31 @@ class TestTaxonomySanitization(unittest.TestCase):
         self.assertIn("Intercambio Térmico", cats)
 
     def test_canonical_deliverables(self):
-        cats = sanitize_categories(["python", "termodinamica", "colab notebook"])
-        self.assertIn("Notebook Colab", cats)
+        cats = sanitize_categories(["python", "termodinamica", "caderno colab"])
+        self.assertIn("Caderno Colab", cats)
 
-        cats = sanitize_categories(["hysys", "separacion", "video"])
-        self.assertIn("Video Tutorial", cats)
+        cats = sanitize_categories(["hysys", "separacion", "video titorial"])
+        self.assertIn("Vídeo Titorial", cats)
+
+    def test_trilingual_synonym_resolution(self):
+        """Verifies Galician, Spanish, and English terms map to canonical taxonomy."""
+        # Galego
+        cats_gl = sanitize_categories(["servizos industriais", "dwsim", "ficheiro dwsim"])
+        self.assertEqual(cats_gl[0], "DWSIM")
+        self.assertIn("Servizos Industriais", cats_gl)
+        self.assertIn("Simulación DWSIM", cats_gl)
+
+        # English
+        cats_en = sanitize_categories(["distillation", "python", "colab notebook"])
+        self.assertEqual(cats_en[0], "Python")
+        self.assertIn("Separación", cats_en)
+        self.assertIn("Caderno Colab", cats_en)
+
+        # Spanish
+        cats_es = sanitize_categories(["aspen hysys", "servicios industriales", "caso hsc"])
+        self.assertEqual(cats_es[0], "Aspen HYSYS")
+        self.assertIn("Servizos Industriais", cats_es)
+        self.assertIn("Caso HSC", cats_es)
 
     def test_adversarial_hybrid_and_messy_inputs(self):
         """Red Team Auditor: test chaotic inputs and verify clean output."""
@@ -73,14 +93,14 @@ class TestTaxonomySanitization(unittest.TestCase):
         # Must contain canonical domain
         self.assertIn("Separación", sanitized)
         # Must contain deliverable
-        self.assertIn("Video Tutorial", sanitized)
+        self.assertIn("Vídeo Titorial", sanitized)
 
     def test_missing_tiers_injection(self):
         """When user provides only a domain, defaults must be injected."""
         cats = sanitize_categories(["destilacion"])
         self.assertEqual(cats[0], "Python")  # default platform
         self.assertIn("Separación", cats)
-        self.assertIn("Notebook Colab", cats)  # default deliverable
+        self.assertIn("Caderno Colab", cats)  # default deliverable
 
     def test_validation_function(self):
         valid, errors = validate_post_categories(["Aspen HYSYS", "Separación", "Caso HSC"])

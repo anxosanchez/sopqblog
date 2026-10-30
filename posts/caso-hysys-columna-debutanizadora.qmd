@@ -1,26 +1,27 @@
 ---
-title: "Simulación de una Columna Debutanizadora en Aspen HYSYS"
-subtitle: "Fraccionamiento de GLP y Control de Especificación RVP con Paquete Peng-Robinson"
-description: "Modelado riguroso de una torre de destilación de 30 platos para separar propano/butanos de gasolinas estabilizadas, optimizando la tasa de reflujo y los consumos energéticos de condensador y rehervidor."
+title: "Simulación dunha Columna Debutanizadora en Aspen HYSYS"
+subtitle: "Fraccionamento de GLP e Control de Especificación RVP con Paquete Peng-Robinson"
+description: "Modelado rigoroso dunha torre de destilación de 30 pratos para separar propano/butanos de gasolinas estabilizadas, optimizando a taxa de refluxo e os consumos enerxéticos de condensador e refervedor."
 author: "ProcessSim Engineering Lab"
 date: "2026-10-28"
-categories: ["Aspen HYSYS", "Separación", "Caso HSC", "Video Tutorial"]
+categories: ["Aspen HYSYS", "Separación", "Caso HSC", "Vídeo Titorial"]
 image: "../assets/images/debutanizer_pfd.svg"
 toc: true
 number-sections: true
 code-fold: show
 code-tools: true
+lang: gl
 ---
 
 <!-- Barra de Recursos Interactivos -->
 <div class="resource-badge-bar">
-  <span class="badge-label">Recursos del Caso:</span>
+  <span class="badge-label">Recursos do Caso:</span>
   <a href="https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim" target="_blank" rel="noopener" class="resource-badge resource-badge-drive">📁 Descargar Simulación HYSYS (.hsc)</a>
   <a href="slides-hysys-columna-debutanizadora.html" target="_blank" rel="noopener" class="resource-badge resource-badge-slides">📊 Ver Diapositivas Revealjs</a>
   <a href="https://www.youtube.com/watch?v=demo_hysys_debutanizer" target="_blank" rel="noopener" class="resource-badge resource-badge-youtube">▶ Ver en YouTube</a>
 </div>
 
-## Métricas Clave de Operación y Balance
+## Métricas Clave de Operación e Balance
 
 ::: {.metric-grid}
 ::: {.metric-card .accent-cyan}
@@ -36,37 +37,37 @@ code-tools: true
 :::
 
 ::: {.metric-card .accent-emerald}
-<div class="metric-header">Relación de Reflujo (R/D)</div>
+<div class="metric-header">Relación de Refluxo (R/D)</div>
 <div class="metric-value">2.40</div>
 <div class="metric-footer">Óptimo Económico (1.25 Rmin)</div>
 :::
 
 ::: {.metric-card .accent-purple}
-<div class="metric-header">Carga Rehervidor</div>
+<div class="metric-header">Carga Refervedor</div>
 <div class="metric-value">2.20<span class="metric-unit">MW</span></div>
 <div class="metric-footer">Vapor de Media Presión</div>
 :::
 :::
 
-## 1. Introducción y Descripción del Proceso
+## 1. Introdución e Descrición do Proceso
 
-La columna debutanizadora es un eslabón crítico en el tren de estabilización de hidrocarburos. Su objetivo primordial es recuperar butanos ($i\text{-C}_4$ y $n\text{-C}_4$) por cabeza para la producción de gas licuado de petróleo (GLP), mientras que por fondo se obtiene gasolina estabilizada con una presión de vapor Reid (RVP) controlada para cumplir estándares de refinería.
+A columna debutanizadora é un elo crítico no tren de estabilización de hidrocarburos. O seu obxectivo primordial é recuperar butanos ($i\text{-C}_4$ e $n\text{-C}_4$) por cabeza para a produción de gas licuado de petróleo (GLP), mentres que por fondo obtense gasolina estabilizada cunha presión de vapor Reid (RVP) controlada para cumprir estándares de refinaría.
 
-La corriente de alimentación procede de una despropanizadora y entra en fase mixta a la torre en el plato 14 con un caudal de $250.0\text{ kmol/h}$.
+A corrente de alimentación procede dunha despropanizadora e entra en fase mixta á torre no prato 14 cun caudal de $250.0\text{ kmol/h}$.
 
-## 2. Configuración en Aspen HYSYS y Paquete de Propiedades
+## 2. Configuración en Aspen HYSYS e Paquete de Propiedades
 
-Se utilizó la ecuación de estado de **Peng-Robinson (PR)** con parámetros de interacción binaria (BIP) ajustados por Aspen Properties.
+Utilizouse a ecuación de estado de **Peng-Robinson (PR)** con parámetros de interacción binaria (BIP) axustados por Aspen Properties.
 
-### Especificaciones de Diseño de la Torre
-* **Número de etapas teóricas:** 30 platos + condensador total + rehervidor parcial tipo termosifón.
-* **Plato de alimentación:** Etapa 14 (numerada desde el tope).
+### Especificacións de Deseño da Torre
+* **Número de etapas teóricas:** 30 pratos + condensador total + refervedor parcial tipo termosifón.
+* **Prato de alimentación:** Etapa 14 (numerada desde o cumio).
 * **Presión de cima:** $11.5\text{ bar}$.
 * **Presión de fondo:** $12.1\text{ bar}$ ($\Delta P = 0.6\text{ bar}$).
 * **Especificación de cima:** Fracción molar de $i\text{-C}_5$ en destilado $\le 0.5\%$.
 * **Especificación de fondo:** Fracción molar de $n\text{-C}_4$ en fondos $\le 1.0\%$.
 
-## 3. Diagrama de Flujo (PFD) y Perfiles de Etapa
+## 3. Diagrama de Fluxo (PFD) e Perfís de Etapa
 
 ```text
                   [ Condensador Total ] <--- (Qc = -1.85 MW)
@@ -74,7 +75,7 @@ Se utilizó la ecuación de estado de **Peng-Robinson (PR)** con parámetros de 
                            v
                    [ Acumulador Cima ]
                       |          |
-         Reflujo (R)  |          v
+         Refluxo (R)  |          v
          +------------+    [ Destilado (D) ] ---> GLP (C3/C4)
          |                 108.5 kmol/h, 48.2°C, 11.5 bar
          v
@@ -87,7 +88,7 @@ Se utilizó la ecuación de estado de **Peng-Robinson (PR)** con parámetros de 
      |   E   | (Etapa 30)
      +-------+
          |
-         +------------> [ Rehervidor ] <--- (Qr = +2.20 MW)
+         +------------> [ Refervedor ] <--- (Qr = +2.20 MW)
          |                  |
          v                  v
      [ Fondos (B) ] <-------+
@@ -95,17 +96,17 @@ Se utilizó la ecuación de estado de **Peng-Robinson (PR)** con parámetros de 
      141.5 kmol/h, 162.8°C, 12.1 bar
 ```
 
-## 4. Tabla de Corrientes del Proceso
+## 4. Táboa de Correntes do Proceso
 
 ::: {.stream-table-wrapper}
 <table class="stream-table">
   <thead>
     <tr>
-      <th>Variable / Corriente</th>
+      <th>Variable / Corrente</th>
       <th class="num">Alimentación (F)</th>
       <th class="num">Destilado GLP (D)</th>
       <th class="num">Gasolina Fondo (B)</th>
-      <th>Unidad</th>
+      <th>Unidade</th>
     </tr>
   </thead>
   <tbody>
@@ -124,7 +125,7 @@ Se utilizó la ecuación de estado de **Peng-Robinson (PR)** con parámetros de 
       <td>bar</td>
     </tr>
     <tr>
-      <td><strong>Flujo Molar</strong></td>
+      <td><strong>Caudal Molar</strong></td>
       <td class="num">250.0</td>
       <td class="num">108.5</td>
       <td class="num">141.5</td>
@@ -148,11 +149,11 @@ Se utilizó la ecuación de estado de **Peng-Robinson (PR)** con parámetros de 
 </table>
 :::
 
-## 5. Video Tutorial y Demostración Operacional
+## 5. Vídeo Titorial e Demostración Operacional
 
 {{< video https://www.youtube.com/watch?v=demo_hysys_debutanizer >}}
 
-## 6. Conclusiones y Lecciones Operativas
+## 6. Conclusións e Leccións Operativas
 
-1. **Control de RVP:** La tasa de reflujo de $2.40$ asegura que la gasolina de fondo no exceda $7.5\text{ psi}$ de RVP, haciéndola apta para blending directo de verano.
-2. **Optimización Energética:** La integración de un intercambiador de calor alimentación-fondos permite precalentar la carga desde $65^\circ\text{C}$ a $92.4^\circ\text{C}$, reduciendo en un $18\%$ el consumo de vapor en el rehervidor.
+1. **Control de RVP:** A taxa de refluxo de $2.40$ asegura que a gasolina de fondo non exceda $7.5\text{ psi}$ de RVP, facéndoa apta para mestura directa de verán.
+2. **Optimización Enerxética:** A integración dun intercambiador de calor alimentación-fondos permite prequentar a carga desde $65^\circ\text{C}$ a $92.4^\circ\text{C}$, reducindo nun $18\%$ o consumo de vapor no refervedor.

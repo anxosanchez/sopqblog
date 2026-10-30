@@ -208,6 +208,52 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 // =============================================================================
+// TRILINGUAL LANGUAGE SELECTOR (Galego / Castelán / English)
+// =============================================================================
+.lang-switcher-bar {
+  display: inline-flex;
+  align-items: center;
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  border-radius: 9999px;
+  padding: 0.25rem 0.4rem;
+  gap: 0.25rem;
+  margin-bottom: 1.5rem;
+  box-shadow: var(--shadow-sm);
+}
+
+.lang-switcher-bar .lang-label {
+  font-size: 0.72rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--text-dim);
+  padding: 0.15rem 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.lang-pill {
+  font-size: 0.78rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  color: var(--text-muted);
+  text-decoration: none !important;
+  transition: all 0.2s ease;
+}
+
+.lang-pill:hover {
+  color: var(--accent-primary);
+  background-color: rgba(56, 189, 248, 0.08);
+}
+
+.lang-pill.active {
+  background: var(--accent-gradient);
+  color: #ffffff !important;
+  box-shadow: 0 2px 8px rgba(0, 168, 132, 0.35);
+}
+
+// =============================================================================
 // RESOURCE BADGE BAR (Floating & Interactive)
 // =============================================================================
 .resource-badge-bar {
