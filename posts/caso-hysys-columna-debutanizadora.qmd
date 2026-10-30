@@ -1,0 +1,158 @@
+---
+title: "Simulación de una Columna Debutanizadora en Aspen HYSYS"
+subtitle: "Fraccionamiento de GLP y Control de Especificación RVP con Paquete Peng-Robinson"
+description: "Modelado riguroso de una torre de destilación de 30 platos para separar propano/butanos de gasolinas estabilizadas, optimizando la tasa de reflujo y los consumos energéticos de condensador y rehervidor."
+author: "ProcessSim Engineering Lab"
+date: "2026-10-28"
+categories: ["Aspen HYSYS", "Separación", "Caso HSC", "Video Tutorial"]
+image: "../assets/images/debutanizer_pfd.svg"
+toc: true
+number-sections: true
+code-fold: show
+code-tools: true
+---
+
+<!-- Barra de Recursos Interactivos -->
+<div class="resource-badge-bar">
+  <span class="badge-label">Recursos del Caso:</span>
+  <a href="https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim" target="_blank" rel="noopener" class="resource-badge resource-badge-drive">📁 Descargar Simulación HYSYS (.hsc)</a>
+  <a href="slides-hysys-columna-debutanizadora.html" target="_blank" rel="noopener" class="resource-badge resource-badge-slides">📊 Ver Diapositivas Revealjs</a>
+  <a href="https://www.youtube.com/watch?v=demo_hysys_debutanizer" target="_blank" rel="noopener" class="resource-badge resource-badge-youtube">▶ Ver en YouTube</a>
+</div>
+
+## Métricas Clave de Operación y Balance
+
+::: {.metric-grid}
+::: {.metric-card .accent-cyan}
+<div class="metric-header">Pureza C4 Superior</div>
+<div class="metric-value">98.5<span class="metric-unit">%</span></div>
+<div class="metric-footer">Especificación GLP Comercial</div>
+:::
+
+::: {.metric-card .accent-amber}
+<div class="metric-header">Presión de Columna</div>
+<div class="metric-value">11.5<span class="metric-unit">bar</span></div>
+<div class="metric-footer">Condensador Total a 48 °C</div>
+:::
+
+::: {.metric-card .accent-emerald}
+<div class="metric-header">Relación de Reflujo (R/D)</div>
+<div class="metric-value">2.40</div>
+<div class="metric-footer">Óptimo Económico (1.25 Rmin)</div>
+:::
+
+::: {.metric-card .accent-purple}
+<div class="metric-header">Carga Rehervidor</div>
+<div class="metric-value">2.20<span class="metric-unit">MW</span></div>
+<div class="metric-footer">Vapor de Media Presión</div>
+:::
+:::
+
+## 1. Introducción y Descripción del Proceso
+
+La columna debutanizadora es un eslabón crítico en el tren de estabilización de hidrocarburos. Su objetivo primordial es recuperar butanos ($i\text{-C}_4$ y $n\text{-C}_4$) por cabeza para la producción de gas licuado de petróleo (GLP), mientras que por fondo se obtiene gasolina estabilizada con una presión de vapor Reid (RVP) controlada para cumplir estándares de refinería.
+
+La corriente de alimentación procede de una despropanizadora y entra en fase mixta a la torre en el plato 14 con un caudal de $250.0\text{ kmol/h}$.
+
+## 2. Configuración en Aspen HYSYS y Paquete de Propiedades
+
+Se utilizó la ecuación de estado de **Peng-Robinson (PR)** con parámetros de interacción binaria (BIP) ajustados por Aspen Properties.
+
+### Especificaciones de Diseño de la Torre
+* **Número de etapas teóricas:** 30 platos + condensador total + rehervidor parcial tipo termosifón.
+* **Plato de alimentación:** Etapa 14 (numerada desde el tope).
+* **Presión de cima:** $11.5\text{ bar}$.
+* **Presión de fondo:** $12.1\text{ bar}$ ($\Delta P = 0.6\text{ bar}$).
+* **Especificación de cima:** Fracción molar de $i\text{-C}_5$ en destilado $\le 0.5\%$.
+* **Especificación de fondo:** Fracción molar de $n\text{-C}_4$ en fondos $\le 1.0\%$.
+
+## 3. Diagrama de Flujo (PFD) y Perfiles de Etapa
+
+```text
+                  [ Condensador Total ] <--- (Qc = -1.85 MW)
+                           |
+                           v
+                   [ Acumulador Cima ]
+                      |          |
+         Reflujo (R)  |          v
+         +------------+    [ Destilado (D) ] ---> GLP (C3/C4)
+         |                 108.5 kmol/h, 48.2°C, 11.5 bar
+         v
+     +-------+ (Etapa 1)
+     |       |
+(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)
+---> |   O   |
+     |   R   |
+     |   R   |
+     |   E   | (Etapa 30)
+     +-------+
+         |
+         +------------> [ Rehervidor ] <--- (Qr = +2.20 MW)
+         |                  |
+         v                  v
+     [ Fondos (B) ] <-------+
+     Gasolina Estabilizada (C5+)
+     141.5 kmol/h, 162.8°C, 12.1 bar
+```
+
+## 4. Tabla de Corrientes del Proceso
+
+::: {.stream-table-wrapper}
+<table class="stream-table">
+  <thead>
+    <tr>
+      <th>Variable / Corriente</th>
+      <th class="num">Alimentación (F)</th>
+      <th class="num">Destilado GLP (D)</th>
+      <th class="num">Gasolina Fondo (B)</th>
+      <th>Unidad</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><strong>Temperatura</strong></td>
+      <td class="num">92.4</td>
+      <td class="num">48.2</td>
+      <td class="num">162.8</td>
+      <td>°C</td>
+    </tr>
+    <tr>
+      <td><strong>Presión</strong></td>
+      <td class="num">12.5</td>
+      <td class="num">11.5</td>
+      <td class="num">12.1</td>
+      <td>bar</td>
+    </tr>
+    <tr>
+      <td><strong>Flujo Molar</strong></td>
+      <td class="num">250.0</td>
+      <td class="num">108.5</td>
+      <td class="num">141.5</td>
+      <td>kmol/h</td>
+    </tr>
+    <tr>
+      <td><strong>Fracción i-C4 + n-C4</strong></td>
+      <td class="num">0.432</td>
+      <td class="num">0.985</td>
+      <td class="num">0.008</td>
+      <td>mol/mol</td>
+    </tr>
+    <tr>
+      <td><strong>Fracción C5+ (Gasolina)</strong></td>
+      <td class="num">0.568</td>
+      <td class="num">0.005</td>
+      <td class="num">0.992</td>
+      <td>mol/mol</td>
+    </tr>
+  </tbody>
+</table>
+:::
+
+## 5. Video Tutorial y Demostración Operacional
+
+{{< video https://www.youtube.com/watch?v=demo_hysys_debutanizer >}}
+
+## 6. Conclusiones y Lecciones Operativas
+
+1. **Control de RVP:** La tasa de reflujo de $2.40$ asegura que la gasolina de fondo no exceda $7.5\text{ psi}$ de RVP, haciéndola apta para blending directo de verano.
+2. **Optimización Energética:** La integración de un intercambiador de calor alimentación-fondos permite precalentar la carga desde $65^\circ\text{C}$ a $92.4^\circ\text{C}$, reduciendo en un $18\%$ el consumo de vapor en el rehervidor.

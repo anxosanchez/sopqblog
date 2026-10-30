@@ -1,0 +1,137 @@
+---
+title: "ProcessSim // Thermodynamic Engineering Hub"
+subtitle: "Modelado Riguroso de Procesos, Simulación Térmica & Balances Computacionales"
+page-layout: full
+anchor-sections: false
+toc: false
+listing:
+  - id: featured-cases
+    contents:
+      - "posts/caso-*.qmd"
+    sort: "date desc"
+    type: grid
+    grid-columns: 3
+    image-height: "190px"
+    fields: [image, date, title, description, categories, reading-time]
+    page-size: 3
+  - id: hysys-cases
+    contents:
+      - "posts/caso-*.qmd"
+    include:
+      categories: "Aspen HYSYS"
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories, reading-time]
+    field-display-names:
+      title: "Caso de Simulación"
+      date: "Publicación"
+      categories: "Taxonomía Canónica"
+      reading-time: "Lectura"
+  - id: dwsim-cases
+    contents:
+      - "posts/caso-*.qmd"
+    include:
+      categories: "DWSIM"
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories, reading-time]
+    field-display-names:
+      title: "Caso de Simulación"
+      date: "Publicación"
+      categories: "Taxonomía Canónica"
+      reading-time: "Lectura"
+  - id: python-cases
+    contents:
+      - "posts/caso-*.qmd"
+    include:
+      categories: "Python"
+    sort: "date desc"
+    type: table
+    fields: [date, title, categories, reading-time]
+    field-display-names:
+      title: "Caso de Simulación"
+      date: "Publicación"
+      categories: "Taxonomía Canónica"
+      reading-time: "Lectura"
+---
+
+::: {.hero-container}
+<div class="hero-pill">
+  <span class="pulse-dot"></span> Entorno Operacional Verificado &middot; v3.4 Estacionario
+</div>
+
+<h1 class="hero-title">
+  Simulación de Procesos &amp; <br />
+  <span class="gradient-text">Termodinámica Computacional</span>
+</h1>
+
+<p class="hero-lead">
+  Repositorio abierto de ingeniería química aplicada: casos reales modelados en <strong>Aspen HYSYS</strong>, 
+  <strong>DWSIM</strong> y <strong>Python</strong> con balances rigurosos de masa y energía, código reproducible, 
+  archivos descargables y presentaciones ejecutivas.
+</p>
+
+::: {.status-grid}
+::: {.status-card}
+<div class="status-num">100%</div>
+<div class="status-label">Consistencia Termodinámica</div>
+<div class="status-sub">Residuos &lt; 10⁻⁷ en Balances</div>
+:::
+
+::: {.status-card}
+<div class="status-num">HYSYS &amp; DWSIM</div>
+<div class="status-label">Dual Engine Arquitectura</div>
+<div class="status-sub">Paridad Comercial vs Open Source</div>
+:::
+
+::: {.status-card}
+<div class="status-num">EOS &amp; NRTL</div>
+<div class="status-label">Modelos Termodinámicos</div>
+<div class="status-sub">Peng-Robinson, SRK &amp; Actividad</div>
+:::
+
+::: {.status-card}
+<div class="status-num">CI/CD Quarto</div>
+<div class="status-label">Automatización Total</div>
+<div class="status-sub">Deploy Continuo en GitHub Pages</div>
+:::
+:::
+:::
+
+## 🚀 Casos de Simulación Destacados {#casos-destacados}
+
+Los casos más recientes modelados con especificaciones rigurosas de planta y verificación experimental de equilibrios:
+
+::: {#featured-cases}
+:::
+
+<div style="margin: 3.5rem 0 1rem 0; border-top: 1px solid var(--border-subtle);"></div>
+
+## 🗂️ Explorador por Plataforma de Simulación {#explorador-plataformas}
+
+Navega a través de las simulaciones filtradas mediante nuestra taxonomía canónica ortogonal de 3 niveles:
+
+::: {.panel-tabset}
+
+### 🔵 Aspen HYSYS {#aspen-hysys}
+
+Casos de grado industrial modelados en el estándar petroquímico global. Incluyen archivos `.hsc` listos para descargar y perfiles hidráulicos de columnas.
+
+::: {#hysys-cases}
+:::
+
+### 🟢 DWSIM (Open Source) {#dwsim}
+
+Simulaciones completas resueltas en el software de código abierto DWSIM v8. Accesibilidad total sin licencias restrictivas y con total paridad termodinámica.
+
+::: {#dwsim-cases}
+:::
+
+### 🐍 Python & Termodinámica {#python}
+
+Implementaciones analíticas y numéricas en Python (NumPy, SciPy) para resolución de Rachford-Rice, curvas flash isotérmicas y diagramas de fases ternarios.
+
+::: {#python-cases}
+:::
+
+:::

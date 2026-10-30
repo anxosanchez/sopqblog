@@ -1,0 +1,69 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="100%" height="100%">
+  <defs>
+    <linearGradient id="bgGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0f172a"/>
+      <stop offset="100%" stop-color="#1e293b"/>
+    </linearGradient>
+    <linearGradient id="vaporGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#38bdf8"/>
+      <stop offset="100%" stop-color="#00d4aa"/>
+    </linearGradient>
+    <linearGradient id="liquidGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#f59e0b"/>
+      <stop offset="100%" stop-color="#ef4444"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="450" rx="12" fill="url(#bgGrad)"/>
+  
+  <!-- Grid Lines -->
+  <g stroke="#334155" stroke-width="0.5" stroke-dasharray="4 4" opacity="0.4">
+    <line x1="50" y1="0" x2="50" y2="450"/>
+    <line x1="150" y1="0" x2="150" y2="450"/>
+    <line x1="250" y1="0" x2="250" y2="450"/>
+    <line x1="350" y1="0" x2="350" y2="450"/>
+    <line x1="450" y1="0" x2="450" y2="450"/>
+    <line x1="550" y1="0" x2="550" y2="450"/>
+    <line x1="650" y1="0" x2="650" y2="450"/>
+    <line x1="750" y1="0" x2="750" y2="450"/>
+  </g>
+
+  <!-- Title Badge -->
+  <rect x="40" y="30" width="260" height="32" rx="16" fill="#1e293b" stroke="#00d4aa" stroke-width="1.5"/>
+  <circle cx="56" cy="46" r="5" fill="#00d4aa"/>
+  <text x="72" y="51" fill="#f8fafc" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="700" letter-spacing="1">FLASH DRUM PFD // V-101</text>
+
+  <!-- Flash Drum Vessel (Vertical) -->
+  <rect x="360" y="120" width="120" height="200" rx="40" fill="#1e293b" stroke="#38bdf8" stroke-width="3"/>
+  <line x1="360" y1="230" x2="480" y2="230" stroke="#00d4aa" stroke-width="2" stroke-dasharray="6 4"/>
+  <text x="420" y="220" fill="#38bdf8" font-family="'Fira Code', monospace" font-size="11" text-anchor="middle">VAPOR PHASE</text>
+  <text x="420" y="250" fill="#f59e0b" font-family="'Fira Code', monospace" font-size="11" text-anchor="middle">LIQUID PHASE</text>
+
+  <!-- Inlets / Outlets -->
+  <!-- Feed Line -->
+  <path d="M 120 220 L 360 220" fill="none" stroke="#f8fafc" stroke-width="3"/>
+  <polygon points="350,215 360,220 350,225" fill="#f8fafc"/>
+  <text x="140" y="205" fill="#f8fafc" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600">Alimentación (F)</text>
+  <text x="140" y="240" fill="#94a3b8" font-family="'Fira Code', monospace" font-size="11">100 kmol/h | 30°C</text>
+
+  <!-- Expansion Valve -->
+  <polygon points="250,210 270,230 250,230 270,210" fill="#00d4aa"/>
+
+  <!-- Top Vapor Line -->
+  <path d="M 420 120 L 420 80 L 680 80" fill="none" stroke="url(#vaporGrad)" stroke-width="3"/>
+  <polygon points="670,75 680,80 670,85" fill="#00d4aa"/>
+  <text x="540" y="65" fill="#00d4aa" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600">Vapor Superior (V)</text>
+  <text x="540" y="105" fill="#94a3b8" font-family="'Fira Code', monospace" font-size="11">42.85 kmol/h | 78.4°C</text>
+
+  <!-- Bottom Liquid Line -->
+  <path d="M 420 320 L 420 370 L 680 370" fill="none" stroke="url(#liquidGrad)" stroke-width="3"/>
+  <polygon points="670,365 680,370 670,375" fill="#f59e0b"/>
+  <text x="540" y="355" fill="#f59e0b" font-family="'Plus Jakarta Sans', sans-serif" font-size="12" font-weight="600">Líquido Inferior (L)</text>
+  <text x="540" y="395" fill="#94a3b8" font-family="'Fira Code', monospace" font-size="11">57.15 kmol/h | 78.4°C</text>
+
+  <!-- Thermal Indicator -->
+  <circle cx="480" cy="300" r="16" fill="#ef4444" opacity="0.2"/>
+  <circle cx="480" cy="300" r="10" fill="#ef4444"/>
+  <text x="505" y="305" fill="#f8fafc" font-family="'Fira Code', monospace" font-size="11">Q = 420.5 kW</text>
+</svg>

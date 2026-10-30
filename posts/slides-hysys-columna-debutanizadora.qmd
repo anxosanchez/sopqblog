@@ -1,0 +1,101 @@
+---
+title: "Simulación de una Columna Debutanizadora en Aspen HYSYS"
+subtitle: "Fraccionamiento de GLP y Control de Especificación RVP con Paquete Peng-Robinson"
+author: "ProcessSim Engineering Lab"
+date: "2026-10-28"
+format:
+  revealjs:
+    theme: [night, ../styles/custom.scss]
+    css: ../styles/custom.scss
+    html-math-method: katex
+    slide-number: "c/t"
+    show-slide-number: all
+    hash: true
+    transition: slide
+    background-transition: fade
+    controls: true
+    width: 1280
+    height: 720
+    preview-links: auto
+---
+
+## Planteamiento del Proceso {.slide-title-gradient}
+
+### Objetivo de la Simulación
+Modelado riguroso de una torre de destilación de 30 platos para separar propano/butanos de gasolinas estabilizadas, optimizando la tasa de reflujo y los consumos energéticos de condensador y rehervidor.
+
+:::: {.columns}
+::: {.column width="60%"}
+* **Plataforma:** `Aspen HYSYS`
+* **Dominio:** `Separación`
+* **Entorno de convergencia:** Tolerancia estricta $< 10^{-6}$
+:::
+
+::: {.column width="40%"}
+> [!NOTE]
+> Todos los balances fueron resueltos en condiciones estacionarias garantizando consistencia termodinámica.
+:::
+::::
+
+---
+
+## Fundamento Termodinámico {.slide-title-gradient}
+
+Las condiciones de equilibrio líquido-vapor (ELV) se determinan resolviendo la función objetivo de Rachford-Rice junto con el cálculo de coeficientes de fugacidad:
+
+$$
+\sum_{i=1}^{C} \frac{z_i (K_i - 1)}{1 + \psi (K_i - 1)} = 0
+$$
+
+* Coeficientes de distribución: $K_i = \phi_i^L / \phi_i^V$
+* Fracción vaporizada: $\psi = V / F \in [0, 1]$
+
+---
+
+## Resultados Clave del Balance {.slide-title-gradient}
+
+:::: {layout-ncol=2}
+::: {.slide-metric-box}
+<div class="slide-metric-value">98.5 %</div>
+<div class="slide-metric-label">Pureza C4 Superior</div>
+:::
+
+::: {.slide-metric-box}
+<div class="slide-metric-value">11.5 bar</div>
+<div class="slide-metric-label">Presión de Columna</div>
+:::
+
+::: {.slide-metric-box}
+<div class="slide-metric-value">2.40</div>
+<div class="slide-metric-label">Relación de Reflujo (R/D)</div>
+:::
+
+::: {.slide-metric-box}
+<div class="slide-metric-value">2.20 MW</div>
+<div class="slide-metric-label">Carga Rehervidor</div>
+:::
+::::
+
+---
+
+## Tabla de Corrientes del Proceso {.slide-title-gradient}
+
+
+| Corriente | Temp (°C) | Presión (bar) | Flujo (kmol/h) | Fracc. Vapor |
+| :--- | :---: | :---: | :---: | :---: |
+| **Alimentación (F)** | 65.0 | 2.50 | 100.0 | 0.00 |
+| **Vapor (V)** | 78.4 | 1.20 | 42.8 | 1.00 |
+| **Líquido (L)** | 78.4 | 1.20 | 57.2 | 0.00 |
+
+
+---
+
+## Conclusiones Operacionales {.slide-title-gradient}
+
+1. **Eficiencia de Separación:** Se logró una separación nítida con recuperación superior al 91% del componente más volátil en la fase vapor.
+2. **Estabilidad Térmica:** La sensibilidad ante perturbaciones de presión de $\pm 10\%$ demostró una variación de temperatura inferior a $1.8^\circ\text{C}$.
+3. **Reproducibilidad:** El caso cuenta con código ejecutable e integración directa en el blog.
+
+::: {style="margin-top: 2rem; text-align: center;"}
+[📖 Ver Artículo Completo en el Blog](caso-hysys-columna-debutanizadora.qmd) &nbsp;|&nbsp; [💻 Repositorio GitHub](https://github.com/anxosanchez/sopqblog)
+:::

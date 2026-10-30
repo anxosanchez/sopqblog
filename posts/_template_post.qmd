@@ -1,0 +1,111 @@
+---
+title: "Título Canónico del Caso de Simulación"
+subtitle: "Subtítulo Técnico Describiendo la Operación Unitaria y Modelo Termodinámico"
+description: "Resumen ejecutivo conciso destacando el paquete de propiedades, condiciones de operación y objetivos de convergencia."
+author: "ProcessSim Engineering Lab"
+date: "2026-10-30"
+categories: ["Python", "Termodinámica", "Notebook Colab"]
+image: "../assets/images/placeholder_pfd.svg"
+toc: true
+number-sections: true
+code-fold: true
+code-tools: true
+---
+
+<!-- Barra de Recursos Interactivos -->
+<div class="resource-badge-bar">
+  <span class="badge-label">Recursos del Caso:</span>
+  <a href="https://colab.research.google.com" target="_blank" rel="noopener" class="resource-badge resource-badge-colab">⚡ Abrir en Google Colab</a>
+  <a href="https://drive.google.com" target="_blank" rel="noopener" class="resource-badge resource-badge-drive">📁 Descargar Simulación (.hsc / .bkp)</a>
+  <a href="slides-caso-template.html" target="_blank" rel="noopener" class="resource-badge resource-badge-slides">📊 Ver Diapositivas Revealjs</a>
+  <a href="https://youtube.com" target="_blank" rel="noopener" class="resource-badge resource-badge-youtube">▶ Ver en YouTube</a>
+</div>
+
+## Métricas Clave de Operación y Balance
+
+::: {.metric-grid}
+::: {.metric-card .accent-cyan}
+<div class="metric-header">Temperatura Operación</div>
+<div class="metric-value">75.0<span class="metric-unit">°C</span></div>
+<div class="metric-footer">Equilibrio Térmico</div>
+:::
+
+::: {.metric-card .accent-amber}
+<div class="metric-header">Presión Sistema</div>
+<div class="metric-value">1.50<span class="metric-unit">bar</span></div>
+<div class="metric-footer">Absoluta en Tambor</div>
+:::
+
+::: {.metric-card .accent-emerald}
+<div class="metric-header">Fracción Vapor (V/F)</div>
+<div class="metric-value">0.450</div>
+<div class="metric-footer">Rachford-Rice Convegido</div>
+:::
+
+::: {.metric-card .accent-purple}
+<div class="metric-header">Carga Térmica (Duty)</div>
+<div class="metric-value">385.2<span class="metric-unit">kW</span></div>
+<div class="metric-footer">Requerimiento Calefactor</div>
+:::
+:::
+
+## 1. Introducción y Planteamiento del Proceso
+
+Descripción del contexto industrial, especificación de la corriente de alimentación y objetivos del modelado en estado estacionario.
+
+## 2. Fundamento Termodinámico y Ecuaciones Gobernantes
+
+El equilibrio de fases se evalúa utilizando la formulación de coeficientes de fugacidad:
+
+$$
+f_i^V = f_i^L \implies y_i \phi_i^V P = x_i \phi_i^L P \implies K_i = \frac{y_i}{x_i} = \frac{\phi_i^L}{\phi_i^V}
+$$
+
+Para la resolución de la vaporización instantánea se emplea la función de Rachford-Rice:
+
+$$
+f(\psi) = \sum_{i=1}^{C} \frac{z_i (K_i - 1)}{1 + \psi (K_i - 1)} = 0
+$$
+
+Donde $\psi = \frac{V}{F}$ representa la fracción molar vaporizada del efluente.
+
+## 3. Diagrama de Flujo del Proceso (PFD)
+
+```text
+       Alimentación (F)           Vapor (V, y_i)
+  -----------------------> [ FLASH ] ------------>
+                            |     |
+                            |  Q  | (Intercambio Térmico)
+                            |     v
+                            +------------> Líquido (L, x_i)
+```
+
+## 4. Tabla de Corrientes y Balance de Materia
+
+::: {.stream-table-wrapper}
+| Parámetro / Corriente | Alimentación (F) | Vapor (V) | Líquido (L) |
+| :--- | :---: | :---: | :---: |
+| **Temperatura (°C)** | 60.0 | 75.0 | 75.0 |
+| **Presión (bar)** | 2.50 | 1.50 | 1.50 |
+| **Flujo Molar (kmol/h)** | 100.0 | 45.0 | 55.0 |
+| **Fracción Vapor** | 0.00 | 1.00 | 0.00 |
+:::
+
+## 5. Implementación Computacional
+
+```python
+# Bloque de código reproducible en Python
+import numpy as np
+
+def rachford_rice(psi, z, K):
+    return np.sum(z * (K - 1) / (1 + psi * (K - 1)))
+
+z = np.array([0.4, 0.35, 0.25])
+K = np.array([2.8, 0.95, 0.25])
+print(f"Residual para psi=0.45: {rachford_rice(0.45, z, K):.6f}")
+```
+
+## 6. Conclusiones y Criterios de Diseño
+
+1. La convergencia termodinámica verifica la consistencia de los balances de materia y energía.
+2. Los resultados son exportables y reproducibles en Aspen HYSYS, DWSIM o Python.

@@ -1,0 +1,75 @@
+project:
+  type: website
+  output-dir: _site
+  resources:
+    - "assets/**"
+
+website:
+  title: "ProcessSim // Engineering Lab"
+  description: "Blog de Ingeniería Química, Simulación de Procesos & Termodinámica Computacional"
+  site-url: "https://anxosanchez.github.io/sopqblog"
+  repo-url: "https://github.com/anxosanchez/sopqblog"
+  repo-branch: main
+  issue-url: "https://github.com/anxosanchez/sopqblog/issues"
+
+  navbar:
+    background: primary
+    search: true
+    collapse: true
+    left:
+      - text: "Inicio"
+        href: index.qmd
+      - text: "Simulaciones"
+        href: index.qmd#casos-destacados
+      - text: "Aspen HYSYS"
+        href: index.qmd#aspen-hysys
+      - text: "DWSIM"
+        href: index.qmd#dwsim
+      - text: "Python"
+        href: index.qmd#python
+    right:
+      - icon: github
+        href: https://github.com/anxosanchez/sopqblog
+        aria-label: GitHub Repository
+      - icon: youtube
+        href: https://youtube.com
+        aria-label: Canal de YouTube
+
+  page-footer:
+    left: |
+      <div class="footer-legal">
+        <strong>ProcessSim Lab</strong> &copy; 2026 &middot; Modelado de Procesos y Termodinámica Computacional.
+      </div>
+    right: |
+      <div class="footer-license">
+        Licencia MIT / CC BY 4.0 &middot; Construido con <a href="https://quarto.org" target="_blank" rel="noopener">Quarto</a>
+      </div>
+    border: true
+
+format:
+  html:
+    theme:
+      light: [cosmo, styles/custom.scss]
+      dark: [darkly, styles/custom.scss]
+    css: styles/custom.scss
+    html-math-method: katex
+    body-width: 900px
+    toc: true
+    toc-depth: 3
+    toc-title: "Contenido del Caso"
+    number-sections: true
+    code-fold: show
+    code-tools: true
+    code-copy: true
+    code-line-numbers: true
+    code-overflow: wrap
+    highlight-style: monokai
+    smooth-scroll: true
+    fig-responsive: true
+    anchor-sections: true
+    link-external-icon: true
+    link-external-newwindow: true
+    grid:
+      body-width: 900px
+      margin-width: 280px
+      gutter-width: 2.0rem
