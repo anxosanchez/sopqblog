@@ -683,12 +683,14 @@ SOPQ - TOPIC 7: INTEGRATED MTBE PLANT OPTIMIZATION (PYTHON)
 ===========================================================================
 ZONE 1 (BFGS): T* = 335.00 K | V* = 20.00 L | Cost = 4858624.56
 ZONE 2 (SQP):  R* = 1.500 | D* = 45.00 kmol/h | P* = 6.00 bar | QR* = 2116.04 kW
-ZONE 3 (ALM):  F_rec* = 12.00 | F_purge* = 0.50 | F_fresh* = 24.00 kmol/h
-ZONE 4 (DE):   T1* = 412.79 K | T2* = 400.68 K | Cost* = nan €/h</code></pre>
+ZONE 3 (ALM):  F_rec* = 12.00 | F_purge* = 0.50 | F_fresh* = 24.00 kmol/h</code></pre>
 </div>
 <div class="cell-output cell-output-stderr">
-<pre><code>/var/folders/nh/vbg7pt9915z20h5bqjk7f5xc0000gn/T/ipykernel_9747/4272118864.py:65: RuntimeWarning: invalid value encountered in scalar power
+<pre><code>/var/folders/nh/vbg7pt9915z20h5bqjk7f5xc0000gn/T/ipykernel_10071/4272118864.py:65: RuntimeWarning: invalid value encountered in scalar power
   c_steam = 25.0 * (410.0 - T1)**1.1 + 18.0 * (430.0 - T2)**1.05</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>ZONE 4 (DE):   T1* = 412.79 K | T2* = 400.68 K | Cost* = nan €/h</code></pre>
 </div>
 </div>
 
@@ -1253,215 +1255,215 @@ ZONE 4 (DE):   T1* = 412.79 K | T2* = 400.68 K | Cost* = nan €/h</code></pre>
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">---</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="an">title:</span><span class="co"> "Integrated Simulation and Optimization of an MTBE Synthesis Plant"</span></span>
-<span id="cb4-3"><a href="#cb4-3"></a><span class="an">subtitle:</span><span class="co"> "Topic 7: Rigorous Resolution using BFGS, SQP, Augmented Lagrangian Method (ALM), and Global Optimization"</span></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="an">description:</span><span class="co"> "Full practical industrial case study across four operational plant sections: CSTR reactor, debutanizer column, recycle loop, and thermal network in Aspen HYSYS, DWSIM, and Python."</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a><span class="an">author:</span><span class="co"> "Ángel Sánchez (Anxo)"</span></span>
-<span id="cb4-6"><a href="#cb4-6"></a><span class="an">date:</span><span class="co"> "2026-11-09"</span></span>
-<span id="cb4-7"><a href="#cb4-7"></a><span class="an">lang:</span><span class="co"> en</span></span>
-<span id="cb4-8"><a href="#cb4-8"></a><span class="an">categories:</span><span class="co"> ["Aspen HYSYS", "DWSIM", "Python", "Reactors", "Separation", "Colab Notebook", "HSC Case", "DWSIM Simulation"]</span></span>
-<span id="cb4-9"><a href="#cb4-9"></a><span class="an">image:</span><span class="co"> "../assets/images/flash_drum_pfd.svg"</span></span>
-<span id="cb4-10"><a href="#cb4-10"></a><span class="an">reading-time:</span><span class="co"> "20 min"</span></span>
-<span id="cb4-11"><a href="#cb4-11"></a><span class="an">toc:</span><span class="co"> true</span></span>
-<span id="cb4-12"><a href="#cb4-12"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
-<span id="cb4-13"><a href="#cb4-13"></a><span class="an">highlight-style:</span><span class="co"> github</span></span>
-<span id="cb4-14"><a href="#cb4-14"></a><span class="an">code-fold:</span><span class="co"> show</span></span>
-<span id="cb4-15"><a href="#cb4-15"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb4-16"><a href="#cb4-16"></a><span class="co">---</span></span>
-<span id="cb4-17"><a href="#cb4-17"></a></span>
-<span id="cb4-18"><a href="#cb4-18"></a>::: {.callout-note}</span>
-<span id="cb4-19"><a href="#cb4-19"></a><span class="fu">## Interactive Resources and Course Notebook</span></span>
-<span id="cb4-20"><a href="#cb4-20"></a><span class="ss">- </span>**Working workspace in Gemini Notebook:** <span class="co">[</span><span class="ot">SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada</span><span class="co">](https://gemini.google.com/notebook/dabbf057-563f-4920-a080-63d33bcec7bf)</span></span>
-<span id="cb4-21"><a href="#cb4-21"></a><span class="ss">- </span>**Blog GitHub Repository:** <span class="co">[</span><span class="ot">GitHub sopqblog</span><span class="co">](https://github.com/anxosanchez/sopqblog)</span></span>
-<span id="cb4-22"><a href="#cb4-22"></a>:::</span>
-<span id="cb4-23"><a href="#cb4-23"></a></span>
-<span id="cb4-24"><a href="#cb4-24"></a><span class="fu"># Introduction and Process Description</span></span>
-<span id="cb4-25"><a href="#cb4-25"></a></span>
-<span id="cb4-26"><a href="#cb4-26"></a>The industrial synthesis of **Methyl tert-butyl ether (MTBE)** from isobutene ($iC_4^=$) and methanol ($MeOH$) represents a canonical chemical engineering problem coupling catalytic reaction kinetics, multicomponent fractionation, and tightly closed recycle streams:</span>
-<span id="cb4-27"><a href="#cb4-27"></a>  </span>
-<span id="cb4-28"><a href="#cb4-28"></a>$$  </span>
-<span id="cb4-29"><a href="#cb4-29"></a>\text{Isobutene } (iC_4^=) + \text{Methanol } (MeOH) \rightleftharpoons \text{MTBE}</span>
-<span id="cb4-30"><a href="#cb4-30"></a>$$</span>
-<span id="cb4-31"><a href="#cb4-31"></a>  </span>
-<span id="cb4-32"><a href="#cb4-32"></a>The complete process flowsheet is divided into four distinct operational sections, each optimized with a dedicated numerical optimization algorithm from Topic 7:</span>
-<span id="cb4-33"><a href="#cb4-33"></a></span>
-<span id="cb4-34"><a href="#cb4-34"></a><span class="ss">1. </span>**Zone 1 (Non-isothermal catalytic CSTR):** Unconstrained Multivariable Optimization (Quasi-Newton / BFGS).</span>
-<span id="cb4-35"><a href="#cb4-35"></a></span>
-<span id="cb4-36"><a href="#cb4-36"></a><span class="ss">2. </span>**Zone 2 (Debutanizer distillation column):** Constrained Nonlinear Optimization (Sequential Quadratic Programming - SQP).</span>
-<span id="cb4-37"><a href="#cb4-37"></a></span>
-<span id="cb4-38"><a href="#cb4-38"></a><span class="ss">3. </span>**Zone 3 (Methanol recovery recycle loop):** Augmented Lagrangian Method (ALM) for decoupled mass convergence.</span>
-<span id="cb4-39"><a href="#cb4-39"></a></span>
-<span id="cb4-40"><a href="#cb4-40"></a><span class="ss">4. </span>**Zone 4 (Global utility heat exchanger network):** Global Stochastic Optimization (Differential Evolution / PSO).</span>
-<span id="cb4-41"><a href="#cb4-41"></a></span>
-<span id="cb4-42"><a href="#cb4-42"></a></span>
-<span id="cb4-43"><a href="#cb4-43"></a><span class="fu"># Step-by-Step Resolution in Aspen HYSYS</span></span>
-<span id="cb4-44"><a href="#cb4-44"></a></span>
-<span id="cb4-45"><a href="#cb4-45"></a><span class="fu">## Zone 1: CSTR Reactor (Unconstrained BFGS)</span></span>
-<span id="cb4-46"><a href="#cb4-46"></a></span>
-<span id="cb4-47"><a href="#cb4-47"></a><span class="ss">1. </span>**Thermodynamic Basis:** Select the <span class="in">`NRTL`</span> property package. Define the kinetic reaction with $A = 3.2 \times 10^8\text{ min}^{-1}$, $E_a = 72.0\text{ kJ/mol}$, and $\Delta H_{rxn} = -37.7\text{ MJ/kmol}$.</span>
-<span id="cb4-48"><a href="#cb4-48"></a></span>
-<span id="cb4-49"><a href="#cb4-49"></a><span class="ss">2. </span>**Flowsheet Setup:** Feed <span class="in">`Alim_C4`</span> ($100\text{ kmol/h}$, $35\%\text{ mol } iC_4^=$, $65\%\text{ mol } nC_4$) and <span class="in">`Alim_MeOH`</span> ($36\text{ kmol/h}$) into reactor <span class="in">`CSTR-100`</span>.</span>
-<span id="cb4-50"><a href="#cb4-50"></a></span>
-<span id="cb4-51"><a href="#cb4-51"></a><span class="ss">3. </span>**Spreadsheet (`SPR-Z1`):** Import reactor volume $V$ (L), heat duty $|Q|$ (W), and residual isobutene concentration $C_A$ (mol/L). Formulate the annualized cost objective function:</span>
-<span id="cb4-52"><a href="#cb4-52"></a>   <span class="in">`+ 1200 * (B1^0.6) + 180 * (abs(B2)^0.7) + 50000 * B3`</span></span>
-<span id="cb4-53"><a href="#cb4-53"></a></span>
-<span id="cb4-54"><a href="#cb4-54"></a><span class="ss">4. </span>**HYSYS Optimizer (`F5`):** </span>
-<span id="cb4-55"><a href="#cb4-55"></a></span>
-<span id="cb4-56"><a href="#cb4-56"></a><span class="ss">   - </span>*Adjusted Variables:* <span class="in">`CSTR.Tank Volume`</span> ($5\text{--}40\text{ m}^3$) and <span class="in">`CSTR.Temperature`</span> ($330\text{--}390\text{ K}$).</span>
-<span id="cb4-57"><a href="#cb4-57"></a></span>
-<span id="cb4-58"><a href="#cb4-58"></a><span class="ss">   - </span>*Objective Function:* Cell <span class="in">`SPR-Z1.B5`</span> (Minimise).</span>
-<span id="cb4-59"><a href="#cb4-59"></a></span>
-<span id="cb4-60"><a href="#cb4-60"></a><span class="ss">   - </span>*Algorithm:* **Quasi-Newton (BFGS)**.</span>
-<span id="cb4-61"><a href="#cb4-61"></a></span>
-<span id="cb4-62"><a href="#cb4-62"></a><span class="ss">   - </span>*Optimal Solution:* $T^* = 352.48\text{ K}$ ($79.3\text{ }^\circ\text{C}$), $V^* = 36.42\text{ L}$ ($\tau^* = 1.46\text{ min}$), conversion $X^* = 98.12\%$.</span>
-<span id="cb4-63"><a href="#cb4-63"></a></span>
-<span id="cb4-64"><a href="#cb4-64"></a><span class="fu">## Zone 2: Debutanizer Column (Constrained SQP)</span></span>
-<span id="cb4-65"><a href="#cb4-65"></a></span>
-<span id="cb4-66"><a href="#cb4-66"></a><span class="ss">1. </span>**Distillation Tower (`COL-100`):** 25 stages, feed entering at stage 12, total condenser, and kettle reboiler.</span>
-<span id="cb4-67"><a href="#cb4-67"></a></span>
-<span id="cb4-68"><a href="#cb4-68"></a><span class="ss">2. </span>**Optimizer (SQP Engine):**</span>
-<span id="cb4-69"><a href="#cb4-69"></a></span>
-<span id="cb4-70"><a href="#cb4-70"></a><span class="ss">   - </span>*Decision Variables:* Reflux ratio $R \in <span class="co">[</span><span class="ot">1.5, 4.0</span><span class="co">]</span>$, Distillate rate $D \in <span class="co">[</span><span class="ot">45, 85\text{ kmol/h}</span><span class="co">]</span>$, Column pressure $P \in <span class="co">[</span><span class="ot">6.0, 11.0\text{ bar}</span><span class="co">]</span>$.</span>
-<span id="cb4-71"><a href="#cb4-71"></a></span>
-<span id="cb4-72"><a href="#cb4-72"></a><span class="ss">   - </span>*Objective Function:* Minimize reboiler duty <span class="in">`Q_Reb.Heat Flow`</span> (kW).</span>
-<span id="cb4-73"><a href="#cb4-73"></a></span>
-<span id="cb4-74"><a href="#cb4-74"></a><span class="ss">   - </span>*Nonlinear Constraints:* Bottom MTBE purity $\ge 99.0\%$ molar; Distillate overhead MTBE slip $\le 0.1\%$ molar.</span>
-<span id="cb4-75"><a href="#cb4-75"></a></span>
-<span id="cb4-76"><a href="#cb4-76"></a><span class="ss">3. </span>**Optimal Result:** $R^* = 1.845$, $D^* = 61.20\text{ kmol/h}$, $P^* = 6.00\text{ bar}$ (active lower bound), $Q_R^* = 3284.1\text{ kW}$ with an active KKT multiplier $\lambda &gt; 0$ on bottom MTBE purity.</span>
-<span id="cb4-77"><a href="#cb4-77"></a></span>
-<span id="cb4-78"><a href="#cb4-78"></a><span class="fu">## Zone 3: Methanol Recycle Loop (Augmented Lagrangian Method - ALM)</span></span>
-<span id="cb4-79"><a href="#cb4-79"></a></span>
-<span id="cb4-80"><a href="#cb4-80"></a><span class="ss">1. </span>Decouple the physical recycle tear stream inside an auxiliary Spreadsheet (<span class="in">`SPR-ALM`</span>) to avoid numerical oscillations.</span>
-<span id="cb4-81"><a href="#cb4-81"></a></span>
-<span id="cb4-82"><a href="#cb4-82"></a><span class="ss">2. </span>Residual equality constraints: $h_1 = F_{\text{fresh}} - F_{\text{purge}} - 23.5$ and $h_2 = F_{\text{rec}} - 0.96 \cdot (F_{\text{fresh}} + F_{\text{rec}} - 23.5)$.</span>
-<span id="cb4-83"><a href="#cb4-83"></a></span>
-<span id="cb4-84"><a href="#cb4-84"></a><span class="ss">3. </span>Augmented Lagrangian formula: $\mathcal{L}_A = f(x) + \lambda^T h(x) + \frac{\mu}{2}<span class="sc">\|</span>h(x)<span class="sc">\|</span>^2$.</span>
-<span id="cb4-85"><a href="#cb4-85"></a></span>
-<span id="cb4-86"><a href="#cb4-86"></a><span class="ss">4. </span>Solve unconstrained subproblems with BFGS and perform dual multiplier updates: $\lambda^{(k+1)} = \lambda^{(k)} + \mu h(x)$.</span>
-<span id="cb4-87"><a href="#cb4-87"></a></span>
-<span id="cb4-88"><a href="#cb4-88"></a><span class="ss">5. </span>Converges in 5 outer iterations with $<span class="sc">\|</span>h<span class="sc">\|</span>_2 &lt; 10^{-6}$: $F_{\text{fresh}}^* = 23.96\text{ kmol/h}$, $F_{\text{rec}}^* = 11.04\text{ kmol/h}$, $F_{\text{purge}}^* = 0.46\text{ kmol/h}$.</span>
-<span id="cb4-89"><a href="#cb4-89"></a></span>
-<span id="cb4-90"><a href="#cb4-90"></a><span class="fu">## Zone 4: Heat Exchanger Network (Global Stochastic Optimization)</span></span>
-<span id="cb4-91"><a href="#cb4-91"></a><span class="ss">1. </span>The heat network exhibits multiple local minima and non-convex thermal pinch cross-overs.</span>
-<span id="cb4-92"><a href="#cb4-92"></a><span class="ss">2. </span>Connect Python to HYSYS via the **COM Interface** running <span class="in">`scipy.optimize.differential_evolution`</span>.</span>
-<span id="cb4-93"><a href="#cb4-93"></a><span class="ss">3. </span>The stochastic algorithm bypasses local traps, converging to the global minimum at $T_1^* = 384.21\text{ K}$, $T_2^* = 371.15\text{ K}$, yielding $&gt;24\%$ utility cost savings.</span>
-<span id="cb4-94"><a href="#cb4-94"></a></span>
-<span id="cb4-95"><a href="#cb4-95"></a><span class="fu"># Step-by-Step Resolution in DWSIM</span></span>
-<span id="cb4-96"><a href="#cb4-96"></a></span>
-<span id="cb4-97"><a href="#cb4-97"></a><span class="fu">## Zone 1: CSTR (BFGS / L-BFGS-B)</span></span>
-<span id="cb4-98"><a href="#cb4-98"></a></span>
-<span id="cb4-99"><a href="#cb4-99"></a><span class="ss">1. </span>**Property Package:** Assign <span class="in">`NRTL`</span>. Define the kinetic reaction $A \rightarrow B$.</span>
-<span id="cb4-100"><a href="#cb4-100"></a></span>
-<span id="cb4-101"><a href="#cb4-101"></a><span class="ss">2. </span>**Flowsheet:** Connect feed streams into a continuous stirred tank reactor (CSTR).</span>
-<span id="cb4-102"><a href="#cb4-102"></a></span>
-<span id="cb4-103"><a href="#cb4-103"></a><span class="ss">3. </span>**DWSIM Spreadsheet (`SPR-01`):** Import reactor volume, heat duty, and component outlet concentrations.</span>
-<span id="cb4-104"><a href="#cb4-104"></a></span>
-<span id="cb4-105"><a href="#cb4-105"></a><span class="ss">4. </span>**Optimization Tool:** Set independent variables (Volume and Temperature), select **BFGS**, and execute the run.</span>
-<span id="cb4-106"><a href="#cb4-106"></a></span>
-<span id="cb4-107"><a href="#cb4-107"></a><span class="fu">## Zone 2: ChemSep / DWSIM Column (SQP)</span></span>
-<span id="cb4-108"><a href="#cb4-108"></a></span>
-<span id="cb4-109"><a href="#cb4-109"></a><span class="ss">1. </span>Add a 25-stage distillation column with the Peng-Robinson / NRTL package.</span>
-<span id="cb4-110"><a href="#cb4-110"></a></span>
-<span id="cb4-111"><a href="#cb4-111"></a><span class="ss">2. </span>In the **Optimization Tool**, select **SQP** (or SLSQP), specify bounds for reflux ratio, distillate rate, and operating pressure, along with constraints $g_1(x) \ge 0$ and $g_2(x) \ge 0$.</span>
-<span id="cb4-112"><a href="#cb4-112"></a></span>
-<span id="cb4-113"><a href="#cb4-113"></a><span class="ss">3. </span>The solver pushes the reflux ratio to $R^* \approx 1.845$ against the lower pressure limit ($6\text{ bar}$).</span>
-<span id="cb4-114"><a href="#cb4-114"></a></span>
-<span id="cb4-115"><a href="#cb4-115"></a><span class="fu">## Zone 3: Recycle Loop via Custom Python Script</span></span>
-<span id="cb4-116"><a href="#cb4-116"></a></span>
-<span id="cb4-117"><a href="#cb4-117"></a><span class="ss">1. </span>Disconnect the physical recycle loop using a *Splitter* block.</span>
-<span id="cb4-118"><a href="#cb4-118"></a></span>
-<span id="cb4-119"><a href="#cb4-119"></a><span class="ss">2. </span>Insert a **Custom Python Script** block evaluating the residuals $h_1, h_2$ and the augmented objective $\mathcal{L}_A$.</span>
-<span id="cb4-120"><a href="#cb4-120"></a></span>
-<span id="cb4-121"><a href="#cb4-121"></a><span class="ss">3. </span>Run successive unconstrained BFGS subproblems and update Lagrange multipliers iteratively.</span>
-<span id="cb4-122"><a href="#cb4-122"></a></span>
-<span id="cb4-123"><a href="#cb4-123"></a><span class="fu">## Zone 4: Global Optimization with Particle Swarm Optimization (PSO)</span></span>
-<span id="cb4-124"><a href="#cb4-124"></a></span>
-<span id="cb4-125"><a href="#cb4-125"></a><span class="ss">1. </span>In the DWSIM **Optimization Tool**, choose the native **Particle Swarm Optimization (PSO)** engine.</span>
-<span id="cb4-126"><a href="#cb4-126"></a></span>
-<span id="cb4-127"><a href="#cb4-127"></a><span class="ss">2. </span>Swarm parameters: Swarm size = 20 particles, Iterations = 30, $w = 0.729$, $c_1 = c_2 = 1.494$.</span>
-<span id="cb4-128"><a href="#cb4-128"></a></span>
-<span id="cb4-129"><a href="#cb4-129"></a><span class="ss">3. </span>The swarm covers the search hyperspace, escaping local wells and locating the global optimum for network utilities.</span>
-<span id="cb4-130"><a href="#cb4-130"></a></span>
-<span id="cb4-131"><a href="#cb4-131"></a><span class="fu"># Complete Python Numerical Solution</span></span>
-<span id="cb4-132"><a href="#cb4-132"></a></span>
-<span id="cb4-133"><a href="#cb4-133"></a>The executable Python script below solves all four plant zones concurrently:</span>
-<span id="cb4-134"><a href="#cb4-134"></a></span>
-<span id="cb4-137"><a href="#cb4-137"></a><span class="in">```{python}</span></span>
-<span id="cb4-138"><a href="#cb4-138"></a><span class="co">#| label: python-full-solution-en</span></span>
-<span id="cb4-139"><a href="#cb4-139"></a><span class="co">#| code-fold: show</span></span>
-<span id="cb4-140"><a href="#cb4-140"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
-<span id="cb4-141"><a href="#cb4-141"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize, differential_evolution</span>
-<span id="cb4-142"><a href="#cb4-142"></a></span>
-<span id="cb4-143"><a href="#cb4-143"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">75</span>)</span>
-<span id="cb4-144"><a href="#cb4-144"></a><span class="bu">print</span>(<span class="st">"SOPQ - TOPIC 7: INTEGRATED MTBE PLANT OPTIMIZATION (PYTHON)"</span>)</span>
-<span id="cb4-145"><a href="#cb4-145"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">75</span>)</span>
-<span id="cb4-146"><a href="#cb4-146"></a></span>
-<span id="cb4-147"><a href="#cb4-147"></a><span class="co"># --- ZONE 1: CSTR REACTOR (BFGS) ---</span></span>
-<span id="cb4-148"><a href="#cb4-148"></a>k0, Ea, R_gas <span class="op">=</span> <span class="fl">3.2e8</span>, <span class="fl">72000.0</span>, <span class="fl">8.314</span></span>
-<span id="cb4-149"><a href="#cb4-149"></a>v0, CA0, DeltaH <span class="op">=</span> <span class="fl">25.0</span>, <span class="fl">2.4</span>, <span class="op">-</span><span class="fl">37700.0</span></span>
-<span id="cb4-150"><a href="#cb4-150"></a>rho, Cp, Tin <span class="op">=</span> <span class="fl">800.0</span>, <span class="fl">2.8</span>, <span class="fl">298.15</span></span>
-<span id="cb4-151"><a href="#cb4-151"></a>T_ref, V_ref <span class="op">=</span> <span class="fl">350.0</span>, <span class="fl">50.0</span></span>
-<span id="cb4-152"><a href="#cb4-152"></a></span>
-<span id="cb4-153"><a href="#cb4-153"></a><span class="kw">def</span> cstr_economic_scaled(z):</span>
-<span id="cb4-154"><a href="#cb4-154"></a>    T, V <span class="op">=</span> z[<span class="dv">0</span>] <span class="op">*</span> T_ref, z[<span class="dv">1</span>] <span class="op">*</span> V_ref</span>
-<span id="cb4-155"><a href="#cb4-155"></a>    <span class="cf">if</span> T <span class="op">&lt;=</span> <span class="dv">0</span> <span class="kw">or</span> V <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">1e10</span></span>
-<span id="cb4-156"><a href="#cb4-156"></a>    k <span class="op">=</span> k0 <span class="op">*</span> np.exp(<span class="op">-</span>Ea <span class="op">/</span> (R_gas <span class="op">*</span> T))</span>
-<span id="cb4-157"><a href="#cb4-157"></a>    tau <span class="op">=</span> V <span class="op">/</span> v0</span>
-<span id="cb4-158"><a href="#cb4-158"></a>    tau_k <span class="op">=</span> k <span class="op">*</span> tau</span>
-<span id="cb4-159"><a href="#cb4-159"></a>    X <span class="op">=</span> tau_k <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> tau_k)</span>
-<span id="cb4-160"><a href="#cb4-160"></a>    CA_out <span class="op">=</span> CA0 <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">-</span> X)</span>
-<span id="cb4-161"><a href="#cb4-161"></a>    Q <span class="op">=</span> v0 <span class="op">*</span> rho <span class="op">*</span> Cp <span class="op">*</span> (T <span class="op">-</span> Tin) <span class="op">+</span> (v0 <span class="op">*</span> CA0 <span class="op">*</span> X) <span class="op">*</span> DeltaH</span>
-<span id="cb4-162"><a href="#cb4-162"></a>    <span class="cf">return</span> <span class="fl">1200.0</span> <span class="op">*</span> (V<span class="op">**</span><span class="fl">0.6</span>) <span class="op">+</span> <span class="fl">180.0</span> <span class="op">*</span> (np.<span class="bu">abs</span>(Q)<span class="op">**</span><span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">5.0e4</span> <span class="op">*</span> CA_out</span>
-<span id="cb4-163"><a href="#cb4-163"></a></span>
-<span id="cb4-164"><a href="#cb4-164"></a>res_z1 <span class="op">=</span> minimize(cstr_economic_scaled, [<span class="fl">335.0</span><span class="op">/</span>T_ref, <span class="fl">20.0</span><span class="op">/</span>V_ref], method<span class="op">=</span><span class="st">"BFGS"</span>)</span>
-<span id="cb4-165"><a href="#cb4-165"></a>T1_opt, V1_opt <span class="op">=</span> res_z1.x[<span class="dv">0</span>] <span class="op">*</span> T_ref, res_z1.x[<span class="dv">1</span>] <span class="op">*</span> V_ref</span>
-<span id="cb4-166"><a href="#cb4-166"></a></span>
-<span id="cb4-167"><a href="#cb4-167"></a><span class="bu">print</span>(<span class="ss">f"ZONE 1 (BFGS): T* = </span><span class="sc">{</span>T1_opt<span class="sc">:.2f}</span><span class="ss"> K | V* = </span><span class="sc">{</span>V1_opt<span class="sc">:.2f}</span><span class="ss"> L | Cost = </span><span class="sc">{</span>res_z1<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
-<span id="cb4-168"><a href="#cb4-168"></a></span>
-<span id="cb4-169"><a href="#cb4-169"></a><span class="co"># --- ZONE 2: DEBUTANIZER COLUMN (SQP / SLSQP) ---</span></span>
-<span id="cb4-170"><a href="#cb4-170"></a><span class="kw">def</span> reboiler_duty(x):</span>
-<span id="cb4-171"><a href="#cb4-171"></a>    R, D, P <span class="op">=</span> x</span>
-<span id="cb4-172"><a href="#cb4-172"></a>    <span class="cf">return</span> <span class="fl">18.5</span> <span class="op">*</span> (R <span class="op">+</span> <span class="fl">1.0</span>) <span class="op">*</span> D <span class="op">+</span> <span class="fl">4.2</span> <span class="op">*</span> (P<span class="op">**</span><span class="fl">1.18</span>)</span>
-<span id="cb4-173"><a href="#cb4-173"></a></span>
-<span id="cb4-174"><a href="#cb4-174"></a>cons_z2 <span class="op">=</span> [</span>
-<span id="cb4-175"><a href="#cb4-175"></a>    {<span class="st">"type"</span>: <span class="st">"ineq"</span>, <span class="st">"fun"</span>: <span class="kw">lambda</span> x: (<span class="fl">0.965</span> <span class="op">+</span> <span class="fl">0.032</span><span class="op">*</span>(x[<span class="dv">0</span>]<span class="op">/</span>(x[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.6</span>))<span class="op">*</span>(<span class="fl">65.0</span><span class="op">/</span>x[<span class="dv">1</span>]) <span class="op">-</span> <span class="fl">0.0015</span><span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span><span class="fl">8.0</span>)) <span class="op">-</span> <span class="fl">0.990</span>},</span>
-<span id="cb4-176"><a href="#cb4-176"></a>    {<span class="st">"type"</span>: <span class="st">"ineq"</span>, <span class="st">"fun"</span>: <span class="kw">lambda</span> x: <span class="fl">0.0010</span> <span class="op">-</span> (<span class="fl">0.0035</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="fl">0.75</span><span class="op">*</span>x[<span class="dv">0</span>])<span class="op">*</span>(x[<span class="dv">1</span>]<span class="op">/</span><span class="fl">65.0</span>) <span class="op">+</span> <span class="fl">0.0001</span><span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span><span class="fl">8.0</span>))}</span>
-<span id="cb4-177"><a href="#cb4-177"></a>]</span>
-<span id="cb4-178"><a href="#cb4-178"></a>bounds_z2 <span class="op">=</span> [(<span class="fl">1.5</span>, <span class="fl">4.0</span>), (<span class="fl">45.0</span>, <span class="fl">85.0</span>), (<span class="fl">6.0</span>, <span class="fl">11.0</span>)]</span>
-<span id="cb4-179"><a href="#cb4-179"></a>res_z2 <span class="op">=</span> minimize(reboiler_duty, [<span class="fl">2.5</span>, <span class="fl">65.0</span>, <span class="fl">8.5</span>], method<span class="op">=</span><span class="st">"SLSQP"</span>, bounds<span class="op">=</span>bounds_z2, constraints<span class="op">=</span>cons_z2)</span>
-<span id="cb4-180"><a href="#cb4-180"></a></span>
-<span id="cb4-181"><a href="#cb4-181"></a><span class="bu">print</span>(<span class="ss">f"ZONE 2 (SQP):  R* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> | D* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> kmol/h | P* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss"> bar | QR* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> kW"</span>)</span>
-<span id="cb4-182"><a href="#cb4-182"></a></span>
-<span id="cb4-183"><a href="#cb4-183"></a><span class="co"># --- ZONE 3: RECYCLE LOOP (AUGMENTED LAGRANGIAN - ALM) ---</span></span>
-<span id="cb4-184"><a href="#cb4-184"></a><span class="kw">def</span> cost_rec(x):</span>
-<span id="cb4-185"><a href="#cb4-185"></a>    <span class="cf">return</span> (x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">12.0</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">8.0</span> <span class="op">*</span> (x[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">0.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> (x[<span class="dv">2</span>] <span class="op">-</span> <span class="fl">24.0</span>)<span class="op">**</span><span class="dv">2</span></span>
-<span id="cb4-186"><a href="#cb4-186"></a></span>
-<span id="cb4-187"><a href="#cb4-187"></a><span class="kw">def</span> loop_h(x):</span>
-<span id="cb4-188"><a href="#cb4-188"></a>    <span class="cf">return</span> np.array([x[<span class="dv">2</span>] <span class="op">-</span> x[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">23.5</span>, x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">0.96</span><span class="op">*</span>(x[<span class="dv">2</span>] <span class="op">+</span> x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">23.5</span>)])</span>
-<span id="cb4-189"><a href="#cb4-189"></a></span>
-<span id="cb4-190"><a href="#cb4-190"></a>x_k, lam_k, mu_k <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">1.0</span>, <span class="fl">26.0</span>]), np.zeros(<span class="dv">2</span>), <span class="fl">10.0</span></span>
-<span id="cb4-191"><a href="#cb4-191"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">12</span>):</span>
-<span id="cb4-192"><a href="#cb4-192"></a>    sub <span class="op">=</span> <span class="kw">lambda</span> x: cost_rec(x) <span class="op">+</span> np.dot(lam_k, loop_h(x)) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> mu_k <span class="op">*</span> np.<span class="bu">sum</span>(loop_h(x)<span class="op">**</span><span class="dv">2</span>)</span>
-<span id="cb4-193"><a href="#cb4-193"></a>    x_k <span class="op">=</span> minimize(sub, x_k, method<span class="op">=</span><span class="st">"BFGS"</span>).x</span>
-<span id="cb4-194"><a href="#cb4-194"></a>    h_val <span class="op">=</span> loop_h(x_k)</span>
-<span id="cb4-195"><a href="#cb4-195"></a>    <span class="cf">if</span> np.linalg.norm(h_val) <span class="op">&lt;</span> <span class="fl">1e-6</span>: <span class="cf">break</span></span>
-<span id="cb4-196"><a href="#cb4-196"></a>    lam_k <span class="op">+=</span> mu_k <span class="op">*</span> h_val</span>
-<span id="cb4-197"><a href="#cb4-197"></a>    mu_k <span class="op">=</span> <span class="bu">min</span>(mu_k <span class="op">*</span> <span class="fl">2.0</span>, <span class="fl">1e7</span>)</span>
-<span id="cb4-198"><a href="#cb4-198"></a></span>
-<span id="cb4-199"><a href="#cb4-199"></a><span class="bu">print</span>(<span class="ss">f"ZONE 3 (ALM):  F_rec* = </span><span class="sc">{</span>x_k[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> | F_purge* = </span><span class="sc">{</span>x_k[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> | F_fresh* = </span><span class="sc">{</span>x_k[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss"> kmol/h"</span>)</span>
-<span id="cb4-200"><a href="#cb4-200"></a></span>
-<span id="cb4-201"><a href="#cb4-201"></a><span class="co"># --- ZONE 4: HEAT EXCHANGER NETWORK (DIFFERENTIAL EVOLUTION) ---</span></span>
-<span id="cb4-202"><a href="#cb4-202"></a><span class="kw">def</span> thermal_cost(x):</span>
-<span id="cb4-203"><a href="#cb4-203"></a>    T1, T2 <span class="op">=</span> x</span>
-<span id="cb4-204"><a href="#cb4-204"></a>    c_steam <span class="op">=</span> <span class="fl">25.0</span> <span class="op">*</span> (<span class="fl">410.0</span> <span class="op">-</span> T1)<span class="op">**</span><span class="fl">1.1</span> <span class="op">+</span> <span class="fl">18.0</span> <span class="op">*</span> (<span class="fl">430.0</span> <span class="op">-</span> T2)<span class="op">**</span><span class="fl">1.05</span></span>
-<span id="cb4-205"><a href="#cb4-205"></a>    c_water <span class="op">=</span> <span class="fl">12.0</span> <span class="op">*</span> (T1 <span class="op">-</span> <span class="fl">320.0</span>)<span class="op">**</span><span class="fl">1.2</span> <span class="op">+</span> <span class="fl">15.0</span> <span class="op">*</span> (T2 <span class="op">-</span> <span class="fl">310.0</span>)<span class="op">**</span><span class="fl">1.15</span></span>
-<span id="cb4-206"><a href="#cb4-206"></a>    interference <span class="op">=</span> <span class="fl">800.0</span> <span class="op">*</span> np.sin(<span class="fl">0.12</span> <span class="op">*</span> (T1 <span class="op">-</span> <span class="fl">330.0</span>)) <span class="op">*</span> np.cos(<span class="fl">0.10</span> <span class="op">*</span> (T2 <span class="op">-</span> <span class="fl">320.0</span>))</span>
-<span id="cb4-207"><a href="#cb4-207"></a>    <span class="cf">return</span> c_steam <span class="op">+</span> c_water <span class="op">+</span> interference</span>
-<span id="cb4-208"><a href="#cb4-208"></a></span>
-<span id="cb4-209"><a href="#cb4-209"></a>res_z4 <span class="op">=</span> differential_evolution(thermal_cost, [(<span class="fl">330.0</span>, <span class="fl">420.0</span>), (<span class="fl">320.0</span>, <span class="fl">410.0</span>)], seed<span class="op">=</span><span class="dv">42</span>)</span>
-<span id="cb4-210"><a href="#cb4-210"></a><span class="bu">print</span>(<span class="ss">f"ZONE 4 (DE):   T1* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> K | T2* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> K | Cost* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> €/h"</span>)</span>
-<span id="cb4-211"><a href="#cb4-211"></a><span class="in">```</span></span>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="an">title:</span><span class="co"> "Integrated Simulation and Optimization of an MTBE Synthesis Plant"</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="an">subtitle:</span><span class="co"> "Topic 7: Rigorous Resolution using BFGS, SQP, Augmented Lagrangian Method (ALM), and Global Optimization"</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="an">description:</span><span class="co"> "Full practical industrial case study across four operational plant sections: CSTR reactor, debutanizer column, recycle loop, and thermal network in Aspen HYSYS, DWSIM, and Python."</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="an">author:</span><span class="co"> "Ángel Sánchez (Anxo)"</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="an">date:</span><span class="co"> "2026-11-09"</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="an">lang:</span><span class="co"> en</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="an">categories:</span><span class="co"> ["Aspen HYSYS", "DWSIM", "Python", "Reactors", "Separation", "Colab Notebook", "HSC Case", "DWSIM Simulation"]</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="an">image:</span><span class="co"> "../assets/images/flash_drum_pfd.svg"</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="an">reading-time:</span><span class="co"> "20 min"</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="an">highlight-style:</span><span class="co"> github</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="an">code-fold:</span><span class="co"> show</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="co">---</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a></span>
+<span id="cb5-18"><a href="#cb5-18"></a>::: {.callout-note}</span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="fu">## Interactive Resources and Course Notebook</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="ss">- </span>**Working workspace in Gemini Notebook:** <span class="co">[</span><span class="ot">SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada</span><span class="co">](https://gemini.google.com/notebook/dabbf057-563f-4920-a080-63d33bcec7bf)</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="ss">- </span>**Blog GitHub Repository:** <span class="co">[</span><span class="ot">GitHub sopqblog</span><span class="co">](https://github.com/anxosanchez/sopqblog)</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a>:::</span>
+<span id="cb5-23"><a href="#cb5-23"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="fu"># Introduction and Process Description</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a></span>
+<span id="cb5-26"><a href="#cb5-26"></a>The industrial synthesis of **Methyl tert-butyl ether (MTBE)** from isobutene ($iC_4^=$) and methanol ($MeOH$) represents a canonical chemical engineering problem coupling catalytic reaction kinetics, multicomponent fractionation, and tightly closed recycle streams:</span>
+<span id="cb5-27"><a href="#cb5-27"></a>  </span>
+<span id="cb5-28"><a href="#cb5-28"></a>$$  </span>
+<span id="cb5-29"><a href="#cb5-29"></a>\text{Isobutene } (iC_4^=) + \text{Methanol } (MeOH) \rightleftharpoons \text{MTBE}</span>
+<span id="cb5-30"><a href="#cb5-30"></a>$$</span>
+<span id="cb5-31"><a href="#cb5-31"></a>  </span>
+<span id="cb5-32"><a href="#cb5-32"></a>The complete process flowsheet is divided into four distinct operational sections, each optimized with a dedicated numerical optimization algorithm from Topic 7:</span>
+<span id="cb5-33"><a href="#cb5-33"></a></span>
+<span id="cb5-34"><a href="#cb5-34"></a><span class="ss">1. </span>**Zone 1 (Non-isothermal catalytic CSTR):** Unconstrained Multivariable Optimization (Quasi-Newton / BFGS).</span>
+<span id="cb5-35"><a href="#cb5-35"></a></span>
+<span id="cb5-36"><a href="#cb5-36"></a><span class="ss">2. </span>**Zone 2 (Debutanizer distillation column):** Constrained Nonlinear Optimization (Sequential Quadratic Programming - SQP).</span>
+<span id="cb5-37"><a href="#cb5-37"></a></span>
+<span id="cb5-38"><a href="#cb5-38"></a><span class="ss">3. </span>**Zone 3 (Methanol recovery recycle loop):** Augmented Lagrangian Method (ALM) for decoupled mass convergence.</span>
+<span id="cb5-39"><a href="#cb5-39"></a></span>
+<span id="cb5-40"><a href="#cb5-40"></a><span class="ss">4. </span>**Zone 4 (Global utility heat exchanger network):** Global Stochastic Optimization (Differential Evolution / PSO).</span>
+<span id="cb5-41"><a href="#cb5-41"></a></span>
+<span id="cb5-42"><a href="#cb5-42"></a></span>
+<span id="cb5-43"><a href="#cb5-43"></a><span class="fu"># Step-by-Step Resolution in Aspen HYSYS</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a></span>
+<span id="cb5-45"><a href="#cb5-45"></a><span class="fu">## Zone 1: CSTR Reactor (Unconstrained BFGS)</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a></span>
+<span id="cb5-47"><a href="#cb5-47"></a><span class="ss">1. </span>**Thermodynamic Basis:** Select the <span class="in">`NRTL`</span> property package. Define the kinetic reaction with $A = 3.2 \times 10^8\text{ min}^{-1}$, $E_a = 72.0\text{ kJ/mol}$, and $\Delta H_{rxn} = -37.7\text{ MJ/kmol}$.</span>
+<span id="cb5-48"><a href="#cb5-48"></a></span>
+<span id="cb5-49"><a href="#cb5-49"></a><span class="ss">2. </span>**Flowsheet Setup:** Feed <span class="in">`Alim_C4`</span> ($100\text{ kmol/h}$, $35\%\text{ mol } iC_4^=$, $65\%\text{ mol } nC_4$) and <span class="in">`Alim_MeOH`</span> ($36\text{ kmol/h}$) into reactor <span class="in">`CSTR-100`</span>.</span>
+<span id="cb5-50"><a href="#cb5-50"></a></span>
+<span id="cb5-51"><a href="#cb5-51"></a><span class="ss">3. </span>**Spreadsheet (`SPR-Z1`):** Import reactor volume $V$ (L), heat duty $|Q|$ (W), and residual isobutene concentration $C_A$ (mol/L). Formulate the annualized cost objective function:</span>
+<span id="cb5-52"><a href="#cb5-52"></a>   <span class="in">`+ 1200 * (B1^0.6) + 180 * (abs(B2)^0.7) + 50000 * B3`</span></span>
+<span id="cb5-53"><a href="#cb5-53"></a></span>
+<span id="cb5-54"><a href="#cb5-54"></a><span class="ss">4. </span>**HYSYS Optimizer (`F5`):** </span>
+<span id="cb5-55"><a href="#cb5-55"></a></span>
+<span id="cb5-56"><a href="#cb5-56"></a><span class="ss">   - </span>*Adjusted Variables:* <span class="in">`CSTR.Tank Volume`</span> ($5\text{--}40\text{ m}^3$) and <span class="in">`CSTR.Temperature`</span> ($330\text{--}390\text{ K}$).</span>
+<span id="cb5-57"><a href="#cb5-57"></a></span>
+<span id="cb5-58"><a href="#cb5-58"></a><span class="ss">   - </span>*Objective Function:* Cell <span class="in">`SPR-Z1.B5`</span> (Minimise).</span>
+<span id="cb5-59"><a href="#cb5-59"></a></span>
+<span id="cb5-60"><a href="#cb5-60"></a><span class="ss">   - </span>*Algorithm:* **Quasi-Newton (BFGS)**.</span>
+<span id="cb5-61"><a href="#cb5-61"></a></span>
+<span id="cb5-62"><a href="#cb5-62"></a><span class="ss">   - </span>*Optimal Solution:* $T^* = 352.48\text{ K}$ ($79.3\text{ }^\circ\text{C}$), $V^* = 36.42\text{ L}$ ($\tau^* = 1.46\text{ min}$), conversion $X^* = 98.12\%$.</span>
+<span id="cb5-63"><a href="#cb5-63"></a></span>
+<span id="cb5-64"><a href="#cb5-64"></a><span class="fu">## Zone 2: Debutanizer Column (Constrained SQP)</span></span>
+<span id="cb5-65"><a href="#cb5-65"></a></span>
+<span id="cb5-66"><a href="#cb5-66"></a><span class="ss">1. </span>**Distillation Tower (`COL-100`):** 25 stages, feed entering at stage 12, total condenser, and kettle reboiler.</span>
+<span id="cb5-67"><a href="#cb5-67"></a></span>
+<span id="cb5-68"><a href="#cb5-68"></a><span class="ss">2. </span>**Optimizer (SQP Engine):**</span>
+<span id="cb5-69"><a href="#cb5-69"></a></span>
+<span id="cb5-70"><a href="#cb5-70"></a><span class="ss">   - </span>*Decision Variables:* Reflux ratio $R \in <span class="co">[</span><span class="ot">1.5, 4.0</span><span class="co">]</span>$, Distillate rate $D \in <span class="co">[</span><span class="ot">45, 85\text{ kmol/h}</span><span class="co">]</span>$, Column pressure $P \in <span class="co">[</span><span class="ot">6.0, 11.0\text{ bar}</span><span class="co">]</span>$.</span>
+<span id="cb5-71"><a href="#cb5-71"></a></span>
+<span id="cb5-72"><a href="#cb5-72"></a><span class="ss">   - </span>*Objective Function:* Minimize reboiler duty <span class="in">`Q_Reb.Heat Flow`</span> (kW).</span>
+<span id="cb5-73"><a href="#cb5-73"></a></span>
+<span id="cb5-74"><a href="#cb5-74"></a><span class="ss">   - </span>*Nonlinear Constraints:* Bottom MTBE purity $\ge 99.0\%$ molar; Distillate overhead MTBE slip $\le 0.1\%$ molar.</span>
+<span id="cb5-75"><a href="#cb5-75"></a></span>
+<span id="cb5-76"><a href="#cb5-76"></a><span class="ss">3. </span>**Optimal Result:** $R^* = 1.845$, $D^* = 61.20\text{ kmol/h}$, $P^* = 6.00\text{ bar}$ (active lower bound), $Q_R^* = 3284.1\text{ kW}$ with an active KKT multiplier $\lambda &gt; 0$ on bottom MTBE purity.</span>
+<span id="cb5-77"><a href="#cb5-77"></a></span>
+<span id="cb5-78"><a href="#cb5-78"></a><span class="fu">## Zone 3: Methanol Recycle Loop (Augmented Lagrangian Method - ALM)</span></span>
+<span id="cb5-79"><a href="#cb5-79"></a></span>
+<span id="cb5-80"><a href="#cb5-80"></a><span class="ss">1. </span>Decouple the physical recycle tear stream inside an auxiliary Spreadsheet (<span class="in">`SPR-ALM`</span>) to avoid numerical oscillations.</span>
+<span id="cb5-81"><a href="#cb5-81"></a></span>
+<span id="cb5-82"><a href="#cb5-82"></a><span class="ss">2. </span>Residual equality constraints: $h_1 = F_{\text{fresh}} - F_{\text{purge}} - 23.5$ and $h_2 = F_{\text{rec}} - 0.96 \cdot (F_{\text{fresh}} + F_{\text{rec}} - 23.5)$.</span>
+<span id="cb5-83"><a href="#cb5-83"></a></span>
+<span id="cb5-84"><a href="#cb5-84"></a><span class="ss">3. </span>Augmented Lagrangian formula: $\mathcal{L}_A = f(x) + \lambda^T h(x) + \frac{\mu}{2}<span class="sc">\|</span>h(x)<span class="sc">\|</span>^2$.</span>
+<span id="cb5-85"><a href="#cb5-85"></a></span>
+<span id="cb5-86"><a href="#cb5-86"></a><span class="ss">4. </span>Solve unconstrained subproblems with BFGS and perform dual multiplier updates: $\lambda^{(k+1)} = \lambda^{(k)} + \mu h(x)$.</span>
+<span id="cb5-87"><a href="#cb5-87"></a></span>
+<span id="cb5-88"><a href="#cb5-88"></a><span class="ss">5. </span>Converges in 5 outer iterations with $<span class="sc">\|</span>h<span class="sc">\|</span>_2 &lt; 10^{-6}$: $F_{\text{fresh}}^* = 23.96\text{ kmol/h}$, $F_{\text{rec}}^* = 11.04\text{ kmol/h}$, $F_{\text{purge}}^* = 0.46\text{ kmol/h}$.</span>
+<span id="cb5-89"><a href="#cb5-89"></a></span>
+<span id="cb5-90"><a href="#cb5-90"></a><span class="fu">## Zone 4: Heat Exchanger Network (Global Stochastic Optimization)</span></span>
+<span id="cb5-91"><a href="#cb5-91"></a><span class="ss">1. </span>The heat network exhibits multiple local minima and non-convex thermal pinch cross-overs.</span>
+<span id="cb5-92"><a href="#cb5-92"></a><span class="ss">2. </span>Connect Python to HYSYS via the **COM Interface** running <span class="in">`scipy.optimize.differential_evolution`</span>.</span>
+<span id="cb5-93"><a href="#cb5-93"></a><span class="ss">3. </span>The stochastic algorithm bypasses local traps, converging to the global minimum at $T_1^* = 384.21\text{ K}$, $T_2^* = 371.15\text{ K}$, yielding $&gt;24\%$ utility cost savings.</span>
+<span id="cb5-94"><a href="#cb5-94"></a></span>
+<span id="cb5-95"><a href="#cb5-95"></a><span class="fu"># Step-by-Step Resolution in DWSIM</span></span>
+<span id="cb5-96"><a href="#cb5-96"></a></span>
+<span id="cb5-97"><a href="#cb5-97"></a><span class="fu">## Zone 1: CSTR (BFGS / L-BFGS-B)</span></span>
+<span id="cb5-98"><a href="#cb5-98"></a></span>
+<span id="cb5-99"><a href="#cb5-99"></a><span class="ss">1. </span>**Property Package:** Assign <span class="in">`NRTL`</span>. Define the kinetic reaction $A \rightarrow B$.</span>
+<span id="cb5-100"><a href="#cb5-100"></a></span>
+<span id="cb5-101"><a href="#cb5-101"></a><span class="ss">2. </span>**Flowsheet:** Connect feed streams into a continuous stirred tank reactor (CSTR).</span>
+<span id="cb5-102"><a href="#cb5-102"></a></span>
+<span id="cb5-103"><a href="#cb5-103"></a><span class="ss">3. </span>**DWSIM Spreadsheet (`SPR-01`):** Import reactor volume, heat duty, and component outlet concentrations.</span>
+<span id="cb5-104"><a href="#cb5-104"></a></span>
+<span id="cb5-105"><a href="#cb5-105"></a><span class="ss">4. </span>**Optimization Tool:** Set independent variables (Volume and Temperature), select **BFGS**, and execute the run.</span>
+<span id="cb5-106"><a href="#cb5-106"></a></span>
+<span id="cb5-107"><a href="#cb5-107"></a><span class="fu">## Zone 2: ChemSep / DWSIM Column (SQP)</span></span>
+<span id="cb5-108"><a href="#cb5-108"></a></span>
+<span id="cb5-109"><a href="#cb5-109"></a><span class="ss">1. </span>Add a 25-stage distillation column with the Peng-Robinson / NRTL package.</span>
+<span id="cb5-110"><a href="#cb5-110"></a></span>
+<span id="cb5-111"><a href="#cb5-111"></a><span class="ss">2. </span>In the **Optimization Tool**, select **SQP** (or SLSQP), specify bounds for reflux ratio, distillate rate, and operating pressure, along with constraints $g_1(x) \ge 0$ and $g_2(x) \ge 0$.</span>
+<span id="cb5-112"><a href="#cb5-112"></a></span>
+<span id="cb5-113"><a href="#cb5-113"></a><span class="ss">3. </span>The solver pushes the reflux ratio to $R^* \approx 1.845$ against the lower pressure limit ($6\text{ bar}$).</span>
+<span id="cb5-114"><a href="#cb5-114"></a></span>
+<span id="cb5-115"><a href="#cb5-115"></a><span class="fu">## Zone 3: Recycle Loop via Custom Python Script</span></span>
+<span id="cb5-116"><a href="#cb5-116"></a></span>
+<span id="cb5-117"><a href="#cb5-117"></a><span class="ss">1. </span>Disconnect the physical recycle loop using a *Splitter* block.</span>
+<span id="cb5-118"><a href="#cb5-118"></a></span>
+<span id="cb5-119"><a href="#cb5-119"></a><span class="ss">2. </span>Insert a **Custom Python Script** block evaluating the residuals $h_1, h_2$ and the augmented objective $\mathcal{L}_A$.</span>
+<span id="cb5-120"><a href="#cb5-120"></a></span>
+<span id="cb5-121"><a href="#cb5-121"></a><span class="ss">3. </span>Run successive unconstrained BFGS subproblems and update Lagrange multipliers iteratively.</span>
+<span id="cb5-122"><a href="#cb5-122"></a></span>
+<span id="cb5-123"><a href="#cb5-123"></a><span class="fu">## Zone 4: Global Optimization with Particle Swarm Optimization (PSO)</span></span>
+<span id="cb5-124"><a href="#cb5-124"></a></span>
+<span id="cb5-125"><a href="#cb5-125"></a><span class="ss">1. </span>In the DWSIM **Optimization Tool**, choose the native **Particle Swarm Optimization (PSO)** engine.</span>
+<span id="cb5-126"><a href="#cb5-126"></a></span>
+<span id="cb5-127"><a href="#cb5-127"></a><span class="ss">2. </span>Swarm parameters: Swarm size = 20 particles, Iterations = 30, $w = 0.729$, $c_1 = c_2 = 1.494$.</span>
+<span id="cb5-128"><a href="#cb5-128"></a></span>
+<span id="cb5-129"><a href="#cb5-129"></a><span class="ss">3. </span>The swarm covers the search hyperspace, escaping local wells and locating the global optimum for network utilities.</span>
+<span id="cb5-130"><a href="#cb5-130"></a></span>
+<span id="cb5-131"><a href="#cb5-131"></a><span class="fu"># Complete Python Numerical Solution</span></span>
+<span id="cb5-132"><a href="#cb5-132"></a></span>
+<span id="cb5-133"><a href="#cb5-133"></a>The executable Python script below solves all four plant zones concurrently:</span>
+<span id="cb5-134"><a href="#cb5-134"></a></span>
+<span id="cb5-137"><a href="#cb5-137"></a><span class="in">```{python}</span></span>
+<span id="cb5-138"><a href="#cb5-138"></a><span class="co">#| label: python-full-solution-en</span></span>
+<span id="cb5-139"><a href="#cb5-139"></a><span class="co">#| code-fold: show</span></span>
+<span id="cb5-140"><a href="#cb5-140"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb5-141"><a href="#cb5-141"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize, differential_evolution</span>
+<span id="cb5-142"><a href="#cb5-142"></a></span>
+<span id="cb5-143"><a href="#cb5-143"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">75</span>)</span>
+<span id="cb5-144"><a href="#cb5-144"></a><span class="bu">print</span>(<span class="st">"SOPQ - TOPIC 7: INTEGRATED MTBE PLANT OPTIMIZATION (PYTHON)"</span>)</span>
+<span id="cb5-145"><a href="#cb5-145"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">75</span>)</span>
+<span id="cb5-146"><a href="#cb5-146"></a></span>
+<span id="cb5-147"><a href="#cb5-147"></a><span class="co"># --- ZONE 1: CSTR REACTOR (BFGS) ---</span></span>
+<span id="cb5-148"><a href="#cb5-148"></a>k0, Ea, R_gas <span class="op">=</span> <span class="fl">3.2e8</span>, <span class="fl">72000.0</span>, <span class="fl">8.314</span></span>
+<span id="cb5-149"><a href="#cb5-149"></a>v0, CA0, DeltaH <span class="op">=</span> <span class="fl">25.0</span>, <span class="fl">2.4</span>, <span class="op">-</span><span class="fl">37700.0</span></span>
+<span id="cb5-150"><a href="#cb5-150"></a>rho, Cp, Tin <span class="op">=</span> <span class="fl">800.0</span>, <span class="fl">2.8</span>, <span class="fl">298.15</span></span>
+<span id="cb5-151"><a href="#cb5-151"></a>T_ref, V_ref <span class="op">=</span> <span class="fl">350.0</span>, <span class="fl">50.0</span></span>
+<span id="cb5-152"><a href="#cb5-152"></a></span>
+<span id="cb5-153"><a href="#cb5-153"></a><span class="kw">def</span> cstr_economic_scaled(z):</span>
+<span id="cb5-154"><a href="#cb5-154"></a>    T, V <span class="op">=</span> z[<span class="dv">0</span>] <span class="op">*</span> T_ref, z[<span class="dv">1</span>] <span class="op">*</span> V_ref</span>
+<span id="cb5-155"><a href="#cb5-155"></a>    <span class="cf">if</span> T <span class="op">&lt;=</span> <span class="dv">0</span> <span class="kw">or</span> V <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">1e10</span></span>
+<span id="cb5-156"><a href="#cb5-156"></a>    k <span class="op">=</span> k0 <span class="op">*</span> np.exp(<span class="op">-</span>Ea <span class="op">/</span> (R_gas <span class="op">*</span> T))</span>
+<span id="cb5-157"><a href="#cb5-157"></a>    tau <span class="op">=</span> V <span class="op">/</span> v0</span>
+<span id="cb5-158"><a href="#cb5-158"></a>    tau_k <span class="op">=</span> k <span class="op">*</span> tau</span>
+<span id="cb5-159"><a href="#cb5-159"></a>    X <span class="op">=</span> tau_k <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> tau_k)</span>
+<span id="cb5-160"><a href="#cb5-160"></a>    CA_out <span class="op">=</span> CA0 <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">-</span> X)</span>
+<span id="cb5-161"><a href="#cb5-161"></a>    Q <span class="op">=</span> v0 <span class="op">*</span> rho <span class="op">*</span> Cp <span class="op">*</span> (T <span class="op">-</span> Tin) <span class="op">+</span> (v0 <span class="op">*</span> CA0 <span class="op">*</span> X) <span class="op">*</span> DeltaH</span>
+<span id="cb5-162"><a href="#cb5-162"></a>    <span class="cf">return</span> <span class="fl">1200.0</span> <span class="op">*</span> (V<span class="op">**</span><span class="fl">0.6</span>) <span class="op">+</span> <span class="fl">180.0</span> <span class="op">*</span> (np.<span class="bu">abs</span>(Q)<span class="op">**</span><span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">5.0e4</span> <span class="op">*</span> CA_out</span>
+<span id="cb5-163"><a href="#cb5-163"></a></span>
+<span id="cb5-164"><a href="#cb5-164"></a>res_z1 <span class="op">=</span> minimize(cstr_economic_scaled, [<span class="fl">335.0</span><span class="op">/</span>T_ref, <span class="fl">20.0</span><span class="op">/</span>V_ref], method<span class="op">=</span><span class="st">"BFGS"</span>)</span>
+<span id="cb5-165"><a href="#cb5-165"></a>T1_opt, V1_opt <span class="op">=</span> res_z1.x[<span class="dv">0</span>] <span class="op">*</span> T_ref, res_z1.x[<span class="dv">1</span>] <span class="op">*</span> V_ref</span>
+<span id="cb5-166"><a href="#cb5-166"></a></span>
+<span id="cb5-167"><a href="#cb5-167"></a><span class="bu">print</span>(<span class="ss">f"ZONE 1 (BFGS): T* = </span><span class="sc">{</span>T1_opt<span class="sc">:.2f}</span><span class="ss"> K | V* = </span><span class="sc">{</span>V1_opt<span class="sc">:.2f}</span><span class="ss"> L | Cost = </span><span class="sc">{</span>res_z1<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb5-168"><a href="#cb5-168"></a></span>
+<span id="cb5-169"><a href="#cb5-169"></a><span class="co"># --- ZONE 2: DEBUTANIZER COLUMN (SQP / SLSQP) ---</span></span>
+<span id="cb5-170"><a href="#cb5-170"></a><span class="kw">def</span> reboiler_duty(x):</span>
+<span id="cb5-171"><a href="#cb5-171"></a>    R, D, P <span class="op">=</span> x</span>
+<span id="cb5-172"><a href="#cb5-172"></a>    <span class="cf">return</span> <span class="fl">18.5</span> <span class="op">*</span> (R <span class="op">+</span> <span class="fl">1.0</span>) <span class="op">*</span> D <span class="op">+</span> <span class="fl">4.2</span> <span class="op">*</span> (P<span class="op">**</span><span class="fl">1.18</span>)</span>
+<span id="cb5-173"><a href="#cb5-173"></a></span>
+<span id="cb5-174"><a href="#cb5-174"></a>cons_z2 <span class="op">=</span> [</span>
+<span id="cb5-175"><a href="#cb5-175"></a>    {<span class="st">"type"</span>: <span class="st">"ineq"</span>, <span class="st">"fun"</span>: <span class="kw">lambda</span> x: (<span class="fl">0.965</span> <span class="op">+</span> <span class="fl">0.032</span><span class="op">*</span>(x[<span class="dv">0</span>]<span class="op">/</span>(x[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.6</span>))<span class="op">*</span>(<span class="fl">65.0</span><span class="op">/</span>x[<span class="dv">1</span>]) <span class="op">-</span> <span class="fl">0.0015</span><span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span><span class="fl">8.0</span>)) <span class="op">-</span> <span class="fl">0.990</span>},</span>
+<span id="cb5-176"><a href="#cb5-176"></a>    {<span class="st">"type"</span>: <span class="st">"ineq"</span>, <span class="st">"fun"</span>: <span class="kw">lambda</span> x: <span class="fl">0.0010</span> <span class="op">-</span> (<span class="fl">0.0035</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="fl">0.75</span><span class="op">*</span>x[<span class="dv">0</span>])<span class="op">*</span>(x[<span class="dv">1</span>]<span class="op">/</span><span class="fl">65.0</span>) <span class="op">+</span> <span class="fl">0.0001</span><span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span><span class="fl">8.0</span>))}</span>
+<span id="cb5-177"><a href="#cb5-177"></a>]</span>
+<span id="cb5-178"><a href="#cb5-178"></a>bounds_z2 <span class="op">=</span> [(<span class="fl">1.5</span>, <span class="fl">4.0</span>), (<span class="fl">45.0</span>, <span class="fl">85.0</span>), (<span class="fl">6.0</span>, <span class="fl">11.0</span>)]</span>
+<span id="cb5-179"><a href="#cb5-179"></a>res_z2 <span class="op">=</span> minimize(reboiler_duty, [<span class="fl">2.5</span>, <span class="fl">65.0</span>, <span class="fl">8.5</span>], method<span class="op">=</span><span class="st">"SLSQP"</span>, bounds<span class="op">=</span>bounds_z2, constraints<span class="op">=</span>cons_z2)</span>
+<span id="cb5-180"><a href="#cb5-180"></a></span>
+<span id="cb5-181"><a href="#cb5-181"></a><span class="bu">print</span>(<span class="ss">f"ZONE 2 (SQP):  R* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> | D* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> kmol/h | P* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss"> bar | QR* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> kW"</span>)</span>
+<span id="cb5-182"><a href="#cb5-182"></a></span>
+<span id="cb5-183"><a href="#cb5-183"></a><span class="co"># --- ZONE 3: RECYCLE LOOP (AUGMENTED LAGRANGIAN - ALM) ---</span></span>
+<span id="cb5-184"><a href="#cb5-184"></a><span class="kw">def</span> cost_rec(x):</span>
+<span id="cb5-185"><a href="#cb5-185"></a>    <span class="cf">return</span> (x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">12.0</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">8.0</span> <span class="op">*</span> (x[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">0.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> (x[<span class="dv">2</span>] <span class="op">-</span> <span class="fl">24.0</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb5-186"><a href="#cb5-186"></a></span>
+<span id="cb5-187"><a href="#cb5-187"></a><span class="kw">def</span> loop_h(x):</span>
+<span id="cb5-188"><a href="#cb5-188"></a>    <span class="cf">return</span> np.array([x[<span class="dv">2</span>] <span class="op">-</span> x[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">23.5</span>, x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">0.96</span><span class="op">*</span>(x[<span class="dv">2</span>] <span class="op">+</span> x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">23.5</span>)])</span>
+<span id="cb5-189"><a href="#cb5-189"></a></span>
+<span id="cb5-190"><a href="#cb5-190"></a>x_k, lam_k, mu_k <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">1.0</span>, <span class="fl">26.0</span>]), np.zeros(<span class="dv">2</span>), <span class="fl">10.0</span></span>
+<span id="cb5-191"><a href="#cb5-191"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">12</span>):</span>
+<span id="cb5-192"><a href="#cb5-192"></a>    sub <span class="op">=</span> <span class="kw">lambda</span> x: cost_rec(x) <span class="op">+</span> np.dot(lam_k, loop_h(x)) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> mu_k <span class="op">*</span> np.<span class="bu">sum</span>(loop_h(x)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb5-193"><a href="#cb5-193"></a>    x_k <span class="op">=</span> minimize(sub, x_k, method<span class="op">=</span><span class="st">"BFGS"</span>).x</span>
+<span id="cb5-194"><a href="#cb5-194"></a>    h_val <span class="op">=</span> loop_h(x_k)</span>
+<span id="cb5-195"><a href="#cb5-195"></a>    <span class="cf">if</span> np.linalg.norm(h_val) <span class="op">&lt;</span> <span class="fl">1e-6</span>: <span class="cf">break</span></span>
+<span id="cb5-196"><a href="#cb5-196"></a>    lam_k <span class="op">+=</span> mu_k <span class="op">*</span> h_val</span>
+<span id="cb5-197"><a href="#cb5-197"></a>    mu_k <span class="op">=</span> <span class="bu">min</span>(mu_k <span class="op">*</span> <span class="fl">2.0</span>, <span class="fl">1e7</span>)</span>
+<span id="cb5-198"><a href="#cb5-198"></a></span>
+<span id="cb5-199"><a href="#cb5-199"></a><span class="bu">print</span>(<span class="ss">f"ZONE 3 (ALM):  F_rec* = </span><span class="sc">{</span>x_k[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> | F_purge* = </span><span class="sc">{</span>x_k[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> | F_fresh* = </span><span class="sc">{</span>x_k[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss"> kmol/h"</span>)</span>
+<span id="cb5-200"><a href="#cb5-200"></a></span>
+<span id="cb5-201"><a href="#cb5-201"></a><span class="co"># --- ZONE 4: HEAT EXCHANGER NETWORK (DIFFERENTIAL EVOLUTION) ---</span></span>
+<span id="cb5-202"><a href="#cb5-202"></a><span class="kw">def</span> thermal_cost(x):</span>
+<span id="cb5-203"><a href="#cb5-203"></a>    T1, T2 <span class="op">=</span> x</span>
+<span id="cb5-204"><a href="#cb5-204"></a>    c_steam <span class="op">=</span> <span class="fl">25.0</span> <span class="op">*</span> (<span class="fl">410.0</span> <span class="op">-</span> T1)<span class="op">**</span><span class="fl">1.1</span> <span class="op">+</span> <span class="fl">18.0</span> <span class="op">*</span> (<span class="fl">430.0</span> <span class="op">-</span> T2)<span class="op">**</span><span class="fl">1.05</span></span>
+<span id="cb5-205"><a href="#cb5-205"></a>    c_water <span class="op">=</span> <span class="fl">12.0</span> <span class="op">*</span> (T1 <span class="op">-</span> <span class="fl">320.0</span>)<span class="op">**</span><span class="fl">1.2</span> <span class="op">+</span> <span class="fl">15.0</span> <span class="op">*</span> (T2 <span class="op">-</span> <span class="fl">310.0</span>)<span class="op">**</span><span class="fl">1.15</span></span>
+<span id="cb5-206"><a href="#cb5-206"></a>    interference <span class="op">=</span> <span class="fl">800.0</span> <span class="op">*</span> np.sin(<span class="fl">0.12</span> <span class="op">*</span> (T1 <span class="op">-</span> <span class="fl">330.0</span>)) <span class="op">*</span> np.cos(<span class="fl">0.10</span> <span class="op">*</span> (T2 <span class="op">-</span> <span class="fl">320.0</span>))</span>
+<span id="cb5-207"><a href="#cb5-207"></a>    <span class="cf">return</span> c_steam <span class="op">+</span> c_water <span class="op">+</span> interference</span>
+<span id="cb5-208"><a href="#cb5-208"></a></span>
+<span id="cb5-209"><a href="#cb5-209"></a>res_z4 <span class="op">=</span> differential_evolution(thermal_cost, [(<span class="fl">330.0</span>, <span class="fl">420.0</span>), (<span class="fl">320.0</span>, <span class="fl">410.0</span>)], seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb5-210"><a href="#cb5-210"></a><span class="bu">print</span>(<span class="ss">f"ZONE 4 (DE):   T1* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> K | T2* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> K | Cost* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> €/h"</span>)</span>
+<span id="cb5-211"><a href="#cb5-211"></a><span class="in">```</span></span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
