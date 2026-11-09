@@ -1,6 +1,6 @@
 <script>
 /**
- * SOPQ Theme-Aware Logo Switcher
+ * SOPQ Theme-Aware Logo Switcher & TOC Brand Injector
  * Harmonizes light and dark logos dynamically across page transitions, theme changes, and directory depths.
  */
 (function() {
@@ -8,6 +8,11 @@
     var isDark = document.body.classList.contains("quarto-dark") ||
                  document.documentElement.getAttribute("data-bs-theme") === "dark" ||
                  (window.localStorage && window.localStorage.getItem("quarto-color-scheme") === "alternate");
+
+    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
+                   (document.querySelector('meta[name="quarto:offset"]') && 
+                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
+    var prefix = isSubdir ? "../" : "./";
 
     // 1. Sync Quarto navbar logos
     var navLogos = document.querySelectorAll(".navbar-brand .navbar-logo");
@@ -22,9 +27,6 @@
     });
 
     // 2. Fix relative paths for footer logos in subdirectories
-    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
-                   (document.querySelector('meta[name="quarto:offset"]') && 
-                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
     var footerLogos = document.querySelectorAll(".footer-logo");
     footerLogos.forEach(function(img) {
       var src = img.getAttribute("src");
@@ -34,6 +36,21 @@
         }
       }
     });
+
+    // 3. Inject SOPQ theme-reactive logo into TOC sidebar if present
+    var tocEl = document.querySelector("#TOC");
+    if (tocEl && !tocEl.querySelector(".toc-brand-badge")) {
+      var tocBadge = document.createElement("div");
+      tocBadge.className = "toc-brand-badge";
+      tocBadge.innerHTML = 
+        '<img src="' + prefix + 'assets/images/logo-light.jpg" class="toc-logo sopq-logo-light" alt="SOPQ EEI UVigo" />' +
+        '<img src="' + prefix + 'assets/images/logo-dark.jpg" class="toc-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />' +
+        '<div class="toc-brand-meta">' +
+          '<span class="toc-brand-name">SOPQ // UVigo</span>' +
+          '<span class="toc-brand-sub">Simulación de Procesos</span>' +
+        '</div>';
+      tocEl.insertBefore(tocBadge, tocEl.firstChild);
+    }
   }
 
   // Run on initial load

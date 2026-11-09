@@ -1,0 +1,102 @@
+---
+title: "Editorial Guidelines & Contributor Instructions"
+subtitle: "Technical Standards, Submission Process, Peer Review, and Authoring Assets"
+description: "Comprehensive contributor handbook: file hierarchy, multiple authorship attribution, simulation attachments, PFD schematics, and pre-publication review workflow."
+page-layout: article
+toc: true
+number-sections: true
+lang: en
+---
+
+<!-- SOPQ Institutional Badge -->
+<div class="post-header-brand">
+  <div class="brand-visual">
+    <img src="assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+    <img src="assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  </div>
+  <div class="brand-text">
+    <div class="brand-institution">University of Vigo &middot; School of Industrial Engineering</div>
+    <div class="brand-lab">SOPQ // Process Simulation and Optimization</div>
+  </div>
+  <div class="brand-status">
+    <span class="status-indicator"></span> Editorial Policy v1.0
+  </div>
+</div>
+
+::: {.callout-note appearance="simple"}
+## Welcome to the SOPQ // ProcessSim Editorial Team
+This blog is the open repository for chemical process engineering and computational thermodynamics from the **School of Industrial Engineering (University of Vigo)**. Every technical case study is reviewed by the editor prior to public release to ensure physical rigor, numerical reproducibility, and aesthetic cohesion.
+:::
+
+---
+
+## Publication Workflow & Editorial Peer Review
+
+To maintain quality and thermodynamic consistency, **no post is published without prior editor approval**. Contributors can submit simulation cases using two main paths:
+
+```mermaid
+flowchart TD
+    A["Author prepares draft (.qmd) + Files (.hsc/.dwxml/.svg)"] --> B{"Submission Method"}
+    B -->|"Option A (Recommended)"| C["Open Pull Request on GitHub"]
+    B -->|"Option B (Internal)"| D["Save in posts/ with draft: true"]
+    C --> E["Pipeline executes automated checks"]
+    D --> E
+    E --> F["Automated notification to Editor (Telegram / GitHub)"]
+    F --> G{"Editor Review"}
+    G -->|"Request revisions"| H["Feedback to author"]
+    H --> A
+    G -->|"Approved"| I["Merge / draft: false"]
+    I --> J["🚀 Automatic Deployment to GitHub Pages"]
+```
+
+### Option A: Pull Request Submission on GitHub (Recommended)
+1. **Fork** the official repository: [`github.com/anxosanchez/sopqblog`](https://github.com/anxosanchez/sopqblog).
+2. Create a feature branch (e.g., `post/cstr-bioethanol` or `post/hysys-debutanizer`).
+3. Author your article based on [`posts/_template_post.qmd`](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd).
+4. Place simulation cases in `assets/simulations/` and graphics in `assets/images/`.
+5. Open a **Pull Request** targeting `main`.
+6. Our CI pipeline alerts the editor instantly via **Telegram** and runs taxonomy verification.
+
+### Option B: Hidden Draft Submission (`draft: true`)
+If you have direct write permissions, save your `.qmd` in `posts/` with:
+
+```yaml
+---
+title: "Process Simulation of..."
+draft: true   # <-- KEEPS THE POST HIDDEN
+---
+```
+
+> Quarto renders drafts privately without displaying them on the public home page, search indices, RSS feeds, or sitemaps until the editor validates balances and removes `draft: true`.
+
+---
+
+## Authorship: Specifying Multiple Authors
+
+```yaml
+---
+title: "Debutanizer Column Simulation with Peng-Robinson"
+subtitle: "Rigorous Modeling and Reflux Ratio Optimization"
+author:
+  - name: "Laura Gómez Fernández"
+    affiliation: "School of Industrial Engineering, University of Vigo"
+    email: "laura.gomez@uvigo.gal"
+    role: "HYSYS Modeling & Process Simulation"
+  - name: "Anxo Sánchez"
+    affiliation: "School of Industrial Engineering, University of Vigo"
+    email: "anxo.sanchez@uvigo.gal"
+    role: "Thermodynamic Peer Review & Editorial Direction"
+date: "2026-11-10"
+categories: ["Aspen HYSYS", "Separación", "Caso HSC", "Vídeo Titorial"]
+---
+```
+
+---
+
+## Templates and Contact
+
+- 📄 **[Canonical Post Template (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**
+- 📁 **[Official GitHub Repository (sopqblog)](https://github.com/anxosanchez/sopqblog)**
+
+For topic proposals or simulation modeling questions:  
+📧 **Anxo Sánchez** &middot; `anxo.sanchez@uvigo.gal` &middot; School of Industrial Engineering, University of Vigo.

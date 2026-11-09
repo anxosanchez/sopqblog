@@ -1,0 +1,253 @@
+---
+title: "Guía Editorial e Instrucións para Colaboradores"
+subtitle: "Estándares Técnicos, Proceso de Envío, Criterios de Supervisión e Recursos de Publicación"
+description: "Manual completo para redactores e investigadores: estrutura de arquivos, autoría múltiple, adxuntos de simulación, esquemas PFD e fluxo de validación previa polo editor."
+page-layout: article
+toc: true
+number-sections: true
+lang: gl
+---
+
+<!-- Distintivo Institucional SOPQ -->
+<div class="post-header-brand">
+  <div class="brand-visual">
+    <img src="assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+    <img src="assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  </div>
+  <div class="brand-text">
+    <div class="brand-institution">Universidade de Vigo &middot; Escola de Enxeñaría Industrial</div>
+    <div class="brand-lab">SOPQ // Simulación e Optimización de Procesos Químicos</div>
+  </div>
+  <div class="brand-status">
+    <span class="status-indicator"></span> Normativa Editorial v1.0
+  </div>
+</div>
+
+::: {.callout-note appearance="simple"}
+## Benvido/a ao equipo editorial de SOPQ // ProcessSim
+Este blog é o repositorio aberto de enxeñaría química e termodinámica computacional da **Escola de Enxeñaría Industrial (Universidade de Vigo)**. Toda achega técnica é revisada polo editor antes da súa publicación definitiva para asegurar rigor físico, reproducibilidade numérica e coherencia estética.
+:::
+
+---
+
+## Fluxo de Publicación e Supervisión Editorial
+
+Para garantir a calidade dos casos de simulación, **ningún post se publica directamente en produción sen a revisión previa do editor**. Existen dous mecanismos principais para propoñer un novo artigo:
+
+```mermaid
+flowchart TD
+    A["Redactor/a elabora borrador (.qmd) + Ficheiros (.hsc/.dwxml/.svg)"] --> B{"Vía de Remisión"}
+    B -->|"Opción A (Recomendada)"| C["Abre Pull Request en GitHub"]
+    B -->|"Opción B (Interna)"| D["Garda en posts/ con draft: true"]
+    C --> E["Pipeline executa verificacións de integridade"]
+    D --> E
+    E --> F["Notificación automática ao Editor (Telegram / GitHub)"]
+    F --> G{"Supervisión do Editor"}
+    G -->|"Solicitar axustes"| H["Comentarios de revisión ao autor"]
+    H --> A
+    G -->|"Aprobado"| I["Merge / draft: false"]
+    I --> J["🚀 Despregamento automático en GitHub Pages"]
+```
+
+### Opción A: Proposta mediante Pull Request en GitHub (Recomendada)
+1. Fai un **fork** do repositorio oficial [`github.com/anxosanchez/sopqblog`](https://github.com/anxosanchez/sopqblog).
+2. Crea unha nova rama con nome descritivo (ex: `post/cstr-bioetanol` ou `post/hysys-amoniaco`).
+3. Redacta o artigo tomando como base o modelo canónico [`posts/_template_post.qmd`](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd).
+4. Adxunta os ficheiros de simulación en `assets/simulations/` e os diagramas gráficos en `assets/images/`.
+5. Abre unha **Pull Request** dirixida á rama `main`.
+6. O noso sistema automatizado notificará de inmediato ao editor por **Telegram** e executará a auditoría técnica de taxonomía.
+
+### Opción B: Publicación en modo borrador oculto (`draft: true`)
+Se tes permisos de acceso directo ao repositorio, podes subir o teu ficheiro `.qmd` dentro do cartafol `posts/` engadindo a seguinte propiedade no encabezado YAML:
+
+```yaml
+---
+title: "Simulación de..."
+draft: true   # <-- MANTÉN O POST OCULTO
+---
+```
+
+> **Que fai `draft: true`?** Quarto compila o artigo de forma privada pero **non o inclúe nas listaxes públicas da portada, nin no buscador, nin no sitemap nin nas canles RSS**. O editor poderá revisar o resultado renderizado, validar os balances e, unha vez aprobado, retirar a etiqueta `draft: true` para que pase a produción pública.
+
+---
+
+## Autoría: Como Indicar Autor ou Varios Autores
+
+Cada artigo debe recoñecer con precisión a autoría intelectual do caso de simulación. Quarto permite definir tanto autores individuais coma equipos multidisciplinares con afiliación institucional:
+
+### Exemplo 1: Autoría Múltiple con Afiliación e Roles (Recomendado)
+
+```yaml
+---
+title: "Simulación dunha Torre de Desbutanización con Peng-Robinson"
+subtitle: "Modelado Rigoroso e Optimización da Taxa de Refluxo"
+author:
+  - name: "Laura Gómez Fernández"
+    affiliation: "Escola de Enxeñaría Industrial, Universidade de Vigo"
+    email: "laura.gomez@uvigo.gal"
+    role: "Modelado e Simulación en HYSYS"
+  - name: "Anxo Sánchez"
+    affiliation: "Escola de Enxeñaría Industrial, Universidade de Vigo"
+    email: "anxo.sanchez@uvigo.gal"
+    role: "Supervisión Termodinámica e Revisión Editorial"
+date: "2026-11-10"
+categories: ["Aspen HYSYS", "Separación", "Caso HSC", "Vídeo Titorial"]
+---
+```
+
+### Exemplo 2: Autoría Individual
+
+```yaml
+---
+title: "Resolución Numérica de Rachford-Rice en Python"
+author:
+  - name: "Carlos Vázquez Ramos"
+    affiliation: "Departamento de Enxeñaría Química, EEI UVigo"
+date: "2026-11-10"
+categories: ["Python", "Termodinámica", "Caderno Colab"]
+---
+```
+
+O sistema de deseño do blog estila automaticamente estas entradas como tarxetas de autor con distintivos visuais, garantindo atribución profesional en formato editorial.
+
+---
+
+## Estrutura de Arquivos e Subida de Recursos
+
+Todos os recursos deben organizarse de acordo á estrutura estandarizada do proxecto:
+
+```
+sopqblog/
+├── posts/
+│   ├── _template_post.qmd               <-- Modelo base canónico
+│   └── caso-nome-do-proceso.qmd         <-- O teu artigo técnico
+├── assets/
+│   ├── images/
+│   │   ├── caso-nome-pfd.svg            <-- Diagrama de fluxo PFD (vectorial)
+│   │   └── caso-nome-grafica.png        <-- Gráficas de perfís / converxencia
+│   └── simulations/
+│       ├── caso-nome.hsc                <-- Caso Aspen HYSYS
+│       ├── caso-nome.dwxml              <-- Caso DWSIM
+│       └── caso-nome.ipynb              <-- Caderno Jupyter / Colab
+```
+
+### 1. Ficheiros de Simulación Industrial
+- **Aspen HYSYS:** Arquivos `.hsc` ou copias de seguridade `.bkp`. Deben gardarse en estado **converxido** (sen erros de balance nin correntes sen resolver).
+- **DWSIM:** Arquivos `.dwxml` compatibles coa versión actual DWSIM v8+.
+- **Python:** Cadernos `.ipynb` ou scripts reproducibles `.py` facendo uso de bibliotecas estándar (`scipy`, `numpy`, `matplotlib`, `thermo`).
+- **Grandes volumes:** Se o ficheiro supera os $25\text{ MB}$, recoméndase aloxalo no cartafol oficial de Google Drive do SOPQ e ligalo mediante a barra de recursos.
+
+### 2. Diagramas de Fluxo PFD e Gráficas
+- **Formato prioritario para PFD:** Emprega ficheiros **SVG** vectoriais para diagramas de fluxo de proceso. Mantéñense nítidos a calquera resolución e teñen un peso mínimo.
+- **Gráficas de variables:** As figuras de perfís de temperatura, curvas de equilibrio ou fraccións molares pódense achegar en `.svg` ou `.png` a alta resolución ($300\text{ dpi}$ mínima).
+
+### 3. Vídeos Explicativos e Screencasts
+- Se dispós dunha gravación en vídeo da resolución do caso (simulación interactiva, navegación polas ventás de HYSYS ou DWSIM):
+  - Sube o vídeo á canle oficial de YouTube de SOPQ ou envía o ficheiro `.mp4` ao editor.
+  - Para incrustar o reprodutor nativo responsive en Quarto, engade no teu `.qmd`:
+    ```markdown
+    {{{< video https://www.youtube.com/watch?v=ID_DO_TEU_VIDEO >}}}
+    ```
+
+---
+
+## Cadros de Métricas e Recursos Visuais Dispoñibles
+
+O blog dispón de compoñentes CSS exclusivos deseñados para simulación de procesos químicos que debes utilizar no teu post:
+
+### Barra de Recursos Interactivos
+Sitúase ao comezo do artigo para dar acceso directo aos arquivos descargables:
+
+```html
+<div class="resource-badge-bar">
+  <span class="badge-label">Recursos do Caso:</span>
+  <a href="https://colab.research.google.com/..." class="resource-badge resource-badge-colab">⚡ Abrir en Google Colab</a>
+  <a href="https://drive.google.com/..." class="resource-badge resource-badge-drive">📁 Descargar Simulación (.hsc)</a>
+  <a href="slides-meu-caso.html" class="resource-badge resource-badge-slides">📊 Ver Diapositivas Revealjs</a>
+  <a href="https://youtube.com/..." class="resource-badge resource-badge-youtube">▶ Ver en YouTube</a>
+</div>
+```
+
+### Cuadrícula de Métricas Clave (`.metric-grid`)
+Resumo dos balances e especificacións operacionais principais:
+
+```html
+::: {.metric-grid}
+::: {.metric-card .accent-cyan}
+<div class="metric-header">Temperatura Operación</div>
+<div class="metric-value">78.4<span class="metric-unit">°C</span></div>
+<div class="metric-footer">Equilibrio Térmico (351.55 K)</div>
+:::
+
+::: {.metric-card .accent-amber}
+<div class="metric-header">Presión Sistema</div>
+<div class="metric-value">1.20<span class="metric-unit">bar</span></div>
+<div class="metric-footer">Absoluta en Separador</div>
+:::
+
+::: {.metric-card .accent-emerald}
+<div class="metric-header">Fracción Vapor (V/F)</div>
+<div class="metric-value">0.4285</div>
+<div class="metric-footer">Residuo Rachford-Rice &lt; 10⁻⁸</div>
+:::
+
+::: {.metric-card .accent-purple}
+<div class="metric-header">Carga Térmica (Duty)</div>
+<div class="metric-value">420.5<span class="metric-unit">kW</span></div>
+<div class="metric-footer">Requirimento de Calefacción</div>
+:::
+:::
+```
+
+### Táboas de Correntes de Proceso (`.stream-table`)
+Para presentar os balances de materia e enerxía de correntes con aliñación numérica monoespazo:
+
+```html
+::: {.stream-table-wrapper}
+| Corrente | Temperatura (°C) | Presión (bar) | Caudal Molar (kmol/h) | Frac. Vapor | Compoñente Clave |
+|:---|:---:|:---:|:---:|:---:|:---|
+| **Alimentación (F)** | 85.0 | 2.50 | 100.00 | 0.000 | Mestura C5-C7 |
+| **Vapor Superior (V)** | 78.4 | 1.20 | 42.85 | 1.000 | Enriquecido en n-C5 |
+| **Líquido Fondo (L)** | 78.4 | 1.20 | 57.15 | 0.000 | Enriquecido en n-C7 |
+:::
+```
+
+---
+
+## Taxonomía Canónica Obrigatoria
+
+Para que os filtros automáticos da portada funcionen correctamente, cada post **debe ter exactamente as 3 categorías canónicas ortogonais**:
+
+1. **Nivel 1 (Unha única plataforma):** `"Aspen HYSYS"`, `"DWSIM"` ou `"Python"`.
+2. **Nivel 2 (Polo menos un dominio):** `"Separación"`, `"Reactores"`, `"Intercambio Térmico"`, `"Termodinámica"`, `"Control de Procesos"`, `"Servicios Industriais"`, `"Dinámica de Fluidos"` ou `"Optimización"`.
+3. **Nivel 3 (Entregables dispoñibles):** `"Caso HSC"`, `"Simulación DWSIM"`, `"Caderno Colab"`, `"Vídeo Titorial"` ou `"Slide Deck"`.
+
+```yaml
+categories: ["Aspen HYSYS", "Separación", "Caso HSC", "Vídeo Titorial"]
+```
+
+---
+
+## Notificación ao Editor e Sistema de Avisos
+
+O noso pipeline inclúe un servizo de notificación instantánea en Telegram. Cando propoñas un novo caso ou abras unha Pull Request:
+1. O bot de Telegram do SOPQ envía unha alerta directa ao editor con:
+   - Título do caso e autor/es.
+   - Plataforma de simulación e modelo termodinámico empregado.
+   - Estado das validacións numéricas e ficheiros adxuntos.
+   - Ligazón directa para previsualización e aprobación.
+2. O editor revisará a consistencia dos datos, comprobará a ausencia de residuos termodinámicos ($< 10^{-7}$) e confirmará a publicación.
+3. Tras a aprobación, o motor de Integración Continua (CI/CD) publica automaticamente o artigo na web sen ningunha intervención adicional.
+
+---
+
+## Descarga de Modelos e Contacto
+
+Podes descargar directamente os modelos e recursos oficiais do blog:
+
+- 📄 **[Modelo Canónico de Post (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**
+- 📊 **[Exemplo Completo: Destilación Flash (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/caso-destilacion-flash.qmd)**
+- 📁 **[Repositorio GitHub Oficial (sopqblog)](https://github.com/anxosanchez/sopqblog)**
+
+Para dúbidas sobre o modelado ou asignación de temas de simulación, contacta directamente co editor:  
+📧 **Anxo Sánchez** &middot; `anxo.sanchez@uvigo.gal` &middot; Escola de Enxeñaría Industrial, Universidade de Vigo.

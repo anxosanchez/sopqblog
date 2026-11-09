@@ -2,7 +2,15 @@
 title: "Simulación dun Reactor CSTR de Esterificación en DWSIM"
 subtitle: "Modelado Cinético Homoxéneo e Balances con Paquete Termodinámico NRTL"
 description: "Modelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de conversión."
-author: "ProcessSim Engineering Lab"
+author:
+  - name: "Laura Gómez Fernández"
+    affiliation: "Escola de Enxeñaría Industrial, Universidade de Vigo"
+    email: "laura.gomez@uvigo.gal"
+    role: "Modelado Cinético e Simulación DWSIM"
+  - name: "Anxo Sánchez"
+    affiliation: "Escola de Enxeñaría Industrial, Universidade de Vigo"
+    email: "anxo.sanchez@uvigo.gal"
+    role: "Revisión Termodinámica e Balances Térmicos"
 date: "2026-10-25"
 categories: ["DWSIM", "Reactores", "Simulación DWSIM", "Vídeo Titorial"]
 image: "../assets/images/cstr_pfd.svg"
@@ -13,11 +21,19 @@ code-tools: true
 lang: gl
 ---
 
-<!-- Distintivo Institucional SOPQ -->
-<div class="post-institutional-badge">
-  <img src="../assets/images/logo-light.jpg" class="post-badge-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
-  <img src="../assets/images/logo-dark.jpg" class="post-badge-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
-  <span>SOPQ &middot; Escola de Enxeñaría Industrial &middot; Universidade de Vigo</span>
+<!-- Cabeceira Oficial SOPQ · EEI Universidade de Vigo -->
+<div class="post-header-brand">
+  <div class="brand-visual">
+    <img src="../assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+    <img src="../assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  </div>
+  <div class="brand-text">
+    <div class="brand-institution">Universidade de Vigo &middot; Escola de Enxeñaría Industrial</div>
+    <div class="brand-lab">SOPQ // Simulación e Optimización de Procesos Químicos</div>
+  </div>
+  <div class="brand-status">
+    <span class="status-indicator"></span> Caso Verificado
+  </div>
 </div>
 
 <!-- Barra de Recursos Interactivos -->

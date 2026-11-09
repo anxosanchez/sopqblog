@@ -123,6 +123,35 @@ Deseñáronse dous logotipos institucionais oficiais con Google Gemini para o la
 3. **Pé de Páxina (`page-footer`):**
    - Miniatura de dobre logo con ligazón institucional á Escola de Enxeñaría Industrial da Universidade de Vigo.
 4. **Artigos e Cadernos de Simulación (`posts/`):**
-   - Distintivo institucional superior (`.post-institutional-badge`) que valida formalmente a orixe académica e o rigor do caso.
+   - Distintivo institucional superior (`.post-institutional-badge`) e cabeceira oficial `.post-header-brand` con logo light/dark reactivo, datos departamentais e estado de caso verificado.
 5. **Presentacións Revealjs:**
    - Incorporación automática de `logo: ../assets/images/logo-dark.jpg` nos decks xerados polo pipeline, mantendo presenza de marca corporativa durante exposicións e conferencias.
+
+---
+
+## 9. Xestión de Autoría Múltiple e Supervisión Editorial Previa
+
+### Contexto
+Coa incorporación de novos investigadores e redactores convidados, o portal precisaba reflectir fielmente a coautoría (nome, filiación, rol específico na simulación, contacto) e establecer un procedemento de filtrado previo para que ningún artigo poida publicarse sen a supervisión directa do editor (Anxo Sánchez).
+
+### Decisión de Enxeñaría
+1. **Estrutura de Autoría Múltiple en YAML:**
+   - Soporte para listaxes de autores con campos normalizados (`name`, `affiliation`, `email`, `role`).
+   - Estilizado CSS en `.quarto-title-meta` que presenta cada autor/a en tarxetas con distintivos tipográficos profesionais.
+2. **Mecanismo de Bloqueo e Ocultación (`draft: true` e Pull Requests):**
+   - Os novos artigos propostos almacénanse con `draft: true` ou tramítanse mediante Pull Request en GitHub. Quarto exclúe de raíz calquera borrador das listaxes públicas, motores de busca e sitemaps ata a validación definitiva do editor.
+3. **Notificador Automático por Telegram (`pipeline/telegram_editor_notifier.py`):**
+   - Servizo desacoplado en Python puro (sen dependencias pesadas de terceiros) que envía unha alerta enriquecida ao Telegram privado do editor co título, autor/es, taxonomía, ficheiros de simulación achegados e ligazón directa de revisión.
+4. **Guía Pública para Colaboradores (`guia-colaboradores.qmd`):**
+   - Páxina de referencia incorporada na barra de navegación superior (`✍️ Colaborar`) con directrices paso a paso, modelos descargables, xerarquía de arquivos (`assets/simulations/`, `assets/images/`) e regras de taxonomía.
+
+---
+
+## 10. Integración do Logo en Cabeceira de Artigo e Índice de Contidos (TOC)
+
+### Contexto
+O requirimento do usuario solicitaba que o logo oficial (en versións clara e escura) acompañase a lectura dentro de cada post resolto, especificamente na cabeceira do artigo ou no índice de contidos lateral.
+
+### Decisión de Enxeñaría
+- **Cabeceira Oficial (`.post-header-brand`):** Banner estilizado ao comezo do artigo con dobre imaxe reactiva, datos de laboratorio e selo de verificación.
+- **Inxección Dinámica no TOC (`.toc-brand-badge`):** O script `assets/theme-switcher.html` inxecta automaticamente o distintivo de marca na parte superior do bloque `#TOC` (barra lateral flotante de contidos), asegurando presenza institucional constante durante a navegación e respecto absoluto do modo claro/escuro.

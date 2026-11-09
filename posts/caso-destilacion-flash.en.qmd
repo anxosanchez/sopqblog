@@ -2,7 +2,14 @@
 title: "Multicomponent Isothermal Flash Separation Simulation"
 subtitle: "Rigorous Vapor-Liquid Equilibrium and Balances with Peng-Robinson and Rachford-Rice"
 description: "Analytical and computational resolution of a flash distillation drum for a ternary hydrocarbon mixture (C5-C7) at 78.4 °C and 1.20 bar, with strict mass and energy balance calculations."
-author: "ProcessSim Engineering Lab"
+author:
+  - name: "Anxo Sánchez"
+    affiliation: "School of Industrial Engineering, University of Vigo"
+    email: "anxo.sanchez@uvigo.gal"
+    role: "Lead Editor / Chemical Process Engineering"
+  - name: "SOPQ Team"
+    affiliation: "School of Industrial Engineering, University of Vigo"
+    role: "Numerical Modeling & Balances"
 date: "2026-10-30"
 categories: ["Python", "Separación", "Caderno Colab", "Vídeo Titorial"]
 image: "../assets/images/flash_drum_pfd.svg"
@@ -21,11 +28,19 @@ lang: en
   <a href="caso-destilacion-flash.en.html" class="lang-pill active">English</a>
 </div>
 
-<!-- SOPQ Institutional Badge -->
-<div class="post-institutional-badge">
-  <img src="../assets/images/logo-light.jpg" class="post-badge-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
-  <img src="../assets/images/logo-dark.jpg" class="post-badge-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
-  <span>SOPQ &middot; School of Industrial Engineering &middot; University of Vigo</span>
+<!-- SOPQ Official Header Banner -->
+<div class="post-header-brand">
+  <div class="brand-visual">
+    <img src="../assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+    <img src="../assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  </div>
+  <div class="brand-text">
+    <div class="brand-institution">University of Vigo &middot; School of Industrial Engineering</div>
+    <div class="brand-lab">SOPQ // Process Simulation and Optimization</div>
+  </div>
+  <div class="brand-status">
+    <span class="status-indicator"></span> Verified Case Study
+  </div>
 </div>
 
 <!-- Interactive Resource Badges -->

@@ -1,22 +1,40 @@
 ---
-title: "Título Canónico del Caso de Simulación"
-subtitle: "Subtítulo Técnico Describiendo la Operación Unitaria y Modelo Termodinámico"
-description: "Resumen ejecutivo conciso destacando el paquete de propiedades, condiciones de operación y objetivos de convergencia."
-author: "ProcessSim Engineering Lab"
-date: "2026-10-30"
-categories: ["Python", "Termodinámica", "Notebook Colab"]
-image: "../assets/images/placeholder_pfd.svg"
+title: "Título Canónico do Caso de Simulación"
+subtitle: "Subtítulo Técnico Describindo a Operación Unitaria e Modelo Termodinámico"
+description: "Resumo executivo conciso destacando o paquete de propiedades, condicións de operación e obxectivos de converxencia."
+author:
+  - name: "Nome do Redactor / Investigador"
+    affiliation: "Escola de Enxeñaría Industrial, Universidade de Vigo"
+    email: "redactor@uvigo.gal"
+    role: "Modelado e Simulación de Procesos"
+  - name: "Anxo Sánchez"
+    affiliation: "Escola de Enxeñaría Industrial, Universidade de Vigo"
+    email: "anxo.sanchez@uvigo.gal"
+    role: "Supervisión Editorial e Validación Termodinámica"
+date: "2026-11-10"
+categories: ["Python", "Termodinámica", "Caderno Colab"]
+image: "../assets/images/logo-dark.jpg"
 toc: true
 number-sections: true
 code-fold: true
 code-tools: true
+lang: gl
+# draft: true  # Descomenta esta liña para mantelo en revisión oculta polo editor
 ---
 
-<!-- Distintivo Institucional SOPQ -->
-<div class="post-institutional-badge">
-  <img src="../assets/images/logo-light.jpg" class="post-badge-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
-  <img src="../assets/images/logo-dark.jpg" class="post-badge-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
-  <span>SOPQ &middot; Escola de Enxeñaría Industrial &middot; Universidade de Vigo</span>
+<!-- Cabeceira Oficial SOPQ · EEI Universidade de Vigo -->
+<div class="post-header-brand">
+  <div class="brand-visual">
+    <img src="../assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+    <img src="../assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  </div>
+  <div class="brand-text">
+    <div class="brand-institution">Universidade de Vigo &middot; Escola de Enxeñaría Industrial</div>
+    <div class="brand-lab">SOPQ // Simulación e Optimización de Procesos Químicos</div>
+  </div>
+  <div class="brand-status">
+    <span class="status-indicator"></span> Caso Verificado
+  </div>
 </div>
 
 <!-- Barra de Recursos Interactivos -->

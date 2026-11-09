@@ -2,7 +2,14 @@
 title: "Simulación de Separación Flash Isotérmica Multicomponente"
 subtitle: "Modelado Riguroso del Equilibrio Líquido-Vapor y Balances con Peng-Robinson y Rachford-Rice"
 description: "Resolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de balances de materia y energía."
-author: "ProcessSim Engineering Lab"
+author:
+  - name: "Anxo Sánchez"
+    affiliation: "Escuela de Ingeniería Industrial, Universidad de Vigo"
+    email: "anxo.sanchez@uvigo.gal"
+    role: "Editor Principal / Ingeniería de Procesos"
+  - name: "Equipo SOPQ"
+    affiliation: "Escuela de Ingeniería Industrial, Universidad de Vigo"
+    role: "Modelado Numérico y Balances"
 date: "2026-10-30"
 categories: ["Python", "Separación", "Caderno Colab", "Vídeo Titorial"]
 image: "../assets/images/flash_drum_pfd.svg"
@@ -21,11 +28,19 @@ lang: es
   <a href="caso-destilacion-flash.en.html" class="lang-pill">English</a>
 </div>
 
-<!-- Distintivo Institucional SOPQ -->
-<div class="post-institutional-badge">
-  <img src="../assets/images/logo-light.jpg" class="post-badge-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
-  <img src="../assets/images/logo-dark.jpg" class="post-badge-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
-  <span>SOPQ &middot; Escuela de Ingeniería Industrial &middot; Universidad de Vigo</span>
+<!-- Cabecera Oficial SOPQ · EEI Universidad de Vigo -->
+<div class="post-header-brand">
+  <div class="brand-visual">
+    <img src="../assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+    <img src="../assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  </div>
+  <div class="brand-text">
+    <div class="brand-institution">Universidad de Vigo &middot; Escuela de Ingeniería Industrial</div>
+    <div class="brand-lab">SOPQ // Simulación y Optimización de Procesos Químicos</div>
+  </div>
+  <div class="brand-status">
+    <span class="status-indicator"></span> Caso Verificado
+  </div>
 </div>
 
 <!-- Barra de Recursos del Caso -->

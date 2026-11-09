@@ -236,7 +236,102 @@ body.quarto-dark .hero-brand-card:hover {
   letter-spacing: -0.01em;
 }
 
-// 3. Post Institutional Header Badge
+// 3. Post Official Header Banner & Badge (Theme-Reactive SOPQ Logo in Article Header)
+.post-header-brand {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1.25rem;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--card-radius);
+  padding: 0.85rem 1.25rem;
+  margin: 1.5rem 0 2rem 0;
+  box-shadow: var(--shadow-sm);
+  transition: border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.post-header-brand .brand-visual {
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.post-header-brand .post-brand-logo {
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  object-fit: cover;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+  transition: transform 0.25s ease;
+}
+
+.post-header-brand:hover .post-brand-logo {
+  transform: scale(1.06);
+}
+
+.post-header-brand .brand-text {
+  flex-grow: 1;
+}
+
+.post-header-brand .brand-institution {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.post-header-brand .brand-lab {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--text-main);
+  letter-spacing: -0.01em;
+}
+
+.post-header-brand .brand-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.75rem;
+  border-radius: 9999px;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border-subtle);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 600;
+  color: var(--accent-cyan);
+  white-space: nowrap;
+}
+
+.post-header-brand .status-indicator {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: 0 0 6px var(--accent-cyan);
+}
+
+@media (max-width: 640px) {
+  .post-header-brand {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+}
+
+[data-bs-theme="dark"] .post-header-brand,
+body.quarto-dark .post-header-brand {
+  background: rgba(20, 27, 42, 0.75);
+  border-color: rgba(0, 212, 170, 0.2);
+}
+
+[data-bs-theme="dark"] .post-header-brand .post-brand-logo,
+body.quarto-dark .post-header-brand .post-brand-logo {
+  box-shadow: 0 0 12px rgba(0, 212, 170, 0.35);
+  border: 1px solid rgba(0, 212, 170, 0.3);
+}
+
 .post-institutional-badge {
   display: inline-flex;
   align-items: center;
@@ -268,6 +363,89 @@ body.quarto-dark .post-institutional-badge {
 [data-bs-theme="dark"] .post-institutional-badge .post-badge-logo,
 body.quarto-dark .post-institutional-badge .post-badge-logo {
   box-shadow: 0 0 8px rgba(0, 212, 170, 0.35);
+}
+
+// 4. Table of Contents (TOC) Brand Header Badge
+.toc-brand-badge {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 0.5rem 0.9rem 0.5rem;
+  margin-bottom: 0.85rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.toc-brand-badge .toc-logo {
+  width: 36px;
+  height: 36px;
+  border-radius: 6px;
+  flex-shrink: 0;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+
+.toc-brand-badge:hover .toc-logo {
+  transform: scale(1.08);
+}
+
+.toc-brand-badge .toc-brand-meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.toc-brand-badge .toc-brand-name {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--text-main);
+  line-height: 1.2;
+}
+
+.toc-brand-badge .toc-brand-sub {
+  font-size: 0.72rem;
+  color: var(--accent-cyan);
+  font-family: var(--font-mono);
+}
+
+[data-bs-theme="dark"] .toc-brand-badge .toc-logo,
+body.quarto-dark .toc-brand-badge .toc-logo {
+  box-shadow: 0 0 8px rgba(0, 212, 170, 0.35);
+  border: 1px solid rgba(0, 212, 170, 0.25);
+}
+
+// 5. Multi-Author Metadata Layout
+.quarto-title-meta {
+  margin-top: 1.5rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+}
+
+.quarto-title-meta-author {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.quarto-title-meta .quarto-title-meta-heading {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan);
+  margin-bottom: 0.35rem;
+}
+
+.quarto-title-meta .quarto-title-meta-contents p.author {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--text-main);
+  margin-bottom: 0.15rem;
+}
+
+.quarto-title-meta .quarto-title-meta-contents p.affiliation {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+  line-height: 1.35;
 }
 
 // 4. Page Footer Legal & Attribution

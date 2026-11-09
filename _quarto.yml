@@ -30,6 +30,8 @@ website:
         href: index.qmd#dwsim
       - text: "Python"
         href: index.qmd#python
+      - text: "✍️ Colaborar"
+        href: guia-colaboradores.qmd
     right:
       - text: "🌐 Idioma"
         menu:
