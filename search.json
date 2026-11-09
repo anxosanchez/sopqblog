@@ -238,6 +238,62 @@
     "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
   },
   {
+    "objectID": "posts/2026-11-09-caso-practico-7/index.html",
+    "href": "posts/2026-11-09-caso-practico-7/index.html",
+    "title": "Optimización Numérica Avanzada en Procesos Químicos: Da Teoría á Práctica con Python, Aspen HYSYS e DWSIM",
+    "section": "",
+    "text": "mkdir -p /Users/anxo/Documents/antigravity/sopqblog/posts/2026-11-08-optimizacion-avanzada"
+  },
+  {
+    "objectID": "posts/2026-11-09-caso-practico-7/index.html#cat-eof-usersanxodocumentsantigravitysopqblogposts2026-11-08-optimizacion-avanzadaindex.qmd",
+    "href": "posts/2026-11-09-caso-practico-7/index.html#cat-eof-usersanxodocumentsantigravitysopqblogposts2026-11-08-optimizacion-avanzadaindex.qmd",
+    "title": "Optimización Numérica Avanzada en Procesos Químicos: Da Teoría á Práctica con Python, Aspen HYSYS e DWSIM",
+    "section": "2.1 cat << ‘EOF’ > /Users/anxo/Documents/antigravity/sopqblog/posts/2026-11-08-optimizacion-avanzada/index.qmd",
+    "text": "2.1 cat &lt;&lt; ‘EOF’ &gt; /Users/anxo/Documents/antigravity/sopqblog/posts/2026-11-08-optimizacion-avanzada/index.qmd\ntitle: “Optimización Numérica Avanzada en Procesos Químicos: Da Teoría á Práctica con Python, Aspen HYSYS e DWSIM” subtitle: “Tema 7: Métodos multivariables, Programación Cuadrática Sucesiva (SQP), Lagrangiana Aumentada (ALM) e Enxame de Partículas (PSO)” author: “Ángel Sánchez (Anxo)” date: “2026-11-08” categories: [SOPQ, Optimización, Python, HYSYS, DWSIM, Enxeñaría Química] toc: true number-sections: true highlight-style: github code-fold: show code-tools: true —\n\n\n\n\n\n\nNoteMaterial Didáctico e Recursos Interactivos\n\n\n\n\nCaderno de traballo en Gemini Notebook: SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada\nRepositorio do blog: GitHub sopqblog"
+  },
+  {
+    "objectID": "posts/2026-11-09-caso-practico-7/index.html#caso-1-reactor-cstr-non-isotérmico-bfgs-cuasi-newton",
+    "href": "posts/2026-11-09-caso-practico-7/index.html#caso-1-reactor-cstr-non-isotérmico-bfgs-cuasi-newton",
+    "title": "Optimización Numérica Avanzada en Procesos Químicos: Da Teoría á Práctica con Python, Aspen HYSYS e DWSIM",
+    "section": "4.1 Caso 1: Reactor CSTR Non Isotérmico (BFGS / Cuasi-Newton)",
+    "text": "4.1 Caso 1: Reactor CSTR Non Isotérmico (BFGS / Cuasi-Newton)\nConsidérase a síntese irreversible A \\rightarrow B con cinética de Arrhenius k(T) = k_0 \\exp(-E_a / RT). A función obxectivo económica pondera o investimento de capital no volume do reactor (V), a retirada de calor (|Q|) e unha forte penalización polo reactivo non transformado que sae no efluente:\n\\min_{T, V} f_1(T, V) = 1500 \\cdot V^{0.6} + 250 \\cdot |Q|^{0.7} + 1.0 \\times 10^5 \\cdot C_A\n#| label: fig-cstr-opt #| fig-cap: “Superficie de custo e converxencia do algoritmo BFGS para o reactor CSTR” import numpy as np import matplotlib.pyplot as plt from scipy.optimize import minimize\nk0, Ea, R_gas = 1.5e7, 65000.0, 8.314 CA0, v0, DeltaH = 2.0, 10.0, -50000.0 rho, Cp, Tin = 1000.0, 4.184, 298.15 T_ref, V_ref = 300.0, 50.0\ndef cstr_obj_scaled(z): T, V = z[0] * T_ref, z[1] * V_ref if T &lt;= 0 or V &lt;= 0: return 1e12 k = k0 * np.exp(-Ea / (R_gas * T)) tau = V / v0 X = (k * tau) / (1.0 + k * tau) CA = CA0 * (1.0 - X) Q = v0 * rho * Cp * (T - Tin) + (v0 * CA0 * X) * DeltaH return 1500.0 * (V0.6) + 250.0 * (np.abs(Q)0.7) + 1.0e5 * CA\nres_bfgs = minimize(cstr_obj_scaled, [330.0/T_ref, 50.0/V_ref], method=‘BFGS’) T_opt, V_opt = res_bfgs.x[0] * T_ref, res_bfgs.x[1] * V_ref\nT_vals = np.linspace(315, 375, 40) V_vals = np.linspace(25, 120, 40) T_grid, V_grid = np.meshgrid(T_vals, V_vals) Z_grid = np.zeros_like(T_grid)\nfor i in range(T_grid.shape[0]): for j in range(T_grid.shape[1]): Z_grid[i, j] = cstr_obj_scaled([T_grid[i, j]/T_ref, V_grid[i, j]/V_ref])\nplt.figure(figsize=(7, 4.5)) cp = plt.contourf(T_grid, V_grid, Z_grid, levels=25, cmap=‘viridis’) plt.colorbar(cp, label=‘Custo Total Anualizado’) plt.plot(T_opt, V_opt, ’r*‘, markersize=12, label=f’Óptimo ({T_opt:.1f} K, {V_opt:.1f} L)’) plt.xlabel(‘Temperatura (K)’) plt.ylabel(‘Volume (L)’) plt.legend() plt.tight_layout() plt.show()"
+  },
+  {
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#prantexamento-do-proceso",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#prantexamento-do-proceso",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "Prantexamento do Proceso",
+    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nModelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de conversión.\n\n\n\nPlataforma: DWSIM\nDominio: Reactores\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
+  },
+  {
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#fundamento-termodinámico",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#fundamento-termodinámico",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "Fundamento Termodinámico",
+    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\n\\text{CH}_3\\text{COOH (Ácido)} + \\text{C}_2\\text{H}_5\\text{OH (Etanol)} \\underset{k_b}{\\overset{k_f}{\\rightleftharpoons}} \\text{CH}_3\\text{COOC}_2\\text{H}_5 \\text{ (Acetato)} + \\text{H}_2\\text{O (Auga)}\n\n\nr = k_f C_A C_B - k_b C_C C_D = k_0 \\exp\\left(-\\frac{E_a}{RT}\\right) \\left[ C_{\\text{Ácido}} C_{\\text{Etanol}} - \\frac{C_{\\text{Acetato}} C_{\\text{Auga}}}{K_{eq}(T)} \\right]\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
+  },
+  {
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#resultados-clave-do-balance",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#resultados-clave-do-balance",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "Resultados Clave do Balance",
+    "text": "Resultados Clave do Balance\n\n\n\n\n88.5 %\n\n\nConversión de Ácido\n\n\n\n\n70.0 °C\n\n\nTemperatura Reactor\n\n\n\n\n\n\n2.45 h\n\n\nTempo de Residencia (τ)\n\n\n\n\n-45.2 kW\n\n\nRemoción Térmica (Q)"
+  },
+  {
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-do-proceso",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-do-proceso",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "Táboa de Correntes do Proceso",
+    "text": "Táboa de Correntes do Proceso\n\n\n\nCorrente\nTemp (°C)\nPresión (bar)\nFlujo (kmol/h)\nFracc. Vapor\n\n\n\n\nAlimentación (F)\n65.0\n2.50\n100.0\n0.00\n\n\nVapor (V)\n78.4\n1.20\n42.8\n1.00\n\n\nLíquido (L)\n78.4\n1.20\n57.2\n0.00"
+  },
+  {
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#conclusións-operacionais",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#conclusións-operacionais",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "Conclusións Operacionais",
+    "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
+  },
+  {
     "objectID": "posts/caso-destilacion-flash.html",
     "href": "posts/caso-destilacion-flash.html",
     "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
@@ -306,41 +362,6 @@
     "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
     "section": "9 8. Referencias Técnicas",
     "text": "9 8. Referencias Técnicas\n\nSmith, J. M., Van Ness, H. C., & Abbott, M. M. (2018). Introduction to Chemical Engineering Thermodynamics (8th ed.). McGraw-Hill.\nRachford, H. H., & Rice, J. D. (1952). Procedure for use of electronic digital computers in calculating flash vaporization hydrocarbon equilibrium. Journal of Petroleum Technology, 4(10), 19-20.\nPeng, D. Y., & Robinson, D. B. (1976). A New Two-Constant Equation of State. Industrial & Engineering Chemistry Fundamentals, 15(1), 59-64."
-  },
-  {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#prantexamento-do-proceso",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#prantexamento-do-proceso",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "Prantexamento do Proceso",
-    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nModelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de conversión.\n\n\n\nPlataforma: DWSIM\nDominio: Reactores\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
-  },
-  {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#fundamento-termodinámico",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#fundamento-termodinámico",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "Fundamento Termodinámico",
-    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\n\\text{CH}_3\\text{COOH (Ácido)} + \\text{C}_2\\text{H}_5\\text{OH (Etanol)} \\underset{k_b}{\\overset{k_f}{\\rightleftharpoons}} \\text{CH}_3\\text{COOC}_2\\text{H}_5 \\text{ (Acetato)} + \\text{H}_2\\text{O (Auga)}\n\n\nr = k_f C_A C_B - k_b C_C C_D = k_0 \\exp\\left(-\\frac{E_a}{RT}\\right) \\left[ C_{\\text{Ácido}} C_{\\text{Etanol}} - \\frac{C_{\\text{Acetato}} C_{\\text{Auga}}}{K_{eq}(T)} \\right]\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
-  },
-  {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#resultados-clave-do-balance",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#resultados-clave-do-balance",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "Resultados Clave do Balance",
-    "text": "Resultados Clave do Balance\n\n\n\n\n88.5 %\n\n\nConversión de Ácido\n\n\n\n\n70.0 °C\n\n\nTemperatura Reactor\n\n\n\n\n\n\n2.45 h\n\n\nTempo de Residencia (τ)\n\n\n\n\n-45.2 kW\n\n\nRemoción Térmica (Q)"
-  },
-  {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-do-proceso",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-do-proceso",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "Táboa de Correntes do Proceso",
-    "text": "Táboa de Correntes do Proceso\n\n\n\nCorrente\nTemp (°C)\nPresión (bar)\nFlujo (kmol/h)\nFracc. Vapor\n\n\n\n\nAlimentación (F)\n65.0\n2.50\n100.0\n0.00\n\n\nVapor (V)\n78.4\n1.20\n42.8\n1.00\n\n\nLíquido (L)\n78.4\n1.20\n57.2\n0.00"
-  },
-  {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#conclusións-operacionais",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#conclusións-operacionais",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "Conclusións Operacionais",
-    "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
   },
   {
     "objectID": "posts/caso-hysys-columna-debutanizadora.html",
