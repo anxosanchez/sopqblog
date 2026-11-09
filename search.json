@@ -123,7 +123,7 @@
     "href": "posts/caso-practico-7.html",
     "title": "Simulación e Optimización Integrada dunha Planta de Síntese de MTBE",
     "section": "",
-    "text": "NoteRecursos Interactivos e Caderno Docente\n\n\n\n\nCaderno de traballo en Gemini Notebook: SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada\nRepositorio do blog: GitHub sopqblog"
+    "text": "title: “Simulación e Optimización Integrada dunha Planta de Síntese de MTBE” image: “../assets/images/mtbe_pfd_light.jpg” —"
   },
   {
     "objectID": "posts/caso-practico-7.html#zona-1-reactor-cstr-bfgs-sen-restricións",
