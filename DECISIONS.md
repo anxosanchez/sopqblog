@@ -143,7 +143,7 @@ Coa incorporación de novos investigadores e redactores convidados, o portal pre
 3. **Notificador Automático por Telegram (`pipeline/telegram_editor_notifier.py`):**
    - Servizo desacoplado en Python puro (sen dependencias pesadas de terceiros) que envía unha alerta enriquecida ao Telegram privado do editor co título, autor/es, taxonomía, ficheiros de simulación achegados e ligazón directa de revisión.
 4. **Guía Pública para Colaboradores (`guia-colaboradores.qmd`):**
-   - Páxina de referencia incorporada na barra de navegación superior (`✍️ Colaborar`) con directrices paso a paso, modelos descargables, xerarquía de arquivos (`assets/simulations/`, `assets/images/`) e regras de taxonomía.
+   - Páxina de referencia incorporada na barra de navegación superior (`Colaborar`) con directrices paso a paso, modelos descargables, xerarquía de arquivos (`assets/simulations/`, `assets/images/`) e regras de taxonomía.
 
 ---
 
