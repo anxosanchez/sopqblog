@@ -34,7 +34,7 @@ Este blog é o repositorio aberto de enxeñaría química e termodinámica compu
 
 Para garantir a calidade dos casos de simulación, **ningún post se publica directamente en produción sen a revisión previa do editor**. Existen dous mecanismos principais para propoñer un novo artigo:
 
-```mermaid
+```{mermaid}
 flowchart TD
     A["Redactor/a elabora borrador (.qmd) + Ficheiros (.hsc/.dwxml/.svg)"] --> B{"Vía de Remisión"}
     B -->|"Opción A (Recomendada)"| C["Abre Pull Request en GitHub"]

@@ -34,7 +34,7 @@ This blog is the open repository for chemical process engineering and computatio
 
 To maintain quality and thermodynamic consistency, **no post is published without prior editor approval**. Contributors can submit simulation cases using two main paths:
 
-```mermaid
+```{mermaid}
 flowchart TD
     A["Author prepares draft (.qmd) + Files (.hsc/.dwxml/.svg)"] --> B{"Submission Method"}
     B -->|"Option A (Recommended)"| C["Open Pull Request on GitHub"]
