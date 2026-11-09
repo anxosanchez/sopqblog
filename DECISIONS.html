@@ -78,9 +78,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="site_libs/quarto-html/quarto-syntax-highlighting-5f715b5cf7294767e92c953e8cf6e04f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-c81b802ebd0fc850ecadd9dc66680aab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-f84a6fe5e0b427600e887132330aff18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-c81b802ebd0fc850ecadd9dc66680aab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-0895d937173ec5ae3e0f1ba1845a12ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-2c776d979f8025778e429acafb62a7cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0895d937173ec5ae3e0f1ba1845a12ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script src="site_libs/quarto-contrib/videojs/video.min.js"></script>
 <link href="site_libs/quarto-contrib/videojs/video-js.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
@@ -318,6 +318,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <a class="nav-link" href="./index.html#python"> 
 <span class="menu-text">Python</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./guia-colaboradores.html"> 
+<span class="menu-text">✍️ Colaborar</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
@@ -409,6 +413,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <ul class="collapse">
   <li><a href="#contexto-7" id="toc-contexto-7" class="nav-link" data-scroll-target="#contexto-7"><span class="header-section-number">1.8.1</span> Contexto</a></li>
   <li><a href="#decisión-de-enxeñaría-1" id="toc-decisión-de-enxeñaría-1" class="nav-link" data-scroll-target="#decisión-de-enxeñaría-1"><span class="header-section-number">1.8.2</span> Decisión de Enxeñaría</a></li>
+  </ul></li>
+  <li><a href="#xestión-de-autoría-múltiple-e-supervisión-editorial-previa" id="toc-xestión-de-autoría-múltiple-e-supervisión-editorial-previa" class="nav-link" data-scroll-target="#xestión-de-autoría-múltiple-e-supervisión-editorial-previa"><span class="header-section-number">1.9</span> 9. Xestión de Autoría Múltiple e Supervisión Editorial Previa</a>
+  <ul class="collapse">
+  <li><a href="#contexto-8" id="toc-contexto-8" class="nav-link" data-scroll-target="#contexto-8"><span class="header-section-number">1.9.1</span> Contexto</a></li>
+  <li><a href="#decisión-de-enxeñaría-2" id="toc-decisión-de-enxeñaría-2" class="nav-link" data-scroll-target="#decisión-de-enxeñaría-2"><span class="header-section-number">1.9.2</span> Decisión de Enxeñaría</a></li>
+  </ul></li>
+  <li><a href="#integración-do-logo-en-cabeceira-de-artigo-e-índice-de-contidos-toc" id="toc-integración-do-logo-en-cabeceira-de-artigo-e-índice-de-contidos-toc" class="nav-link" data-scroll-target="#integración-do-logo-en-cabeceira-de-artigo-e-índice-de-contidos-toc"><span class="header-section-number">1.10</span> 10. Integración do Logo en Cabeceira de Artigo e Índice de Contidos (TOC)</a>
+  <ul class="collapse">
+  <li><a href="#contexto-9" id="toc-contexto-9" class="nav-link" data-scroll-target="#contexto-9"><span class="header-section-number">1.10.1</span> Contexto</a></li>
+  <li><a href="#decisión-de-enxeñaría-3" id="toc-decisión-de-enxeñaría-3" class="nav-link" data-scroll-target="#decisión-de-enxeñaría-3"><span class="header-section-number">1.10.2</span> Decisión de Enxeñaría</a></li>
   </ul></li>
   </ul></li>
   </ul>
@@ -586,13 +600,58 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </ul></li>
 <li><strong>Artigos e Cadernos de Simulación (<code>posts/</code>):</strong>
 <ul>
-<li>Distintivo institucional superior (<code>.post-institutional-badge</code>) que valida formalmente a orixe académica e o rigor do caso.</li>
+<li>Distintivo institucional superior (<code>.post-institutional-badge</code>) e cabeceira oficial <code>.post-header-brand</code> con logo light/dark reactivo, datos departamentais e estado de caso verificado.</li>
 </ul></li>
 <li><strong>Presentacións Revealjs:</strong>
 <ul>
 <li>Incorporación automática de <code>logo: ../assets/images/logo-dark.jpg</code> nos decks xerados polo pipeline, mantendo presenza de marca corporativa durante exposicións e conferencias.</li>
 </ul></li>
 </ol>
+<hr>
+</section>
+</section>
+<section id="xestión-de-autoría-múltiple-e-supervisión-editorial-previa" class="level2" data-number="1.9">
+<h2 data-number="1.9" class="anchored" data-anchor-id="xestión-de-autoría-múltiple-e-supervisión-editorial-previa"><span class="header-section-number">1.9</span> 9. Xestión de Autoría Múltiple e Supervisión Editorial Previa</h2>
+<section id="contexto-8" class="level3" data-number="1.9.1">
+<h3 data-number="1.9.1" class="anchored" data-anchor-id="contexto-8"><span class="header-section-number">1.9.1</span> Contexto</h3>
+<p>Coa incorporación de novos investigadores e redactores convidados, o portal precisaba reflectir fielmente a coautoría (nome, filiación, rol específico na simulación, contacto) e establecer un procedemento de filtrado previo para que ningún artigo poida publicarse sen a supervisión directa do editor (Anxo Sánchez).</p>
+</section>
+<section id="decisión-de-enxeñaría-2" class="level3" data-number="1.9.2">
+<h3 data-number="1.9.2" class="anchored" data-anchor-id="decisión-de-enxeñaría-2"><span class="header-section-number">1.9.2</span> Decisión de Enxeñaría</h3>
+<ol type="1">
+<li><strong>Estrutura de Autoría Múltiple en YAML:</strong>
+<ul>
+<li>Soporte para listaxes de autores con campos normalizados (<code>name</code>, <code>affiliation</code>, <code>email</code>, <code>role</code>).</li>
+<li>Estilizado CSS en <code>.quarto-title-meta</code> que presenta cada autor/a en tarxetas con distintivos tipográficos profesionais.</li>
+</ul></li>
+<li><strong>Mecanismo de Bloqueo e Ocultación (<code>draft: true</code> e Pull Requests):</strong>
+<ul>
+<li>Os novos artigos propostos almacénanse con <code>draft: true</code> ou tramítanse mediante Pull Request en GitHub. Quarto exclúe de raíz calquera borrador das listaxes públicas, motores de busca e sitemaps ata a validación definitiva do editor.</li>
+</ul></li>
+<li><strong>Notificador Automático por Telegram (<code>pipeline/telegram_editor_notifier.py</code>):</strong>
+<ul>
+<li>Servizo desacoplado en Python puro (sen dependencias pesadas de terceiros) que envía unha alerta enriquecida ao Telegram privado do editor co título, autor/es, taxonomía, ficheiros de simulación achegados e ligazón directa de revisión.</li>
+</ul></li>
+<li><strong>Guía Pública para Colaboradores (<code>guia-colaboradores.qmd</code>):</strong>
+<ul>
+<li>Páxina de referencia incorporada na barra de navegación superior (<code>✍️ Colaborar</code>) con directrices paso a paso, modelos descargables, xerarquía de arquivos (<code>assets/simulations/</code>, <code>assets/images/</code>) e regras de taxonomía.</li>
+</ul></li>
+</ol>
+<hr>
+</section>
+</section>
+<section id="integración-do-logo-en-cabeceira-de-artigo-e-índice-de-contidos-toc" class="level2" data-number="1.10">
+<h2 data-number="1.10" class="anchored" data-anchor-id="integración-do-logo-en-cabeceira-de-artigo-e-índice-de-contidos-toc"><span class="header-section-number">1.10</span> 10. Integración do Logo en Cabeceira de Artigo e Índice de Contidos (TOC)</h2>
+<section id="contexto-9" class="level3" data-number="1.10.1">
+<h3 data-number="1.10.1" class="anchored" data-anchor-id="contexto-9"><span class="header-section-number">1.10.1</span> Contexto</h3>
+<p>O requirimento do usuario solicitaba que o logo oficial (en versións clara e escura) acompañase a lectura dentro de cada post resolto, especificamente na cabeceira do artigo ou no índice de contidos lateral.</p>
+</section>
+<section id="decisión-de-enxeñaría-3" class="level3" data-number="1.10.2">
+<h3 data-number="1.10.2" class="anchored" data-anchor-id="decisión-de-enxeñaría-3"><span class="header-section-number">1.10.2</span> Decisión de Enxeñaría</h3>
+<ul>
+<li><strong>Cabeceira Oficial (<code>.post-header-brand</code>):</strong> Banner estilizado ao comezo do artigo con dobre imaxe reactiva, datos de laboratorio e selo de verificación.</li>
+<li><strong>Inxección Dinámica no TOC (<code>.toc-brand-badge</code>):</strong> O script <code>assets/theme-switcher.html</code> inxecta automaticamente o distintivo de marca na parte superior do bloque <code>#TOC</code> (barra lateral flotante de contidos), asegurando presenza institucional constante durante a navegación e respecto absoluto do modo claro/escuro.</li>
+</ul>
 
 
 <!-- -->
@@ -604,7 +663,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </main> <!-- /main -->
 <script>
 /**
- * SOPQ Theme-Aware Logo Switcher
+ * SOPQ Theme-Aware Logo Switcher & TOC Brand Injector
  * Harmonizes light and dark logos dynamically across page transitions, theme changes, and directory depths.
  */
 (function() {
@@ -612,6 +671,11 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     var isDark = document.body.classList.contains("quarto-dark") ||
                  document.documentElement.getAttribute("data-bs-theme") === "dark" ||
                  (window.localStorage && window.localStorage.getItem("quarto-color-scheme") === "alternate");
+
+    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
+                   (document.querySelector('meta[name="quarto:offset"]') && 
+                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
+    var prefix = isSubdir ? "../" : "./";
 
     // 1. Sync Quarto navbar logos
     var navLogos = document.querySelectorAll(".navbar-brand .navbar-logo");
@@ -626,9 +690,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     });
 
     // 2. Fix relative paths for footer logos in subdirectories
-    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
-                   (document.querySelector('meta[name="quarto:offset"]') && 
-                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
     var footerLogos = document.querySelectorAll(".footer-logo");
     footerLogos.forEach(function(img) {
       var src = img.getAttribute("src");
@@ -638,6 +699,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
         }
       }
     });
+
+    // 3. Inject SOPQ theme-reactive logo into TOC sidebar if present
+    var tocEl = document.querySelector("#TOC");
+    if (tocEl && !tocEl.querySelector(".toc-brand-badge")) {
+      var tocBadge = document.createElement("div");
+      tocBadge.className = "toc-brand-badge";
+      tocBadge.innerHTML = 
+        '<img src="' + prefix + 'assets/images/logo-light.jpg" class="toc-logo sopq-logo-light" alt="SOPQ EEI UVigo" />' +
+        '<img src="' + prefix + 'assets/images/logo-dark.jpg" class="toc-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />' +
+        '<div class="toc-brand-meta">' +
+          '<span class="toc-brand-name">SOPQ // UVigo</span>' +
+          '<span class="toc-brand-sub">Simulación de Procesos</span>' +
+        '</div>';
+      tocEl.insertBefore(tocBadge, tocEl.firstChild);
+    }
   }
 
   // Run on initial load
@@ -1265,9 +1341,38 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-123"><a href="#cb1-123"></a><span class="ss">3. </span>**Pé de Páxina (`page-footer`):**</span>
 <span id="cb1-124"><a href="#cb1-124"></a><span class="ss">   - </span>Miniatura de dobre logo con ligazón institucional á Escola de Enxeñaría Industrial da Universidade de Vigo.</span>
 <span id="cb1-125"><a href="#cb1-125"></a><span class="ss">4. </span>**Artigos e Cadernos de Simulación (`posts/`):**</span>
-<span id="cb1-126"><a href="#cb1-126"></a><span class="ss">   - </span>Distintivo institucional superior (<span class="in">`.post-institutional-badge`</span>) que valida formalmente a orixe académica e o rigor do caso.</span>
+<span id="cb1-126"><a href="#cb1-126"></a><span class="ss">   - </span>Distintivo institucional superior (<span class="in">`.post-institutional-badge`</span>) e cabeceira oficial <span class="in">`.post-header-brand`</span> con logo light/dark reactivo, datos departamentais e estado de caso verificado.</span>
 <span id="cb1-127"><a href="#cb1-127"></a><span class="ss">5. </span>**Presentacións Revealjs:**</span>
-<span id="cb1-128"><a href="#cb1-128"></a><span class="ss">   - </span>Incorporación automática de <span class="in">`logo: ../assets/images/logo-dark.jpg`</span> nos decks xerados polo pipeline, mantendo presenza de marca corporativa durante exposicións e conferencias.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<span id="cb1-128"><a href="#cb1-128"></a><span class="ss">   - </span>Incorporación automática de <span class="in">`logo: ../assets/images/logo-dark.jpg`</span> nos decks xerados polo pipeline, mantendo presenza de marca corporativa durante exposicións e conferencias.</span>
+<span id="cb1-129"><a href="#cb1-129"></a></span>
+<span id="cb1-130"><a href="#cb1-130"></a>---</span>
+<span id="cb1-131"><a href="#cb1-131"></a></span>
+<span id="cb1-132"><a href="#cb1-132"></a><span class="fu">## 9. Xestión de Autoría Múltiple e Supervisión Editorial Previa</span></span>
+<span id="cb1-133"><a href="#cb1-133"></a></span>
+<span id="cb1-134"><a href="#cb1-134"></a><span class="fu">### Contexto</span></span>
+<span id="cb1-135"><a href="#cb1-135"></a>Coa incorporación de novos investigadores e redactores convidados, o portal precisaba reflectir fielmente a coautoría (nome, filiación, rol específico na simulación, contacto) e establecer un procedemento de filtrado previo para que ningún artigo poida publicarse sen a supervisión directa do editor (Anxo Sánchez).</span>
+<span id="cb1-136"><a href="#cb1-136"></a></span>
+<span id="cb1-137"><a href="#cb1-137"></a><span class="fu">### Decisión de Enxeñaría</span></span>
+<span id="cb1-138"><a href="#cb1-138"></a><span class="ss">1. </span>**Estrutura de Autoría Múltiple en YAML:**</span>
+<span id="cb1-139"><a href="#cb1-139"></a><span class="ss">   - </span>Soporte para listaxes de autores con campos normalizados (<span class="in">`name`</span>, <span class="in">`affiliation`</span>, <span class="in">`email`</span>, <span class="in">`role`</span>).</span>
+<span id="cb1-140"><a href="#cb1-140"></a><span class="ss">   - </span>Estilizado CSS en <span class="in">`.quarto-title-meta`</span> que presenta cada autor/a en tarxetas con distintivos tipográficos profesionais.</span>
+<span id="cb1-141"><a href="#cb1-141"></a><span class="ss">2. </span>**Mecanismo de Bloqueo e Ocultación (`draft: true` e Pull Requests):**</span>
+<span id="cb1-142"><a href="#cb1-142"></a><span class="ss">   - </span>Os novos artigos propostos almacénanse con <span class="in">`draft: true`</span> ou tramítanse mediante Pull Request en GitHub. Quarto exclúe de raíz calquera borrador das listaxes públicas, motores de busca e sitemaps ata a validación definitiva do editor.</span>
+<span id="cb1-143"><a href="#cb1-143"></a><span class="ss">3. </span>**Notificador Automático por Telegram (`pipeline/telegram_editor_notifier.py`):**</span>
+<span id="cb1-144"><a href="#cb1-144"></a><span class="ss">   - </span>Servizo desacoplado en Python puro (sen dependencias pesadas de terceiros) que envía unha alerta enriquecida ao Telegram privado do editor co título, autor/es, taxonomía, ficheiros de simulación achegados e ligazón directa de revisión.</span>
+<span id="cb1-145"><a href="#cb1-145"></a><span class="ss">4. </span>**Guía Pública para Colaboradores (`guia-colaboradores.qmd`):**</span>
+<span id="cb1-146"><a href="#cb1-146"></a><span class="ss">   - </span>Páxina de referencia incorporada na barra de navegación superior (<span class="in">`✍️ Colaborar`</span>) con directrices paso a paso, modelos descargables, xerarquía de arquivos (<span class="in">`assets/simulations/`</span>, <span class="in">`assets/images/`</span>) e regras de taxonomía.</span>
+<span id="cb1-147"><a href="#cb1-147"></a></span>
+<span id="cb1-148"><a href="#cb1-148"></a>---</span>
+<span id="cb1-149"><a href="#cb1-149"></a></span>
+<span id="cb1-150"><a href="#cb1-150"></a><span class="fu">## 10. Integración do Logo en Cabeceira de Artigo e Índice de Contidos (TOC)</span></span>
+<span id="cb1-151"><a href="#cb1-151"></a></span>
+<span id="cb1-152"><a href="#cb1-152"></a><span class="fu">### Contexto</span></span>
+<span id="cb1-153"><a href="#cb1-153"></a>O requirimento do usuario solicitaba que o logo oficial (en versións clara e escura) acompañase a lectura dentro de cada post resolto, especificamente na cabeceira do artigo ou no índice de contidos lateral.</span>
+<span id="cb1-154"><a href="#cb1-154"></a></span>
+<span id="cb1-155"><a href="#cb1-155"></a><span class="fu">### Decisión de Enxeñaría</span></span>
+<span id="cb1-156"><a href="#cb1-156"></a><span class="ss">- </span>**Cabeceira Oficial (`.post-header-brand`):** Banner estilizado ao comezo do artigo con dobre imaxe reactiva, datos de laboratorio e selo de verificación.</span>
+<span id="cb1-157"><a href="#cb1-157"></a><span class="ss">- </span>**Inxección Dinámica no TOC (`.toc-brand-badge`):** O script <span class="in">`assets/theme-switcher.html`</span> inxecta automaticamente o distintivo de marca na parte superior do bloque <span class="in">`#TOC`</span> (barra lateral flotante de contidos), asegurando presenza institucional constante durante a navegación e respecto absoluto do modo claro/escuro.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

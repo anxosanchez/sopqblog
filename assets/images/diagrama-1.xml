@@ -1,0 +1,165 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Stabilizer Column PFD">
+    <mxGraphModel dx="1422" dy="827" grid="1" gridSize="10" guides="1"
+      tooltips="1" connect="1" arrows="1" fold="1" page="1"
+      pageScale="1" pageWidth="1600" pageHeight="900">
+      <root>
+
+        <mxCell id="0"/>
+        <mxCell id="1" parent="0"/>
+
+        <!-- Condensador -->
+        <mxCell id="10"
+          value="CONDENSADOR TOTAL&#10;Qc = -1.85 MW"
+          style="shape=process;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeWidth=2;"
+          vertex="1"
+          parent="1">
+          <mxGeometry x="650" y="40" width="180" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Acumulador -->
+        <mxCell id="11"
+          value="ACUMULADOR DE CIMA"
+          style="ellipse;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeWidth=2;"
+          vertex="1"
+          parent="1">
+          <mxGeometry x="640" y="170" width="200" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Destilado -->
+        <mxCell id="12"
+          value="DESTILADO (D)&#10;GLP (C3/C4)&#10;108.5 kmol/h&#10;48.2 °C&#10;11.5 bar"
+          style="rounded=1;whiteSpace=wrap;html=1;"
+          vertex="1"
+          parent="1">
+          <mxGeometry x="980" y="150" width="220" height="100" as="geometry"/>
+        </mxCell>
+
+        <!-- Columna -->
+        <mxCell id="13"
+          value="COLUMNA DE DESTILACIÓN&#10;30 ETAPAS&#10;Feed etapa 14"
+          style="shape=cylinder3;whiteSpace=wrap;html=1;boundedLbl=1;strokeWidth=3;"
+          vertex="1"
+          parent="1">
+          <mxGeometry x="440" y="200" width="140" height="420" as="geometry"/>
+        </mxCell>
+
+        <!-- Feed -->
+        <mxCell id="14"
+          value="F&#10;250 kmol/h"
+          style="rounded=1;whiteSpace=wrap;html=1;"
+          vertex="1"
+          parent="1">
+          <mxGeometry x="120" y="360" width="130" height="60" as="geometry"/>
+        </mxCell>
+
+        <!-- Reboiler -->
+        <mxCell id="15"
+          value="REFERVEDOR&#10;Qr = +2.20 MW"
+          style="shape=process;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeWidth=2;"
+          vertex="1"
+          parent="1">
+          <mxGeometry x="700" y="620" width="200" height="80" as="geometry"/>
+        </mxCell>
+
+        <!-- Fondos -->
+        <mxCell id="16"
+          value="FONDOS (B)&#10;Gasolina estabilizada (C5+)&#10;141.5 kmol/h&#10;162.8 °C&#10;12.1 bar"
+          style="rounded=1;whiteSpace=wrap;html=1;"
+          vertex="1"
+          parent="1">
+          <mxGeometry x="1050" y="610" width="270" height="110" as="geometry"/>
+        </mxCell>
+
+        <!-- Columna -> Condensador -->
+        <mxCell id="20"
+          value="Vapor cabeza"
+          style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeWidth=2;"
+          edge="1"
+          source="13"
+          target="10"
+          parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Condensador -> Acumulador -->
+        <mxCell id="21"
+          value=""
+          style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeWidth=2;"
+          edge="1"
+          source="10"
+          target="11"
+          parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Destilado -->
+        <mxCell id="22"
+          value="D"
+          style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeWidth=2;"
+          edge="1"
+          source="11"
+          target="12"
+          parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Refluxo -->
+        <mxCell id="23"
+          value="R"
+          style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeWidth=2;"
+          edge="1"
+          source="11"
+          target="13"
+          parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Feed -->
+        <mxCell id="24"
+          value="Etapa 14"
+          style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeWidth=2;"
+          edge="1"
+          source="14"
+          target="13"
+          parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Fondos ao reboiler -->
+        <mxCell id="25"
+          value=""
+          style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeWidth=2;"
+          edge="1"
+          source="13"
+          target="15"
+          parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Boil-up -->
+        <mxCell id="26"
+          value="Boil-up"
+          style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeWidth=2;"
+          edge="1"
+          source="15"
+          target="13"
+          parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+        <!-- Produto fondos -->
+        <mxCell id="27"
+          value="B"
+          style="edgeStyle=orthogonalEdgeStyle;endArrow=block;strokeWidth=2;"
+          edge="1"
+          source="15"
+          target="16"
+          parent="1">
+          <mxGeometry relative="1" as="geometry"/>
+        </mxCell>
+
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>

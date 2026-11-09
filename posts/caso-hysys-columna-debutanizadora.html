@@ -6,7 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="ProcessSim Engineering Lab">
+<meta name="author" content="Carlos Vázquez Ramos">
+<meta name="author" content="Anxo Sánchez">
 <meta name="dcterms.date" content="2026-10-28">
 <meta name="description" content="Modelado rigoroso dunha torre de destilación de 30 pratos para separar propano/butanos de gasolinas estabilizadas, optimizando a taxa de refluxo e os consumos enerxéticos de condensador e refervedor.">
 
@@ -81,9 +82,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <link href="../site_libs/quarto-html/quarto-syntax-highlighting-5f715b5cf7294767e92c953e8cf6e04f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap-c81b802ebd0fc850ecadd9dc66680aab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="../site_libs/bootstrap/bootstrap-dark-f84a6fe5e0b427600e887132330aff18.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="../site_libs/bootstrap/bootstrap-c81b802ebd0fc850ecadd9dc66680aab.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-0895d937173ec5ae3e0f1ba1845a12ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-2c776d979f8025778e429acafb62a7cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-0895d937173ec5ae3e0f1ba1845a12ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -362,6 +363,10 @@ window.Quarto = {
     <a class="nav-link" href="../index.html#python"> 
 <span class="menu-text">Python</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../guia-colaboradores.html"> 
+<span class="menu-text">✍️ Colaborar</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item dropdown ">
@@ -445,16 +450,31 @@ window.Quarto = {
   </div>
 </div>
 
+<div class="quarto-title-meta-author">
+  <div class="quarto-title-meta-heading">Authors</div>
+  <div class="quarto-title-meta-heading">Affiliation</div>
+  
+    <div class="quarto-title-meta-contents">
+    <p class="author">Carlos Vázquez Ramos <a href="mailto:carlos.vazquez@uvigo.gal" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Escola de Enxeñaría Industrial, Universidade de Vigo
+          </p>
+      </div>
+    <div class="quarto-title-meta-contents">
+    <p class="author">Anxo Sánchez <a href="mailto:anxo.sanchez@uvigo.gal" class="quarto-title-author-email"><i class="bi bi-envelope"></i></a> </p>
+  </div>
+  <div class="quarto-title-meta-contents">
+        <p class="affiliation">
+            Escola de Enxeñaría Industrial, Universidade de Vigo
+          </p>
+      </div>
+  </div>
 
 <div class="quarto-title-meta">
 
-    <div>
-    <div class="quarto-title-meta-heading">Author</div>
-    <div class="quarto-title-meta-contents">
-             <p>ProcessSim Engineering Lab </p>
-          </div>
-  </div>
-    
+      
     <div>
     <div class="quarto-title-meta-heading">Published</div>
     <div class="quarto-title-meta-contents">
@@ -470,9 +490,19 @@ window.Quarto = {
 </header>
 
 
-<!-- Distintivo Institucional SOPQ -->
-<div class="post-institutional-badge">
-<p><img src="../assets/images/logo-light.jpg" class="post-badge-logo sopq-logo-light" alt="SOPQ EEI UVigo"> <img src="../assets/images/logo-dark.jpg" class="post-badge-logo sopq-logo-dark" alt="SOPQ EEI UVigo"> <span>SOPQ · Escola de Enxeñaría Industrial · Universidade de Vigo</span></p>
+<!-- Cabeceira Oficial SOPQ · EEI Universidade de Vigo -->
+<div class="post-header-brand">
+<div class="brand-visual">
+<pre><code>&lt;img src="../assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" /&gt;
+&lt;img src="../assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" /&gt;</code></pre>
+</div>
+<div class="brand-text">
+<pre><code>&lt;div class="brand-institution"&gt;Universidade de Vigo &amp;middot; Escola de Enxeñaría Industrial&lt;/div&gt;
+&lt;div class="brand-lab"&gt;SOPQ // Simulación e Optimización de Procesos Químicos&lt;/div&gt;</code></pre>
+</div>
+<div class="brand-status">
+<pre><code>&lt;span class="status-indicator"&gt;&lt;/span&gt; Caso Verificado</code></pre>
+</div>
 </div>
 <!-- Barra de Recursos Interactivos -->
 <div class="resource-badge-bar">
@@ -549,30 +579,30 @@ Vapor de Media Presión
 </section>
 <section id="diagrama-de-fluxo-pfd-e-perfís-de-etapa" class="level2" data-number="4">
 <h2 data-number="4" class="anchored" data-anchor-id="diagrama-de-fluxo-pfd-e-perfís-de-etapa"><span class="header-section-number">4</span> 3. Diagrama de Fluxo (PFD) e Perfís de Etapa</h2>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb1"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb1-1"><a href="#cb1-1"></a>                  [ Condensador Total ] &lt;--- (Qc = -1.85 MW)</span>
-<span id="cb1-2"><a href="#cb1-2"></a>                           |</span>
-<span id="cb1-3"><a href="#cb1-3"></a>                           v</span>
-<span id="cb1-4"><a href="#cb1-4"></a>                   [ Acumulador Cima ]</span>
-<span id="cb1-5"><a href="#cb1-5"></a>                      |          |</span>
-<span id="cb1-6"><a href="#cb1-6"></a>         Refluxo (R)  |          v</span>
-<span id="cb1-7"><a href="#cb1-7"></a>         +------------+    [ Destilado (D) ] ---&gt; GLP (C3/C4)</span>
-<span id="cb1-8"><a href="#cb1-8"></a>         |                 108.5 kmol/h, 48.2°C, 11.5 bar</span>
-<span id="cb1-9"><a href="#cb1-9"></a>         v</span>
-<span id="cb1-10"><a href="#cb1-10"></a>     +-------+ (Etapa 1)</span>
-<span id="cb1-11"><a href="#cb1-11"></a>     |       |</span>
-<span id="cb1-12"><a href="#cb1-12"></a>(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)</span>
-<span id="cb1-13"><a href="#cb1-13"></a>---&gt; |   O   |</span>
-<span id="cb1-14"><a href="#cb1-14"></a>     |   R   |</span>
-<span id="cb1-15"><a href="#cb1-15"></a>     |   R   |</span>
-<span id="cb1-16"><a href="#cb1-16"></a>     |   E   | (Etapa 30)</span>
-<span id="cb1-17"><a href="#cb1-17"></a>     +-------+</span>
-<span id="cb1-18"><a href="#cb1-18"></a>         |</span>
-<span id="cb1-19"><a href="#cb1-19"></a>         +------------&gt; [ Refervedor ] &lt;--- (Qr = +2.20 MW)</span>
-<span id="cb1-20"><a href="#cb1-20"></a>         |                  |</span>
-<span id="cb1-21"><a href="#cb1-21"></a>         v                  v</span>
-<span id="cb1-22"><a href="#cb1-22"></a>     [ Fondos (B) ] &lt;-------+</span>
-<span id="cb1-23"><a href="#cb1-23"></a>     Gasolina Estabilizada (C5+)</span>
-<span id="cb1-24"><a href="#cb1-24"></a>     141.5 kmol/h, 162.8°C, 12.1 bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource text number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>                  [ Condensador Total ] &lt;--- (Qc = -1.85 MW)</span>
+<span id="cb4-2"><a href="#cb4-2"></a>                           |</span>
+<span id="cb4-3"><a href="#cb4-3"></a>                           v</span>
+<span id="cb4-4"><a href="#cb4-4"></a>                   [ Acumulador Cima ]</span>
+<span id="cb4-5"><a href="#cb4-5"></a>                      |          |</span>
+<span id="cb4-6"><a href="#cb4-6"></a>         Refluxo (R)  |          v</span>
+<span id="cb4-7"><a href="#cb4-7"></a>         +------------+    [ Destilado (D) ] ---&gt; GLP (C3/C4)</span>
+<span id="cb4-8"><a href="#cb4-8"></a>         |                 108.5 kmol/h, 48.2°C, 11.5 bar</span>
+<span id="cb4-9"><a href="#cb4-9"></a>         v</span>
+<span id="cb4-10"><a href="#cb4-10"></a>     +-------+ (Etapa 1)</span>
+<span id="cb4-11"><a href="#cb4-11"></a>     |       |</span>
+<span id="cb4-12"><a href="#cb4-12"></a>(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)</span>
+<span id="cb4-13"><a href="#cb4-13"></a>---&gt; |   O   |</span>
+<span id="cb4-14"><a href="#cb4-14"></a>     |   R   |</span>
+<span id="cb4-15"><a href="#cb4-15"></a>     |   R   |</span>
+<span id="cb4-16"><a href="#cb4-16"></a>     |   E   | (Etapa 30)</span>
+<span id="cb4-17"><a href="#cb4-17"></a>     +-------+</span>
+<span id="cb4-18"><a href="#cb4-18"></a>         |</span>
+<span id="cb4-19"><a href="#cb4-19"></a>         +------------&gt; [ Refervedor ] &lt;--- (Qr = +2.20 MW)</span>
+<span id="cb4-20"><a href="#cb4-20"></a>         |                  |</span>
+<span id="cb4-21"><a href="#cb4-21"></a>         v                  v</span>
+<span id="cb4-22"><a href="#cb4-22"></a>     [ Fondos (B) ] &lt;-------+</span>
+<span id="cb4-23"><a href="#cb4-23"></a>     Gasolina Estabilizada (C5+)</span>
+<span id="cb4-24"><a href="#cb4-24"></a>     141.5 kmol/h, 162.8°C, 12.1 bar</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 </section>
 <section id="táboa-de-correntes-do-proceso" class="level2" data-number="5">
 <h2 data-number="5" class="anchored" data-anchor-id="táboa-de-correntes-do-proceso"><span class="header-section-number">5</span> 4. Táboa de Correntes do Proceso</h2>
@@ -706,7 +736,7 @@ mol/mol
 </main> <!-- /main -->
 <script>
 /**
- * SOPQ Theme-Aware Logo Switcher
+ * SOPQ Theme-Aware Logo Switcher & TOC Brand Injector
  * Harmonizes light and dark logos dynamically across page transitions, theme changes, and directory depths.
  */
 (function() {
@@ -714,6 +744,11 @@ mol/mol
     var isDark = document.body.classList.contains("quarto-dark") ||
                  document.documentElement.getAttribute("data-bs-theme") === "dark" ||
                  (window.localStorage && window.localStorage.getItem("quarto-color-scheme") === "alternate");
+
+    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
+                   (document.querySelector('meta[name="quarto:offset"]') && 
+                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
+    var prefix = isSubdir ? "../" : "./";
 
     // 1. Sync Quarto navbar logos
     var navLogos = document.querySelectorAll(".navbar-brand .navbar-logo");
@@ -728,9 +763,6 @@ mol/mol
     });
 
     // 2. Fix relative paths for footer logos in subdirectories
-    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
-                   (document.querySelector('meta[name="quarto:offset"]') && 
-                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
     var footerLogos = document.querySelectorAll(".footer-logo");
     footerLogos.forEach(function(img) {
       var src = img.getAttribute("src");
@@ -740,6 +772,21 @@ mol/mol
         }
       }
     });
+
+    // 3. Inject SOPQ theme-reactive logo into TOC sidebar if present
+    var tocEl = document.querySelector("#TOC");
+    if (tocEl && !tocEl.querySelector(".toc-brand-badge")) {
+      var tocBadge = document.createElement("div");
+      tocBadge.className = "toc-brand-badge";
+      tocBadge.innerHTML = 
+        '<img src="' + prefix + 'assets/images/logo-light.jpg" class="toc-logo sopq-logo-light" alt="SOPQ EEI UVigo" />' +
+        '<img src="' + prefix + 'assets/images/logo-dark.jpg" class="toc-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />' +
+        '<div class="toc-brand-meta">' +
+          '<span class="toc-brand-name">SOPQ // UVigo</span>' +
+          '<span class="toc-brand-sub">Simulación de Procesos</span>' +
+        '</div>';
+      tocEl.insertBefore(tocBadge, tocEl.firstChild);
+    }
   }
 
   // Run on initial load
@@ -1242,172 +1289,188 @@ mol/mol
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb2" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb2-1"><a href="#cb2-1"></a><span class="co">---</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="an">title:</span><span class="co"> "Simulación dunha Columna Debutanizadora en Aspen HYSYS"</span></span>
-<span id="cb2-3"><a href="#cb2-3"></a><span class="an">subtitle:</span><span class="co"> "Fraccionamento de GLP e Control de Especificación RVP con Paquete Peng-Robinson"</span></span>
-<span id="cb2-4"><a href="#cb2-4"></a><span class="an">description:</span><span class="co"> "Modelado rigoroso dunha torre de destilación de 30 pratos para separar propano/butanos de gasolinas estabilizadas, optimizando a taxa de refluxo e os consumos enerxéticos de condensador e refervedor."</span></span>
-<span id="cb2-5"><a href="#cb2-5"></a><span class="an">author:</span><span class="co"> "ProcessSim Engineering Lab"</span></span>
-<span id="cb2-6"><a href="#cb2-6"></a><span class="an">date:</span><span class="co"> "2026-10-28"</span></span>
-<span id="cb2-7"><a href="#cb2-7"></a><span class="an">categories:</span><span class="co"> ["Aspen HYSYS", "Separación", "Caso HSC", "Vídeo Titorial"]</span></span>
-<span id="cb2-8"><a href="#cb2-8"></a><span class="an">image:</span><span class="co"> "../assets/images/debutanizer_pfd.svg"</span></span>
-<span id="cb2-9"><a href="#cb2-9"></a><span class="an">toc:</span><span class="co"> true</span></span>
-<span id="cb2-10"><a href="#cb2-10"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
-<span id="cb2-11"><a href="#cb2-11"></a><span class="an">code-fold:</span><span class="co"> show</span></span>
-<span id="cb2-12"><a href="#cb2-12"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
-<span id="cb2-13"><a href="#cb2-13"></a><span class="an">lang:</span><span class="co"> gl</span></span>
-<span id="cb2-14"><a href="#cb2-14"></a><span class="co">---</span></span>
-<span id="cb2-15"><a href="#cb2-15"></a></span>
-<span id="cb2-16"><a href="#cb2-16"></a><span class="co">&lt;!-- Distintivo Institucional SOPQ --&gt;</span></span>
-<span id="cb2-17"><a href="#cb2-17"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-institutional-badge"</span><span class="dt">&gt;</span></span>
-<span id="cb2-18"><a href="#cb2-18"></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"../assets/images/logo-light.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-badge-logo sopq-logo-light"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
-<span id="cb2-19"><a href="#cb2-19"></a>  <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"../assets/images/logo-dark.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-badge-logo sopq-logo-dark"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
-<span id="cb2-20"><a href="#cb2-20"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="dt">&gt;</span>SOPQ <span class="dv">&amp;middot;</span> Escola de Enxeñaría Industrial <span class="dv">&amp;middot;</span> Universidade de Vigo<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
-<span id="cb2-21"><a href="#cb2-21"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-22"><a href="#cb2-22"></a></span>
-<span id="cb2-23"><a href="#cb2-23"></a><span class="co">&lt;!-- Barra de Recursos Interactivos --&gt;</span></span>
-<span id="cb2-24"><a href="#cb2-24"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge-bar"</span><span class="dt">&gt;</span></span>
-<span id="cb2-25"><a href="#cb2-25"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"badge-label"</span><span class="dt">&gt;</span>Recursos do Caso:<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
-<span id="cb2-26"><a href="#cb2-26"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-drive"</span><span class="dt">&gt;</span>📁 Descargar Simulación HYSYS (.hsc)<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb2-27"><a href="#cb2-27"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"slides-hysys-columna-debutanizadora.html"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-slides"</span><span class="dt">&gt;</span>📊 Ver Diapositivas Revealjs<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb2-28"><a href="#cb2-28"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.youtube.com/watch?v=demo_hysys_debutanizer"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-youtube"</span><span class="dt">&gt;</span>▶ Ver en YouTube<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
-<span id="cb2-29"><a href="#cb2-29"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-30"><a href="#cb2-30"></a></span>
-<span id="cb2-31"><a href="#cb2-31"></a><span class="fu">## Métricas Clave de Operación e Balance</span></span>
-<span id="cb2-32"><a href="#cb2-32"></a></span>
-<span id="cb2-33"><a href="#cb2-33"></a>::: {.metric-grid}</span>
-<span id="cb2-34"><a href="#cb2-34"></a>::: {.metric-card .accent-cyan}</span>
-<span id="cb2-35"><a href="#cb2-35"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Pureza C4 Superior<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-36"><a href="#cb2-36"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>98.5<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>%<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-37"><a href="#cb2-37"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Especificación GLP Comercial<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-38"><a href="#cb2-38"></a>:::</span>
-<span id="cb2-39"><a href="#cb2-39"></a></span>
-<span id="cb2-40"><a href="#cb2-40"></a>::: {.metric-card .accent-amber}</span>
-<span id="cb2-41"><a href="#cb2-41"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Presión de Columna<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-42"><a href="#cb2-42"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>11.5<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-43"><a href="#cb2-43"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Condensador Total a 48 °C<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-44"><a href="#cb2-44"></a>:::</span>
-<span id="cb2-45"><a href="#cb2-45"></a></span>
-<span id="cb2-46"><a href="#cb2-46"></a>::: {.metric-card .accent-emerald}</span>
-<span id="cb2-47"><a href="#cb2-47"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Relación de Refluxo (R/D)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-48"><a href="#cb2-48"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>2.40<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-49"><a href="#cb2-49"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Óptimo Económico (1.25 Rmin)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-50"><a href="#cb2-50"></a>:::</span>
-<span id="cb2-51"><a href="#cb2-51"></a></span>
-<span id="cb2-52"><a href="#cb2-52"></a>::: {.metric-card .accent-purple}</span>
-<span id="cb2-53"><a href="#cb2-53"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Carga Refervedor<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-54"><a href="#cb2-54"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>2.20<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>MW<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-55"><a href="#cb2-55"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Vapor de Media Presión<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb2-56"><a href="#cb2-56"></a>:::</span>
-<span id="cb2-57"><a href="#cb2-57"></a>:::</span>
-<span id="cb2-58"><a href="#cb2-58"></a></span>
-<span id="cb2-59"><a href="#cb2-59"></a><span class="fu">## 1. Introdución e Descrición do Proceso</span></span>
-<span id="cb2-60"><a href="#cb2-60"></a></span>
-<span id="cb2-61"><a href="#cb2-61"></a>A columna debutanizadora é un elo crítico no tren de estabilización de hidrocarburos. O seu obxectivo primordial é recuperar butanos ($i\text{-C}_4$ e $n\text{-C}_4$) por cabeza para a produción de gas licuado de petróleo (GLP), mentres que por fondo obtense gasolina estabilizada cunha presión de vapor Reid (RVP) controlada para cumprir estándares de refinaría.</span>
-<span id="cb2-62"><a href="#cb2-62"></a></span>
-<span id="cb2-63"><a href="#cb2-63"></a>A corrente de alimentación procede dunha despropanizadora e entra en fase mixta á torre no prato 14 cun caudal de $250.0\text{ kmol/h}$.</span>
-<span id="cb2-64"><a href="#cb2-64"></a></span>
-<span id="cb2-65"><a href="#cb2-65"></a><span class="fu">## 2. Configuración en Aspen HYSYS e Paquete de Propiedades</span></span>
-<span id="cb2-66"><a href="#cb2-66"></a></span>
-<span id="cb2-67"><a href="#cb2-67"></a>Utilizouse a ecuación de estado de **Peng-Robinson (PR)** con parámetros de interacción binaria (BIP) axustados por Aspen Properties.</span>
-<span id="cb2-68"><a href="#cb2-68"></a></span>
-<span id="cb2-69"><a href="#cb2-69"></a><span class="fu">### Especificacións de Deseño da Torre</span></span>
-<span id="cb2-70"><a href="#cb2-70"></a><span class="ss">* </span>**Número de etapas teóricas:** 30 pratos + condensador total + refervedor parcial tipo termosifón.</span>
-<span id="cb2-71"><a href="#cb2-71"></a><span class="ss">* </span>**Prato de alimentación:** Etapa 14 (numerada desde o cumio).</span>
-<span id="cb2-72"><a href="#cb2-72"></a><span class="ss">* </span>**Presión de cima:** $11.5\text{ bar}$.</span>
-<span id="cb2-73"><a href="#cb2-73"></a><span class="ss">* </span>**Presión de fondo:** $12.1\text{ bar}$ ($\Delta P = 0.6\text{ bar}$).</span>
-<span id="cb2-74"><a href="#cb2-74"></a><span class="ss">* </span>**Especificación de cima:** Fracción molar de $i\text{-C}_5$ en destilado $\le 0.5\%$.</span>
-<span id="cb2-75"><a href="#cb2-75"></a><span class="ss">* </span>**Especificación de fondo:** Fracción molar de $n\text{-C}_4$ en fondos $\le 1.0\%$.</span>
-<span id="cb2-76"><a href="#cb2-76"></a></span>
-<span id="cb2-77"><a href="#cb2-77"></a><span class="fu">## 3. Diagrama de Fluxo (PFD) e Perfís de Etapa</span></span>
-<span id="cb2-78"><a href="#cb2-78"></a></span>
-<span id="cb2-79"><a href="#cb2-79"></a><span class="in">```text</span></span>
-<span id="cb2-80"><a href="#cb2-80"></a><span class="in">                  [ Condensador Total ] &lt;--- (Qc = -1.85 MW)</span></span>
-<span id="cb2-81"><a href="#cb2-81"></a><span class="in">                           |</span></span>
-<span id="cb2-82"><a href="#cb2-82"></a><span class="in">                           v</span></span>
-<span id="cb2-83"><a href="#cb2-83"></a><span class="in">                   [ Acumulador Cima ]</span></span>
-<span id="cb2-84"><a href="#cb2-84"></a><span class="in">                      |          |</span></span>
-<span id="cb2-85"><a href="#cb2-85"></a><span class="in">         Refluxo (R)  |          v</span></span>
-<span id="cb2-86"><a href="#cb2-86"></a><span class="in">         +------------+    [ Destilado (D) ] ---&gt; GLP (C3/C4)</span></span>
-<span id="cb2-87"><a href="#cb2-87"></a><span class="in">         |                 108.5 kmol/h, 48.2°C, 11.5 bar</span></span>
-<span id="cb2-88"><a href="#cb2-88"></a><span class="in">         v</span></span>
-<span id="cb2-89"><a href="#cb2-89"></a><span class="in">     +-------+ (Etapa 1)</span></span>
-<span id="cb2-90"><a href="#cb2-90"></a><span class="in">     |       |</span></span>
-<span id="cb2-91"><a href="#cb2-91"></a><span class="in">(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)</span></span>
-<span id="cb2-92"><a href="#cb2-92"></a><span class="in">---&gt; |   O   |</span></span>
-<span id="cb2-93"><a href="#cb2-93"></a><span class="in">     |   R   |</span></span>
-<span id="cb2-94"><a href="#cb2-94"></a><span class="in">     |   R   |</span></span>
-<span id="cb2-95"><a href="#cb2-95"></a><span class="in">     |   E   | (Etapa 30)</span></span>
-<span id="cb2-96"><a href="#cb2-96"></a><span class="in">     +-------+</span></span>
-<span id="cb2-97"><a href="#cb2-97"></a><span class="in">         |</span></span>
-<span id="cb2-98"><a href="#cb2-98"></a><span class="in">         +------------&gt; [ Refervedor ] &lt;--- (Qr = +2.20 MW)</span></span>
-<span id="cb2-99"><a href="#cb2-99"></a><span class="in">         |                  |</span></span>
-<span id="cb2-100"><a href="#cb2-100"></a><span class="in">         v                  v</span></span>
-<span id="cb2-101"><a href="#cb2-101"></a><span class="in">     [ Fondos (B) ] &lt;-------+</span></span>
-<span id="cb2-102"><a href="#cb2-102"></a><span class="in">     Gasolina Estabilizada (C5+)</span></span>
-<span id="cb2-103"><a href="#cb2-103"></a><span class="in">     141.5 kmol/h, 162.8°C, 12.1 bar</span></span>
-<span id="cb2-104"><a href="#cb2-104"></a><span class="in">```</span></span>
-<span id="cb2-105"><a href="#cb2-105"></a></span>
-<span id="cb2-106"><a href="#cb2-106"></a><span class="fu">## 4. Táboa de Correntes do Proceso</span></span>
-<span id="cb2-107"><a href="#cb2-107"></a></span>
-<span id="cb2-108"><a href="#cb2-108"></a>::: {.stream-table-wrapper}</span>
-<span id="cb2-109"><a href="#cb2-109"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">"stream-table"</span><span class="dt">&gt;</span></span>
-<span id="cb2-110"><a href="#cb2-110"></a>  <span class="dt">&lt;</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
-<span id="cb2-111"><a href="#cb2-111"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-112"><a href="#cb2-112"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Variable / Corrente<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb2-113"><a href="#cb2-113"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Alimentación (F)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb2-114"><a href="#cb2-114"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Destilado GLP (D)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb2-115"><a href="#cb2-115"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Gasolina Fondo (B)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb2-116"><a href="#cb2-116"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Unidade<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
-<span id="cb2-117"><a href="#cb2-117"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-118"><a href="#cb2-118"></a>  <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
-<span id="cb2-119"><a href="#cb2-119"></a>  <span class="dt">&lt;</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
-<span id="cb2-120"><a href="#cb2-120"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-121"><a href="#cb2-121"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Temperatura<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-122"><a href="#cb2-122"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>92.4<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-123"><a href="#cb2-123"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>48.2<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-124"><a href="#cb2-124"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>162.8<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-125"><a href="#cb2-125"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>°C<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-126"><a href="#cb2-126"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-127"><a href="#cb2-127"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-128"><a href="#cb2-128"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Presión<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-129"><a href="#cb2-129"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>12.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-130"><a href="#cb2-130"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>11.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-131"><a href="#cb2-131"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>12.1<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-132"><a href="#cb2-132"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-133"><a href="#cb2-133"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-134"><a href="#cb2-134"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-135"><a href="#cb2-135"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Caudal Molar<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-136"><a href="#cb2-136"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>250.0<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-137"><a href="#cb2-137"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>108.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-138"><a href="#cb2-138"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>141.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-139"><a href="#cb2-139"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>kmol/h<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-140"><a href="#cb2-140"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-141"><a href="#cb2-141"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-142"><a href="#cb2-142"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción i-C4 + n-C4<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-143"><a href="#cb2-143"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.432<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-144"><a href="#cb2-144"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.985<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-145"><a href="#cb2-145"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.008<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-146"><a href="#cb2-146"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-147"><a href="#cb2-147"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-148"><a href="#cb2-148"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-149"><a href="#cb2-149"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción C5+ (Gasolina)<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-150"><a href="#cb2-150"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.568<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-151"><a href="#cb2-151"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.005<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-152"><a href="#cb2-152"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.992<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-153"><a href="#cb2-153"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
-<span id="cb2-154"><a href="#cb2-154"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
-<span id="cb2-155"><a href="#cb2-155"></a>  <span class="dt">&lt;/</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
-<span id="cb2-156"><a href="#cb2-156"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span>
-<span id="cb2-157"><a href="#cb2-157"></a>:::</span>
-<span id="cb2-158"><a href="#cb2-158"></a></span>
-<span id="cb2-159"><a href="#cb2-159"></a><span class="fu">## 5. Vídeo Titorial e Demostración Operacional</span></span>
-<span id="cb2-160"><a href="#cb2-160"></a></span>
-<span id="cb2-161"><a href="#cb2-161"></a>{{&lt; video https://www.youtube.com/watch?v=demo_hysys_debutanizer &gt;}}</span>
-<span id="cb2-162"><a href="#cb2-162"></a></span>
-<span id="cb2-163"><a href="#cb2-163"></a><span class="fu">## 6. Conclusións e Leccións Operativas</span></span>
-<span id="cb2-164"><a href="#cb2-164"></a></span>
-<span id="cb2-165"><a href="#cb2-165"></a><span class="ss">1. </span>**Control de RVP:** A taxa de refluxo de $2.40$ asegura que a gasolina de fondo non exceda $7.5\text{ psi}$ de RVP, facéndoa apta para mestura directa de verán.</span>
-<span id="cb2-166"><a href="#cb2-166"></a><span class="ss">2. </span>**Optimización Enerxética:** A integración dun intercambiador de calor alimentación-fondos permite prequentar a carga desde $65^\circ\text{C}$ a $92.4^\circ\text{C}$, reducindo nun $18\%$ o consumo de vapor no refervedor.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb5-1"><a href="#cb5-1"></a><span class="co">---</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="an">title:</span><span class="co"> "Simulación dunha Columna Debutanizadora en Aspen HYSYS"</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="an">subtitle:</span><span class="co"> "Fraccionamento de GLP e Control de Especificación RVP con Paquete Peng-Robinson"</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="an">description:</span><span class="co"> "Modelado rigoroso dunha torre de destilación de 30 pratos para separar propano/butanos de gasolinas estabilizadas, optimizando a taxa de refluxo e os consumos enerxéticos de condensador e refervedor."</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="an">author:</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="co">  - name: "Carlos Vázquez Ramos"</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="co">    affiliation: "Escola de Enxeñaría Industrial, Universidade de Vigo"</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="co">    email: "carlos.vazquez@uvigo.gal"</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="co">    role: "Simulación en Aspen HYSYS"</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="co">  - name: "Anxo Sánchez"</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="co">    affiliation: "Escola de Enxeñaría Industrial, Universidade de Vigo"</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="co">    email: "anxo.sanchez@uvigo.gal"</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="co">    role: "Dirección Editorial e Análise Hidráulica"</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="an">date:</span><span class="co"> "2026-10-28"</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="an">categories:</span><span class="co"> ["Aspen HYSYS", "Separación", "Caso HSC", "Vídeo Titorial"]</span></span>
+<span id="cb5-16"><a href="#cb5-16"></a><span class="an">image:</span><span class="co"> "../assets/images/debutanizer_pfd.svg"</span></span>
+<span id="cb5-17"><a href="#cb5-17"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb5-18"><a href="#cb5-18"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb5-19"><a href="#cb5-19"></a><span class="an">code-fold:</span><span class="co"> show</span></span>
+<span id="cb5-20"><a href="#cb5-20"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb5-21"><a href="#cb5-21"></a><span class="an">lang:</span><span class="co"> gl</span></span>
+<span id="cb5-22"><a href="#cb5-22"></a><span class="co">---</span></span>
+<span id="cb5-23"><a href="#cb5-23"></a></span>
+<span id="cb5-24"><a href="#cb5-24"></a><span class="co">&lt;!-- Cabeceira Oficial SOPQ · EEI Universidade de Vigo --&gt;</span></span>
+<span id="cb5-25"><a href="#cb5-25"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-header-brand"</span><span class="dt">&gt;</span></span>
+<span id="cb5-26"><a href="#cb5-26"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-visual"</span><span class="dt">&gt;</span></span>
+<span id="cb5-27"><a href="#cb5-27"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"../assets/images/logo-light.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-brand-logo sopq-logo-light"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb5-28"><a href="#cb5-28"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"../assets/images/logo-dark.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-brand-logo sopq-logo-dark"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb5-29"><a href="#cb5-29"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-30"><a href="#cb5-30"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-text"</span><span class="dt">&gt;</span></span>
+<span id="cb5-31"><a href="#cb5-31"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-institution"</span><span class="dt">&gt;</span>Universidade de Vigo <span class="dv">&amp;middot;</span> Escola de Enxeñaría Industrial<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-32"><a href="#cb5-32"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-lab"</span><span class="dt">&gt;</span>SOPQ // Simulación e Optimización de Procesos Químicos<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-33"><a href="#cb5-33"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-34"><a href="#cb5-34"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-status"</span><span class="dt">&gt;</span></span>
+<span id="cb5-35"><a href="#cb5-35"></a>    <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"status-indicator"</span><span class="dt">&gt;&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span> Caso Verificado</span>
+<span id="cb5-36"><a href="#cb5-36"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-37"><a href="#cb5-37"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-38"><a href="#cb5-38"></a></span>
+<span id="cb5-39"><a href="#cb5-39"></a><span class="co">&lt;!-- Barra de Recursos Interactivos --&gt;</span></span>
+<span id="cb5-40"><a href="#cb5-40"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge-bar"</span><span class="dt">&gt;</span></span>
+<span id="cb5-41"><a href="#cb5-41"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"badge-label"</span><span class="dt">&gt;</span>Recursos do Caso:<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb5-42"><a href="#cb5-42"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://drive.google.com/drive/folders/1exampleDriveHSCProcessSim"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-drive"</span><span class="dt">&gt;</span>📁 Descargar Simulación HYSYS (.hsc)<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-43"><a href="#cb5-43"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"slides-hysys-columna-debutanizadora.html"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-slides"</span><span class="dt">&gt;</span>📊 Ver Diapositivas Revealjs<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-44"><a href="#cb5-44"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://www.youtube.com/watch?v=demo_hysys_debutanizer"</span><span class="ot"> target</span><span class="op">=</span><span class="st">"_blank"</span><span class="ot"> rel</span><span class="op">=</span><span class="st">"noopener"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-youtube"</span><span class="dt">&gt;</span>▶ Ver en YouTube<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb5-45"><a href="#cb5-45"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-46"><a href="#cb5-46"></a></span>
+<span id="cb5-47"><a href="#cb5-47"></a><span class="fu">## Métricas Clave de Operación e Balance</span></span>
+<span id="cb5-48"><a href="#cb5-48"></a></span>
+<span id="cb5-49"><a href="#cb5-49"></a>::: {.metric-grid}</span>
+<span id="cb5-50"><a href="#cb5-50"></a>::: {.metric-card .accent-cyan}</span>
+<span id="cb5-51"><a href="#cb5-51"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Pureza C4 Superior<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-52"><a href="#cb5-52"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>98.5<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>%<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-53"><a href="#cb5-53"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Especificación GLP Comercial<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-54"><a href="#cb5-54"></a>:::</span>
+<span id="cb5-55"><a href="#cb5-55"></a></span>
+<span id="cb5-56"><a href="#cb5-56"></a>::: {.metric-card .accent-amber}</span>
+<span id="cb5-57"><a href="#cb5-57"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Presión de Columna<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-58"><a href="#cb5-58"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>11.5<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-59"><a href="#cb5-59"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Condensador Total a 48 °C<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-60"><a href="#cb5-60"></a>:::</span>
+<span id="cb5-61"><a href="#cb5-61"></a></span>
+<span id="cb5-62"><a href="#cb5-62"></a>::: {.metric-card .accent-emerald}</span>
+<span id="cb5-63"><a href="#cb5-63"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Relación de Refluxo (R/D)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-64"><a href="#cb5-64"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>2.40<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-65"><a href="#cb5-65"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Óptimo Económico (1.25 Rmin)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-66"><a href="#cb5-66"></a>:::</span>
+<span id="cb5-67"><a href="#cb5-67"></a></span>
+<span id="cb5-68"><a href="#cb5-68"></a>::: {.metric-card .accent-purple}</span>
+<span id="cb5-69"><a href="#cb5-69"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Carga Refervedor<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-70"><a href="#cb5-70"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>2.20<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>MW<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-71"><a href="#cb5-71"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Vapor de Media Presión<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb5-72"><a href="#cb5-72"></a>:::</span>
+<span id="cb5-73"><a href="#cb5-73"></a>:::</span>
+<span id="cb5-74"><a href="#cb5-74"></a></span>
+<span id="cb5-75"><a href="#cb5-75"></a><span class="fu">## 1. Introdución e Descrición do Proceso</span></span>
+<span id="cb5-76"><a href="#cb5-76"></a></span>
+<span id="cb5-77"><a href="#cb5-77"></a>A columna debutanizadora é un elo crítico no tren de estabilización de hidrocarburos. O seu obxectivo primordial é recuperar butanos ($i\text{-C}_4$ e $n\text{-C}_4$) por cabeza para a produción de gas licuado de petróleo (GLP), mentres que por fondo obtense gasolina estabilizada cunha presión de vapor Reid (RVP) controlada para cumprir estándares de refinaría.</span>
+<span id="cb5-78"><a href="#cb5-78"></a></span>
+<span id="cb5-79"><a href="#cb5-79"></a>A corrente de alimentación procede dunha despropanizadora e entra en fase mixta á torre no prato 14 cun caudal de $250.0\text{ kmol/h}$.</span>
+<span id="cb5-80"><a href="#cb5-80"></a></span>
+<span id="cb5-81"><a href="#cb5-81"></a><span class="fu">## 2. Configuración en Aspen HYSYS e Paquete de Propiedades</span></span>
+<span id="cb5-82"><a href="#cb5-82"></a></span>
+<span id="cb5-83"><a href="#cb5-83"></a>Utilizouse a ecuación de estado de **Peng-Robinson (PR)** con parámetros de interacción binaria (BIP) axustados por Aspen Properties.</span>
+<span id="cb5-84"><a href="#cb5-84"></a></span>
+<span id="cb5-85"><a href="#cb5-85"></a><span class="fu">### Especificacións de Deseño da Torre</span></span>
+<span id="cb5-86"><a href="#cb5-86"></a><span class="ss">* </span>**Número de etapas teóricas:** 30 pratos + condensador total + refervedor parcial tipo termosifón.</span>
+<span id="cb5-87"><a href="#cb5-87"></a><span class="ss">* </span>**Prato de alimentación:** Etapa 14 (numerada desde o cumio).</span>
+<span id="cb5-88"><a href="#cb5-88"></a><span class="ss">* </span>**Presión de cima:** $11.5\text{ bar}$.</span>
+<span id="cb5-89"><a href="#cb5-89"></a><span class="ss">* </span>**Presión de fondo:** $12.1\text{ bar}$ ($\Delta P = 0.6\text{ bar}$).</span>
+<span id="cb5-90"><a href="#cb5-90"></a><span class="ss">* </span>**Especificación de cima:** Fracción molar de $i\text{-C}_5$ en destilado $\le 0.5\%$.</span>
+<span id="cb5-91"><a href="#cb5-91"></a><span class="ss">* </span>**Especificación de fondo:** Fracción molar de $n\text{-C}_4$ en fondos $\le 1.0\%$.</span>
+<span id="cb5-92"><a href="#cb5-92"></a></span>
+<span id="cb5-93"><a href="#cb5-93"></a><span class="fu">## 3. Diagrama de Fluxo (PFD) e Perfís de Etapa</span></span>
+<span id="cb5-94"><a href="#cb5-94"></a></span>
+<span id="cb5-95"><a href="#cb5-95"></a><span class="in">```text</span></span>
+<span id="cb5-96"><a href="#cb5-96"></a><span class="in">                  [ Condensador Total ] &lt;--- (Qc = -1.85 MW)</span></span>
+<span id="cb5-97"><a href="#cb5-97"></a><span class="in">                           |</span></span>
+<span id="cb5-98"><a href="#cb5-98"></a><span class="in">                           v</span></span>
+<span id="cb5-99"><a href="#cb5-99"></a><span class="in">                   [ Acumulador Cima ]</span></span>
+<span id="cb5-100"><a href="#cb5-100"></a><span class="in">                      |          |</span></span>
+<span id="cb5-101"><a href="#cb5-101"></a><span class="in">         Refluxo (R)  |          v</span></span>
+<span id="cb5-102"><a href="#cb5-102"></a><span class="in">         +------------+    [ Destilado (D) ] ---&gt; GLP (C3/C4)</span></span>
+<span id="cb5-103"><a href="#cb5-103"></a><span class="in">         |                 108.5 kmol/h, 48.2°C, 11.5 bar</span></span>
+<span id="cb5-104"><a href="#cb5-104"></a><span class="in">         v</span></span>
+<span id="cb5-105"><a href="#cb5-105"></a><span class="in">     +-------+ (Etapa 1)</span></span>
+<span id="cb5-106"><a href="#cb5-106"></a><span class="in">     |       |</span></span>
+<span id="cb5-107"><a href="#cb5-107"></a><span class="in">(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)</span></span>
+<span id="cb5-108"><a href="#cb5-108"></a><span class="in">---&gt; |   O   |</span></span>
+<span id="cb5-109"><a href="#cb5-109"></a><span class="in">     |   R   |</span></span>
+<span id="cb5-110"><a href="#cb5-110"></a><span class="in">     |   R   |</span></span>
+<span id="cb5-111"><a href="#cb5-111"></a><span class="in">     |   E   | (Etapa 30)</span></span>
+<span id="cb5-112"><a href="#cb5-112"></a><span class="in">     +-------+</span></span>
+<span id="cb5-113"><a href="#cb5-113"></a><span class="in">         |</span></span>
+<span id="cb5-114"><a href="#cb5-114"></a><span class="in">         +------------&gt; [ Refervedor ] &lt;--- (Qr = +2.20 MW)</span></span>
+<span id="cb5-115"><a href="#cb5-115"></a><span class="in">         |                  |</span></span>
+<span id="cb5-116"><a href="#cb5-116"></a><span class="in">         v                  v</span></span>
+<span id="cb5-117"><a href="#cb5-117"></a><span class="in">     [ Fondos (B) ] &lt;-------+</span></span>
+<span id="cb5-118"><a href="#cb5-118"></a><span class="in">     Gasolina Estabilizada (C5+)</span></span>
+<span id="cb5-119"><a href="#cb5-119"></a><span class="in">     141.5 kmol/h, 162.8°C, 12.1 bar</span></span>
+<span id="cb5-120"><a href="#cb5-120"></a><span class="in">```</span></span>
+<span id="cb5-121"><a href="#cb5-121"></a></span>
+<span id="cb5-122"><a href="#cb5-122"></a><span class="fu">## 4. Táboa de Correntes do Proceso</span></span>
+<span id="cb5-123"><a href="#cb5-123"></a></span>
+<span id="cb5-124"><a href="#cb5-124"></a>::: {.stream-table-wrapper}</span>
+<span id="cb5-125"><a href="#cb5-125"></a><span class="dt">&lt;</span><span class="kw">table</span><span class="ot"> class</span><span class="op">=</span><span class="st">"stream-table"</span><span class="dt">&gt;</span></span>
+<span id="cb5-126"><a href="#cb5-126"></a>  <span class="dt">&lt;</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb5-127"><a href="#cb5-127"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-128"><a href="#cb5-128"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Variable / Corrente<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb5-129"><a href="#cb5-129"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Alimentación (F)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb5-130"><a href="#cb5-130"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Destilado GLP (D)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb5-131"><a href="#cb5-131"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>Gasolina Fondo (B)<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb5-132"><a href="#cb5-132"></a>      <span class="dt">&lt;</span><span class="kw">th</span><span class="dt">&gt;</span>Unidade<span class="dt">&lt;/</span><span class="kw">th</span><span class="dt">&gt;</span></span>
+<span id="cb5-133"><a href="#cb5-133"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-134"><a href="#cb5-134"></a>  <span class="dt">&lt;/</span><span class="kw">thead</span><span class="dt">&gt;</span></span>
+<span id="cb5-135"><a href="#cb5-135"></a>  <span class="dt">&lt;</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
+<span id="cb5-136"><a href="#cb5-136"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-137"><a href="#cb5-137"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Temperatura<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-138"><a href="#cb5-138"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>92.4<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-139"><a href="#cb5-139"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>48.2<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-140"><a href="#cb5-140"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>162.8<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-141"><a href="#cb5-141"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>°C<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-142"><a href="#cb5-142"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-143"><a href="#cb5-143"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-144"><a href="#cb5-144"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Presión<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-145"><a href="#cb5-145"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>12.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-146"><a href="#cb5-146"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>11.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-147"><a href="#cb5-147"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>12.1<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-148"><a href="#cb5-148"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-149"><a href="#cb5-149"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-150"><a href="#cb5-150"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-151"><a href="#cb5-151"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Caudal Molar<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-152"><a href="#cb5-152"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>250.0<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-153"><a href="#cb5-153"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>108.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-154"><a href="#cb5-154"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>141.5<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-155"><a href="#cb5-155"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>kmol/h<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-156"><a href="#cb5-156"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-157"><a href="#cb5-157"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-158"><a href="#cb5-158"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción i-C4 + n-C4<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-159"><a href="#cb5-159"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.432<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-160"><a href="#cb5-160"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.985<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-161"><a href="#cb5-161"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.008<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-162"><a href="#cb5-162"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-163"><a href="#cb5-163"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-164"><a href="#cb5-164"></a>    <span class="dt">&lt;</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-165"><a href="#cb5-165"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;&lt;</span><span class="kw">strong</span><span class="dt">&gt;</span>Fracción C5+ (Gasolina)<span class="dt">&lt;/</span><span class="kw">strong</span><span class="dt">&gt;&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-166"><a href="#cb5-166"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.568<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-167"><a href="#cb5-167"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.005<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-168"><a href="#cb5-168"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="ot"> class</span><span class="op">=</span><span class="st">"num"</span><span class="dt">&gt;</span>0.992<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-169"><a href="#cb5-169"></a>      <span class="dt">&lt;</span><span class="kw">td</span><span class="dt">&gt;</span>mol/mol<span class="dt">&lt;/</span><span class="kw">td</span><span class="dt">&gt;</span></span>
+<span id="cb5-170"><a href="#cb5-170"></a>    <span class="dt">&lt;/</span><span class="kw">tr</span><span class="dt">&gt;</span></span>
+<span id="cb5-171"><a href="#cb5-171"></a>  <span class="dt">&lt;/</span><span class="kw">tbody</span><span class="dt">&gt;</span></span>
+<span id="cb5-172"><a href="#cb5-172"></a><span class="dt">&lt;/</span><span class="kw">table</span><span class="dt">&gt;</span></span>
+<span id="cb5-173"><a href="#cb5-173"></a>:::</span>
+<span id="cb5-174"><a href="#cb5-174"></a></span>
+<span id="cb5-175"><a href="#cb5-175"></a><span class="fu">## 5. Vídeo Titorial e Demostración Operacional</span></span>
+<span id="cb5-176"><a href="#cb5-176"></a></span>
+<span id="cb5-177"><a href="#cb5-177"></a>{{&lt; video https://www.youtube.com/watch?v=demo_hysys_debutanizer &gt;}}</span>
+<span id="cb5-178"><a href="#cb5-178"></a></span>
+<span id="cb5-179"><a href="#cb5-179"></a><span class="fu">## 6. Conclusións e Leccións Operativas</span></span>
+<span id="cb5-180"><a href="#cb5-180"></a></span>
+<span id="cb5-181"><a href="#cb5-181"></a><span class="ss">1. </span>**Control de RVP:** A taxa de refluxo de $2.40$ asegura que a gasolina de fondo non exceda $7.5\text{ psi}$ de RVP, facéndoa apta para mestura directa de verán.</span>
+<span id="cb5-182"><a href="#cb5-182"></a><span class="ss">2. </span>**Optimización Enerxética:** A integración dun intercambiador de calor alimentación-fondos permite prequentar a carga desde $65^\circ\text{C}$ a $92.4^\circ\text{C}$, reducindo nun $18\%$ o consumo de vapor no refervedor.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">

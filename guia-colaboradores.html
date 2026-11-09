@@ -1,0 +1,1539 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="gl" xml:lang="gl"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Manual completo para redactores e investigadores: estrutura de arquivos, autoría múltiple, adxuntos de simulación, esquemas PFD e fluxo de validación previa polo editor.">
+
+<title>Guía Editorial e Instrucións para Colaboradores – SOPQ // ProcessSim</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<link href="./assets/images/favicon.png" rel="icon" type="image/png">
+<script src="site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5f715b5cf7294767e92c953e8cf6e04f.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-5f715b5cf7294767e92c953e8cf6e04f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-5f715b5cf7294767e92c953e8cf6e04f.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap-0895d937173ec5ae3e0f1ba1845a12ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-2c776d979f8025778e429acafb62a7cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-0895d937173ec5ae3e0f1ba1845a12ca.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="./index.html" class="navbar-brand navbar-brand-logo">
+    <img src="./assets/images/logo-light.jpg" alt="SOPQ // ProcessSim · EEI Universidade de Vigo" class="navbar-logo light-content">
+    <img src="./assets/images/logo-light.jpg" alt="SOPQ // ProcessSim · EEI Universidade de Vigo" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">SOPQ // ProcessSim</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html#casos-destacados"> 
+<span class="menu-text">Simulacións</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html#aspen-hysys"> 
+<span class="menu-text">Aspen HYSYS</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html#dwsim"> 
+<span class="menu-text">DWSIM</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./index.html#python"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link active" href="./guia-colaboradores.html" aria-current="page"> 
+<span class="menu-text">✍️ Colaborar</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-idioma" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 Idioma</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-idioma">    
+        <li>
+    <a class="dropdown-item" href="./index.html">
+ <span class="dropdown-text">Galego (Principal)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.es.html">
+ <span class="dropdown-text">Castelán</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="./index.en.html">
+ <span class="dropdown-text">English</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/anxosanchez/sopqblog"> <i class="bi bi-github" role="img" aria-label="Repositorio GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com"> <i class="bi bi-youtube" role="img" aria-label="Canle de YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice de Contidos</h2>
+   
+  <ul>
+  <li><a href="#fluxo-de-publicación-e-supervisión-editorial" id="toc-fluxo-de-publicación-e-supervisión-editorial" class="nav-link active" data-scroll-target="#fluxo-de-publicación-e-supervisión-editorial"><span class="header-section-number">1</span> Fluxo de Publicación e Supervisión Editorial</a>
+  <ul class="collapse">
+  <li><a href="#opción-a-proposta-mediante-pull-request-en-github-recomendada" id="toc-opción-a-proposta-mediante-pull-request-en-github-recomendada" class="nav-link" data-scroll-target="#opción-a-proposta-mediante-pull-request-en-github-recomendada"><span class="header-section-number">1.1</span> Opción A: Proposta mediante Pull Request en GitHub (Recomendada)</a></li>
+  <li><a href="#opción-b-publicación-en-modo-borrador-oculto-draft-true" id="toc-opción-b-publicación-en-modo-borrador-oculto-draft-true" class="nav-link" data-scroll-target="#opción-b-publicación-en-modo-borrador-oculto-draft-true"><span class="header-section-number">1.2</span> Opción B: Publicación en modo borrador oculto (<code>draft: true</code>)</a></li>
+  </ul></li>
+  <li><a href="#autoría-como-indicar-autor-ou-varios-autores" id="toc-autoría-como-indicar-autor-ou-varios-autores" class="nav-link" data-scroll-target="#autoría-como-indicar-autor-ou-varios-autores"><span class="header-section-number">2</span> Autoría: Como Indicar Autor ou Varios Autores</a>
+  <ul class="collapse">
+  <li><a href="#exemplo-1-autoría-múltiple-con-afiliación-e-roles-recomendado" id="toc-exemplo-1-autoría-múltiple-con-afiliación-e-roles-recomendado" class="nav-link" data-scroll-target="#exemplo-1-autoría-múltiple-con-afiliación-e-roles-recomendado"><span class="header-section-number">2.1</span> Exemplo 1: Autoría Múltiple con Afiliación e Roles (Recomendado)</a></li>
+  <li><a href="#exemplo-2-autoría-individual" id="toc-exemplo-2-autoría-individual" class="nav-link" data-scroll-target="#exemplo-2-autoría-individual"><span class="header-section-number">2.2</span> Exemplo 2: Autoría Individual</a></li>
+  </ul></li>
+  <li><a href="#estrutura-de-arquivos-e-subida-de-recursos" id="toc-estrutura-de-arquivos-e-subida-de-recursos" class="nav-link" data-scroll-target="#estrutura-de-arquivos-e-subida-de-recursos"><span class="header-section-number">3</span> Estrutura de Arquivos e Subida de Recursos</a>
+  <ul class="collapse">
+  <li><a href="#ficheiros-de-simulación-industrial" id="toc-ficheiros-de-simulación-industrial" class="nav-link" data-scroll-target="#ficheiros-de-simulación-industrial"><span class="header-section-number">3.1</span> 1. Ficheiros de Simulación Industrial</a></li>
+  <li><a href="#diagramas-de-fluxo-pfd-e-gráficas" id="toc-diagramas-de-fluxo-pfd-e-gráficas" class="nav-link" data-scroll-target="#diagramas-de-fluxo-pfd-e-gráficas"><span class="header-section-number">3.2</span> 2. Diagramas de Fluxo PFD e Gráficas</a></li>
+  <li><a href="#vídeos-explicativos-e-screencasts" id="toc-vídeos-explicativos-e-screencasts" class="nav-link" data-scroll-target="#vídeos-explicativos-e-screencasts"><span class="header-section-number">3.3</span> 3. Vídeos Explicativos e Screencasts</a></li>
+  </ul></li>
+  <li><a href="#cadros-de-métricas-e-recursos-visuais-dispoñibles" id="toc-cadros-de-métricas-e-recursos-visuais-dispoñibles" class="nav-link" data-scroll-target="#cadros-de-métricas-e-recursos-visuais-dispoñibles"><span class="header-section-number">4</span> Cadros de Métricas e Recursos Visuais Dispoñibles</a>
+  <ul class="collapse">
+  <li><a href="#barra-de-recursos-interactivos" id="toc-barra-de-recursos-interactivos" class="nav-link" data-scroll-target="#barra-de-recursos-interactivos"><span class="header-section-number">4.1</span> Barra de Recursos Interactivos</a></li>
+  <li><a href="#cuadrícula-de-métricas-clave-.metric-grid" id="toc-cuadrícula-de-métricas-clave-.metric-grid" class="nav-link" data-scroll-target="#cuadrícula-de-métricas-clave-.metric-grid"><span class="header-section-number">4.2</span> Cuadrícula de Métricas Clave (<code>.metric-grid</code>)</a></li>
+  <li><a href="#táboas-de-correntes-de-proceso-.stream-table" id="toc-táboas-de-correntes-de-proceso-.stream-table" class="nav-link" data-scroll-target="#táboas-de-correntes-de-proceso-.stream-table"><span class="header-section-number">4.3</span> Táboas de Correntes de Proceso (<code>.stream-table</code>)</a></li>
+  </ul></li>
+  <li><a href="#taxonomía-canónica-obrigatoria" id="toc-taxonomía-canónica-obrigatoria" class="nav-link" data-scroll-target="#taxonomía-canónica-obrigatoria"><span class="header-section-number">5</span> Taxonomía Canónica Obrigatoria</a></li>
+  <li><a href="#notificación-ao-editor-e-sistema-de-avisos" id="toc-notificación-ao-editor-e-sistema-de-avisos" class="nav-link" data-scroll-target="#notificación-ao-editor-e-sistema-de-avisos"><span class="header-section-number">6</span> Notificación ao Editor e Sistema de Avisos</a></li>
+  <li><a href="#descarga-de-modelos-e-contacto" id="toc-descarga-de-modelos-e-contacto" class="nav-link" data-scroll-target="#descarga-de-modelos-e-contacto"><span class="header-section-number">7</span> Descarga de Modelos e Contacto</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Guía Editorial e Instrucións para Colaboradores</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<p class="subtitle lead">Estándares Técnicos, Proceso de Envío, Criterios de Supervisión e Recursos de Publicación</p>
+</div>
+
+<div>
+  <div class="description">
+    Manual completo para redactores e investigadores: estrutura de arquivos, autoría múltiple, adxuntos de simulación, esquemas PFD e fluxo de validación previa polo editor.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<!-- Distintivo Institucional SOPQ -->
+<div class="post-header-brand">
+<div class="brand-visual">
+<pre><code>&lt;img src="assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" /&gt;
+&lt;img src="assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" /&gt;</code></pre>
+</div>
+<div class="brand-text">
+<pre><code>&lt;div class="brand-institution"&gt;Universidade de Vigo &amp;middot; Escola de Enxeñaría Industrial&lt;/div&gt;
+&lt;div class="brand-lab"&gt;SOPQ // Simulación e Optimización de Procesos Químicos&lt;/div&gt;</code></pre>
+</div>
+<div class="brand-status">
+<pre><code>&lt;span class="status-indicator"&gt;&lt;/span&gt; Normativa Editorial v1.0</code></pre>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Benvido/a ao equipo editorial de SOPQ // ProcessSim
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Este blog é o repositorio aberto de enxeñaría química e termodinámica computacional da <strong>Escola de Enxeñaría Industrial (Universidade de Vigo)</strong>. Toda achega técnica é revisada polo editor antes da súa publicación definitiva para asegurar rigor físico, reproducibilidade numérica e coherencia estética.</p>
+</div>
+</div>
+<hr>
+<section id="fluxo-de-publicación-e-supervisión-editorial" class="level2" data-number="1">
+<h2 data-number="1" class="anchored" data-anchor-id="fluxo-de-publicación-e-supervisión-editorial"><span class="header-section-number">1</span> Fluxo de Publicación e Supervisión Editorial</h2>
+<p>Para garantir a calidade dos casos de simulación, <strong>ningún post se publica directamente en produción sen a revisión previa do editor</strong>. Existen dous mecanismos principais para propoñer un novo artigo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>flowchart TD</span>
+<span id="cb4-2"><a href="#cb4-2"></a>    A["Redactor/a elabora borrador (.qmd) + Ficheiros (.hsc/.dwxml/.svg)"] --&gt; B{"Vía de Remisión"}</span>
+<span id="cb4-3"><a href="#cb4-3"></a>    B --&gt;|"Opción A (Recomendada)"| C["Abre Pull Request en GitHub"]</span>
+<span id="cb4-4"><a href="#cb4-4"></a>    B --&gt;|"Opción B (Interna)"| D["Garda en posts/ con draft: true"]</span>
+<span id="cb4-5"><a href="#cb4-5"></a>    C --&gt; E["Pipeline executa verificacións de integridade"]</span>
+<span id="cb4-6"><a href="#cb4-6"></a>    D --&gt; E</span>
+<span id="cb4-7"><a href="#cb4-7"></a>    E --&gt; F["Notificación automática ao Editor (Telegram / GitHub)"]</span>
+<span id="cb4-8"><a href="#cb4-8"></a>    F --&gt; G{"Supervisión do Editor"}</span>
+<span id="cb4-9"><a href="#cb4-9"></a>    G --&gt;|"Solicitar axustes"| H["Comentarios de revisión ao autor"]</span>
+<span id="cb4-10"><a href="#cb4-10"></a>    H --&gt; A</span>
+<span id="cb4-11"><a href="#cb4-11"></a>    G --&gt;|"Aprobado"| I["Merge / draft: false"]</span>
+<span id="cb4-12"><a href="#cb4-12"></a>    I --&gt; J["🚀 Despregamento automático en GitHub Pages"]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<section id="opción-a-proposta-mediante-pull-request-en-github-recomendada" class="level3" data-number="1.1">
+<h3 data-number="1.1" class="anchored" data-anchor-id="opción-a-proposta-mediante-pull-request-en-github-recomendada"><span class="header-section-number">1.1</span> Opción A: Proposta mediante Pull Request en GitHub (Recomendada)</h3>
+<ol type="1">
+<li>Fai un <strong>fork</strong> do repositorio oficial <a href="https://github.com/anxosanchez/sopqblog"><code>github.com/anxosanchez/sopqblog</code></a>.</li>
+<li>Crea unha nova rama con nome descritivo (ex: <code>post/cstr-bioetanol</code> ou <code>post/hysys-amoniaco</code>).</li>
+<li>Redacta o artigo tomando como base o modelo canónico <a href="https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd"><code>posts/_template_post.qmd</code></a>.</li>
+<li>Adxunta os ficheiros de simulación en <code>assets/simulations/</code> e os diagramas gráficos en <code>assets/images/</code>.</li>
+<li>Abre unha <strong>Pull Request</strong> dirixida á rama <code>main</code>.</li>
+<li>O noso sistema automatizado notificará de inmediato ao editor por <strong>Telegram</strong> e executará a auditoría técnica de taxonomía.</li>
+</ol>
+</section>
+<section id="opción-b-publicación-en-modo-borrador-oculto-draft-true" class="level3" data-number="1.2">
+<h3 data-number="1.2" class="anchored" data-anchor-id="opción-b-publicación-en-modo-borrador-oculto-draft-true"><span class="header-section-number">1.2</span> Opción B: Publicación en modo borrador oculto (<code>draft: true</code>)</h3>
+<p>Se tes permisos de acceso directo ao repositorio, podes subir o teu ficheiro <code>.qmd</code> dentro do cartafol <code>posts/</code> engadindo a seguinte propiedade no encabezado YAML:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de..."</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">draft</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">   # &lt;-- MANTÉN O POST OCULTO</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<blockquote class="blockquote">
+<p><strong>Que fai <code>draft: true</code>?</strong> Quarto compila o artigo de forma privada pero <strong>non o inclúe nas listaxes públicas da portada, nin no buscador, nin no sitemap nin nas canles RSS</strong>. O editor poderá revisar o resultado renderizado, validar os balances e, unha vez aprobado, retirar a etiqueta <code>draft: true</code> para que pase a produción pública.</p>
+</blockquote>
+<hr>
+</section>
+</section>
+<section id="autoría-como-indicar-autor-ou-varios-autores" class="level2" data-number="2">
+<h2 data-number="2" class="anchored" data-anchor-id="autoría-como-indicar-autor-ou-varios-autores"><span class="header-section-number">2</span> Autoría: Como Indicar Autor ou Varios Autores</h2>
+<p>Cada artigo debe recoñecer con precisión a autoría intelectual do caso de simulación. Quarto permite definir tanto autores individuais coma equipos multidisciplinares con afiliación institucional:</p>
+<section id="exemplo-1-autoría-múltiple-con-afiliación-e-roles-recomendado" class="level3" data-number="2.1">
+<h3 data-number="2.1" class="anchored" data-anchor-id="exemplo-1-autoría-múltiple-con-afiliación-e-roles-recomendado"><span class="header-section-number">2.1</span> Exemplo 1: Autoría Múltiple con Afiliación e Roles (Recomendado)</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="pp">---</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación dunha Torre de Desbutanización con Peng-Robinson"</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado Rigoroso e Optimización da Taxa de Refluxo"</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Laura Gómez Fernández"</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escola de Enxeñaría Industrial, Universidade de Vigo"</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"laura.gomez@uvigo.gal"</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado e Simulación en HYSYS"</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Anxo Sánchez"</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escola de Enxeñaría Industrial, Universidade de Vigo"</span></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"anxo.sanchez@uvigo.gal"</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Supervisión Termodinámica e Revisión Editorial"</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-11-10"</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Aspen HYSYS"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Separación"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caso HSC"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Vídeo Titorial"</span><span class="kw">]</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="exemplo-2-autoría-individual" class="level3" data-number="2.2">
+<h3 data-number="2.2" class="anchored" data-anchor-id="exemplo-2-autoría-individual"><span class="header-section-number">2.2</span> Exemplo 2: Autoría Individual</h3>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1"></a><span class="pp">---</span></span>
+<span id="cb7-2"><a href="#cb7-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Resolución Numérica de Rachford-Rice en Python"</span></span>
+<span id="cb7-3"><a href="#cb7-3"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb7-4"><a href="#cb7-4"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Carlos Vázquez Ramos"</span></span>
+<span id="cb7-5"><a href="#cb7-5"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Departamento de Enxeñaría Química, EEI UVigo"</span></span>
+<span id="cb7-6"><a href="#cb7-6"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-11-10"</span></span>
+<span id="cb7-7"><a href="#cb7-7"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Python"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Termodinámica"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caderno Colab"</span><span class="kw">]</span></span>
+<span id="cb7-8"><a href="#cb7-8"></a><span class="pp">---</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<p>O sistema de deseño do blog estila automaticamente estas entradas como tarxetas de autor con distintivos visuais, garantindo atribución profesional en formato editorial.</p>
+<hr>
+</section>
+</section>
+<section id="estrutura-de-arquivos-e-subida-de-recursos" class="level2" data-number="3">
+<h2 data-number="3" class="anchored" data-anchor-id="estrutura-de-arquivos-e-subida-de-recursos"><span class="header-section-number">3</span> Estrutura de Arquivos e Subida de Recursos</h2>
+<p>Todos os recursos deben organizarse de acordo á estrutura estandarizada do proxecto:</p>
+<pre><code>sopqblog/
+├── posts/
+│   ├── _template_post.qmd               &lt;-- Modelo base canónico
+│   └── caso-nome-do-proceso.qmd         &lt;-- O teu artigo técnico
+├── assets/
+│   ├── images/
+│   │   ├── caso-nome-pfd.svg            &lt;-- Diagrama de fluxo PFD (vectorial)
+│   │   └── caso-nome-grafica.png        &lt;-- Gráficas de perfís / converxencia
+│   └── simulations/
+│       ├── caso-nome.hsc                &lt;-- Caso Aspen HYSYS
+│       ├── caso-nome.dwxml              &lt;-- Caso DWSIM
+│       └── caso-nome.ipynb              &lt;-- Caderno Jupyter / Colab</code></pre>
+<section id="ficheiros-de-simulación-industrial" class="level3" data-number="3.1">
+<h3 data-number="3.1" class="anchored" data-anchor-id="ficheiros-de-simulación-industrial"><span class="header-section-number">3.1</span> 1. Ficheiros de Simulación Industrial</h3>
+<ul>
+<li><strong>Aspen HYSYS:</strong> Arquivos <code>.hsc</code> ou copias de seguridade <code>.bkp</code>. Deben gardarse en estado <strong>converxido</strong> (sen erros de balance nin correntes sen resolver).</li>
+<li><strong>DWSIM:</strong> Arquivos <code>.dwxml</code> compatibles coa versión actual DWSIM v8+.</li>
+<li><strong>Python:</strong> Cadernos <code>.ipynb</code> ou scripts reproducibles <code>.py</code> facendo uso de bibliotecas estándar (<code>scipy</code>, <code>numpy</code>, <code>matplotlib</code>, <code>thermo</code>).</li>
+<li><strong>Grandes volumes:</strong> Se o ficheiro supera os <span class="math inline">25\text{ MB}</span>, recoméndase aloxalo no cartafol oficial de Google Drive do SOPQ e ligalo mediante a barra de recursos.</li>
+</ul>
+</section>
+<section id="diagramas-de-fluxo-pfd-e-gráficas" class="level3" data-number="3.2">
+<h3 data-number="3.2" class="anchored" data-anchor-id="diagramas-de-fluxo-pfd-e-gráficas"><span class="header-section-number">3.2</span> 2. Diagramas de Fluxo PFD e Gráficas</h3>
+<ul>
+<li><strong>Formato prioritario para PFD:</strong> Emprega ficheiros <strong>SVG</strong> vectoriais para diagramas de fluxo de proceso. Mantéñense nítidos a calquera resolución e teñen un peso mínimo.</li>
+<li><strong>Gráficas de variables:</strong> As figuras de perfís de temperatura, curvas de equilibrio ou fraccións molares pódense achegar en <code>.svg</code> ou <code>.png</code> a alta resolución (<span class="math inline">300\text{ dpi}</span> mínima).</li>
+</ul>
+</section>
+<section id="vídeos-explicativos-e-screencasts" class="level3" data-number="3.3">
+<h3 data-number="3.3" class="anchored" data-anchor-id="vídeos-explicativos-e-screencasts"><span class="header-section-number">3.3</span> 3. Vídeos Explicativos e Screencasts</h3>
+<ul>
+<li>Se dispós dunha gravación en vídeo da resolución do caso (simulación interactiva, navegación polas ventás de HYSYS ou DWSIM):
+<ul>
+<li><p>Sube o vídeo á canle oficial de YouTube de SOPQ ou envía o ficheiro <code>.mp4</code> ao editor.</p></li>
+<li><p>Para incrustar o reprodutor nativo responsive en Quarto, engade no teu <code>.qmd</code>:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb9"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb9-1"><a href="#cb9-1"></a>{{&lt; video https://www.youtube.com/watch?v=ID_DO_TEU_VIDEO &gt;}}</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div></li>
+</ul></li>
+</ul>
+<hr>
+</section>
+</section>
+<section id="cadros-de-métricas-e-recursos-visuais-dispoñibles" class="level2" data-number="4">
+<h2 data-number="4" class="anchored" data-anchor-id="cadros-de-métricas-e-recursos-visuais-dispoñibles"><span class="header-section-number">4</span> Cadros de Métricas e Recursos Visuais Dispoñibles</h2>
+<p>O blog dispón de compoñentes CSS exclusivos deseñados para simulación de procesos químicos que debes utilizar no teu post:</p>
+<section id="barra-de-recursos-interactivos" class="level3" data-number="4.1">
+<h3 data-number="4.1" class="anchored" data-anchor-id="barra-de-recursos-interactivos"><span class="header-section-number">4.1</span> Barra de Recursos Interactivos</h3>
+<p>Sitúase ao comezo do artigo para dar acceso directo aos arquivos descargables:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb10"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb10-1"><a href="#cb10-1"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge-bar"</span><span class="dt">&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2"></a>  <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"badge-label"</span><span class="dt">&gt;</span>Recursos do Caso:<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://colab.research.google.com/..."</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-colab"</span><span class="dt">&gt;</span>⚡ Abrir en Google Colab<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb10-4"><a href="#cb10-4"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://drive.google.com/..."</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-drive"</span><span class="dt">&gt;</span>📁 Descargar Simulación (.hsc)<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb10-5"><a href="#cb10-5"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"slides-meu-caso.html"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-slides"</span><span class="dt">&gt;</span>📊 Ver Diapositivas Revealjs<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb10-6"><a href="#cb10-6"></a>  <span class="dt">&lt;</span><span class="kw">a</span><span class="ot"> href</span><span class="op">=</span><span class="st">"https://youtube.com/..."</span><span class="ot"> class</span><span class="op">=</span><span class="st">"resource-badge resource-badge-youtube"</span><span class="dt">&gt;</span>▶ Ver en YouTube<span class="dt">&lt;/</span><span class="kw">a</span><span class="dt">&gt;</span></span>
+<span id="cb10-7"><a href="#cb10-7"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="cuadrícula-de-métricas-clave-.metric-grid" class="level3" data-number="4.2">
+<h3 data-number="4.2" class="anchored" data-anchor-id="cuadrícula-de-métricas-clave-.metric-grid"><span class="header-section-number">4.2</span> Cuadrícula de Métricas Clave (<code>.metric-grid</code>)</h3>
+<p>Resumo dos balances e especificacións operacionais principais:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb11"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb11-1"><a href="#cb11-1"></a>::: {.metric-grid}</span>
+<span id="cb11-2"><a href="#cb11-2"></a>::: {.metric-card .accent-cyan}</span>
+<span id="cb11-3"><a href="#cb11-3"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Temperatura Operación<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>78.4<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>°C<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-5"><a href="#cb11-5"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Equilibrio Térmico (351.55 K)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-6"><a href="#cb11-6"></a>:::</span>
+<span id="cb11-7"><a href="#cb11-7"></a></span>
+<span id="cb11-8"><a href="#cb11-8"></a>::: {.metric-card .accent-amber}</span>
+<span id="cb11-9"><a href="#cb11-9"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Presión Sistema<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-10"><a href="#cb11-10"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>1.20<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>bar<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-11"><a href="#cb11-11"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Absoluta en Separador<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-12"><a href="#cb11-12"></a>:::</span>
+<span id="cb11-13"><a href="#cb11-13"></a></span>
+<span id="cb11-14"><a href="#cb11-14"></a>::: {.metric-card .accent-emerald}</span>
+<span id="cb11-15"><a href="#cb11-15"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Fracción Vapor (V/F)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-16"><a href="#cb11-16"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>0.4285<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-17"><a href="#cb11-17"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Residuo Rachford-Rice <span class="dv">&amp;lt;</span> 10⁻⁸<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-18"><a href="#cb11-18"></a>:::</span>
+<span id="cb11-19"><a href="#cb11-19"></a></span>
+<span id="cb11-20"><a href="#cb11-20"></a>::: {.metric-card .accent-purple}</span>
+<span id="cb11-21"><a href="#cb11-21"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-header"</span><span class="dt">&gt;</span>Carga Térmica (Duty)<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-22"><a href="#cb11-22"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-value"</span><span class="dt">&gt;</span>420.5<span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-unit"</span><span class="dt">&gt;</span>kW<span class="dt">&lt;/</span><span class="kw">span</span><span class="dt">&gt;&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-23"><a href="#cb11-23"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"metric-footer"</span><span class="dt">&gt;</span>Requirimento de Calefacción<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb11-24"><a href="#cb11-24"></a>:::</span>
+<span id="cb11-25"><a href="#cb11-25"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</section>
+<section id="táboas-de-correntes-de-proceso-.stream-table" class="level3" data-number="4.3">
+<h3 data-number="4.3" class="anchored" data-anchor-id="táboas-de-correntes-de-proceso-.stream-table"><span class="header-section-number">4.3</span> Táboas de Correntes de Proceso (<code>.stream-table</code>)</h3>
+<p>Para presentar os balances de materia e enerxía de correntes con aliñación numérica monoespazo:</p>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb12"><pre class="sourceCode numberSource html number-lines code-with-copy"><code class="sourceCode html"><span id="cb12-1"><a href="#cb12-1"></a>::: {.stream-table-wrapper}</span>
+<span id="cb12-2"><a href="#cb12-2"></a>| Corrente | Temperatura (°C) | Presión (bar) | Caudal Molar (kmol/h) | Frac. Vapor | Compoñente Clave |</span>
+<span id="cb12-3"><a href="#cb12-3"></a>|:---|:---:|:---:|:---:|:---:|:---|</span>
+<span id="cb12-4"><a href="#cb12-4"></a>| **Alimentación (F)** | 85.0 | 2.50 | 100.00 | 0.000 | Mestura C5-C7 |</span>
+<span id="cb12-5"><a href="#cb12-5"></a>| **Vapor Superior (V)** | 78.4 | 1.20 | 42.85 | 1.000 | Enriquecido en n-C5 |</span>
+<span id="cb12-6"><a href="#cb12-6"></a>| **Líquido Fondo (L)** | 78.4 | 1.20 | 57.15 | 0.000 | Enriquecido en n-C7 |</span>
+<span id="cb12-7"><a href="#cb12-7"></a>:::</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+</section>
+<section id="taxonomía-canónica-obrigatoria" class="level2" data-number="5">
+<h2 data-number="5" class="anchored" data-anchor-id="taxonomía-canónica-obrigatoria"><span class="header-section-number">5</span> Taxonomía Canónica Obrigatoria</h2>
+<p>Para que os filtros automáticos da portada funcionen correctamente, cada post <strong>debe ter exactamente as 3 categorías canónicas ortogonais</strong>:</p>
+<ol type="1">
+<li><strong>Nivel 1 (Unha única plataforma):</strong> <code>"Aspen HYSYS"</code>, <code>"DWSIM"</code> ou <code>"Python"</code>.</li>
+<li><strong>Nivel 2 (Polo menos un dominio):</strong> <code>"Separación"</code>, <code>"Reactores"</code>, <code>"Intercambio Térmico"</code>, <code>"Termodinámica"</code>, <code>"Control de Procesos"</code>, <code>"Servicios Industriais"</code>, <code>"Dinámica de Fluidos"</code> ou <code>"Optimización"</code>.</li>
+<li><strong>Nivel 3 (Entregables dispoñibles):</strong> <code>"Caso HSC"</code>, <code>"Simulación DWSIM"</code>, <code>"Caderno Colab"</code>, <code>"Vídeo Titorial"</code> ou <code>"Slide Deck"</code>.</li>
+</ol>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb13"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb13-1"><a href="#cb13-1"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Aspen HYSYS"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Separación"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caso HSC"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Vídeo Titorial"</span><span class="kw">]</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<hr>
+</section>
+<section id="notificación-ao-editor-e-sistema-de-avisos" class="level2" data-number="6">
+<h2 data-number="6" class="anchored" data-anchor-id="notificación-ao-editor-e-sistema-de-avisos"><span class="header-section-number">6</span> Notificación ao Editor e Sistema de Avisos</h2>
+<p>O noso pipeline inclúe un servizo de notificación instantánea en Telegram. Cando propoñas un novo caso ou abras unha Pull Request: 1. O bot de Telegram do SOPQ envía unha alerta directa ao editor con: - Título do caso e autor/es. - Plataforma de simulación e modelo termodinámico empregado. - Estado das validacións numéricas e ficheiros adxuntos. - Ligazón directa para previsualización e aprobación. 2. O editor revisará a consistencia dos datos, comprobará a ausencia de residuos termodinámicos (<span class="math inline">&lt; 10^{-7}</span>) e confirmará a publicación. 3. Tras a aprobación, o motor de Integración Continua (CI/CD) publica automaticamente o artigo na web sen ningunha intervención adicional.</p>
+<hr>
+</section>
+<section id="descarga-de-modelos-e-contacto" class="level2" data-number="7">
+<h2 data-number="7" class="anchored" data-anchor-id="descarga-de-modelos-e-contacto"><span class="header-section-number">7</span> Descarga de Modelos e Contacto</h2>
+<p>Podes descargar directamente os modelos e recursos oficiais do blog:</p>
+<ul>
+<li>📄 <strong><a href="https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd">Modelo Canónico de Post (.qmd)</a></strong></li>
+<li>📊 <strong><a href="https://github.com/anxosanchez/sopqblog/blob/main/posts/caso-destilacion-flash.qmd">Exemplo Completo: Destilación Flash (.qmd)</a></strong></li>
+<li>📁 <strong><a href="https://github.com/anxosanchez/sopqblog">Repositorio GitHub Oficial (sopqblog)</a></strong></li>
+</ul>
+<p>Para dúbidas sobre o modelado ou asignación de temas de simulación, contacta directamente co editor:<br>
+📧 <strong>Anxo Sánchez</strong> · <code>anxo.sanchez@uvigo.gal</code> · Escola de Enxeñaría Industrial, Universidade de Vigo.</p>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script>
+/**
+ * SOPQ Theme-Aware Logo Switcher & TOC Brand Injector
+ * Harmonizes light and dark logos dynamically across page transitions, theme changes, and directory depths.
+ */
+(function() {
+  function syncThemeLogos() {
+    var isDark = document.body.classList.contains("quarto-dark") ||
+                 document.documentElement.getAttribute("data-bs-theme") === "dark" ||
+                 (window.localStorage && window.localStorage.getItem("quarto-color-scheme") === "alternate");
+
+    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
+                   (document.querySelector('meta[name="quarto:offset"]') && 
+                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
+    var prefix = isSubdir ? "../" : "./";
+
+    // 1. Sync Quarto navbar logos
+    var navLogos = document.querySelectorAll(".navbar-brand .navbar-logo");
+    navLogos.forEach(function(img) {
+      var currentSrc = img.getAttribute("src");
+      if (!currentSrc) return;
+      if (isDark && currentSrc.indexOf("logo-light") !== -1) {
+        img.setAttribute("src", currentSrc.replace("logo-light", "logo-dark"));
+      } else if (!isDark && currentSrc.indexOf("logo-dark") !== -1) {
+        img.setAttribute("src", currentSrc.replace("logo-dark", "logo-light"));
+      }
+    });
+
+    // 2. Fix relative paths for footer logos in subdirectories
+    var footerLogos = document.querySelectorAll(".footer-logo");
+    footerLogos.forEach(function(img) {
+      var src = img.getAttribute("src");
+      if (src && !src.startsWith("http") && !src.startsWith("../") && !src.startsWith("/")) {
+        if (isSubdir) {
+          img.setAttribute("src", "../" + src.replace(/^\.\//, ""));
+        }
+      }
+    });
+
+    // 3. Inject SOPQ theme-reactive logo into TOC sidebar if present
+    var tocEl = document.querySelector("#TOC");
+    if (tocEl && !tocEl.querySelector(".toc-brand-badge")) {
+      var tocBadge = document.createElement("div");
+      tocBadge.className = "toc-brand-badge";
+      tocBadge.innerHTML = 
+        '<img src="' + prefix + 'assets/images/logo-light.jpg" class="toc-logo sopq-logo-light" alt="SOPQ EEI UVigo" />' +
+        '<img src="' + prefix + 'assets/images/logo-dark.jpg" class="toc-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />' +
+        '<div class="toc-brand-meta">' +
+          '<span class="toc-brand-name">SOPQ // UVigo</span>' +
+          '<span class="toc-brand-sub">Simulación de Procesos</span>' +
+        '</div>';
+      tocEl.insertBefore(tocBadge, tocEl.firstChild);
+    }
+  }
+
+  // Run on initial load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", syncThemeLogos);
+  } else {
+    syncThemeLogos();
+  }
+
+  // Observe theme class and attribute changes on <body> and <html>
+  var observer = new MutationObserver(function() {
+    syncThemeLogos();
+  });
+
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-bs-theme", "class"] });
+  if (document.body) {
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  } else {
+    document.addEventListener("DOMContentLoaded", function() {
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    });
+  }
+
+  // Hook into storage events for cross-tab or storage changes
+  window.addEventListener("storage", function(e) {
+    if (e.key === "quarto-color-scheme") {
+      syncThemeLogos();
+    }
+  });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/anxosanchez\.github\.io\/sopqblog");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb14" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb14-1"><a href="#cb14-1"></a><span class="co">---</span></span>
+<span id="cb14-2"><a href="#cb14-2"></a><span class="an">title:</span><span class="co"> "Guía Editorial e Instrucións para Colaboradores"</span></span>
+<span id="cb14-3"><a href="#cb14-3"></a><span class="an">subtitle:</span><span class="co"> "Estándares Técnicos, Proceso de Envío, Criterios de Supervisión e Recursos de Publicación"</span></span>
+<span id="cb14-4"><a href="#cb14-4"></a><span class="an">description:</span><span class="co"> "Manual completo para redactores e investigadores: estrutura de arquivos, autoría múltiple, adxuntos de simulación, esquemas PFD e fluxo de validación previa polo editor."</span></span>
+<span id="cb14-5"><a href="#cb14-5"></a><span class="an">page-layout:</span><span class="co"> article</span></span>
+<span id="cb14-6"><a href="#cb14-6"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb14-7"><a href="#cb14-7"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb14-8"><a href="#cb14-8"></a><span class="an">lang:</span><span class="co"> gl</span></span>
+<span id="cb14-9"><a href="#cb14-9"></a><span class="co">---</span></span>
+<span id="cb14-10"><a href="#cb14-10"></a></span>
+<span id="cb14-11"><a href="#cb14-11"></a><span class="co">&lt;!-- Distintivo Institucional SOPQ --&gt;</span></span>
+<span id="cb14-12"><a href="#cb14-12"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-header-brand"</span><span class="dt">&gt;</span></span>
+<span id="cb14-13"><a href="#cb14-13"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-visual"</span><span class="dt">&gt;</span></span>
+<span id="cb14-14"><a href="#cb14-14"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"assets/images/logo-light.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-brand-logo sopq-logo-light"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb14-15"><a href="#cb14-15"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"assets/images/logo-dark.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-brand-logo sopq-logo-dark"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb14-16"><a href="#cb14-16"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb14-17"><a href="#cb14-17"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-text"</span><span class="dt">&gt;</span></span>
+<span id="cb14-18"><a href="#cb14-18"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-institution"</span><span class="dt">&gt;</span>Universidade de Vigo <span class="dv">&amp;middot;</span> Escola de Enxeñaría Industrial<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb14-19"><a href="#cb14-19"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-lab"</span><span class="dt">&gt;</span>SOPQ // Simulación e Optimización de Procesos Químicos<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb14-20"><a href="#cb14-20"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb14-21"><a href="#cb14-21"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-status"</span><span class="dt">&gt;</span></span>
+<span id="cb14-22"><a href="#cb14-22"></a>    <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"status-indicator"</span><span class="dt">&gt;&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span> Normativa Editorial v1.0</span>
+<span id="cb14-23"><a href="#cb14-23"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb14-24"><a href="#cb14-24"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb14-25"><a href="#cb14-25"></a></span>
+<span id="cb14-26"><a href="#cb14-26"></a>::: {.callout-note appearance="simple"}</span>
+<span id="cb14-27"><a href="#cb14-27"></a><span class="fu">## Benvido/a ao equipo editorial de SOPQ // ProcessSim</span></span>
+<span id="cb14-28"><a href="#cb14-28"></a>Este blog é o repositorio aberto de enxeñaría química e termodinámica computacional da **Escola de Enxeñaría Industrial (Universidade de Vigo)**. Toda achega técnica é revisada polo editor antes da súa publicación definitiva para asegurar rigor físico, reproducibilidade numérica e coherencia estética.</span>
+<span id="cb14-29"><a href="#cb14-29"></a>:::</span>
+<span id="cb14-30"><a href="#cb14-30"></a></span>
+<span id="cb14-31"><a href="#cb14-31"></a>---</span>
+<span id="cb14-32"><a href="#cb14-32"></a></span>
+<span id="cb14-33"><a href="#cb14-33"></a><span class="fu">## Fluxo de Publicación e Supervisión Editorial</span></span>
+<span id="cb14-34"><a href="#cb14-34"></a></span>
+<span id="cb14-35"><a href="#cb14-35"></a>Para garantir a calidade dos casos de simulación, **ningún post se publica directamente en produción sen a revisión previa do editor**. Existen dous mecanismos principais para propoñer un novo artigo:</span>
+<span id="cb14-36"><a href="#cb14-36"></a></span>
+<span id="cb14-37"><a href="#cb14-37"></a><span class="in">```mermaid</span></span>
+<span id="cb14-38"><a href="#cb14-38"></a>flowchart TD</span>
+<span id="cb14-39"><a href="#cb14-39"></a>    A[<span class="ot">"</span><span class="st">Redactor/a elabora borrador (.qmd) + Ficheiros (.hsc/.dwxml/.svg)</span><span class="ot">"</span>] --&gt; B{<span class="ot">"</span><span class="st">Vía de Remisión</span><span class="ot">"</span>}</span>
+<span id="cb14-40"><a href="#cb14-40"></a>    B --&gt;|<span class="ot">"</span><span class="st">Opción A (Recomendada)</span><span class="ot">"</span>| C[<span class="ot">"</span><span class="st">Abre Pull Request en GitHub</span><span class="ot">"</span>]</span>
+<span id="cb14-41"><a href="#cb14-41"></a>    B --&gt;|<span class="ot">"</span><span class="st">Opción B (Interna)</span><span class="ot">"</span>| D[<span class="ot">"</span><span class="st">Garda en posts/ con draft: true</span><span class="ot">"</span>]</span>
+<span id="cb14-42"><a href="#cb14-42"></a>    C --&gt; E[<span class="ot">"</span><span class="st">Pipeline executa verificacións de integridade</span><span class="ot">"</span>]</span>
+<span id="cb14-43"><a href="#cb14-43"></a>    D --&gt; E</span>
+<span id="cb14-44"><a href="#cb14-44"></a>    E --&gt; F[<span class="ot">"</span><span class="st">Notificación automática ao Editor (Telegram / GitHub)</span><span class="ot">"</span>]</span>
+<span id="cb14-45"><a href="#cb14-45"></a>    F --&gt; G{<span class="ot">"</span><span class="st">Supervisión do Editor</span><span class="ot">"</span>}</span>
+<span id="cb14-46"><a href="#cb14-46"></a>    G --&gt;|<span class="ot">"</span><span class="st">Solicitar axustes</span><span class="ot">"</span>| H[<span class="ot">"</span><span class="st">Comentarios de revisión ao autor</span><span class="ot">"</span>]</span>
+<span id="cb14-47"><a href="#cb14-47"></a>    H --&gt; A</span>
+<span id="cb14-48"><a href="#cb14-48"></a>    G --&gt;|<span class="ot">"</span><span class="st">Aprobado</span><span class="ot">"</span>| I[<span class="ot">"</span><span class="st">Merge / draft: false</span><span class="ot">"</span>]</span>
+<span id="cb14-49"><a href="#cb14-49"></a>    I --&gt; J[<span class="ot">"</span><span class="st">🚀 Despregamento automático en GitHub Pages</span><span class="ot">"</span>]</span>
+<span id="cb14-50"><a href="#cb14-50"></a><span class="in">```</span></span>
+<span id="cb14-51"><a href="#cb14-51"></a></span>
+<span id="cb14-52"><a href="#cb14-52"></a><span class="fu">### Opción A: Proposta mediante Pull Request en GitHub (Recomendada)</span></span>
+<span id="cb14-53"><a href="#cb14-53"></a><span class="ss">1. </span>Fai un **fork** do repositorio oficial <span class="co">[</span><span class="ot">`github.com/anxosanchez/sopqblog`</span><span class="co">](https://github.com/anxosanchez/sopqblog)</span>.</span>
+<span id="cb14-54"><a href="#cb14-54"></a><span class="ss">2. </span>Crea unha nova rama con nome descritivo (ex: <span class="in">`post/cstr-bioetanol`</span> ou <span class="in">`post/hysys-amoniaco`</span>).</span>
+<span id="cb14-55"><a href="#cb14-55"></a><span class="ss">3. </span>Redacta o artigo tomando como base o modelo canónico <span class="co">[</span><span class="ot">`posts/_template_post.qmd`</span><span class="co">](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)</span>.</span>
+<span id="cb14-56"><a href="#cb14-56"></a><span class="ss">4. </span>Adxunta os ficheiros de simulación en <span class="in">`assets/simulations/`</span> e os diagramas gráficos en <span class="in">`assets/images/`</span>.</span>
+<span id="cb14-57"><a href="#cb14-57"></a><span class="ss">5. </span>Abre unha **Pull Request** dirixida á rama <span class="in">`main`</span>.</span>
+<span id="cb14-58"><a href="#cb14-58"></a><span class="ss">6. </span>O noso sistema automatizado notificará de inmediato ao editor por **Telegram** e executará a auditoría técnica de taxonomía.</span>
+<span id="cb14-59"><a href="#cb14-59"></a></span>
+<span id="cb14-60"><a href="#cb14-60"></a><span class="fu">### Opción B: Publicación en modo borrador oculto (`draft: true`)</span></span>
+<span id="cb14-61"><a href="#cb14-61"></a>Se tes permisos de acceso directo ao repositorio, podes subir o teu ficheiro <span class="in">`.qmd`</span> dentro do cartafol <span class="in">`posts/`</span> engadindo a seguinte propiedade no encabezado YAML:</span>
+<span id="cb14-62"><a href="#cb14-62"></a></span>
+<span id="cb14-63"><a href="#cb14-63"></a><span class="in">```yaml</span></span>
+<span id="cb14-64"><a href="#cb14-64"></a><span class="pp">---</span></span>
+<span id="cb14-65"><a href="#cb14-65"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de..."</span></span>
+<span id="cb14-66"><a href="#cb14-66"></a><span class="fu">draft</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">   # &lt;-- MANTÉN O POST OCULTO</span></span>
+<span id="cb14-67"><a href="#cb14-67"></a><span class="pp">---</span></span>
+<span id="cb14-68"><a href="#cb14-68"></a><span class="in">```</span></span>
+<span id="cb14-69"><a href="#cb14-69"></a></span>
+<span id="cb14-70"><a href="#cb14-70"></a><span class="at">&gt; **Que fai `draft: true`?** Quarto compila o artigo de forma privada pero **non o inclúe nas listaxes públicas da portada, nin no buscador, nin no sitemap nin nas canles RSS**. O editor poderá revisar o resultado renderizado, validar os balances e, unha vez aprobado, retirar a etiqueta </span><span class="in">`draft: true`</span><span class="at"> para que pase a produción pública.</span></span>
+<span id="cb14-71"><a href="#cb14-71"></a></span>
+<span id="cb14-72"><a href="#cb14-72"></a>---</span>
+<span id="cb14-73"><a href="#cb14-73"></a></span>
+<span id="cb14-74"><a href="#cb14-74"></a><span class="fu">## Autoría: Como Indicar Autor ou Varios Autores</span></span>
+<span id="cb14-75"><a href="#cb14-75"></a></span>
+<span id="cb14-76"><a href="#cb14-76"></a>Cada artigo debe recoñecer con precisión a autoría intelectual do caso de simulación. Quarto permite definir tanto autores individuais coma equipos multidisciplinares con afiliación institucional:</span>
+<span id="cb14-77"><a href="#cb14-77"></a></span>
+<span id="cb14-78"><a href="#cb14-78"></a><span class="fu">### Exemplo 1: Autoría Múltiple con Afiliación e Roles (Recomendado)</span></span>
+<span id="cb14-79"><a href="#cb14-79"></a></span>
+<span id="cb14-80"><a href="#cb14-80"></a><span class="in">```yaml</span></span>
+<span id="cb14-81"><a href="#cb14-81"></a><span class="pp">---</span></span>
+<span id="cb14-82"><a href="#cb14-82"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación dunha Torre de Desbutanización con Peng-Robinson"</span></span>
+<span id="cb14-83"><a href="#cb14-83"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado Rigoroso e Optimización da Taxa de Refluxo"</span></span>
+<span id="cb14-84"><a href="#cb14-84"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb14-85"><a href="#cb14-85"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Laura Gómez Fernández"</span></span>
+<span id="cb14-86"><a href="#cb14-86"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escola de Enxeñaría Industrial, Universidade de Vigo"</span></span>
+<span id="cb14-87"><a href="#cb14-87"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"laura.gomez@uvigo.gal"</span></span>
+<span id="cb14-88"><a href="#cb14-88"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado e Simulación en HYSYS"</span></span>
+<span id="cb14-89"><a href="#cb14-89"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Anxo Sánchez"</span></span>
+<span id="cb14-90"><a href="#cb14-90"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escola de Enxeñaría Industrial, Universidade de Vigo"</span></span>
+<span id="cb14-91"><a href="#cb14-91"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"anxo.sanchez@uvigo.gal"</span></span>
+<span id="cb14-92"><a href="#cb14-92"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Supervisión Termodinámica e Revisión Editorial"</span></span>
+<span id="cb14-93"><a href="#cb14-93"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-11-10"</span></span>
+<span id="cb14-94"><a href="#cb14-94"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Aspen HYSYS"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Separación"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caso HSC"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Vídeo Titorial"</span><span class="kw">]</span></span>
+<span id="cb14-95"><a href="#cb14-95"></a><span class="pp">---</span></span>
+<span id="cb14-96"><a href="#cb14-96"></a><span class="in">```</span></span>
+<span id="cb14-97"><a href="#cb14-97"></a></span>
+<span id="cb14-98"><a href="#cb14-98"></a><span class="fu">### Exemplo 2: Autoría Individual</span></span>
+<span id="cb14-99"><a href="#cb14-99"></a></span>
+<span id="cb14-100"><a href="#cb14-100"></a><span class="in">```yaml</span></span>
+<span id="cb14-101"><a href="#cb14-101"></a><span class="pp">---</span></span>
+<span id="cb14-102"><a href="#cb14-102"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Resolución Numérica de Rachford-Rice en Python"</span></span>
+<span id="cb14-103"><a href="#cb14-103"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb14-104"><a href="#cb14-104"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Carlos Vázquez Ramos"</span></span>
+<span id="cb14-105"><a href="#cb14-105"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Departamento de Enxeñaría Química, EEI UVigo"</span></span>
+<span id="cb14-106"><a href="#cb14-106"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-11-10"</span></span>
+<span id="cb14-107"><a href="#cb14-107"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Python"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Termodinámica"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caderno Colab"</span><span class="kw">]</span></span>
+<span id="cb14-108"><a href="#cb14-108"></a><span class="pp">---</span></span>
+<span id="cb14-109"><a href="#cb14-109"></a><span class="in">```</span></span>
+<span id="cb14-110"><a href="#cb14-110"></a></span>
+<span id="cb14-111"><a href="#cb14-111"></a>O sistema de deseño do blog estila automaticamente estas entradas como tarxetas de autor con distintivos visuais, garantindo atribución profesional en formato editorial.</span>
+<span id="cb14-112"><a href="#cb14-112"></a></span>
+<span id="cb14-113"><a href="#cb14-113"></a>---</span>
+<span id="cb14-114"><a href="#cb14-114"></a></span>
+<span id="cb14-115"><a href="#cb14-115"></a><span class="fu">## Estrutura de Arquivos e Subida de Recursos</span></span>
+<span id="cb14-116"><a href="#cb14-116"></a></span>
+<span id="cb14-117"><a href="#cb14-117"></a>Todos os recursos deben organizarse de acordo á estrutura estandarizada do proxecto:</span>
+<span id="cb14-118"><a href="#cb14-118"></a></span>
+<span id="cb14-119"><a href="#cb14-119"></a><span class="in">```</span></span>
+<span id="cb14-120"><a href="#cb14-120"></a><span class="in">sopqblog/</span></span>
+<span id="cb14-121"><a href="#cb14-121"></a><span class="in">├── posts/</span></span>
+<span id="cb14-122"><a href="#cb14-122"></a><span class="in">│   ├── _template_post.qmd               &lt;-- Modelo base canónico</span></span>
+<span id="cb14-123"><a href="#cb14-123"></a><span class="in">│   └── caso-nome-do-proceso.qmd         &lt;-- O teu artigo técnico</span></span>
+<span id="cb14-124"><a href="#cb14-124"></a><span class="in">├── assets/</span></span>
+<span id="cb14-125"><a href="#cb14-125"></a><span class="in">│   ├── images/</span></span>
+<span id="cb14-126"><a href="#cb14-126"></a><span class="in">│   │   ├── caso-nome-pfd.svg            &lt;-- Diagrama de fluxo PFD (vectorial)</span></span>
+<span id="cb14-127"><a href="#cb14-127"></a><span class="in">│   │   └── caso-nome-grafica.png        &lt;-- Gráficas de perfís / converxencia</span></span>
+<span id="cb14-128"><a href="#cb14-128"></a><span class="in">│   └── simulations/</span></span>
+<span id="cb14-129"><a href="#cb14-129"></a><span class="in">│       ├── caso-nome.hsc                &lt;-- Caso Aspen HYSYS</span></span>
+<span id="cb14-130"><a href="#cb14-130"></a><span class="in">│       ├── caso-nome.dwxml              &lt;-- Caso DWSIM</span></span>
+<span id="cb14-131"><a href="#cb14-131"></a><span class="in">│       └── caso-nome.ipynb              &lt;-- Caderno Jupyter / Colab</span></span>
+<span id="cb14-132"><a href="#cb14-132"></a><span class="in">```</span></span>
+<span id="cb14-133"><a href="#cb14-133"></a></span>
+<span id="cb14-134"><a href="#cb14-134"></a><span class="fu">### 1. Ficheiros de Simulación Industrial</span></span>
+<span id="cb14-135"><a href="#cb14-135"></a><span class="ss">- </span>**Aspen HYSYS:** Arquivos `.hsc` ou copias de seguridade `.bkp`. Deben gardarse en estado **converxido** (sen erros de balance nin correntes sen resolver).</span>
+<span id="cb14-136"><a href="#cb14-136"></a><span class="ss">- </span>**DWSIM:** Arquivos <span class="in">`.dwxml`</span> compatibles coa versión actual DWSIM v8+.</span>
+<span id="cb14-137"><a href="#cb14-137"></a><span class="ss">- </span>**Python:** Cadernos <span class="in">`.ipynb`</span> ou scripts reproducibles <span class="in">`.py`</span> facendo uso de bibliotecas estándar (<span class="in">`scipy`</span>, <span class="in">`numpy`</span>, <span class="in">`matplotlib`</span>, <span class="in">`thermo`</span>).</span>
+<span id="cb14-138"><a href="#cb14-138"></a><span class="ss">- </span>**Grandes volumes:** Se o ficheiro supera os $25\text{ MB}$, recoméndase aloxalo no cartafol oficial de Google Drive do SOPQ e ligalo mediante a barra de recursos.</span>
+<span id="cb14-139"><a href="#cb14-139"></a></span>
+<span id="cb14-140"><a href="#cb14-140"></a><span class="fu">### 2. Diagramas de Fluxo PFD e Gráficas</span></span>
+<span id="cb14-141"><a href="#cb14-141"></a><span class="ss">- </span>**Formato prioritario para PFD:** Emprega ficheiros **SVG** vectoriais para diagramas de fluxo de proceso. Mantéñense nítidos a calquera resolución e teñen un peso mínimo.</span>
+<span id="cb14-142"><a href="#cb14-142"></a><span class="ss">- </span>**Gráficas de variables:** As figuras de perfís de temperatura, curvas de equilibrio ou fraccións molares pódense achegar en <span class="in">`.svg`</span> ou <span class="in">`.png`</span> a alta resolución ($300\text{ dpi}$ mínima).</span>
+<span id="cb14-143"><a href="#cb14-143"></a></span>
+<span id="cb14-144"><a href="#cb14-144"></a><span class="fu">### 3. Vídeos Explicativos e Screencasts</span></span>
+<span id="cb14-145"><a href="#cb14-145"></a><span class="ss">- </span>Se dispós dunha gravación en vídeo da resolución do caso (simulación interactiva, navegación polas ventás de HYSYS ou DWSIM):</span>
+<span id="cb14-146"><a href="#cb14-146"></a><span class="ss">  - </span>Sube o vídeo á canle oficial de YouTube de SOPQ ou envía o ficheiro <span class="in">`.mp4`</span> ao editor.</span>
+<span id="cb14-147"><a href="#cb14-147"></a><span class="ss">  - </span>Para incrustar o reprodutor nativo responsive en Quarto, engade no teu <span class="in">`.qmd`</span>:</span>
+<span id="cb14-148"><a href="#cb14-148"></a>    <span class="in">```markdown</span></span>
+<span id="cb14-149"><a href="#cb14-149"></a>    {{{&lt; video https://www.youtube.com/watch?v=ID_DO_TEU_VIDEO &gt;}}}</span>
+<span id="cb14-150"><a href="#cb14-150"></a>    <span class="in">```</span></span>
+<span id="cb14-151"><a href="#cb14-151"></a></span>
+<span id="cb14-152"><a href="#cb14-152"></a>---</span>
+<span id="cb14-153"><a href="#cb14-153"></a></span>
+<span id="cb14-154"><a href="#cb14-154"></a><span class="fu">## Cadros de Métricas e Recursos Visuais Dispoñibles</span></span>
+<span id="cb14-155"><a href="#cb14-155"></a></span>
+<span id="cb14-156"><a href="#cb14-156"></a>O blog dispón de compoñentes CSS exclusivos deseñados para simulación de procesos químicos que debes utilizar no teu post:</span>
+<span id="cb14-157"><a href="#cb14-157"></a></span>
+<span id="cb14-158"><a href="#cb14-158"></a><span class="fu">### Barra de Recursos Interactivos</span></span>
+<span id="cb14-159"><a href="#cb14-159"></a>Sitúase ao comezo do artigo para dar acceso directo aos arquivos descargables:</span>
+<span id="cb14-160"><a href="#cb14-160"></a></span>
+<span id="cb14-161"><a href="#cb14-161"></a><span class="in">```html</span></span>
+<span id="cb14-162"><a href="#cb14-162"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"resource-badge-bar"</span><span class="op">&gt;</span></span>
+<span id="cb14-163"><a href="#cb14-163"></a>  <span class="op">&lt;</span>span class<span class="op">=</span><span class="st">"badge-label"</span><span class="op">&gt;</span>Recursos <span class="cf">do</span> Caso<span class="op">:&lt;/</span>span<span class="op">&gt;</span></span>
+<span id="cb14-164"><a href="#cb14-164"></a>  <span class="op">&lt;</span>a href<span class="op">=</span><span class="st">"https://colab.research.google.com/..."</span> class<span class="op">=</span><span class="st">"resource-badge resource-badge-colab"</span><span class="op">&gt;</span>⚡ Abrir en Google Colab<span class="op">&lt;/</span>a<span class="op">&gt;</span></span>
+<span id="cb14-165"><a href="#cb14-165"></a>  <span class="op">&lt;</span>a href<span class="op">=</span><span class="st">"https://drive.google.com/..."</span> class<span class="op">=</span><span class="st">"resource-badge resource-badge-drive"</span><span class="op">&gt;</span>📁 Descargar Simulación <span class="op">(.</span>hsc<span class="op">)&lt;/</span>a<span class="op">&gt;</span></span>
+<span id="cb14-166"><a href="#cb14-166"></a>  <span class="op">&lt;</span>a href<span class="op">=</span><span class="st">"slides-meu-caso.html"</span> class<span class="op">=</span><span class="st">"resource-badge resource-badge-slides"</span><span class="op">&gt;</span>📊 Ver Diapositivas Revealjs<span class="op">&lt;/</span>a<span class="op">&gt;</span></span>
+<span id="cb14-167"><a href="#cb14-167"></a>  <span class="op">&lt;</span>a href<span class="op">=</span><span class="st">"https://youtube.com/..."</span> class<span class="op">=</span><span class="st">"resource-badge resource-badge-youtube"</span><span class="op">&gt;</span>▶ Ver en YouTube<span class="op">&lt;/</span>a<span class="op">&gt;</span></span>
+<span id="cb14-168"><a href="#cb14-168"></a><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-169"><a href="#cb14-169"></a><span class="in">```</span></span>
+<span id="cb14-170"><a href="#cb14-170"></a></span>
+<span id="cb14-171"><a href="#cb14-171"></a><span class="fu">### Cuadrícula de Métricas Clave (`.metric-grid`)</span></span>
+<span id="cb14-172"><a href="#cb14-172"></a>Resumo dos balances e especificacións operacionais principais:</span>
+<span id="cb14-173"><a href="#cb14-173"></a></span>
+<span id="cb14-174"><a href="#cb14-174"></a><span class="in">```html</span></span>
+<span id="cb14-175"><a href="#cb14-175"></a><span class="op">:::</span> <span class="op">{.</span>metric<span class="op">-</span>grid<span class="op">}</span></span>
+<span id="cb14-176"><a href="#cb14-176"></a><span class="op">:::</span> <span class="op">{.</span>metric<span class="op">-</span>card <span class="op">.</span>accent<span class="op">-</span>cyan<span class="op">}</span></span>
+<span id="cb14-177"><a href="#cb14-177"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-header"</span><span class="op">&gt;</span>Temperatura Operación<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-178"><a href="#cb14-178"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-value"</span><span class="op">&gt;</span><span class="fl">78.4</span><span class="op">&lt;</span>span class<span class="op">=</span><span class="st">"metric-unit"</span><span class="op">&gt;</span>°C<span class="op">&lt;/</span>span<span class="op">&gt;&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-179"><a href="#cb14-179"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-footer"</span><span class="op">&gt;</span>Equilibrio Térmico <span class="op">(</span><span class="fl">351.55</span> K<span class="op">)&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-180"><a href="#cb14-180"></a><span class="op">:::</span></span>
+<span id="cb14-181"><a href="#cb14-181"></a></span>
+<span id="cb14-182"><a href="#cb14-182"></a><span class="op">:::</span> <span class="op">{.</span>metric<span class="op">-</span>card <span class="op">.</span>accent<span class="op">-</span>amber<span class="op">}</span></span>
+<span id="cb14-183"><a href="#cb14-183"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-header"</span><span class="op">&gt;</span>Presión Sistema<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-184"><a href="#cb14-184"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-value"</span><span class="op">&gt;</span><span class="fl">1.20</span><span class="op">&lt;</span>span class<span class="op">=</span><span class="st">"metric-unit"</span><span class="op">&gt;</span>bar<span class="op">&lt;/</span>span<span class="op">&gt;&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-185"><a href="#cb14-185"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-footer"</span><span class="op">&gt;</span>Absoluta en Separador<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-186"><a href="#cb14-186"></a><span class="op">:::</span></span>
+<span id="cb14-187"><a href="#cb14-187"></a></span>
+<span id="cb14-188"><a href="#cb14-188"></a><span class="op">:::</span> <span class="op">{.</span>metric<span class="op">-</span>card <span class="op">.</span>accent<span class="op">-</span>emerald<span class="op">}</span></span>
+<span id="cb14-189"><a href="#cb14-189"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-header"</span><span class="op">&gt;</span>Fracción Vapor <span class="op">(</span>V<span class="op">/</span>F<span class="op">)&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-190"><a href="#cb14-190"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-value"</span><span class="op">&gt;</span><span class="fl">0.4285</span><span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-191"><a href="#cb14-191"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-footer"</span><span class="op">&gt;</span>Residuo Rachford<span class="op">-</span>Rice <span class="op">&amp;</span>lt<span class="op">;</span> <span class="dv">10</span>⁻⁸<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-192"><a href="#cb14-192"></a><span class="op">:::</span></span>
+<span id="cb14-193"><a href="#cb14-193"></a></span>
+<span id="cb14-194"><a href="#cb14-194"></a><span class="op">:::</span> <span class="op">{.</span>metric<span class="op">-</span>card <span class="op">.</span>accent<span class="op">-</span>purple<span class="op">}</span></span>
+<span id="cb14-195"><a href="#cb14-195"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-header"</span><span class="op">&gt;</span>Carga Térmica <span class="op">(</span>Duty<span class="op">)&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-196"><a href="#cb14-196"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-value"</span><span class="op">&gt;</span><span class="fl">420.5</span><span class="op">&lt;</span>span class<span class="op">=</span><span class="st">"metric-unit"</span><span class="op">&gt;</span>kW<span class="op">&lt;/</span>span<span class="op">&gt;&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-197"><a href="#cb14-197"></a><span class="op">&lt;</span>div class<span class="op">=</span><span class="st">"metric-footer"</span><span class="op">&gt;</span>Requirimento de Calefacción<span class="op">&lt;/</span>div<span class="op">&gt;</span></span>
+<span id="cb14-198"><a href="#cb14-198"></a><span class="op">:::</span></span>
+<span id="cb14-199"><a href="#cb14-199"></a><span class="op">:::</span></span>
+<span id="cb14-200"><a href="#cb14-200"></a><span class="in">```</span></span>
+<span id="cb14-201"><a href="#cb14-201"></a></span>
+<span id="cb14-202"><a href="#cb14-202"></a><span class="fu">### Táboas de Correntes de Proceso (`.stream-table`)</span></span>
+<span id="cb14-203"><a href="#cb14-203"></a>Para presentar os balances de materia e enerxía de correntes con aliñación numérica monoespazo:</span>
+<span id="cb14-204"><a href="#cb14-204"></a></span>
+<span id="cb14-205"><a href="#cb14-205"></a><span class="in">```html</span></span>
+<span id="cb14-206"><a href="#cb14-206"></a><span class="op">:::</span> <span class="op">{.</span>stream<span class="op">-</span>table<span class="op">-</span>wrapper<span class="op">}</span></span>
+<span id="cb14-207"><a href="#cb14-207"></a><span class="op">|</span> Corrente <span class="op">|</span> Temperatura <span class="op">(</span>°C<span class="op">)</span> <span class="op">|</span> Presión <span class="op">(</span>bar<span class="op">)</span> <span class="op">|</span> Caudal Molar <span class="op">(</span>kmol<span class="op">/</span>h<span class="op">)</span> <span class="op">|</span> Frac<span class="op">.</span> Vapor <span class="op">|</span> Compoñente Clave <span class="op">|</span></span>
+<span id="cb14-208"><a href="#cb14-208"></a><span class="op">|:---|:---:|:---:|:---:|:---:|:---|</span></span>
+<span id="cb14-209"><a href="#cb14-209"></a><span class="op">|</span> <span class="op">**</span>Alimentación <span class="op">(</span>F<span class="op">)**</span> <span class="op">|</span> <span class="fl">85.0</span> <span class="op">|</span> <span class="fl">2.50</span> <span class="op">|</span> <span class="fl">100.00</span> <span class="op">|</span> <span class="fl">0.000</span> <span class="op">|</span> Mestura C5<span class="op">-</span>C7 <span class="op">|</span></span>
+<span id="cb14-210"><a href="#cb14-210"></a><span class="op">|</span> <span class="op">**</span>Vapor Superior <span class="op">(</span>V<span class="op">)**</span> <span class="op">|</span> <span class="fl">78.4</span> <span class="op">|</span> <span class="fl">1.20</span> <span class="op">|</span> <span class="fl">42.85</span> <span class="op">|</span> <span class="fl">1.000</span> <span class="op">|</span> Enriquecido en n<span class="op">-</span>C5 <span class="op">|</span></span>
+<span id="cb14-211"><a href="#cb14-211"></a><span class="op">|</span> <span class="op">**</span>Líquido Fondo <span class="op">(</span>L<span class="op">)**</span> <span class="op">|</span> <span class="fl">78.4</span> <span class="op">|</span> <span class="fl">1.20</span> <span class="op">|</span> <span class="fl">57.15</span> <span class="op">|</span> <span class="fl">0.000</span> <span class="op">|</span> Enriquecido en n<span class="op">-</span>C7 <span class="op">|</span></span>
+<span id="cb14-212"><a href="#cb14-212"></a><span class="op">:::</span></span>
+<span id="cb14-213"><a href="#cb14-213"></a><span class="in">```</span></span>
+<span id="cb14-214"><a href="#cb14-214"></a></span>
+<span id="cb14-215"><a href="#cb14-215"></a>---</span>
+<span id="cb14-216"><a href="#cb14-216"></a></span>
+<span id="cb14-217"><a href="#cb14-217"></a><span class="fu">## Taxonomía Canónica Obrigatoria</span></span>
+<span id="cb14-218"><a href="#cb14-218"></a></span>
+<span id="cb14-219"><a href="#cb14-219"></a>Para que os filtros automáticos da portada funcionen correctamente, cada post **debe ter exactamente as 3 categorías canónicas ortogonais**:</span>
+<span id="cb14-220"><a href="#cb14-220"></a></span>
+<span id="cb14-221"><a href="#cb14-221"></a><span class="ss">1. </span>**Nivel 1 (Unha única plataforma):** <span class="in">`"Aspen HYSYS"`</span>, <span class="in">`"DWSIM"`</span> ou <span class="in">`"Python"`</span>.</span>
+<span id="cb14-222"><a href="#cb14-222"></a><span class="ss">2. </span>**Nivel 2 (Polo menos un dominio):** <span class="in">`"Separación"`</span>, <span class="in">`"Reactores"`</span>, <span class="in">`"Intercambio Térmico"`</span>, <span class="in">`"Termodinámica"`</span>, <span class="in">`"Control de Procesos"`</span>, <span class="in">`"Servicios Industriais"`</span>, <span class="in">`"Dinámica de Fluidos"`</span> ou <span class="in">`"Optimización"`</span>.</span>
+<span id="cb14-223"><a href="#cb14-223"></a><span class="ss">3. </span>**Nivel 3 (Entregables dispoñibles):** <span class="in">`"Caso HSC"`</span>, <span class="in">`"Simulación DWSIM"`</span>, <span class="in">`"Caderno Colab"`</span>, <span class="in">`"Vídeo Titorial"`</span> ou <span class="in">`"Slide Deck"`</span>.</span>
+<span id="cb14-224"><a href="#cb14-224"></a></span>
+<span id="cb14-225"><a href="#cb14-225"></a><span class="in">```yaml</span></span>
+<span id="cb14-226"><a href="#cb14-226"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Aspen HYSYS"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Separación"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caso HSC"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Vídeo Titorial"</span><span class="kw">]</span></span>
+<span id="cb14-227"><a href="#cb14-227"></a><span class="in">```</span></span>
+<span id="cb14-228"><a href="#cb14-228"></a></span>
+<span id="cb14-229"><a href="#cb14-229"></a>---</span>
+<span id="cb14-230"><a href="#cb14-230"></a></span>
+<span id="cb14-231"><a href="#cb14-231"></a><span class="fu">## Notificación ao Editor e Sistema de Avisos</span></span>
+<span id="cb14-232"><a href="#cb14-232"></a></span>
+<span id="cb14-233"><a href="#cb14-233"></a>O noso pipeline inclúe un servizo de notificación instantánea en Telegram. Cando propoñas un novo caso ou abras unha Pull Request:</span>
+<span id="cb14-234"><a href="#cb14-234"></a><span class="ss">1. </span>O bot de Telegram do SOPQ envía unha alerta directa ao editor con:</span>
+<span id="cb14-235"><a href="#cb14-235"></a><span class="ss">   - </span>Título do caso e autor/es.</span>
+<span id="cb14-236"><a href="#cb14-236"></a><span class="ss">   - </span>Plataforma de simulación e modelo termodinámico empregado.</span>
+<span id="cb14-237"><a href="#cb14-237"></a><span class="ss">   - </span>Estado das validacións numéricas e ficheiros adxuntos.</span>
+<span id="cb14-238"><a href="#cb14-238"></a><span class="ss">   - </span>Ligazón directa para previsualización e aprobación.</span>
+<span id="cb14-239"><a href="#cb14-239"></a><span class="ss">2. </span>O editor revisará a consistencia dos datos, comprobará a ausencia de residuos termodinámicos ($&lt; 10^{-7}$) e confirmará a publicación.</span>
+<span id="cb14-240"><a href="#cb14-240"></a><span class="ss">3. </span>Tras a aprobación, o motor de Integración Continua (CI/CD) publica automaticamente o artigo na web sen ningunha intervención adicional.</span>
+<span id="cb14-241"><a href="#cb14-241"></a></span>
+<span id="cb14-242"><a href="#cb14-242"></a>---</span>
+<span id="cb14-243"><a href="#cb14-243"></a></span>
+<span id="cb14-244"><a href="#cb14-244"></a><span class="fu">## Descarga de Modelos e Contacto</span></span>
+<span id="cb14-245"><a href="#cb14-245"></a></span>
+<span id="cb14-246"><a href="#cb14-246"></a>Podes descargar directamente os modelos e recursos oficiais do blog:</span>
+<span id="cb14-247"><a href="#cb14-247"></a></span>
+<span id="cb14-248"><a href="#cb14-248"></a><span class="ss">- </span>📄 **[Modelo Canónico de Post (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**</span>
+<span id="cb14-249"><a href="#cb14-249"></a><span class="ss">- </span>📊 **[Exemplo Completo: Destilación Flash (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/caso-destilacion-flash.qmd)**</span>
+<span id="cb14-250"><a href="#cb14-250"></a><span class="ss">- </span>📁 **[Repositorio GitHub Oficial (sopqblog)](https://github.com/anxosanchez/sopqblog)**</span>
+<span id="cb14-251"><a href="#cb14-251"></a></span>
+<span id="cb14-252"><a href="#cb14-252"></a>Para dúbidas sobre o modelado ou asignación de temas de simulación, contacta directamente co editor:  </span>
+<span id="cb14-253"><a href="#cb14-253"></a>📧 **Anxo Sánchez** <span class="dv">&amp;middot;</span> <span class="in">`anxo.sanchez@uvigo.gal`</span> <span class="dv">&amp;middot;</span> Escola de Enxeñaría Industrial, Universidade de Vigo.</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-legal">
+<p><img src="assets/images/logo-light.jpg" class="footer-logo sopq-logo-light" alt="SOPQ EEI UVigo"> <img src="assets/images/logo-dark.jpg" class="footer-logo sopq-logo-dark" alt="SOPQ EEI UVigo"> <span><strong>SOPQ // ProcessSim</strong> © 2026 · Escola de Enxeñaría Industrial · Universidade de Vigo</span></p>
+</div>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<div class="footer-license">
+<p>Licenza MIT / CC BY 4.0 · Construído con <a href="https://quarto.org" target="_blank" rel="noopener">Quarto</a></p>
+</div>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
