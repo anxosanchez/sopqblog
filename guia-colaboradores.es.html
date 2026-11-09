@@ -110,6 +110,9 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <style>html{ scroll-behavior: smooth; }</style>
+<script src="site_libs/quarto-diagram/mermaid.min.js"></script>
+<script src="site_libs/quarto-diagram/mermaid-init.js"></script>
+<link href="site_libs/quarto-diagram/mermaid.css" rel="stylesheet">
 
 
 </head>
@@ -439,18 +442,29 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="flujo-de-publicación-y-supervisión-editorial" class="level2" data-number="1">
 <h2 data-number="1" class="anchored" data-anchor-id="flujo-de-publicación-y-supervisión-editorial"><span class="header-section-number">1</span> Flujo de Publicación y Supervisión Editorial</h2>
 <p>Para garantizar la calidad de los casos de simulación, <strong>ningún post se publica directamente en producción sin la revisión previa del editor</strong>. Existen dos mecanismos principales para proponer un nuevo artículo:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource mermaid number-lines code-with-copy"><code class="sourceCode"><span id="cb4-1"><a href="#cb4-1"></a>flowchart TD</span>
-<span id="cb4-2"><a href="#cb4-2"></a>    A["Redactor/a elabora borrador (.qmd) + Archivos (.hsc/.dwxml/.svg)"] --&gt; B{"Vía de Remisión"}</span>
-<span id="cb4-3"><a href="#cb4-3"></a>    B --&gt;|"Opción A (Recomendada)"| C["Abre Pull Request en GitHub"]</span>
-<span id="cb4-4"><a href="#cb4-4"></a>    B --&gt;|"Opción B (Interna)"| D["Guarda en posts/ con draft: true"]</span>
-<span id="cb4-5"><a href="#cb4-5"></a>    C --&gt; E["Pipeline ejecuta verificaciones de integridad"]</span>
-<span id="cb4-6"><a href="#cb4-6"></a>    D --&gt; E</span>
-<span id="cb4-7"><a href="#cb4-7"></a>    E --&gt; F["Notificación automática al Editor (Telegram / GitHub)"]</span>
-<span id="cb4-8"><a href="#cb4-8"></a>    F --&gt; G{"Supervisión del Editor"}</span>
-<span id="cb4-9"><a href="#cb4-9"></a>    G --&gt;|"Solicitar ajustes"| H["Comentarios de revisión al autor"]</span>
-<span id="cb4-10"><a href="#cb4-10"></a>    H --&gt; A</span>
-<span id="cb4-11"><a href="#cb4-11"></a>    G --&gt;|"Aprobado"| I["Merge / draft: false"]</span>
-<span id="cb4-12"><a href="#cb4-12"></a>    I --&gt; J["🚀 Despliegue automático en GitHub Pages"]</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell" data-layout-align="default">
+<div class="cell-output-display">
+<div>
+<p></p><figure class="figure"><p></p>
+<div>
+<pre class="mermaid mermaid-js">flowchart TD
+    A["Redactor/a elabora borrador (.qmd) + Archivos (.hsc/.dwxml/.svg)"] --&gt; B{"Vía de Remisión"}
+    B --&gt;|"Opción A (Recomendada)"| C["Abre Pull Request en GitHub"]
+    B --&gt;|"Opción B (Interna)"| D["Guarda en posts/ con draft: true"]
+    C --&gt; E["Pipeline ejecuta verificaciones de integridad"]
+    D --&gt; E
+    E --&gt; F["Notificación automática al Editor (Telegram / GitHub)"]
+    F --&gt; G{"Supervisión del Editor"}
+    G --&gt;|"Solicitar ajustes"| H["Comentarios de revisión al autor"]
+    H --&gt; A
+    G --&gt;|"Aprobado"| I["Merge / draft: false"]
+    I --&gt; J["🚀 Despliegue automático en GitHub Pages"]
+</pre>
+</div>
+<p></p></figure><p></p>
+</div>
+</div>
+</div>
 <section id="opción-a-propuesta-mediante-pull-request-en-github-recomendada" class="level3" data-number="1.1">
 <h3 data-number="1.1" class="anchored" data-anchor-id="opción-a-propuesta-mediante-pull-request-en-github-recomendada"><span class="header-section-number">1.1</span> Opción A: Propuesta mediante Pull Request en GitHub (Recomendada)</h3>
 <ol type="1">
@@ -465,10 +479,10 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="opción-b-publicación-en-modo-borrador-oculto-draft-true" class="level3" data-number="1.2">
 <h3 data-number="1.2" class="anchored" data-anchor-id="opción-b-publicación-en-modo-borrador-oculto-draft-true"><span class="header-section-number">1.2</span> Opción B: Publicación en modo borrador oculto (<code>draft: true</code>)</h3>
 <p>Si cuentas con permisos de acceso directo al repositorio, puedes subir tu archivo <code>.qmd</code> dentro de la carpeta <code>posts/</code> añadiendo la siguiente propiedad en el encabezado YAML:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="pp">---</span></span>
-<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de..."</span></span>
-<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">draft</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">   # &lt;-- MANTIENE EL POST OCULTO</span></span>
-<span id="cb5-4"><a href="#cb5-4"></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1"></a><span class="pp">---</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de..."</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="fu">draft</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">   # &lt;-- MANTIENE EL POST OCULTO</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <blockquote class="blockquote">
 <p><strong>¿Qué hace <code>draft: true</code>?</strong> Quarto compila el artículo de forma privada pero <strong>no lo incluye en los listados públicos de portada, ni en el buscador, ni en el sitemap ni en las fuentes RSS</strong>. El editor podrá revisar el resultado renderizado, validar los balances y, una vez aprobado, retirar la etiqueta <code>draft: true</code> para su pase a producción pública.</p>
 </blockquote>
@@ -478,21 +492,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="autoría-cómo-indicar-autor-o-múltiples-autores" class="level2" data-number="2">
 <h2 data-number="2" class="anchored" data-anchor-id="autoría-cómo-indicar-autor-o-múltiples-autores"><span class="header-section-number">2</span> Autoría: Cómo Indicar Autor o Múltiples Autores</h2>
 <p>Cada artículo debe reconocer con precisión la autoría intelectual del caso de simulación. Quarto permite definir tanto autores individuales como equipos multidisciplinares con afiliación institucional:</p>
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb6-1"><a href="#cb6-1"></a><span class="pp">---</span></span>
-<span id="cb6-2"><a href="#cb6-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de una Torre de Debutinizadora con Peng-Robinson"</span></span>
-<span id="cb6-3"><a href="#cb6-3"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado Riguroso y Optimización de la Tasa de Reflujo"</span></span>
-<span id="cb6-4"><a href="#cb6-4"></a><span class="fu">author</span><span class="kw">:</span></span>
-<span id="cb6-5"><a href="#cb6-5"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Laura Gómez Fernández"</span></span>
-<span id="cb6-6"><a href="#cb6-6"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Ingeniería Industrial, Universidad de Vigo"</span></span>
-<span id="cb6-7"><a href="#cb6-7"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"laura.gomez@uvigo.gal"</span></span>
-<span id="cb6-8"><a href="#cb6-8"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado y Simulación en HYSYS"</span></span>
-<span id="cb6-9"><a href="#cb6-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Anxo Sánchez"</span></span>
-<span id="cb6-10"><a href="#cb6-10"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Ingeniería Industrial, Universidad de Vigo"</span></span>
-<span id="cb6-11"><a href="#cb6-11"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"anxo.sanchez@uvigo.gal"</span></span>
-<span id="cb6-12"><a href="#cb6-12"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Supervisión Termodinámica y Revisión Editorial"</span></span>
-<span id="cb6-13"><a href="#cb6-13"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-11-10"</span></span>
-<span id="cb6-14"><a href="#cb6-14"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Aspen HYSYS"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Separación"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caso HSC"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Vídeo Titorial"</span><span class="kw">]</span></span>
-<span id="cb6-15"><a href="#cb6-15"></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb5"><pre class="sourceCode numberSource yaml number-lines code-with-copy"><code class="sourceCode yaml"><span id="cb5-1"><a href="#cb5-1"></a><span class="pp">---</span></span>
+<span id="cb5-2"><a href="#cb5-2"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de una Torre de Debutinizadora con Peng-Robinson"</span></span>
+<span id="cb5-3"><a href="#cb5-3"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado Riguroso y Optimización de la Tasa de Reflujo"</span></span>
+<span id="cb5-4"><a href="#cb5-4"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb5-5"><a href="#cb5-5"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Laura Gómez Fernández"</span></span>
+<span id="cb5-6"><a href="#cb5-6"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Ingeniería Industrial, Universidad de Vigo"</span></span>
+<span id="cb5-7"><a href="#cb5-7"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"laura.gomez@uvigo.gal"</span></span>
+<span id="cb5-8"><a href="#cb5-8"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado y Simulación en HYSYS"</span></span>
+<span id="cb5-9"><a href="#cb5-9"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Anxo Sánchez"</span></span>
+<span id="cb5-10"><a href="#cb5-10"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Ingeniería Industrial, Universidad de Vigo"</span></span>
+<span id="cb5-11"><a href="#cb5-11"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"anxo.sanchez@uvigo.gal"</span></span>
+<span id="cb5-12"><a href="#cb5-12"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Supervisión Termodinámica y Revisión Editorial"</span></span>
+<span id="cb5-13"><a href="#cb5-13"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-11-10"</span></span>
+<span id="cb5-14"><a href="#cb5-14"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Aspen HYSYS"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Separación"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caso HSC"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Vídeo Titorial"</span><span class="kw">]</span></span>
+<span id="cb5-15"><a href="#cb5-15"></a><span class="pp">---</span></span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button"><i class="bi"></i></button></div>
 <hr>
 </section>
 <section id="descarga-de-plantillas-y-contacto" class="level2" data-number="3">
@@ -1065,110 +1079,111 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
   });
   </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Ejecutar el código</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
-<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb7" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb7-1"><a href="#cb7-1"></a><span class="co">---</span></span>
-<span id="cb7-2"><a href="#cb7-2"></a><span class="an">title:</span><span class="co"> "Guía Editorial e Instrucciones para Colaboradores"</span></span>
-<span id="cb7-3"><a href="#cb7-3"></a><span class="an">subtitle:</span><span class="co"> "Estándares Técnicos, Proceso de Envío, Criterios de Supervisión y Recursos de Publicación"</span></span>
-<span id="cb7-4"><a href="#cb7-4"></a><span class="an">description:</span><span class="co"> "Manual completo para redactores e investigadores: estructura de archivos, autoría múltiple, adjuntos de simulación, esquemas PFD y flujo de validación previa por el editor."</span></span>
-<span id="cb7-5"><a href="#cb7-5"></a><span class="an">page-layout:</span><span class="co"> article</span></span>
-<span id="cb7-6"><a href="#cb7-6"></a><span class="an">toc:</span><span class="co"> true</span></span>
-<span id="cb7-7"><a href="#cb7-7"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
-<span id="cb7-8"><a href="#cb7-8"></a><span class="an">lang:</span><span class="co"> es</span></span>
-<span id="cb7-9"><a href="#cb7-9"></a><span class="co">---</span></span>
-<span id="cb7-10"><a href="#cb7-10"></a></span>
-<span id="cb7-11"><a href="#cb7-11"></a><span class="co">&lt;!-- Distintivo Institucional SOPQ --&gt;</span></span>
-<span id="cb7-12"><a href="#cb7-12"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-header-brand"</span><span class="dt">&gt;</span></span>
-<span id="cb7-13"><a href="#cb7-13"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-visual"</span><span class="dt">&gt;</span></span>
-<span id="cb7-14"><a href="#cb7-14"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"assets/images/logo-light.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-brand-logo sopq-logo-light"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
-<span id="cb7-15"><a href="#cb7-15"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"assets/images/logo-dark.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-brand-logo sopq-logo-dark"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
-<span id="cb7-16"><a href="#cb7-16"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb7-17"><a href="#cb7-17"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-text"</span><span class="dt">&gt;</span></span>
-<span id="cb7-18"><a href="#cb7-18"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-institution"</span><span class="dt">&gt;</span>Universidad de Vigo <span class="dv">&amp;middot;</span> Escuela de Ingeniería Industrial<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb7-19"><a href="#cb7-19"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-lab"</span><span class="dt">&gt;</span>SOPQ // Simulación y Optimización de Procesos Químicos<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb7-20"><a href="#cb7-20"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb7-21"><a href="#cb7-21"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-status"</span><span class="dt">&gt;</span></span>
-<span id="cb7-22"><a href="#cb7-22"></a>    <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"status-indicator"</span><span class="dt">&gt;&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span> Normativa Editorial v1.0</span>
-<span id="cb7-23"><a href="#cb7-23"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb7-24"><a href="#cb7-24"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
-<span id="cb7-25"><a href="#cb7-25"></a></span>
-<span id="cb7-26"><a href="#cb7-26"></a>::: {.callout-note appearance="simple"}</span>
-<span id="cb7-27"><a href="#cb7-27"></a><span class="fu">## Bienvenido/a al equipo editorial de SOPQ // ProcessSim</span></span>
-<span id="cb7-28"><a href="#cb7-28"></a>Este blog es el repositorio abierto de ingeniería química y termodinámica computacional de la **Escuela de Ingeniería Industrial (Universidad de Vigo)**. Toda aportación técnica es revisada por el editor antes de su publicación definitiva para asegurar rigor físico, reproducibilidad numérica y coherencia estética.</span>
-<span id="cb7-29"><a href="#cb7-29"></a>:::</span>
-<span id="cb7-30"><a href="#cb7-30"></a></span>
-<span id="cb7-31"><a href="#cb7-31"></a>---</span>
-<span id="cb7-32"><a href="#cb7-32"></a></span>
-<span id="cb7-33"><a href="#cb7-33"></a><span class="fu">## Flujo de Publicación y Supervisión Editorial</span></span>
-<span id="cb7-34"><a href="#cb7-34"></a></span>
-<span id="cb7-35"><a href="#cb7-35"></a>Para garantizar la calidad de los casos de simulación, **ningún post se publica directamente en producción sin la revisión previa del editor**. Existen dos mecanismos principales para proponer un nuevo artículo:</span>
-<span id="cb7-36"><a href="#cb7-36"></a></span>
-<span id="cb7-37"><a href="#cb7-37"></a><span class="in">```mermaid</span></span>
-<span id="cb7-38"><a href="#cb7-38"></a>flowchart TD</span>
-<span id="cb7-39"><a href="#cb7-39"></a>    A[<span class="ot">"</span><span class="st">Redactor/a elabora borrador (.qmd) + Archivos (.hsc/.dwxml/.svg)</span><span class="ot">"</span>] --&gt; B{<span class="ot">"</span><span class="st">Vía de Remisión</span><span class="ot">"</span>}</span>
-<span id="cb7-40"><a href="#cb7-40"></a>    B --&gt;|<span class="ot">"</span><span class="st">Opción A (Recomendada)</span><span class="ot">"</span>| C[<span class="ot">"</span><span class="st">Abre Pull Request en GitHub</span><span class="ot">"</span>]</span>
-<span id="cb7-41"><a href="#cb7-41"></a>    B --&gt;|<span class="ot">"</span><span class="st">Opción B (Interna)</span><span class="ot">"</span>| D[<span class="ot">"</span><span class="st">Guarda en posts/ con draft: true</span><span class="ot">"</span>]</span>
-<span id="cb7-42"><a href="#cb7-42"></a>    C --&gt; E[<span class="ot">"</span><span class="st">Pipeline ejecuta verificaciones de integridad</span><span class="ot">"</span>]</span>
-<span id="cb7-43"><a href="#cb7-43"></a>    D --&gt; E</span>
-<span id="cb7-44"><a href="#cb7-44"></a>    E --&gt; F[<span class="ot">"</span><span class="st">Notificación automática al Editor (Telegram / GitHub)</span><span class="ot">"</span>]</span>
-<span id="cb7-45"><a href="#cb7-45"></a>    F --&gt; G{<span class="ot">"</span><span class="st">Supervisión del Editor</span><span class="ot">"</span>}</span>
-<span id="cb7-46"><a href="#cb7-46"></a>    G --&gt;|<span class="ot">"</span><span class="st">Solicitar ajustes</span><span class="ot">"</span>| H[<span class="ot">"</span><span class="st">Comentarios de revisión al autor</span><span class="ot">"</span>]</span>
-<span id="cb7-47"><a href="#cb7-47"></a>    H --&gt; A</span>
-<span id="cb7-48"><a href="#cb7-48"></a>    G --&gt;|<span class="ot">"</span><span class="st">Aprobado</span><span class="ot">"</span>| I[<span class="ot">"</span><span class="st">Merge / draft: false</span><span class="ot">"</span>]</span>
-<span id="cb7-49"><a href="#cb7-49"></a>    I --&gt; J[<span class="ot">"</span><span class="st">🚀 Despliegue automático en GitHub Pages</span><span class="ot">"</span>]</span>
-<span id="cb7-50"><a href="#cb7-50"></a><span class="in">```</span></span>
-<span id="cb7-51"><a href="#cb7-51"></a></span>
-<span id="cb7-52"><a href="#cb7-52"></a><span class="fu">### Opción A: Propuesta mediante Pull Request en GitHub (Recomendada)</span></span>
-<span id="cb7-53"><a href="#cb7-53"></a><span class="ss">1. </span>Haz un **fork** del repositorio oficial <span class="co">[</span><span class="ot">`github.com/anxosanchez/sopqblog`</span><span class="co">](https://github.com/anxosanchez/sopqblog)</span>.</span>
-<span id="cb7-54"><a href="#cb7-54"></a><span class="ss">2. </span>Crea una nueva rama con nombre descriptivo (ej: <span class="in">`post/cstr-bioetanol`</span> o <span class="in">`post/hysys-amoniaco`</span>).</span>
-<span id="cb7-55"><a href="#cb7-55"></a><span class="ss">3. </span>Redacta el artículo tomando como base la plantilla canónica <span class="co">[</span><span class="ot">`posts/_template_post.qmd`</span><span class="co">](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)</span>.</span>
-<span id="cb7-56"><a href="#cb7-56"></a><span class="ss">4. </span>Adjunta los archivos de simulación en <span class="in">`assets/simulations/`</span> y los diagramas gráficos en <span class="in">`assets/images/`</span>.</span>
-<span id="cb7-57"><a href="#cb7-57"></a><span class="ss">5. </span>Abre una **Pull Request** dirigida a la rama <span class="in">`main`</span>.</span>
-<span id="cb7-58"><a href="#cb7-58"></a><span class="ss">6. </span>Nuestro sistema automatizado notificará de inmediato al editor por **Telegram** y ejecutará la auditoría técnica de taxonomía.</span>
-<span id="cb7-59"><a href="#cb7-59"></a></span>
-<span id="cb7-60"><a href="#cb7-60"></a><span class="fu">### Opción B: Publicación en modo borrador oculto (`draft: true`)</span></span>
-<span id="cb7-61"><a href="#cb7-61"></a>Si cuentas con permisos de acceso directo al repositorio, puedes subir tu archivo <span class="in">`.qmd`</span> dentro de la carpeta <span class="in">`posts/`</span> añadiendo la siguiente propiedad en el encabezado YAML:</span>
-<span id="cb7-62"><a href="#cb7-62"></a></span>
-<span id="cb7-63"><a href="#cb7-63"></a><span class="in">```yaml</span></span>
-<span id="cb7-64"><a href="#cb7-64"></a><span class="pp">---</span></span>
-<span id="cb7-65"><a href="#cb7-65"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de..."</span></span>
-<span id="cb7-66"><a href="#cb7-66"></a><span class="fu">draft</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">   # &lt;-- MANTIENE EL POST OCULTO</span></span>
-<span id="cb7-67"><a href="#cb7-67"></a><span class="pp">---</span></span>
-<span id="cb7-68"><a href="#cb7-68"></a><span class="in">```</span></span>
-<span id="cb7-69"><a href="#cb7-69"></a></span>
-<span id="cb7-70"><a href="#cb7-70"></a><span class="at">&gt; **¿Qué hace `draft: true`?** Quarto compila el artículo de forma privada pero **no lo incluye en los listados públicos de portada, ni en el buscador, ni en el sitemap ni en las fuentes RSS**. El editor podrá revisar el resultado renderizado, validar los balances y, una vez aprobado, retirar la etiqueta </span><span class="in">`draft: true`</span><span class="at"> para su pase a producción pública.</span></span>
-<span id="cb7-71"><a href="#cb7-71"></a></span>
-<span id="cb7-72"><a href="#cb7-72"></a>---</span>
-<span id="cb7-73"><a href="#cb7-73"></a></span>
-<span id="cb7-74"><a href="#cb7-74"></a><span class="fu">## Autoría: Cómo Indicar Autor o Múltiples Autores</span></span>
-<span id="cb7-75"><a href="#cb7-75"></a></span>
-<span id="cb7-76"><a href="#cb7-76"></a>Cada artículo debe reconocer con precisión la autoría intelectual del caso de simulación. Quarto permite definir tanto autores individuales como equipos multidisciplinares con afiliación institucional:</span>
-<span id="cb7-77"><a href="#cb7-77"></a></span>
-<span id="cb7-78"><a href="#cb7-78"></a><span class="in">```yaml</span></span>
-<span id="cb7-79"><a href="#cb7-79"></a><span class="pp">---</span></span>
-<span id="cb7-80"><a href="#cb7-80"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de una Torre de Debutinizadora con Peng-Robinson"</span></span>
-<span id="cb7-81"><a href="#cb7-81"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado Riguroso y Optimización de la Tasa de Reflujo"</span></span>
-<span id="cb7-82"><a href="#cb7-82"></a><span class="fu">author</span><span class="kw">:</span></span>
-<span id="cb7-83"><a href="#cb7-83"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Laura Gómez Fernández"</span></span>
-<span id="cb7-84"><a href="#cb7-84"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Ingeniería Industrial, Universidad de Vigo"</span></span>
-<span id="cb7-85"><a href="#cb7-85"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"laura.gomez@uvigo.gal"</span></span>
-<span id="cb7-86"><a href="#cb7-86"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado y Simulación en HYSYS"</span></span>
-<span id="cb7-87"><a href="#cb7-87"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Anxo Sánchez"</span></span>
-<span id="cb7-88"><a href="#cb7-88"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Ingeniería Industrial, Universidad de Vigo"</span></span>
-<span id="cb7-89"><a href="#cb7-89"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"anxo.sanchez@uvigo.gal"</span></span>
-<span id="cb7-90"><a href="#cb7-90"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Supervisión Termodinámica y Revisión Editorial"</span></span>
-<span id="cb7-91"><a href="#cb7-91"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-11-10"</span></span>
-<span id="cb7-92"><a href="#cb7-92"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Aspen HYSYS"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Separación"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caso HSC"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Vídeo Titorial"</span><span class="kw">]</span></span>
-<span id="cb7-93"><a href="#cb7-93"></a><span class="pp">---</span></span>
-<span id="cb7-94"><a href="#cb7-94"></a><span class="in">```</span></span>
-<span id="cb7-95"><a href="#cb7-95"></a></span>
-<span id="cb7-96"><a href="#cb7-96"></a>---</span>
-<span id="cb7-97"><a href="#cb7-97"></a></span>
-<span id="cb7-98"><a href="#cb7-98"></a><span class="fu">## Descarga de Plantillas y Contacto</span></span>
-<span id="cb7-99"><a href="#cb7-99"></a></span>
-<span id="cb7-100"><a href="#cb7-100"></a><span class="ss">- </span>📄 **[Plantilla Canónica de Post (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**</span>
-<span id="cb7-101"><a href="#cb7-101"></a><span class="ss">- </span>📁 **[Repositorio GitHub Oficial (sopqblog)](https://github.com/anxosanchez/sopqblog)**</span>
-<span id="cb7-102"><a href="#cb7-102"></a></span>
-<span id="cb7-103"><a href="#cb7-103"></a>Para dudas sobre el modelado o propuesta de temas, contacta directamente con el editor:  </span>
-<span id="cb7-104"><a href="#cb7-104"></a>📧 **Anxo Sánchez** <span class="dv">&amp;middot;</span> <span class="in">`anxo.sanchez@uvigo.gal`</span> <span class="dv">&amp;middot;</span> Escuela de Ingeniería Industrial, Universidad de Vigo.</span></code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb6" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb6-1"><a href="#cb6-1"></a><span class="co">---</span></span>
+<span id="cb6-2"><a href="#cb6-2"></a><span class="an">title:</span><span class="co"> "Guía Editorial e Instrucciones para Colaboradores"</span></span>
+<span id="cb6-3"><a href="#cb6-3"></a><span class="an">subtitle:</span><span class="co"> "Estándares Técnicos, Proceso de Envío, Criterios de Supervisión y Recursos de Publicación"</span></span>
+<span id="cb6-4"><a href="#cb6-4"></a><span class="an">description:</span><span class="co"> "Manual completo para redactores e investigadores: estructura de archivos, autoría múltiple, adjuntos de simulación, esquemas PFD y flujo de validación previa por el editor."</span></span>
+<span id="cb6-5"><a href="#cb6-5"></a><span class="an">page-layout:</span><span class="co"> article</span></span>
+<span id="cb6-6"><a href="#cb6-6"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb6-7"><a href="#cb6-7"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb6-8"><a href="#cb6-8"></a><span class="an">lang:</span><span class="co"> es</span></span>
+<span id="cb6-9"><a href="#cb6-9"></a><span class="co">---</span></span>
+<span id="cb6-10"><a href="#cb6-10"></a></span>
+<span id="cb6-11"><a href="#cb6-11"></a><span class="co">&lt;!-- Distintivo Institucional SOPQ --&gt;</span></span>
+<span id="cb6-12"><a href="#cb6-12"></a><span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-header-brand"</span><span class="dt">&gt;</span></span>
+<span id="cb6-13"><a href="#cb6-13"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-visual"</span><span class="dt">&gt;</span></span>
+<span id="cb6-14"><a href="#cb6-14"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"assets/images/logo-light.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-brand-logo sopq-logo-light"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb6-15"><a href="#cb6-15"></a>    <span class="dt">&lt;</span><span class="kw">img</span><span class="ot"> src</span><span class="op">=</span><span class="st">"assets/images/logo-dark.jpg"</span><span class="ot"> class</span><span class="op">=</span><span class="st">"post-brand-logo sopq-logo-dark"</span><span class="ot"> alt</span><span class="op">=</span><span class="st">"SOPQ EEI UVigo"</span><span class="ot"> </span><span class="dt">/&gt;</span></span>
+<span id="cb6-16"><a href="#cb6-16"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb6-17"><a href="#cb6-17"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-text"</span><span class="dt">&gt;</span></span>
+<span id="cb6-18"><a href="#cb6-18"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-institution"</span><span class="dt">&gt;</span>Universidad de Vigo <span class="dv">&amp;middot;</span> Escuela de Ingeniería Industrial<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb6-19"><a href="#cb6-19"></a>    <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-lab"</span><span class="dt">&gt;</span>SOPQ // Simulación y Optimización de Procesos Químicos<span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb6-20"><a href="#cb6-20"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb6-21"><a href="#cb6-21"></a>  <span class="dt">&lt;</span><span class="kw">div</span><span class="ot"> class</span><span class="op">=</span><span class="st">"brand-status"</span><span class="dt">&gt;</span></span>
+<span id="cb6-22"><a href="#cb6-22"></a>    <span class="dt">&lt;</span><span class="kw">span</span><span class="ot"> class</span><span class="op">=</span><span class="st">"status-indicator"</span><span class="dt">&gt;&lt;/</span><span class="kw">span</span><span class="dt">&gt;</span> Normativa Editorial v1.0</span>
+<span id="cb6-23"><a href="#cb6-23"></a>  <span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb6-24"><a href="#cb6-24"></a><span class="dt">&lt;/</span><span class="kw">div</span><span class="dt">&gt;</span></span>
+<span id="cb6-25"><a href="#cb6-25"></a></span>
+<span id="cb6-26"><a href="#cb6-26"></a>::: {.callout-note appearance="simple"}</span>
+<span id="cb6-27"><a href="#cb6-27"></a><span class="fu">## Bienvenido/a al equipo editorial de SOPQ // ProcessSim</span></span>
+<span id="cb6-28"><a href="#cb6-28"></a>Este blog es el repositorio abierto de ingeniería química y termodinámica computacional de la **Escuela de Ingeniería Industrial (Universidad de Vigo)**. Toda aportación técnica es revisada por el editor antes de su publicación definitiva para asegurar rigor físico, reproducibilidad numérica y coherencia estética.</span>
+<span id="cb6-29"><a href="#cb6-29"></a>:::</span>
+<span id="cb6-30"><a href="#cb6-30"></a></span>
+<span id="cb6-31"><a href="#cb6-31"></a>---</span>
+<span id="cb6-32"><a href="#cb6-32"></a></span>
+<span id="cb6-33"><a href="#cb6-33"></a><span class="fu">## Flujo de Publicación y Supervisión Editorial</span></span>
+<span id="cb6-34"><a href="#cb6-34"></a></span>
+<span id="cb6-35"><a href="#cb6-35"></a>Para garantizar la calidad de los casos de simulación, **ningún post se publica directamente en producción sin la revisión previa del editor**. Existen dos mecanismos principales para proponer un nuevo artículo:</span>
+<span id="cb6-36"><a href="#cb6-36"></a></span>
+<span id="cb6-39"><a href="#cb6-39"></a><span class="in">```{mermaid}</span></span>
+<span id="cb6-40"><a href="#cb6-40"></a>flowchart TD</span>
+<span id="cb6-41"><a href="#cb6-41"></a>    A[<span class="ot">"</span><span class="st">Redactor/a elabora borrador (.qmd) + Archivos (.hsc/.dwxml/.svg)</span><span class="ot">"</span>] --&gt; B{<span class="ot">"</span><span class="st">Vía de Remisión</span><span class="ot">"</span>}</span>
+<span id="cb6-42"><a href="#cb6-42"></a>    B --&gt;|<span class="ot">"</span><span class="st">Opción A (Recomendada)</span><span class="ot">"</span>| C[<span class="ot">"</span><span class="st">Abre Pull Request en GitHub</span><span class="ot">"</span>]</span>
+<span id="cb6-43"><a href="#cb6-43"></a>    B --&gt;|<span class="ot">"</span><span class="st">Opción B (Interna)</span><span class="ot">"</span>| D[<span class="ot">"</span><span class="st">Guarda en posts/ con draft: true</span><span class="ot">"</span>]</span>
+<span id="cb6-44"><a href="#cb6-44"></a>    C --&gt; E[<span class="ot">"</span><span class="st">Pipeline ejecuta verificaciones de integridad</span><span class="ot">"</span>]</span>
+<span id="cb6-45"><a href="#cb6-45"></a>    D --&gt; E</span>
+<span id="cb6-46"><a href="#cb6-46"></a>    E --&gt; F[<span class="ot">"</span><span class="st">Notificación automática al Editor (Telegram / GitHub)</span><span class="ot">"</span>]</span>
+<span id="cb6-47"><a href="#cb6-47"></a>    F --&gt; G{<span class="ot">"</span><span class="st">Supervisión del Editor</span><span class="ot">"</span>}</span>
+<span id="cb6-48"><a href="#cb6-48"></a>    G --&gt;|<span class="ot">"</span><span class="st">Solicitar ajustes</span><span class="ot">"</span>| H[<span class="ot">"</span><span class="st">Comentarios de revisión al autor</span><span class="ot">"</span>]</span>
+<span id="cb6-49"><a href="#cb6-49"></a>    H --&gt; A</span>
+<span id="cb6-50"><a href="#cb6-50"></a>    G --&gt;|<span class="ot">"</span><span class="st">Aprobado</span><span class="ot">"</span>| I[<span class="ot">"</span><span class="st">Merge / draft: false</span><span class="ot">"</span>]</span>
+<span id="cb6-51"><a href="#cb6-51"></a>    I --&gt; J[<span class="ot">"</span><span class="st">🚀 Despliegue automático en GitHub Pages</span><span class="ot">"</span>]</span>
+<span id="cb6-52"><a href="#cb6-52"></a><span class="in">```</span></span>
+<span id="cb6-53"><a href="#cb6-53"></a></span>
+<span id="cb6-54"><a href="#cb6-54"></a><span class="fu">### Opción A: Propuesta mediante Pull Request en GitHub (Recomendada)</span></span>
+<span id="cb6-55"><a href="#cb6-55"></a><span class="ss">1. </span>Haz un **fork** del repositorio oficial <span class="co">[</span><span class="ot">`github.com/anxosanchez/sopqblog`</span><span class="co">](https://github.com/anxosanchez/sopqblog)</span>.</span>
+<span id="cb6-56"><a href="#cb6-56"></a><span class="ss">2. </span>Crea una nueva rama con nombre descriptivo (ej: <span class="in">`post/cstr-bioetanol`</span> o <span class="in">`post/hysys-amoniaco`</span>).</span>
+<span id="cb6-57"><a href="#cb6-57"></a><span class="ss">3. </span>Redacta el artículo tomando como base la plantilla canónica <span class="co">[</span><span class="ot">`posts/_template_post.qmd`</span><span class="co">](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)</span>.</span>
+<span id="cb6-58"><a href="#cb6-58"></a><span class="ss">4. </span>Adjunta los archivos de simulación en <span class="in">`assets/simulations/`</span> y los diagramas gráficos en <span class="in">`assets/images/`</span>.</span>
+<span id="cb6-59"><a href="#cb6-59"></a><span class="ss">5. </span>Abre una **Pull Request** dirigida a la rama <span class="in">`main`</span>.</span>
+<span id="cb6-60"><a href="#cb6-60"></a><span class="ss">6. </span>Nuestro sistema automatizado notificará de inmediato al editor por **Telegram** y ejecutará la auditoría técnica de taxonomía.</span>
+<span id="cb6-61"><a href="#cb6-61"></a></span>
+<span id="cb6-62"><a href="#cb6-62"></a><span class="fu">### Opción B: Publicación en modo borrador oculto (`draft: true`)</span></span>
+<span id="cb6-63"><a href="#cb6-63"></a>Si cuentas con permisos de acceso directo al repositorio, puedes subir tu archivo <span class="in">`.qmd`</span> dentro de la carpeta <span class="in">`posts/`</span> añadiendo la siguiente propiedad en el encabezado YAML:</span>
+<span id="cb6-64"><a href="#cb6-64"></a></span>
+<span id="cb6-65"><a href="#cb6-65"></a><span class="in">```yaml</span></span>
+<span id="cb6-66"><a href="#cb6-66"></a><span class="pp">---</span></span>
+<span id="cb6-67"><a href="#cb6-67"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de..."</span></span>
+<span id="cb6-68"><a href="#cb6-68"></a><span class="fu">draft</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span><span class="co">   # &lt;-- MANTIENE EL POST OCULTO</span></span>
+<span id="cb6-69"><a href="#cb6-69"></a><span class="pp">---</span></span>
+<span id="cb6-70"><a href="#cb6-70"></a><span class="in">```</span></span>
+<span id="cb6-71"><a href="#cb6-71"></a></span>
+<span id="cb6-72"><a href="#cb6-72"></a><span class="at">&gt; **¿Qué hace `draft: true`?** Quarto compila el artículo de forma privada pero **no lo incluye en los listados públicos de portada, ni en el buscador, ni en el sitemap ni en las fuentes RSS**. El editor podrá revisar el resultado renderizado, validar los balances y, una vez aprobado, retirar la etiqueta </span><span class="in">`draft: true`</span><span class="at"> para su pase a producción pública.</span></span>
+<span id="cb6-73"><a href="#cb6-73"></a></span>
+<span id="cb6-74"><a href="#cb6-74"></a>---</span>
+<span id="cb6-75"><a href="#cb6-75"></a></span>
+<span id="cb6-76"><a href="#cb6-76"></a><span class="fu">## Autoría: Cómo Indicar Autor o Múltiples Autores</span></span>
+<span id="cb6-77"><a href="#cb6-77"></a></span>
+<span id="cb6-78"><a href="#cb6-78"></a>Cada artículo debe reconocer con precisión la autoría intelectual del caso de simulación. Quarto permite definir tanto autores individuales como equipos multidisciplinares con afiliación institucional:</span>
+<span id="cb6-79"><a href="#cb6-79"></a></span>
+<span id="cb6-80"><a href="#cb6-80"></a><span class="in">```yaml</span></span>
+<span id="cb6-81"><a href="#cb6-81"></a><span class="pp">---</span></span>
+<span id="cb6-82"><a href="#cb6-82"></a><span class="fu">title</span><span class="kw">:</span><span class="at"> </span><span class="st">"Simulación de una Torre de Debutinizadora con Peng-Robinson"</span></span>
+<span id="cb6-83"><a href="#cb6-83"></a><span class="fu">subtitle</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado Riguroso y Optimización de la Tasa de Reflujo"</span></span>
+<span id="cb6-84"><a href="#cb6-84"></a><span class="fu">author</span><span class="kw">:</span></span>
+<span id="cb6-85"><a href="#cb6-85"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Laura Gómez Fernández"</span></span>
+<span id="cb6-86"><a href="#cb6-86"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Ingeniería Industrial, Universidad de Vigo"</span></span>
+<span id="cb6-87"><a href="#cb6-87"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"laura.gomez@uvigo.gal"</span></span>
+<span id="cb6-88"><a href="#cb6-88"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Modelado y Simulación en HYSYS"</span></span>
+<span id="cb6-89"><a href="#cb6-89"></a><span class="at">  </span><span class="kw">-</span><span class="at"> </span><span class="fu">name</span><span class="kw">:</span><span class="at"> </span><span class="st">"Anxo Sánchez"</span></span>
+<span id="cb6-90"><a href="#cb6-90"></a><span class="at">    </span><span class="fu">affiliation</span><span class="kw">:</span><span class="at"> </span><span class="st">"Escuela de Ingeniería Industrial, Universidad de Vigo"</span></span>
+<span id="cb6-91"><a href="#cb6-91"></a><span class="at">    </span><span class="fu">email</span><span class="kw">:</span><span class="at"> </span><span class="st">"anxo.sanchez@uvigo.gal"</span></span>
+<span id="cb6-92"><a href="#cb6-92"></a><span class="at">    </span><span class="fu">role</span><span class="kw">:</span><span class="at"> </span><span class="st">"Supervisión Termodinámica y Revisión Editorial"</span></span>
+<span id="cb6-93"><a href="#cb6-93"></a><span class="fu">date</span><span class="kw">:</span><span class="at"> </span><span class="st">"2026-11-10"</span></span>
+<span id="cb6-94"><a href="#cb6-94"></a><span class="fu">categories</span><span class="kw">:</span><span class="at"> </span><span class="kw">[</span><span class="st">"Aspen HYSYS"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Separación"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Caso HSC"</span><span class="kw">,</span><span class="at"> </span><span class="st">"Vídeo Titorial"</span><span class="kw">]</span></span>
+<span id="cb6-95"><a href="#cb6-95"></a><span class="pp">---</span></span>
+<span id="cb6-96"><a href="#cb6-96"></a><span class="in">```</span></span>
+<span id="cb6-97"><a href="#cb6-97"></a></span>
+<span id="cb6-98"><a href="#cb6-98"></a>---</span>
+<span id="cb6-99"><a href="#cb6-99"></a></span>
+<span id="cb6-100"><a href="#cb6-100"></a><span class="fu">## Descarga de Plantillas y Contacto</span></span>
+<span id="cb6-101"><a href="#cb6-101"></a></span>
+<span id="cb6-102"><a href="#cb6-102"></a><span class="ss">- </span>📄 **[Plantilla Canónica de Post (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**</span>
+<span id="cb6-103"><a href="#cb6-103"></a><span class="ss">- </span>📁 **[Repositorio GitHub Oficial (sopqblog)](https://github.com/anxosanchez/sopqblog)**</span>
+<span id="cb6-104"><a href="#cb6-104"></a></span>
+<span id="cb6-105"><a href="#cb6-105"></a>Para dudas sobre el modelado o propuesta de temas, contacta directamente con el editor:  </span>
+<span id="cb6-106"><a href="#cb6-106"></a>📧 **Anxo Sánchez** <span class="dv">&amp;middot;</span> <span class="in">`anxo.sanchez@uvigo.gal`</span> <span class="dv">&amp;middot;</span> Escuela de Ingeniería Industrial, Universidad de Vigo.</span>
+</code></pre></div><button title="Copiar al portapapeles" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
 <footer class="footer">
