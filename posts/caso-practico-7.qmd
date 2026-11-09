@@ -5,18 +5,13 @@ description: "Resolución práctica completa dunha planta química en catro zona
 author: "Ángel Sánchez (Anxo)"
 date: "2026-11-09"
 categories: ["Aspen HYSYS", "DWSIM", "Python", "Reactores", "Separación", "Caderno Colab", "Caso HSC", "Simulación DWSIM"]
-image: "../assets/images/mtbedark.jpg"
+image: "../assets/images/mtbe-dark.jpg"
 reading-time: "20 min"
 toc: true
 number-sections: true
 highlight-style: github
 code-fold: show
 code-tools: true
----
-
----
-title: "Simulación e Optimización Integrada dunha Planta de Síntese de MTBE"
-image: "../assets/images/mtbe_pfd_light.jpg"
 ---
 
 <div class="quarto-figure quarto-figure-center figure-img">
