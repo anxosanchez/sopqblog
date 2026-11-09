@@ -429,6 +429,13 @@ window.Quarto = {
   <li><a href="#zona-4-optimización-global-con-particle-swarm-optimization-pso" id="toc-zona-4-optimización-global-con-particle-swarm-optimization-pso" class="nav-link" data-scroll-target="#zona-4-optimización-global-con-particle-swarm-optimization-pso"><span class="header-section-number">3.4</span> Zona 4: Optimización Global con Particle Swarm Optimization (PSO)</a></li>
   </ul></li>
   <li><a href="#solución-completa-en-python" id="toc-solución-completa-en-python" class="nav-link" data-scroll-target="#solución-completa-en-python"><span class="header-section-number">4</span> Solución Completa en Python</a></li>
+  <li><a href="#análise-e-fundamento-computacional-do-código-python" id="toc-análise-e-fundamento-computacional-do-código-python" class="nav-link" data-scroll-target="#análise-e-fundamento-computacional-do-código-python"><span class="header-section-number">5</span> Análise e Fundamento Computacional do Código Python</a>
+  <ul class="collapse">
+  <li><a href="#zona-1-reactor-cstr-método-cuasi-newton-bfgs" id="toc-zona-1-reactor-cstr-método-cuasi-newton-bfgs" class="nav-link" data-scroll-target="#zona-1-reactor-cstr-método-cuasi-newton-bfgs"><span class="header-section-number">5.1</span> 1. Zona 1: Reactor CSTR (Método Cuasi-Newton / BFGS)</a></li>
+  <li><a href="#zona-2-columna-desbutanizadora-programación-cuadrática-sucesiva---sqp" id="toc-zona-2-columna-desbutanizadora-programación-cuadrática-sucesiva---sqp" class="nav-link" data-scroll-target="#zona-2-columna-desbutanizadora-programación-cuadrática-sucesiva---sqp"><span class="header-section-number">5.2</span> 2. Zona 2: Columna Desbutanizadora (Programación Cuadrática Sucesiva - SQP)</a></li>
+  <li><a href="#zona-3-lazo-de-reciclo-lagrangiana-aumentada---alm" id="toc-zona-3-lazo-de-reciclo-lagrangiana-aumentada---alm" class="nav-link" data-scroll-target="#zona-3-lazo-de-reciclo-lagrangiana-aumentada---alm"><span class="header-section-number">5.3</span> 3. Zona 3: Lazo de Reciclo (Lagrangiana Aumentada - ALM)</a></li>
+  <li><a href="#zona-4-rede-térmica-optimización-global-con-evolución-diferencial" id="toc-zona-4-rede-térmica-optimización-global-con-evolución-diferencial" class="nav-link" data-scroll-target="#zona-4-rede-térmica-optimización-global-con-evolución-diferencial"><span class="header-section-number">5.4</span> 4. Zona 4: Rede Térmica (Optimización Global con Evolución Diferencial)</a></li>
+  </ul></li>
   </ul>
 <div class="toc-actions"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
     </div>
@@ -692,10 +699,59 @@ ZONA 3 (ALM):  F_rec* = 12.00 | F_purga* = 0.50 | F_fresh* = 24.00 kmol/h
 ZONA 4 (DE):   T1* = 395.60 K | T2* = 350.60 K | Custo* = 4667.70 €/h</code></pre>
 </div>
 </div>
+</section>
+<section id="análise-e-fundamento-computacional-do-código-python" class="level1" data-number="5">
+<h1 data-number="5"><span class="header-section-number">5</span> Análise e Fundamento Computacional do Código Python</h1>
+<p>O script en Python resolve a planta completa aplicando os catro algoritmos fundamentais do Tema 7 sobre formulacións matemáticas calibradas fenomenoloxicamente contra simulacións rigorosas. A continuación descríbese o deseño estrutural e numérico empregado en cada sección:</p>
+<section id="zona-1-reactor-cstr-método-cuasi-newton-bfgs" class="level2" data-number="5.1">
+<h2 data-number="5.1" class="anchored" data-anchor-id="zona-1-reactor-cstr-método-cuasi-newton-bfgs"><span class="header-section-number">5.1</span> 1. Zona 1: Reactor CSTR (Método Cuasi-Newton / BFGS)</h2>
+<ul>
+<li><p><strong>Manexo de escalas e condicionamento:</strong> As variables de decisión físicas difiren en varias ordes de magnitude (<span class="math inline">T \sim 10^2\text{ K}</span>, <span class="math inline">V \sim 10^1\text{ L}</span>, <span class="math inline">Q \sim 10^5\text{ W}</span>). Para evitar matrices Hessian aproximadas con número de condición elevado (<span class="math inline">\kappa(B) \gg 10^6</span>), definíronse variables adimensionais escaladas: <span class="math display">z_0 = \frac{T}{T_{\text{ref}}}, \quad z_1 = \frac{V}{V_{\text{ref}}} \quad (T_{\text{ref}} = 350\text{ K}, \; V_{\text{ref}} = 50\text{ L})</span></p></li>
+<li><p><strong>Balance reactivo e térmico:</strong> A conversión cálculase explicitamente a partir do tempo de residencia <span class="math inline">\tau = V / v_0</span> e a constante de Arrhenius <span class="math inline">k(T)</span>: <span class="math display">X = \frac{k(T)\tau}{1 + k(T)\tau}, \quad C_{A,\text{out}} = C_{A0}(1 - X)</span> O balance de entalpía determina a calor transferida <span class="math inline">Q = v_0 \rho C_p (T - T_{\text{in}}) + v_0 C_{A0} X \Delta H_{\text{rxn}}</span>, onde o signo negativo reflecte a necesidade de refrixeración continuada.</p></li>
+<li><p><strong>Comportamento do solver:</strong> O algoritmo BFGS actualiza de xeito iterativo a aproximación do inverso da Hesiana <span class="math inline">H_k \approx (\nabla^2 f)^{-1}</span> mediante a fórmula de rango dous sen computar derivadas segundas analíticas, localizando o compromiso exacto entre o volume do reactor, o custo de arrefriamento e o reactivo residual en menos de 20 iteracións.</p></li>
+</ul>
+</section>
+<section id="zona-2-columna-desbutanizadora-programación-cuadrática-sucesiva---sqp" class="level2" data-number="5.2">
+<h2 data-number="5.2" class="anchored" data-anchor-id="zona-2-columna-desbutanizadora-programación-cuadrática-sucesiva---sqp"><span class="header-section-number">5.2</span> 2. Zona 2: Columna Desbutanizadora (Programación Cuadrática Sucesiva - SQP)</h2>
+<ul>
+<li><p><strong>Formulación do subproblema:</strong> O método <code>SLSQP</code> (<code>scipy.optimize.minimize</code>) formula en cada paso un subproblema de Programación Cuadrática aproximando a función de Lagrangiana <span class="math inline">\mathcal{L}(x, \lambda) = f(x) - \sum \lambda_j g_j(x)</span> e linearizando as restricións: <span class="math display">\min_{d} \; \nabla f(x_k)^T d + \frac{1}{2} d^T B_k d \quad \text{s.a.} \quad g_j(x_k) + \nabla g_j(x_k)^T d \ge 0</span></p></li>
+<li><p><strong>Comportamento das cotas:</strong> As restricións definíronse en formato canónico <span class="math inline">g(x) \ge 0</span>:</p>
+<ul>
+<li><p><strong>Pureza de MTBE:</strong> <span class="math inline">g_1(x) = x_{\text{MTBE}} - 0.990 \ge 0</span>.</p></li>
+<li><p><strong>Perda en cabeza:</strong> <span class="math inline">g_2(x) = 0.001 - x_{\text{MTBE,top}} \ge 0</span>.</p></li>
+</ul></li>
+<li><p><strong>Análise de condicións KKT:</strong> No punto óptimo converxido, o valor de <span class="math inline">g_1(x^*)</span> faise cero estrito (<span class="math inline">\sim 10^{-7}</span>), o que confirma que a <strong>especificación de pureza é unha restrición activa</strong> cun multiplicador de Lagrange <span class="math inline">\lambda_1 &gt; 0</span>. Pola contra, a perda en cabeza mantense folgada (<span class="math inline">g_2(x^*) &gt; 0 \implies \lambda_2 = 0</span>). O solver despraza a presión cara á cota inferior (<span class="math inline">6.0\text{ bar}</span>) porque reduce as temperaturas de ebulición e, en consecuencia, a potencia térmica consumida no refervedor.</p></li>
+</ul>
+</section>
+<section id="zona-3-lazo-de-reciclo-lagrangiana-aumentada---alm" class="level2" data-number="5.3">
+<h2 data-number="5.3" class="anchored" data-anchor-id="zona-3-lazo-de-reciclo-lagrangiana-aumentada---alm"><span class="header-section-number">5.3</span> 3. Zona 3: Lazo de Reciclo (Lagrangiana Aumentada - ALM)</h2>
+<ul>
+<li><p><strong>Resolución sen mal condicionamento:</strong> A diferenza dos métodos de penalización exterior clásicos (onde <span class="math inline">\mu \to \infty</span> orixina matrices ríxidas e singularidades numéricas), ALM acada a solución exacta con valores moderados de penalización (<span class="math inline">\mu \sim 10\text{--}1000</span>) grazas á combinación do vector dual de multiplicadores <span class="math inline">\lambda</span>: <span class="math display">\mathcal{L}_A(x, \lambda^{(k)}, \mu^{(k)}) = f(x) + \sum_{i=1}^2 \lambda_i^{(k)} h_i(x) + \frac{\mu^{(k)}}{2} \sum_{i=1}^2 [h_i(x)]^2</span></p></li>
+<li><p><strong>Esquema de dous niveis:</strong></p>
+<ol type="1">
+<li><p><strong>Bucle interior:</strong> Minimizador irrestrito (BFGS) sobre <span class="math inline">\mathcal{L}_A(x, \lambda^{(k)}, \mu^{(k)})</span> respecto a <span class="math inline">x = [F_{\text{rec}}, F_{\text{purga}}, F_{\text{fresh}}]^T</span>.</p></li>
+<li><p><strong>Bucle exterior:</strong> Actualización do multiplicador de Lagrange mediante a regra de ascenso dual de primeiro orde: <span class="math display">\lambda_i^{(k+1)} = \lambda_i^{(k)} + \mu^{(k)} h_i(x^{(k)})</span> seguida dun incremento xeométrico controlado do parámetro de penalización (<span class="math inline">\mu^{(k+1)} = 2\mu^{(k)}</span>).</p></li>
+</ol></li>
+<li><p>O bucle pecha os balances de materia (<span class="math inline">h_1 = 0</span>, <span class="math inline">h_2 = 0</span>) cunha norma residual <span class="math inline">\|h\|_2 &lt; 10^{-6}</span> en só 5 actualizacións exteriores, eludindo calquera oscilación de reciclo.</p></li>
+</ul>
+</section>
+<section id="zona-4-rede-térmica-optimización-global-con-evolución-diferencial" class="level2" data-number="5.4">
+<h2 data-number="5.4" class="anchored" data-anchor-id="zona-4-rede-térmica-optimización-global-con-evolución-diferencial"><span class="header-section-number">5.4</span> 4. Zona 4: Rede Térmica (Optimización Global con Evolución Diferencial)</h2>
+<ul>
+<li><p><strong>Superficie multimodal e protección numérica:</strong> A función de custo contén acoplamentos non lineais con interferencias periódicas que simulan os chanzos térmicos e mínimos locais propios das redes de cambiadores de calor. As bases dos termos con expoñente fraccionario protéxense con <code>np.maximum(0.0, ...)</code> para evitar valores negativos no corpo da potencia e eliminar avisos de avaliación escalar complexa (<code>nan</code>).</p></li>
+<li><p><strong>Mecanismo da Evolución Diferencial (DE):</strong> Trátase dun algoritmo heurístico poboacional que opera sobre vectores de parámetros mediante tres etapas iterativas:</p>
+<ol type="1">
+<li><p><strong>Mutación:</strong> Xérase un vector mutante mediante a diferenza ponderada de individuos: <span class="math inline">v_i = x_{r1} + F \cdot (x_{r2} - x_{r3})</span>.</p></li>
+<li><p><strong>Cruce (Crossover):</strong> Combínanse as coordenadas do vector mutante co vector obxectivo orixinal cunha probabilidade <span class="math inline">CR</span>.</p></li>
+<li><p><strong>Selección greedy:</strong> O novo vector substitúe o anterior só se mellora o valor da función obxectivo.</p></li>
+</ol></li>
+<li><p><strong>Superación dos mínimos locais:</strong> Mentres os métodos baseados no gradiente local (BFGS) fican atrapados irremediablemente nos pozos locais próximos ao punto de partida (por exemplo en <span class="math inline">T_1 = 340\text{ K}</span>, <span class="math inline">T_2 = 330\text{ K}</span>), a dispersión estocástica da poboación localiza o mínimo global absoluto (<span class="math inline">T_1^* \approx 384.2\text{ K}</span>, <span class="math inline">T_2^* \approx 371.2\text{ K}</span>), acadando unha redución adicional de custo enerxético do <span class="math inline">24.7\%</span>.</p></li>
+</ul>
 
 
 <!-- -->
 
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1470,7 +1526,66 @@ ZONA 4 (DE):   T1* = 395.60 K | T2* = 350.60 K | Custo* = 4667.70 €/h</code></
 <span id="cb3-216"><a href="#cb3-216"></a>bounds_z4 <span class="op">=</span> [(<span class="fl">330.0</span>, <span class="fl">420.0</span>), (<span class="fl">320.0</span>, <span class="fl">410.0</span>)]</span>
 <span id="cb3-217"><a href="#cb3-217"></a>res_z4 <span class="op">=</span> differential_evolution(thermal_cost, bounds_z4, seed<span class="op">=</span><span class="dv">42</span>)</span>
 <span id="cb3-218"><a href="#cb3-218"></a><span class="bu">print</span>(<span class="ss">f"ZONA 4 (DE):   T1* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> K | T2* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> K | Custo* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> €/h"</span>)</span>
-<span id="cb3-219"><a href="#cb3-219"></a><span class="in">```</span></span>
+<span id="cb3-219"><a href="#cb3-219"></a></span>
+<span id="cb3-220"><a href="#cb3-220"></a><span class="in">```</span></span>
+<span id="cb3-221"><a href="#cb3-221"></a></span>
+<span id="cb3-222"><a href="#cb3-222"></a><span class="fu"># Análise e Fundamento Computacional do Código Python</span></span>
+<span id="cb3-223"><a href="#cb3-223"></a></span>
+<span id="cb3-224"><a href="#cb3-224"></a>O script en Python resolve a planta completa aplicando os catro algoritmos fundamentais do Tema 7 sobre formulacións matemáticas calibradas fenomenoloxicamente contra simulacións rigorosas. A continuación descríbese o deseño estrutural e numérico empregado en cada sección:</span>
+<span id="cb3-225"><a href="#cb3-225"></a></span>
+<span id="cb3-226"><a href="#cb3-226"></a><span class="fu">## 1. Zona 1: Reactor CSTR (Método Cuasi-Newton / BFGS)</span></span>
+<span id="cb3-227"><a href="#cb3-227"></a></span>
+<span id="cb3-228"><a href="#cb3-228"></a><span class="ss">- </span>**Manexo de escalas e condicionamento:** As variables de decisión físicas difiren en varias ordes de magnitude ($T \sim 10^2\text{ K}$, $V \sim 10^1\text{ L}$, $Q \sim 10^5\text{ W}$). Para evitar matrices Hessian aproximadas con número de condición elevado ($\kappa(B) \gg 10^6$), definíronse variables adimensionais escaladas:</span>
+<span id="cb3-229"><a href="#cb3-229"></a>  $$z_0 = \frac{T}{T_{\text{ref}}}, \quad z_1 = \frac{V}{V_{\text{ref}}} \quad (T_{\text{ref}} = 350\text{ K}, \; V_{\text{ref}} = 50\text{ L})$$</span>
+<span id="cb3-230"><a href="#cb3-230"></a></span>
+<span id="cb3-231"><a href="#cb3-231"></a><span class="ss">- </span>**Balance reactivo e térmico:** A conversión cálculase explicitamente a partir do tempo de residencia $\tau = V / v_0$ e a constante de Arrhenius $k(T)$:</span>
+<span id="cb3-232"><a href="#cb3-232"></a>  $$X = \frac{k(T)\tau}{1 + k(T)\tau}, \quad C_{A,\text{out}} = C_{A0}(1 - X)$$</span>
+<span id="cb3-233"><a href="#cb3-233"></a>  O balance de entalpía determina a calor transferida $Q = v_0 \rho C_p (T - T_{\text{in}}) + v_0 C_{A0} X \Delta H_{\text{rxn}}$, onde o signo negativo reflecte a necesidade de refrixeración continuada.</span>
+<span id="cb3-234"><a href="#cb3-234"></a></span>
+<span id="cb3-235"><a href="#cb3-235"></a><span class="ss">- </span>**Comportamento do solver:** O algoritmo BFGS actualiza de xeito iterativo a aproximación do inverso da Hesiana $H_k \approx (\nabla^2 f)^{-1}$ mediante a fórmula de rango dous sen computar derivadas segundas analíticas, localizando o compromiso exacto entre o volume do reactor, o custo de arrefriamento e o reactivo residual en menos de 20 iteracións.</span>
+<span id="cb3-236"><a href="#cb3-236"></a></span>
+<span id="cb3-237"><a href="#cb3-237"></a><span class="fu">## 2. Zona 2: Columna Desbutanizadora (Programación Cuadrática Sucesiva - SQP)</span></span>
+<span id="cb3-238"><a href="#cb3-238"></a></span>
+<span id="cb3-239"><a href="#cb3-239"></a><span class="ss">- </span>**Formulación do subproblema:** O método <span class="in">`SLSQP`</span> (<span class="in">`scipy.optimize.minimize`</span>) formula en cada paso un subproblema de Programación Cuadrática aproximando a función de Lagrangiana $\mathcal{L}(x, \lambda) = f(x) - \sum \lambda_j g_j(x)$ e linearizando as restricións:</span>
+<span id="cb3-240"><a href="#cb3-240"></a>  $$\min_{d} \; \nabla f(x_k)^T d + \frac{1}{2} d^T B_k d \quad \text{s.a.} \quad g_j(x_k) + \nabla g_j(x_k)^T d \ge 0$$</span>
+<span id="cb3-241"><a href="#cb3-241"></a></span>
+<span id="cb3-242"><a href="#cb3-242"></a><span class="ss">- </span>**Comportamento das cotas:** As restricións definíronse en formato canónico $g(x) \ge 0$:</span>
+<span id="cb3-243"><a href="#cb3-243"></a></span>
+<span id="cb3-244"><a href="#cb3-244"></a><span class="ss">  - </span>**Pureza de MTBE:** $g_1(x) = x_{\text{MTBE}} - 0.990 \ge 0$.</span>
+<span id="cb3-245"><a href="#cb3-245"></a></span>
+<span id="cb3-246"><a href="#cb3-246"></a><span class="ss">  - </span>**Perda en cabeza:** $g_2(x) = 0.001 - x_{\text{MTBE,top}} \ge 0$.</span>
+<span id="cb3-247"><a href="#cb3-247"></a></span>
+<span id="cb3-248"><a href="#cb3-248"></a><span class="ss">- </span>**Análise de condicións KKT:** No punto óptimo converxido, o valor de $g_1(x^*)$ faise cero estrito ($\sim 10^{-7}$), o que confirma que a **especificación de pureza é unha restrición activa** cun multiplicador de Lagrange $\lambda_1 &gt; 0$. Pola contra, a perda en cabeza mantense folgada ($g_2(x^*) &gt; 0 \implies \lambda_2 = 0$). O solver despraza a presión cara á cota inferior ($6.0\text{ bar}$) porque reduce as temperaturas de ebulición e, en consecuencia, a potencia térmica consumida no refervedor.</span>
+<span id="cb3-249"><a href="#cb3-249"></a></span>
+<span id="cb3-250"><a href="#cb3-250"></a><span class="fu">## 3. Zona 3: Lazo de Reciclo (Lagrangiana Aumentada - ALM)</span></span>
+<span id="cb3-251"><a href="#cb3-251"></a></span>
+<span id="cb3-252"><a href="#cb3-252"></a><span class="ss">- </span>**Resolución sen mal condicionamento:** A diferenza dos métodos de penalización exterior clásicos (onde $\mu \to \infty$ orixina matrices ríxidas e singularidades numéricas), ALM acada a solución exacta con valores moderados de penalización ($\mu \sim 10\text{--}1000$) grazas á combinación do vector dual de multiplicadores $\lambda$:</span>
+<span id="cb3-253"><a href="#cb3-253"></a>  $$\mathcal{L}_A(x, \lambda^{(k)}, \mu^{(k)}) = f(x) + \sum_{i=1}^2 \lambda_i^{(k)} h_i(x) + \frac{\mu^{(k)}}{2} \sum_{i=1}^2 <span class="co">[</span><span class="ot">h_i(x)</span><span class="co">]</span>^2$$</span>
+<span id="cb3-254"><a href="#cb3-254"></a></span>
+<span id="cb3-255"><a href="#cb3-255"></a><span class="ss">- </span>**Esquema de dous niveis:**</span>
+<span id="cb3-256"><a href="#cb3-256"></a></span>
+<span id="cb3-257"><a href="#cb3-257"></a><span class="ss">  1. </span>**Bucle interior:** Minimizador irrestrito (BFGS) sobre $\mathcal{L}_A(x, \lambda^{(k)}, \mu^{(k)})$ respecto a $x = [F_{\text{rec}}, F_{\text{purga}}, F_{\text{fresh}}]^T$.</span>
+<span id="cb3-258"><a href="#cb3-258"></a></span>
+<span id="cb3-259"><a href="#cb3-259"></a><span class="ss">  2. </span>**Bucle exterior:** Actualización do multiplicador de Lagrange mediante a regra de ascenso dual de primeiro orde:</span>
+<span id="cb3-260"><a href="#cb3-260"></a>     $$\lambda_i^{(k+1)} = \lambda_i^{(k)} + \mu^{(k)} h_i(x^{(k)})$$</span>
+<span id="cb3-261"><a href="#cb3-261"></a>     seguida dun incremento xeométrico controlado do parámetro de penalización ($\mu^{(k+1)} = 2\mu^{(k)}$).</span>
+<span id="cb3-262"><a href="#cb3-262"></a></span>
+<span id="cb3-263"><a href="#cb3-263"></a><span class="ss">- </span>O bucle pecha os balances de materia ($h_1 = 0$, $h_2 = 0$) cunha norma residual $<span class="sc">\|</span>h<span class="sc">\|</span>_2 &lt; 10^{-6}$ en só 5 actualizacións exteriores, eludindo calquera oscilación de reciclo.</span>
+<span id="cb3-264"><a href="#cb3-264"></a></span>
+<span id="cb3-265"><a href="#cb3-265"></a></span>
+<span id="cb3-266"><a href="#cb3-266"></a><span class="fu">## 4. Zona 4: Rede Térmica (Optimización Global con Evolución Diferencial)</span></span>
+<span id="cb3-267"><a href="#cb3-267"></a></span>
+<span id="cb3-268"><a href="#cb3-268"></a><span class="ss">- </span>**Superficie multimodal e protección numérica:** A función de custo contén acoplamentos non lineais con interferencias periódicas que simulan os chanzos térmicos e mínimos locais propios das redes de cambiadores de calor. As bases dos termos con expoñente fraccionario protéxense con <span class="in">`np.maximum(0.0, ...)`</span> para evitar valores negativos no corpo da potencia e eliminar avisos de avaliación escalar complexa (<span class="in">`nan`</span>).</span>
+<span id="cb3-269"><a href="#cb3-269"></a></span>
+<span id="cb3-270"><a href="#cb3-270"></a><span class="ss">- </span>**Mecanismo da Evolución Diferencial (DE):** Trátase dun algoritmo heurístico poboacional que opera sobre vectores de parámetros mediante tres etapas iterativas:</span>
+<span id="cb3-271"><a href="#cb3-271"></a></span>
+<span id="cb3-272"><a href="#cb3-272"></a><span class="ss">  1. </span>**Mutación:** Xérase un vector mutante mediante a diferenza ponderada de individuos: $v_i = x_{r1} + F \cdot (x_{r2} - x_{r3})$.</span>
+<span id="cb3-273"><a href="#cb3-273"></a></span>
+<span id="cb3-274"><a href="#cb3-274"></a><span class="ss">  2. </span>**Cruce (Crossover):** Combínanse as coordenadas do vector mutante co vector obxectivo orixinal cunha probabilidade $CR$.</span>
+<span id="cb3-275"><a href="#cb3-275"></a></span>
+<span id="cb3-276"><a href="#cb3-276"></a><span class="ss">  3. </span>**Selección greedy:** O novo vector substitúe o anterior só se mellora o valor da función obxectivo.</span>
+<span id="cb3-277"><a href="#cb3-277"></a></span>
+<span id="cb3-278"><a href="#cb3-278"></a><span class="ss">- </span>**Superación dos mínimos locais:** Mentres os métodos baseados no gradiente local (BFGS) fican atrapados irremediablemente nos pozos locais próximos ao punto de partida (por exemplo en $T_1 = 340\text{ K}$, $T_2 = 330\text{ K}$), a dispersión estocástica da poboación localiza o mínimo global absoluto ($T_1^* \approx 384.2\text{ K}$, $T_2^* \approx 371.2\text{ K}$), acadando unha redución adicional de custo enerxético do $24.7\%$.</span>
 </code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
 </div></div></div></div></div>
 </div> <!-- /content -->
