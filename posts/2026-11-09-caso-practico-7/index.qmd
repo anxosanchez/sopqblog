@@ -1,0 +1,88 @@
+# Crear o directorio específico do post dentro do teu blog
+mkdir -p /Users/anxo/Documents/antigravity/sopqblog/posts/2026-11-08-optimizacion-avanzada
+
+# Escribir o ficheiro index.qmd completo no seu sitio
+cat << 'EOF' > /Users/anxo/Documents/antigravity/sopqblog/posts/2026-11-08-optimizacion-avanzada/index.qmd
+---
+title: "Optimización Numérica Avanzada en Procesos Químicos: Da Teoría á Práctica con Python, Aspen HYSYS e DWSIM"
+subtitle: "Tema 7: Métodos multivariables, Programación Cuadrática Sucesiva (SQP), Lagrangiana Aumentada (ALM) e Enxame de Partículas (PSO)"
+author: "Ángel Sánchez (Anxo)"
+date: "2026-11-08"
+categories: [SOPQ, Optimización, Python, HYSYS, DWSIM, Enxeñaría Química]
+toc: true
+number-sections: true
+highlight-style: github
+code-fold: show
+code-tools: true
+---
+
+::: {.callout-note}
+## Material Didáctico e Recursos Interactivos
+- **Caderno de traballo en Gemini Notebook:** [SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada](https://gemini.google.com/notebook/dabbf057-563f-4920-a080-63d33bcec7bf)
+- **Repositorio do blog:** [GitHub sopqblog](https://github.com/anxosanchez/sopqblog)
+:::
+
+# Introdución e Contexto
+
+No marco da materia **Simulación e Optimización de Procesos Químicos (SOPQ)** do Grao en Enxeñaría en Química Industrial da Universidade de Vigo, o deseño e a xestión óptima de plantas complexas require superar as limitacións dos métodos de aproximación clásicos mediante algoritmos numéricos rigorosos.
+
+Este artigo desenvolve a formulación matemática, a posta en marcha e a comparativa computacional en **Python (`scipy.optimize`)**, **Aspen HYSYS** e **DWSIM** dos catro piares algorítmicos do Tema 7 da guía docente:
+
+1. **Optimización Multivariable sen Restricións (BFGS / Cuasi-Newton):** Deseño termoeconómico dun reactor CSTR non isotérmico.
+2. **Programación Cuadrática Sucesiva (SQP):** Minimización de consumo enerxético nunha desbutanizadora con restricións de pureza e análise KKT.
+3. **Método da Lagrangiana Aumentada (ALM):** Reconciliación de balances con reciclos pechados sen diverxencia nin mal condicionamento da matriz Hesiana.
+4. **Algoritmos Estocásticos e Heurísticos (PSO / Evolución Diferencial):** Resolución de espazos fortemente non convexos con múltiples óptimos locais.
+
+---
+
+# Casos Prácticos de Aula
+
+## Caso 1: Reactor CSTR Non Isotérmico (BFGS / Cuasi-Newton)
+
+Considérase a síntese irreversible $A \rightarrow B$ con cinética de Arrhenius $k(T) = k_0 \exp(-E_a / RT)$. A función obxectivo económica pondera o investimento de capital no volume do reactor ($V$), a retirada de calor ($|Q|$) e unha forte penalización polo reactivo non transformado que sae no efluente:
+
+$$\min_{T, V} f_1(T, V) = 1500 \cdot V^{0.6} + 250 \cdot |Q|^{0.7} + 1.0 \times 10^5 \cdot C_A$$
+
+```{python}
+#| label: fig-cstr-opt
+#| fig-cap: "Superficie de custo e converxencia do algoritmo BFGS para o reactor CSTR"
+import numpy as np
+import matplotlib.pyplot as plt
+from scipy.optimize import minimize
+
+k0, Ea, R_gas = 1.5e7, 65000.0, 8.314
+CA0, v0, DeltaH = 2.0, 10.0, -50000.0
+rho, Cp, Tin = 1000.0, 4.184, 298.15
+T_ref, V_ref = 300.0, 50.0
+
+def cstr_obj_scaled(z):
+    T, V = z[0] * T_ref, z[1] * V_ref
+    if T <= 0 or V <= 0: return 1e12
+    k = k0 * np.exp(-Ea / (R_gas * T))
+    tau = V / v0
+    X = (k * tau) / (1.0 + k * tau)
+    CA = CA0 * (1.0 - X)
+    Q = v0 * rho * Cp * (T - Tin) + (v0 * CA0 * X) * DeltaH
+    return 1500.0 * (V**0.6) + 250.0 * (np.abs(Q)**0.7) + 1.0e5 * CA
+
+res_bfgs = minimize(cstr_obj_scaled, [330.0/T_ref, 50.0/V_ref], method='BFGS')
+T_opt, V_opt = res_bfgs.x[0] * T_ref, res_bfgs.x[1] * V_ref
+
+T_vals = np.linspace(315, 375, 40)
+V_vals = np.linspace(25, 120, 40)
+T_grid, V_grid = np.meshgrid(T_vals, V_vals)
+Z_grid = np.zeros_like(T_grid)
+
+for i in range(T_grid.shape[0]):
+    for j in range(T_grid.shape[1]):
+        Z_grid[i, j] = cstr_obj_scaled([T_grid[i, j]/T_ref, V_grid[i, j]/V_ref])
+
+plt.figure(figsize=(7, 4.5))
+cp = plt.contourf(T_grid, V_grid, Z_grid, levels=25, cmap='viridis')
+plt.colorbar(cp, label='Custo Total Anualizado')
+plt.plot(T_opt, V_opt, 'r*', markersize=12, label=f'Óptimo ({T_opt:.1f} K, {V_opt:.1f} L)')
+plt.xlabel('Temperatura (K)')
+plt.ylabel('Volume (L)')
+plt.legend()
+plt.tight_layout()
+plt.show()
