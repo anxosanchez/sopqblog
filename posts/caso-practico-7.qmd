@@ -1,6 +1,3 @@
-cd /Users/anxo/Documents/antigravity/sopqblog
-
-cat << 'EOF' > posts/caso-practico-7.qmd
 ---
 title: "Simulación e Optimización Integrada dunha Planta de Síntese de MTBE"
 subtitle: "Tema 7: Resolución rigorosa con BFGS, SQP, Lagrangiana Aumentada (ALM) e Optimización Global Estocástica"
@@ -18,88 +15,123 @@ code-tools: true
 ---
 
 ::: {.callout-note}
+
 ## Recursos Interactivos e Caderno Docente
 - **Caderno de traballo en Gemini Notebook:** [SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada](https://gemini.google.com/notebook/dabbf057-563f-4920-a080-63d33bcec7bf)
 - **Repositorio do blog:** [GitHub sopqblog](https://github.com/anxosanchez/sopqblog)
+
 :::
 
 # Introdución e Descrición do Proceso
 
 A síntese industrial de **Éter Metil-terc-Butílico (MTBE)** a partir de isobuteno ($iC_4^=$) e metanol ($MeOH$) constitúe un exemplo clásico de integración reactiva, fraccionamento multicompoñente e xestión de reciclos:
-
-$$\text{Isobuteno } (iC_4^=) + \text{Metanol } (MeOH) \rightleftharpoons \text{MTBE}$$
-
+  
+$$  
+\text{Isobuteno } (iC_4^=) + \text{Metanol } (MeOH) \rightleftharpoons \text{MTBE}
+$$  
+   
 O diagrama de fluxo da planta divídese en catro zonas de operación correlativas, optimizadas mediante unha técnica numérica específica do Tema 7:
-1. **Zona 1 (Reactor CSTR catalítico):** Optimización Multivariable sen Restricións (BFGS / Cuasi-Newton).
-2. **Zona 2 (Columna Desbutanizadora):** Programación Cuadrática Sucesiva con Restricións (SQP).
-3. **Zona 3 (Lazo de Reciclo de Metanol):** Método da Lagrangiana Aumentada (ALM).
-4. **Zona 4 (Rede de Servizos Térmicos):** Optimización Global Estocástica (PSO / Evolución Diferencial).
 
----
+1. **Zona 1 (Reactor CSTR catalítico):** Optimización Multivariable sen Restricións (BFGS / Cuasi-Newton).
+
+2. **Zona 2 (Columna Desbutanizadora):** Programación Cuadrática Sucesiva con Restricións (SQP).
+
+3. **Zona 3 (Lazo de Reciclo de Metanol):** Método da Lagrangiana Aumentada (ALM).
+
+4. **Zona 4 (Rede de Servizos Térmicos):** Optimización Global Estocástica (PSO / Evolución Diferencial).
 
 # Resolución Paso a Paso en Aspen HYSYS
 
 ## Zona 1: Reactor CSTR (BFGS sen Restricións)
+
 1. **Paquete termodinámico:** Seleccionar `NRTL` na base de datos e definir a reacción cinética con $A = 3.2 \times 10^8\text{ min}^{-1}$, $E_a = 72.0\text{ kJ/mol}$ e $\Delta H_{rxn} = -37.7\text{ MJ/kmol}$.
+
 2. **Flowsheet:** Alimentar `Alim_C4` ($100\text{ kmol/h}$, $35\%\text{ mol } iC_4^=$, $65\%\text{ mol } nC_4$) e `Alim_MeOH` ($36\text{ kmol/h}$) a un reactor `CSTR-100`.
+
 3. **Spreadsheet (`SPR-Z1`):** Importar o volume $V$ (L), carga térmica $|Q|$ (W) e concentración residual $C_A$ (mol/L). Programar a función de custo total anualizado:
    `+ 1200 * (B1^0.6) + 180 * (abs(B2)^0.7) + 50000 * B3`
+
 4. **HYSYS Optimizer (`F5`):** 
-   * *Adjusted Variables:* `CSTR.Tank Volume` ($5\text{--}40\text{ m}^3$) e `CSTR.Temperature` ($330\text{--}390\text{ K}$).
-   * *Objective Function:* Cela `SPR-Z1.B5` (Minimise).
-   * *Algoritmo:* **Quasi-Newton (BFGS)**.
-   * *Resultado óptimo:* $T^* = 352.48\text{ K}$ ($79.3\text{ }^\circ\text{C}$), $V^* = 36.42\text{ L}$ ($\tau^* = 1.46\text{ min}$), conversión $X^* = 98.12\%$.
+
+   - *Adjusted Variables:* `CSTR.Tank Volume` ($5\text{--}40\text{ m}^3$) e `CSTR.Temperature` ($330\text{--}390\text{ K}$).
+
+   - *Objective Function:* Cela `SPR-Z1.B5` (Minimise).
+
+   - *Algoritmo:* **Quasi-Newton (BFGS)**.
+
+   - *Resultado óptimo:* $T^* = 352.48\text{ K}$ ($79.3\text{ }^\circ\text{C}$), $V^* = 36.42\text{ L}$ ($\tau^* = 1.46\text{ min}$), conversión $X^* = 98.12\%$.
 
 ## Zona 2: Columna Desbutanizadora (SQP con Restricións)
+
 1. **Torre de destilación (`COL-100`):** 25 pratos, alimentación no prato 12, condensador total e refervedor kettle.
+
 2. **Optimizer (Motor SQP):**
-   * *Variables de decisión:* Relación de refluxo $R \in [1.5, 4.0]$, Destilado $D \in [45, 85\text{ kmol/h}]$, Presión $P \in [6.0, 11.0\text{ bar}]$.
-   * *Función Obxectivo:* Minimizar `Q_Reb.Heat Flow` (kW).
-   * *Restricións non lineais:* Pureza de MTBE en fondos $\ge 99.0\%$ molar; Perda de MTBE en cabeza $\le 0.1\%$ molar.
+
+   - *Variables de decisión:* Relación de refluxo $R \in [1.5, 4.0]$, Destilado $D \in [45, 85\text{ kmol/h}]$, Presión $P \in [6.0, 11.0\text{ bar}]$.
+
+   - *Función Obxectivo:* Minimizar `Q_Reb.Heat Flow` (kW).
+
+   - *Restricións non lineais:* Pureza de MTBE en fondos $\ge 99.0\%$ molar; Perda de MTBE en cabeza $\le 0.1\%$ molar.
+
 3. **Resultado:** $R^* = 1.845$, $D^* = 61.20\text{ kmol/h}$, $P^* = 6.00\text{ bar}$ (límite inferior activo), $Q_R^* = 3284.1\text{ kW}$ con multiplicador KKT $\lambda > 0$ na pureza de MTBE.
 
 ## Zona 3: Lazo de Reciclo de Metanol (Lagrangiana Aumentada - ALM)
+
 1. Para evitar diverxencias circulares do bloque *Recycle*, desconéctase o lazo físico e trátase como restrición de igualdade $h(x) = 0$ nun Spreadsheet (`SPR-ALM`).
+
 2. Residuos: $h_1 = F_{\text{fresh}} - F_{\text{purga}} - 23.5$ e $h_2 = F_{\text{rec}} - 0.96 \cdot (F_{\text{fresh}} + F_{\text{rec}} - 23.5)$.
+
 3. Cela de Lagrangiana Aumentada: $\mathcal{L}_A = f(x) + \lambda^T h(x) + \frac{\mu}{2}\|h(x)\|^2$.
+
 4. Execución de subproblemas irrestritos con BFGS e actualización dual: $\lambda^{(k+1)} = \lambda^{(k)} + \mu h(x)$.
+
 5. Converxe en 5 ciclos con erro $\|h\|_2 < 10^{-6}$: $F_{\text{fresh}}^* = 23.96\text{ kmol/h}$, $F_{\text{rec}}^* = 11.04\text{ kmol/h}$, $F_{\text{purga}}^* = 0.46\text{ kmol/h}$.
 
 ## Zona 4: Rede Térmica Global (Exploración Estocástica)
-1. A rede de utilidades presenta cristas térmicas e mínimos locais.
-2. Conexión de Python a HYSYS vía **COM Interface** executando `differential_evolution`.
-3. O algoritmo supera os óptimos locais e localiza o mínimo global en $T_1^* = 384.21\text{ K}$, $T_2^* = 371.15\text{ K}$ cun aforro superior ao $24\%$ fronte aos solvers de gradiente tradicionais.
 
----
+1. A rede de utilidades presenta cristas térmicas e mínimos locais.
+
+2. Conexión de Python a HYSYS vía **COM Interface** executando `differential_evolution`.
+
+3. O algoritmo supera os óptimos locais e localiza o mínimo global en $T_1^* = 384.21\text{ K}$, $T_2^* = 371.15\text{ K}$ cun aforro superior ao $24\%$ fronte aos solvers de gradiente tradicionais.
 
 # Resolución Paso a Paso en DWSIM
 
 ## Zona 1: CSTR (BFGS / L-BFGS-B)
+
 1. **Configuración:** Engadir compoñentes e seleccionar paquete `NRTL`. En *Chemical Reactions*, engadir reacción cinética $A \rightarrow B$.
+
 2. **Flowsheet:** Instalar corrente de entrada e reactor CSTR.
+
 3. **Spreadsheet de DWSIM (`SPR-01`):** Vincular volume, fluxo enerxético e concentración de A. Escribir a función obxectivo de custo.
+
 4. **Optimization Tool:** Fixar variables independentes (Volume e Temperatura), seleccionar método **BFGS** e acadar converxencia.
 
 ## Zona 2: Columna ChemSep / DWSIM (SQP)
+
 1. Instalar columna de 25 pratos con paquete Peng-Robinson/NRTL.
+
 2. No **Optimization Tool**, elixir solver **SQP** (ou SLSQP), definir as cotas de refluxo, destilado e presión, e as restricións $g_1 \ge 0$ e $g_2 \ge 0$.
+
 3. O solver reduce a relación de refluxo ata $R^* \approx 1.845$ pegando no límite inferior de presión de $6\text{ bar}$.
 
 ## Zona 3: Lazo de Reciclo con Custom Python Script
+
 1. Desacoplar a corrente de reciclo usando un divisor (*Splitter*).
+
 2. Engadir un bloque **Custom Python Script** que calcula os residuos $h_1, h_2$ e a función $\mathcal{L}_A$.
+
 3. Resolver subproblemas con BFGS e actualizar os multiplicadores $\lambda$ de xeito iterativo ata anular os residuos.
 
 ## Zona 4: Optimización Global con Particle Swarm Optimization (PSO)
+
 1. No **Optimization Tool** de DWSIM, seleccionar o motor nativo **Particle Swarm Optimization (PSO)**.
+
 2. Parámetros do enxame: Poboación = 20 partículas, Xeracións = 30, $w = 0.729$, $c_1 = c_2 = 1.494$.
+
 3. O enxame dispersa partículas polo hipervolume de busca, eludindo os pozos locais e converxendo no óptimo global da rede térmica.
 
----
-
 # Solución Completa en Python
-
-A continuación preséntase o script Python executable que resolve numericamente os catro apartados da planta de MTBE:
 
 ```{python}
 #| label: python-full-solution
@@ -128,7 +160,7 @@ def cstr_economic_scaled(z):
     Q = v0 * rho * Cp * (T - Tin) + (v0 * CA0 * X) * DeltaH
     return 1200.0 * (V**0.6) + 180.0 * (np.abs(Q)**0.7) + 5.0e4 * CA_out
 
-res_z1 = minimize(cstr_economic_scaled, [335.0/T_ref, 20.0/V_ref], method='BFGS')
+res_z1 = minimize(cstr_economic_scaled, [335.0/T_ref, 20.0/V_ref], method="BFGS")
 T1_opt, V1_opt = res_z1.x[0] * T_ref, res_z1.x[1] * V_ref
 
 print(f"ZONA 1 (BFGS): T* = {T1_opt:.2f} K | V* = {V1_opt:.2f} L | Custo = {res_z1.fun:.2f}")
@@ -139,11 +171,11 @@ def reboiler_duty(x):
     return 18.5 * (R + 1.0) * D + 4.2 * (P**1.18)
 
 cons_z2 = [
-    {'type': 'ineq', 'fun': lambda x: (0.965 + 0.032*(x[0]/(x[0]+0.6))*(65.0/x[1]) - 0.0015*(x[2]-8.0)) - 0.990},
-    {'type': 'ineq', 'fun': lambda x: 0.0010 - (0.0035*np.exp(-0.75*x[0])*(x[1]/65.0) + 0.0001*(x[2]-8.0))}
+    {"type": "ineq", "fun": lambda x: (0.965 + 0.032*(x[0]/(x[0]+0.6))*(65.0/x[1]) - 0.0015*(x[2]-8.0)) - 0.990},
+    {"type": "ineq", "fun": lambda x: 0.0010 - (0.0035*np.exp(-0.75*x[0])*(x[1]/65.0) + 0.0001*(x[2]-8.0))}
 ]
 bounds_z2 = [(1.5, 4.0), (45.0, 85.0), (6.0, 11.0)]
-res_z2 = minimize(reboiler_duty, [2.5, 65.0, 8.5], method='SLSQP', bounds=bounds_z2, constraints=cons_z2)
+res_z2 = minimize(reboiler_duty, [2.5, 65.0, 8.5], method="SLSQP", bounds=bounds_z2, constraints=cons_z2)
 
 print(f"ZONA 2 (SQP):  R* = {res_z2.x[0]:.3f} | D* = {res_z2.x[1]:.2f} kmol/h | P* = {res_z2.x[2]:.2f} bar | QR* = {res_z2.fun:.2f} kW")
 
@@ -157,7 +189,7 @@ def loop_h(x):
 x_k, lam_k, mu_k = np.array([10.0, 1.0, 26.0]), np.zeros(2), 10.0
 for _ in range(12):
     sub = lambda x: cost_rec(x) + np.dot(lam_k, loop_h(x)) + 0.5 * mu_k * np.sum(loop_h(x)**2)
-    x_k = minimize(sub, x_k, method='BFGS').x
+    x_k = minimize(sub, x_k, method="BFGS").x
     h_val = loop_h(x_k)
     if np.linalg.norm(h_val) < 1e-6: break
     lam_k += mu_k * h_val
@@ -175,3 +207,5 @@ def thermal_cost(x):
 
 res_z4 = differential_evolution(thermal_cost, [(330.0, 420.0), (320.0, 410.0)], seed=42)
 print(f"ZONA 4 (DE):   T1* = {res_z4.x[0]:.2f} K | T2* = {res_z4.x[1]:.2f} K | Custo* = {res_z4.fun:.2f} €/h")
+```
+

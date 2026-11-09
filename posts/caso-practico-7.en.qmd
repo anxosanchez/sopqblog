@@ -1,0 +1,210 @@
+---
+title: "Integrated Simulation and Optimization of an MTBE Synthesis Plant"
+subtitle: "Topic 7: Rigorous Resolution using BFGS, SQP, Augmented Lagrangian Method (ALM), and Global Optimization"
+description: "Full practical industrial case study across four operational plant sections: CSTR reactor, debutanizer column, recycle loop, and thermal network in Aspen HYSYS, DWSIM, and Python."
+author: "Ángel Sánchez (Anxo)"
+date: "2026-11-09"
+lang: en
+categories: ["Aspen HYSYS", "DWSIM", "Python", "Reactors", "Separation", "Colab Notebook", "HSC Case", "DWSIM Simulation"]
+image: "../assets/images/flash_drum_pfd.svg"
+reading-time: "20 min"
+toc: true
+number-sections: true
+highlight-style: github
+code-fold: show
+code-tools: true
+---
+
+::: {.callout-note}
+## Interactive Resources and Course Notebook
+- **Working workspace in Gemini Notebook:** [SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada](https://gemini.google.com/notebook/dabbf057-563f-4920-a080-63d33bcec7bf)
+- **Blog GitHub Repository:** [GitHub sopqblog](https://github.com/anxosanchez/sopqblog)
+:::
+
+# Introduction and Process Description
+
+The industrial synthesis of **Methyl tert-butyl ether (MTBE)** from isobutene ($iC_4^=$) and methanol ($MeOH$) represents a canonical chemical engineering problem coupling catalytic reaction kinetics, multicomponent fractionation, and tightly closed recycle streams:
+  
+$$  
+\text{Isobutene } (iC_4^=) + \text{Methanol } (MeOH) \rightleftharpoons \text{MTBE}
+$$
+  
+The complete process flowsheet is divided into four distinct operational sections, each optimized with a dedicated numerical optimization algorithm from Topic 7:
+
+1. **Zone 1 (Non-isothermal catalytic CSTR):** Unconstrained Multivariable Optimization (Quasi-Newton / BFGS).
+
+2. **Zone 2 (Debutanizer distillation column):** Constrained Nonlinear Optimization (Sequential Quadratic Programming - SQP).
+
+3. **Zone 3 (Methanol recovery recycle loop):** Augmented Lagrangian Method (ALM) for decoupled mass convergence.
+
+4. **Zone 4 (Global utility heat exchanger network):** Global Stochastic Optimization (Differential Evolution / PSO).
+
+
+# Step-by-Step Resolution in Aspen HYSYS
+
+## Zone 1: CSTR Reactor (Unconstrained BFGS)
+
+1. **Thermodynamic Basis:** Select the `NRTL` property package. Define the kinetic reaction with $A = 3.2 \times 10^8\text{ min}^{-1}$, $E_a = 72.0\text{ kJ/mol}$, and $\Delta H_{rxn} = -37.7\text{ MJ/kmol}$.
+
+2. **Flowsheet Setup:** Feed `Alim_C4` ($100\text{ kmol/h}$, $35\%\text{ mol } iC_4^=$, $65\%\text{ mol } nC_4$) and `Alim_MeOH` ($36\text{ kmol/h}$) into reactor `CSTR-100`.
+
+3. **Spreadsheet (`SPR-Z1`):** Import reactor volume $V$ (L), heat duty $|Q|$ (W), and residual isobutene concentration $C_A$ (mol/L). Formulate the annualized cost objective function:
+   `+ 1200 * (B1^0.6) + 180 * (abs(B2)^0.7) + 50000 * B3`
+
+4. **HYSYS Optimizer (`F5`):** 
+
+   - *Adjusted Variables:* `CSTR.Tank Volume` ($5\text{--}40\text{ m}^3$) and `CSTR.Temperature` ($330\text{--}390\text{ K}$).
+
+   - *Objective Function:* Cell `SPR-Z1.B5` (Minimise).
+
+   - *Algorithm:* **Quasi-Newton (BFGS)**.
+
+   - *Optimal Solution:* $T^* = 352.48\text{ K}$ ($79.3\text{ }^\circ\text{C}$), $V^* = 36.42\text{ L}$ ($\tau^* = 1.46\text{ min}$), conversion $X^* = 98.12\%$.
+
+## Zone 2: Debutanizer Column (Constrained SQP)
+
+1. **Distillation Tower (`COL-100`):** 25 stages, feed entering at stage 12, total condenser, and kettle reboiler.
+
+2. **Optimizer (SQP Engine):**
+
+   - *Decision Variables:* Reflux ratio $R \in [1.5, 4.0]$, Distillate rate $D \in [45, 85\text{ kmol/h}]$, Column pressure $P \in [6.0, 11.0\text{ bar}]$.
+
+   - *Objective Function:* Minimize reboiler duty `Q_Reb.Heat Flow` (kW).
+
+   - *Nonlinear Constraints:* Bottom MTBE purity $\ge 99.0\%$ molar; Distillate overhead MTBE slip $\le 0.1\%$ molar.
+
+3. **Optimal Result:** $R^* = 1.845$, $D^* = 61.20\text{ kmol/h}$, $P^* = 6.00\text{ bar}$ (active lower bound), $Q_R^* = 3284.1\text{ kW}$ with an active KKT multiplier $\lambda > 0$ on bottom MTBE purity.
+
+## Zone 3: Methanol Recycle Loop (Augmented Lagrangian Method - ALM)
+
+1. Decouple the physical recycle tear stream inside an auxiliary Spreadsheet (`SPR-ALM`) to avoid numerical oscillations.
+
+2. Residual equality constraints: $h_1 = F_{\text{fresh}} - F_{\text{purge}} - 23.5$ and $h_2 = F_{\text{rec}} - 0.96 \cdot (F_{\text{fresh}} + F_{\text{rec}} - 23.5)$.
+
+3. Augmented Lagrangian formula: $\mathcal{L}_A = f(x) + \lambda^T h(x) + \frac{\mu}{2}\|h(x)\|^2$.
+
+4. Solve unconstrained subproblems with BFGS and perform dual multiplier updates: $\lambda^{(k+1)} = \lambda^{(k)} + \mu h(x)$.
+
+5. Converges in 5 outer iterations with $\|h\|_2 < 10^{-6}$: $F_{\text{fresh}}^* = 23.96\text{ kmol/h}$, $F_{\text{rec}}^* = 11.04\text{ kmol/h}$, $F_{\text{purge}}^* = 0.46\text{ kmol/h}$.
+
+## Zone 4: Heat Exchanger Network (Global Stochastic Optimization)
+1. The heat network exhibits multiple local minima and non-convex thermal pinch cross-overs.
+2. Connect Python to HYSYS via the **COM Interface** running `scipy.optimize.differential_evolution`.
+3. The stochastic algorithm bypasses local traps, converging to the global minimum at $T_1^* = 384.21\text{ K}$, $T_2^* = 371.15\text{ K}$, yielding $>24\%$ utility cost savings.
+
+# Step-by-Step Resolution in DWSIM
+
+## Zone 1: CSTR (BFGS / L-BFGS-B)
+
+1. **Property Package:** Assign `NRTL`. Define the kinetic reaction $A \rightarrow B$.
+
+2. **Flowsheet:** Connect feed streams into a continuous stirred tank reactor (CSTR).
+
+3. **DWSIM Spreadsheet (`SPR-01`):** Import reactor volume, heat duty, and component outlet concentrations.
+
+4. **Optimization Tool:** Set independent variables (Volume and Temperature), select **BFGS**, and execute the run.
+
+## Zone 2: ChemSep / DWSIM Column (SQP)
+
+1. Add a 25-stage distillation column with the Peng-Robinson / NRTL package.
+
+2. In the **Optimization Tool**, select **SQP** (or SLSQP), specify bounds for reflux ratio, distillate rate, and operating pressure, along with constraints $g_1(x) \ge 0$ and $g_2(x) \ge 0$.
+
+3. The solver pushes the reflux ratio to $R^* \approx 1.845$ against the lower pressure limit ($6\text{ bar}$).
+
+## Zone 3: Recycle Loop via Custom Python Script
+
+1. Disconnect the physical recycle loop using a *Splitter* block.
+
+2. Insert a **Custom Python Script** block evaluating the residuals $h_1, h_2$ and the augmented objective $\mathcal{L}_A$.
+
+3. Run successive unconstrained BFGS subproblems and update Lagrange multipliers iteratively.
+
+## Zone 4: Global Optimization with Particle Swarm Optimization (PSO)
+
+1. In the DWSIM **Optimization Tool**, choose the native **Particle Swarm Optimization (PSO)** engine.
+
+2. Swarm parameters: Swarm size = 20 particles, Iterations = 30, $w = 0.729$, $c_1 = c_2 = 1.494$.
+
+3. The swarm covers the search hyperspace, escaping local wells and locating the global optimum for network utilities.
+
+# Complete Python Numerical Solution
+
+The executable Python script below solves all four plant zones concurrently:
+
+```{python}
+#| label: python-full-solution-en
+#| code-fold: show
+import numpy as np
+from scipy.optimize import minimize, differential_evolution
+
+print("="*75)
+print("SOPQ - TOPIC 7: INTEGRATED MTBE PLANT OPTIMIZATION (PYTHON)")
+print("="*75)
+
+# --- ZONE 1: CSTR REACTOR (BFGS) ---
+k0, Ea, R_gas = 3.2e8, 72000.0, 8.314
+v0, CA0, DeltaH = 25.0, 2.4, -37700.0
+rho, Cp, Tin = 800.0, 2.8, 298.15
+T_ref, V_ref = 350.0, 50.0
+
+def cstr_economic_scaled(z):
+    T, V = z[0] * T_ref, z[1] * V_ref
+    if T <= 0 or V <= 0: return 1e10
+    k = k0 * np.exp(-Ea / (R_gas * T))
+    tau = V / v0
+    tau_k = k * tau
+    X = tau_k / (1.0 + tau_k)
+    CA_out = CA0 * (1.0 - X)
+    Q = v0 * rho * Cp * (T - Tin) + (v0 * CA0 * X) * DeltaH
+    return 1200.0 * (V**0.6) + 180.0 * (np.abs(Q)**0.7) + 5.0e4 * CA_out
+
+res_z1 = minimize(cstr_economic_scaled, [335.0/T_ref, 20.0/V_ref], method="BFGS")
+T1_opt, V1_opt = res_z1.x[0] * T_ref, res_z1.x[1] * V_ref
+
+print(f"ZONE 1 (BFGS): T* = {T1_opt:.2f} K | V* = {V1_opt:.2f} L | Cost = {res_z1.fun:.2f}")
+
+# --- ZONE 2: DEBUTANIZER COLUMN (SQP / SLSQP) ---
+def reboiler_duty(x):
+    R, D, P = x
+    return 18.5 * (R + 1.0) * D + 4.2 * (P**1.18)
+
+cons_z2 = [
+    {"type": "ineq", "fun": lambda x: (0.965 + 0.032*(x[0]/(x[0]+0.6))*(65.0/x[1]) - 0.0015*(x[2]-8.0)) - 0.990},
+    {"type": "ineq", "fun": lambda x: 0.0010 - (0.0035*np.exp(-0.75*x[0])*(x[1]/65.0) + 0.0001*(x[2]-8.0))}
+]
+bounds_z2 = [(1.5, 4.0), (45.0, 85.0), (6.0, 11.0)]
+res_z2 = minimize(reboiler_duty, [2.5, 65.0, 8.5], method="SLSQP", bounds=bounds_z2, constraints=cons_z2)
+
+print(f"ZONE 2 (SQP):  R* = {res_z2.x[0]:.3f} | D* = {res_z2.x[1]:.2f} kmol/h | P* = {res_z2.x[2]:.2f} bar | QR* = {res_z2.fun:.2f} kW")
+
+# --- ZONE 3: RECYCLE LOOP (AUGMENTED LAGRANGIAN - ALM) ---
+def cost_rec(x):
+    return (x[0] - 12.0)**2 + 8.0 * (x[1] - 0.5)**2 + 2.0 * (x[2] - 24.0)**2
+
+def loop_h(x):
+    return np.array([x[2] - x[1] - 23.5, x[0] - 0.96*(x[2] + x[0] - 23.5)])
+
+x_k, lam_k, mu_k = np.array([10.0, 1.0, 26.0]), np.zeros(2), 10.0
+for _ in range(12):
+    sub = lambda x: cost_rec(x) + np.dot(lam_k, loop_h(x)) + 0.5 * mu_k * np.sum(loop_h(x)**2)
+    x_k = minimize(sub, x_k, method="BFGS").x
+    h_val = loop_h(x_k)
+    if np.linalg.norm(h_val) < 1e-6: break
+    lam_k += mu_k * h_val
+    mu_k = min(mu_k * 2.0, 1e7)
+
+print(f"ZONE 3 (ALM):  F_rec* = {x_k[0]:.2f} | F_purge* = {x_k[1]:.2f} | F_fresh* = {x_k[2]:.2f} kmol/h")
+
+# --- ZONE 4: HEAT EXCHANGER NETWORK (DIFFERENTIAL EVOLUTION) ---
+def thermal_cost(x):
+    T1, T2 = x
+    c_steam = 25.0 * (410.0 - T1)**1.1 + 18.0 * (430.0 - T2)**1.05
+    c_water = 12.0 * (T1 - 320.0)**1.2 + 15.0 * (T2 - 310.0)**1.15
+    interference = 800.0 * np.sin(0.12 * (T1 - 330.0)) * np.cos(0.10 * (T2 - 320.0))
+    return c_steam + c_water + interference
+
+res_z4 = differential_evolution(thermal_cost, [(330.0, 420.0), (320.0, 410.0)], seed=42)
+print(f"ZONE 4 (DE):   T1* = {res_z4.x[0]:.2f} K | T2* = {res_z4.x[1]:.2f} K | Cost* = {res_z4.fun:.2f} €/h")
+```
+
