@@ -1,0 +1,67 @@
+<script>
+/**
+ * SOPQ Theme-Aware Logo Switcher
+ * Harmonizes light and dark logos dynamically across page transitions, theme changes, and directory depths.
+ */
+(function() {
+  function syncThemeLogos() {
+    var isDark = document.body.classList.contains("quarto-dark") ||
+                 document.documentElement.getAttribute("data-bs-theme") === "dark" ||
+                 (window.localStorage && window.localStorage.getItem("quarto-color-scheme") === "alternate");
+
+    // 1. Sync Quarto navbar logos
+    var navLogos = document.querySelectorAll(".navbar-brand .navbar-logo");
+    navLogos.forEach(function(img) {
+      var currentSrc = img.getAttribute("src");
+      if (!currentSrc) return;
+      if (isDark && currentSrc.indexOf("logo-light") !== -1) {
+        img.setAttribute("src", currentSrc.replace("logo-light", "logo-dark"));
+      } else if (!isDark && currentSrc.indexOf("logo-dark") !== -1) {
+        img.setAttribute("src", currentSrc.replace("logo-dark", "logo-light"));
+      }
+    });
+
+    // 2. Fix relative paths for footer logos in subdirectories
+    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
+                   (document.querySelector('meta[name="quarto:offset"]') && 
+                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
+    var footerLogos = document.querySelectorAll(".footer-logo");
+    footerLogos.forEach(function(img) {
+      var src = img.getAttribute("src");
+      if (src && !src.startsWith("http") && !src.startsWith("../") && !src.startsWith("/")) {
+        if (isSubdir) {
+          img.setAttribute("src", "../" + src.replace(/^\.\//, ""));
+        }
+      }
+    });
+  }
+
+  // Run on initial load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", syncThemeLogos);
+  } else {
+    syncThemeLogos();
+  }
+
+  // Observe theme class and attribute changes on <body> and <html>
+  var observer = new MutationObserver(function() {
+    syncThemeLogos();
+  });
+
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-bs-theme", "class"] });
+  if (document.body) {
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  } else {
+    document.addEventListener("DOMContentLoaded", function() {
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    });
+  }
+
+  // Hook into storage events for cross-tab or storage changes
+  window.addEventListener("storage", function(e) {
+    if (e.key === "quarto-color-scheme") {
+      syncThemeLogos();
+    }
+  });
+})();
+</script>
