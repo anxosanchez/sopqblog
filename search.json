@@ -88,14 +88,14 @@
     "href": "index.html#casos-destacados",
     "title": "ProcessSim // Hub de Enxeñaría Termodinámica",
     "section": "1 🚀 Casos de Simulación Destacados",
-    "text": "1 🚀 Casos de Simulación Destacados\nOs casos máis recentes modelados con especificacións rigorosas de planta e verificación experimental de equilibrios:\n\n\n\n\n\n\n\n\n\n\nMulticomponent Isothermal Flash Separation Simulation\n\n10 min\n\n\nPython\n\nSeparación\n\nCaderno Colab\n\nVídeo Titorial\n\n\n\nAnalytical and computational resolution of a flash distillation drum for a ternary hydrocarbon mixture (C5-C7) at 78.4 °C and 1.20 bar, with strict mass and energy balance…\n\n\n\nOct 30, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulación de Separación Flash Isotérmica Multicomponente\n\n11 min\n\n\nPython\n\nSeparación\n\nCaderno Colab\n\nVídeo Titorial\n\n\n\nResolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de…\n\n\n\nOct 30, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulación de Separación Flash Isotérmica Multicompoñente\n\n11 min\n\n\nPython\n\nSeparación\n\nCaderno Colab\n\nVídeo Titorial\n\n\n\nResolución analítica e computacional dun tambor de separación flash para unha mestura ternaria de hidrocarburos (C5-C7) a 78.4 °C e 1.20 bar, con cálculo estrito de balances…\n\n\n\nOct 30, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulación dunha Columna Debutanizadora en Aspen HYSYS\n\n6 min\n\n\nAspen HYSYS\n\nSeparación\n\nCaso HSC\n\nVídeo Titorial\n\n\n\nModelado rigoroso dunha torre de destilación de 30 pratos para separar propano/butanos de gasolinas estabilizadas, optimizando a taxa de refluxo e os consumos enerxéticos de…\n\n\n\nOct 28, 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulación dun Reactor CSTR de Esterificación en DWSIM\n\n7 min\n\n\nDWSIM\n\nReactores\n\nSimulación DWSIM\n\nVídeo Titorial\n\n\n\nModelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de…\n\n\n\nOct 25, 2026\n\n\n\n\n\n\nNo matching items"
+    "text": "1 🚀 Casos de Simulación Destacados\nOs casos máis recentes modelados con especificacións rigorosas de planta e verificación experimental de equilibrios:\n\n\n\n\n\n\n\n\n\n\nMulticomponent Isothermal Flash Separation Simulation\n\n10 min\n\n\nPython\n\nSeparación\n\nCaderno Colab\n\nVídeo Titorial\n\n\n\nAnalytical and computational resolution of a flash distillation drum for a ternary hydrocarbon mixture (C5-C7) at 78.4 °C and 1.20 bar, with strict mass and energy balance…\n\n\n\n30 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulación de Separación Flash Isotérmica Multicomponente\n\n11 min\n\n\nPython\n\nSeparación\n\nCaderno Colab\n\nVídeo Titorial\n\n\n\nResolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de…\n\n\n\n30 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulación de Separación Flash Isotérmica Multicompoñente\n\n11 min\n\n\nPython\n\nSeparación\n\nCaderno Colab\n\nVídeo Titorial\n\n\n\nResolución analítica e computacional dun tambor de separación flash para unha mestura ternaria de hidrocarburos (C5-C7) a 78.4 °C e 1.20 bar, con cálculo estrito de balances…\n\n\n\n30 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulación dunha Columna Debutanizadora en Aspen HYSYS\n\n6 min\n\n\nAspen HYSYS\n\nSeparación\n\nCaso HSC\n\nVídeo Titorial\n\n\n\nModelado rigoroso dunha torre de destilación de 30 pratos para separar propano/butanos de gasolinas estabilizadas, optimizando a taxa de refluxo e os consumos enerxéticos de…\n\n\n\n28 oct 2026\n\n\n\n\n\n\n\n\n\n\n\n\n\nSimulación dun Reactor CSTR de Esterificación en DWSIM\n\n7 min\n\n\nDWSIM\n\nReactores\n\nSimulación DWSIM\n\nVídeo Titorial\n\n\n\nModelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de…\n\n\n\n25 oct 2026\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.html#explorador-plataformas",
     "href": "index.html#explorador-plataformas",
     "title": "ProcessSim // Hub de Enxeñaría Termodinámica",
     "section": "2 🗂️ Explorador por Plataforma de Simulación",
-    "text": "2 🗂️ Explorador por Plataforma de Simulación\nNavega a través das simulacións filtradas mediante a nosa taxonomía canónica ortogonal de 3 niveis:\n\n🔵 Aspen HYSYS🟢 DWSIM (Código Aberto)🐍 Python e Termodinámica\n\n\nCasos de grao industrial modelados no estándar petroquímico global. Inclúen ficheiros .hsc listos para descargar e perfís hidráulicos de columnas.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publicación - Oldest\n      \n      \n        Publicación - Newest\n      \n      \n        Caso de Simulación\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublicación\n\n\n\nCaso de Simulación\n\n\n\nTaxonomía Canónica\n\n\n\nLectura\n\n\n\n\n\n\n\n\nOct 28, 2026\n\n\nSimulación dunha Columna Debutanizadora en Aspen HYSYS\n\n\nAspen HYSYS, Separación, Caso HSC, Vídeo Titorial\n\n\n6 min\n\n\n\n\n\n\nNo matching items\n\n\n\nSimulacións completas resoltas no software de código aberto DWSIM v8. Accesibilidade total sen licenzas restritivas e con total paridade termodinámica.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publicación - Oldest\n      \n      \n        Publicación - Newest\n      \n      \n        Caso de Simulación\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublicación\n\n\n\nCaso de Simulación\n\n\n\nTaxonomía Canónica\n\n\n\nLectura\n\n\n\n\n\n\n\n\nOct 25, 2026\n\n\nSimulación dun Reactor CSTR de Esterificación en DWSIM\n\n\nDWSIM, Reactores, Simulación DWSIM, Vídeo Titorial\n\n\n7 min\n\n\n\n\n\n\nNo matching items\n\n\n\nImplementacións analíticas e numéricas en Python (NumPy, SciPy) para resolución de Rachford-Rice, curvas flash isotérmicas e diagramas de fases ternarios.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publicación - Oldest\n      \n      \n        Publicación - Newest\n      \n      \n        Caso de Simulación\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublicación\n\n\n\nCaso de Simulación\n\n\n\nTaxonomía Canónica\n\n\n\nLectura\n\n\n\n\n\n\n\n\nOct 30, 2026\n\n\nMulticomponent Isothermal Flash Separation Simulation\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n10 min\n\n\n\n\n\n\nOct 30, 2026\n\n\nSimulación de Separación Flash Isotérmica Multicomponente\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n11 min\n\n\n\n\n\n\nOct 30, 2026\n\n\nSimulación de Separación Flash Isotérmica Multicompoñente\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n11 min\n\n\n\n\n\n\nNo matching items"
+    "text": "2 🗂️ Explorador por Plataforma de Simulación\nNavega a través das simulacións filtradas mediante a nosa taxonomía canónica ortogonal de 3 niveis:\n\n🔵 Aspen HYSYS🟢 DWSIM (Código Aberto)🐍 Python e Termodinámica\n\n\nCasos de grao industrial modelados no estándar petroquímico global. Inclúen ficheiros .hsc listos para descargar e perfís hidráulicos de columnas.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publicación - Oldest\n      \n      \n        Publicación - Newest\n      \n      \n        Caso de Simulación\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublicación\n\n\n\nCaso de Simulación\n\n\n\nTaxonomía Canónica\n\n\n\nLectura\n\n\n\n\n\n\n\n\n28 oct 2026\n\n\nSimulación dunha Columna Debutanizadora en Aspen HYSYS\n\n\nAspen HYSYS, Separación, Caso HSC, Vídeo Titorial\n\n\n6 min\n\n\n\n\n\n\nNo matching items\n\n\n\nSimulacións completas resoltas no software de código aberto DWSIM v8. Accesibilidade total sen licenzas restritivas e con total paridade termodinámica.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publicación - Oldest\n      \n      \n        Publicación - Newest\n      \n      \n        Caso de Simulación\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublicación\n\n\n\nCaso de Simulación\n\n\n\nTaxonomía Canónica\n\n\n\nLectura\n\n\n\n\n\n\n\n\n25 oct 2026\n\n\nSimulación dun Reactor CSTR de Esterificación en DWSIM\n\n\nDWSIM, Reactores, Simulación DWSIM, Vídeo Titorial\n\n\n7 min\n\n\n\n\n\n\nNo matching items\n\n\n\nImplementacións analíticas e numéricas en Python (NumPy, SciPy) para resolución de Rachford-Rice, curvas flash isotérmicas e diagramas de fases ternarios.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publicación - Oldest\n      \n      \n        Publicación - Newest\n      \n      \n        Caso de Simulación\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublicación\n\n\n\nCaso de Simulación\n\n\n\nTaxonomía Canónica\n\n\n\nLectura\n\n\n\n\n\n\n\n\n30 oct 2026\n\n\nMulticomponent Isothermal Flash Separation Simulation\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n10 min\n\n\n\n\n\n\n30 oct 2026\n\n\nSimulación de Separación Flash Isotérmica Multicomponente\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n11 min\n\n\n\n\n\n\n30 oct 2026\n\n\nSimulación de Separación Flash Isotérmica Multicompoñente\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n11 min\n\n\n\n\n\n\nNo matching items"
   },
   {
     "objectID": "index.en.html",
@@ -119,282 +119,121 @@
     "text": "2 🗂️ Platform Explorer\nBrowse simulation studies categorized by our 3-tier canonical taxonomy:\n\n🔵 Aspen HYSYS🟢 DWSIM (Open Source)🐍 Python & Thermodynamics\n\n\nIndustrial grade simulations in the petrochem reference standard. Includes .hsc download files and hydraulic stage profiles.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publication - Oldest\n      \n      \n        Publication - Newest\n      \n      \n        Simulation Case\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublication\n\n\n\nSimulation Case\n\n\n\nCanonical Taxonomy\n\n\n\nRead Time\n\n\n\n\n\n\n\n\nOct 28, 2026\n\n\nSimulación dunha Columna Debutanizadora en Aspen HYSYS\n\n\nAspen HYSYS, Separación, Caso HSC, Vídeo Titorial\n\n\n6 min\n\n\n\n\n\n\nNo matching items\n\n\n\nComplete unit operations simulated in open-source DWSIM v8. Free accessible software with full thermodynamic consistency.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publication - Oldest\n      \n      \n        Publication - Newest\n      \n      \n        Simulation Case\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublication\n\n\n\nSimulation Case\n\n\n\nCanonical Taxonomy\n\n\n\nRead Time\n\n\n\n\n\n\n\n\nOct 25, 2026\n\n\nSimulación dun Reactor CSTR de Esterificación en DWSIM\n\n\nDWSIM, Reactores, Simulación DWSIM, Vídeo Titorial\n\n\n7 min\n\n\n\n\n\n\nNo matching items\n\n\n\nNumerical and analytical solvers in Python (NumPy, SciPy) for Rachford-Rice vapor fraction, isothermal flash curves, and ternary phase equilibria.\n\n\n   \n    \n    \n      Order By\n      Default\n      \n        Publication - Oldest\n      \n      \n        Publication - Newest\n      \n      \n        Simulation Case\n      \n    \n  \n    \n      \n      \n    \n\n\n\n\n\n\nPublication\n\n\n\nSimulation Case\n\n\n\nCanonical Taxonomy\n\n\n\nRead Time\n\n\n\n\n\n\n\n\nOct 30, 2026\n\n\nMulticomponent Isothermal Flash Separation Simulation\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n10 min\n\n\n\n\n\n\nOct 30, 2026\n\n\nSimulación de Separación Flash Isotérmica Multicomponente\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n11 min\n\n\n\n\n\n\nOct 30, 2026\n\n\nSimulación de Separación Flash Isotérmica Multicompoñente\n\n\nPython, Separación, Caderno Colab, Vídeo Titorial\n\n\n11 min\n\n\n\n\n\n\nNo matching items"
   },
   {
-    "objectID": "posts/caso-destilacion-flash.es.html",
-    "href": "posts/caso-destilacion-flash.es.html",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "objectID": "posts/2026-11-08-optimizacion-avanzada-procesos-quimicos/index.html",
+    "href": "posts/2026-11-08-optimizacion-avanzada-procesos-quimicos/index.html",
+    "title": "Optimización Numérica Avanzada en Procesos Químicos: Da Teoría á Práctica con Python, Aspen HYSYS e DWSIM",
     "section": "",
-    "text": "Idioma: Galego Castelán English"
+    "text": "NoteMaterial Didáctico Interactivo\n\n\n\n\nCódigo executable en Google Colab: Abrir en Colab\nCaderno de fontes en Gemini Notebook: SOPQ - Tema 7\nRepositorio do blog: GitHub sopqblog"
   },
   {
-    "objectID": "posts/caso-destilacion-flash.es.html#métricas-operacionales-y-balances-de-convergencia",
-    "href": "posts/caso-destilacion-flash.es.html#métricas-operacionales-y-balances-de-convergencia",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "1 Métricas Operacionales y Balances de Convergencia",
-    "text": "1 Métricas Operacionales y Balances de Convergencia\n\n\n\nTemperatura Tambor\n\n\n78.4°C\n\n\nEquilibrio Térmico (351.55 K)\n\n\n\n\nPresión de Operación\n\n\n1.20bar\n\n\nAbsoluta en Separador (120 kPa)\n\n\n\n\nFracción Vaporizada (V/F)\n\n\n0.4285\n\n\nResiduo Rachford-Rice &lt; 10⁻⁸\n\n\n\n\nCarga Térmica (Duty)\n\n\n420.5kW\n\n\nCalor de Vaporización Latente"
+    "objectID": "posts/2026-11-08-optimizacion-avanzada-procesos-quimicos/index.html#caso-1-reactor-cstr-non-isotérmico-bfgs",
+    "href": "posts/2026-11-08-optimizacion-avanzada-procesos-quimicos/index.html#caso-1-reactor-cstr-non-isotérmico-bfgs",
+    "title": "Optimización Numérica Avanzada en Procesos Químicos: Da Teoría á Práctica con Python, Aspen HYSYS e DWSIM",
+    "section": "2.1 Caso 1: Reactor CSTR Non Isotérmico (BFGS)",
+    "text": "2.1 Caso 1: Reactor CSTR Non Isotérmico (BFGS)\nConsidérase a síntese A \\rightarrow B cunha constante de Arrhenius k(T) = k_0 \\exp(-E_a / RT). A función de custo total anualizado pondera capital, intercambio térmico e reactivo sen converter:\n\\min_{T, V} f_1(T, V) = 1500 \\cdot V^{0.6} + 250 \\cdot |Q|^{0.7} + 1.0 \\times 10^5 \\cdot C_A\n#| label: fig-cstr-opt #| fig-cap: “Superficie de custo e converxencia BFGS para o reactor CSTR” import numpy as np import matplotlib.pyplot as plt from scipy.optimize import minimize\nk0, Ea, R_gas = 1.5e7, 65000.0, 8.314 CA0, v0, DeltaH = 2.0, 10.0, -50000.0 rho, Cp, Tin = 1000.0, 4.184, 298.15 T_ref, V_ref = 300.0, 50.0\ndef cstr_obj_scaled(z): T, V = z[0] * T_ref, z[1] * V_ref if T &lt;= 0 or V &lt;= 0: return 1e12 k = k0 * np.exp(-Ea / (R_gas * T)) tau = V / v0 X = (k * tau) / (1.0 + k * tau) CA = CA0 * (1.0 - X) Q = v0 * rho * Cp * (T - Tin) + (v0 * CA0 * X) * DeltaH return 1500.0 * (V0.6) + 250.0 * (np.abs(Q)0.7) + 1.0e5 * CA\nres_bfgs = minimize(cstr_obj_scaled, [330.0/T_ref, 50.0/V_ref], method=‘BFGS’) T_opt, V_opt = res_bfgs.x[0] * T_ref, res_bfgs.x[1] * V_ref\nT_vals = np.linspace(310, 380, 50) V_vals = np.linspace(20, 120, 50) T_grid, V_grid = np.meshgrid(T_vals, V_vals) Z_grid = np.zeros_like(T_grid)\nfor i in range(T_grid.shape[0]): for j in range(T_grid.shape[1]): Z_grid[i, j] = cstr_obj_scaled([T_grid[i, j]/T_ref, V_grid[i, j]/V_ref])\nplt.figure(figsize=(7, 5)) cp = plt.contourf(T_grid, V_grid, Z_grid, levels=30, cmap=‘viridis’) plt.colorbar(cp, label=‘Custo Total ($)’) plt.plot(T_opt, V_opt, ’r*‘, markersize=14, label=f’Óptimo ({T_opt:.1f} K, {V_opt:.1f} L)’) plt.xlabel(‘Temperatura (K)’) plt.ylabel(‘Volume (L)’) plt.legend() plt.tight_layout() plt.show()"
   },
   {
-    "objectID": "posts/caso-destilacion-flash.es.html#introducción-y-contexto-del-proceso",
-    "href": "posts/caso-destilacion-flash.es.html#introducción-y-contexto-del-proceso",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "2 1. Introducción y Contexto del Proceso",
-    "text": "2 1. Introducción y Contexto del Proceso\nLa separación instantánea (flash distillation) es una operación unitaria fundamental en plantas de procesamiento de gas natural, refinerías y petroquímica. Permite despojar fracciones livianas de corrientes de crudo o estabilizar corrientes de hidrocarburos antes de ingresar a columnas de fraccionamiento complejas.\nEn este estudio evaluamos un tambor de separación flash en estado estacionario alimentado con una mezcla ternaria representativa de parafinas livianas: * n-Pentano (n\\text{-C}_5\\text{H}_{12}): z_1 = 0.50 (componente liviano clave) * n-Hexano (n\\text{-C}_6\\text{H}_{14}): z_2 = 0.30 (componente intermedio) * n-Heptano (n\\text{-C}_7\\text{H}_{16}): z_3 = 0.20 (componente pesado clave)\nLa alimentación ingresa a F = 100.0\\text{ kmol/h}, a una temperatura inicial T_F = 30.0^\\circ\\text{C} y una presión de cabezal P_F = 3.00\\text{ bar}. Mediante una válvula reguladora y un intercambiador de calor previo, la corriente ingresa al tambor flash que opera a T = 78.4^\\circ\\text{C} y P = 1.20\\text{ bar}."
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.es.html#fundamento-termodinámico-y-formulación-matemática",
-    "href": "posts/caso-destilacion-flash.es.html#fundamento-termodinámico-y-formulación-matemática",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "3 2. Fundamento Termodinámico y Formulación Matemática",
-    "text": "3 2. Fundamento Termodinámico y Formulación Matemática\n\n3.1 2.1 Criterio de Equilibrio de Fases (ELV)\nEn el equilibrio termodinámico, el potencial químico de cada especie debe igualarse entre fases, lo cual equivale a la igualdad de fugacidades:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\nDefiniendo los coeficientes de fugacidad \\phi_i^V y \\phi_i^L:\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\nPara hidrocarburos a presiones moderadas (P \\approx 1.2\\text{ bar}), los coeficientes de distribución K_i calculados mediante la ecuación de estado de Peng-Robinson o la ley de Raoult modificada arrojan valores estables: * K_1 (n\\text{-Pentano}) = 2.4410 * K_2 (n\\text{-Hexano}) = 0.9450 * K_3 (n\\text{-Heptano}) = 0.3815\n\n\n3.2 2.2 Deducción de la Ecuación de Rachford-Rice\nA partir de los balances globales y por componente:\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{donde } \\psi \\equiv \\frac{V}{F}\n\n\nF z_i = V y_i + L x_i = V (K_i x_i) + L x_i \\implies x_i = \\frac{z_i}{1 + \\psi (K_i - 1)}\n\nDado que \\sum_{i=1}^{C} y_i - \\sum_{i=1}^{C} x_i = 0, sustituyendo y_i = K_i x_i:\n\n\\mathcal{F}(\\psi) = \\sum_{i=1}^{C} (y_i - x_i) = \\sum_{i=1}^{C} \\frac{z_i (K_i - 1)}{1 + \\psi (K_i - 1)} = 0\n\nLa función \\mathcal{F}(\\psi) es monótona decreciente en el intervalo físico [0, 1], lo que garantiza una solución única y convergencia incondicional mediante el método de Newton-Raphson:\n\n\\mathcal{F}'(\\psi) = -\\sum_{i=1}^{C} \\frac{z_i (K_i - 1)^2}{[1 + \\psi (K_i - 1)]^2} &lt; 0"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.es.html#diagrama-de-flujo-del-proceso-pfd",
-    "href": "posts/caso-destilacion-flash.es.html#diagrama-de-flujo-del-proceso-pfd",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "4 3. Diagrama de Flujo del Proceso (PFD)",
-    "text": "4 3. Diagrama de Flujo del Proceso (PFD)\n               Alimentación (F)\n               100.0 kmol/h, 30°C, 3.0 bar\n                      |\n                      v\n             [ Válvula de Expansión ]\n                      |\n                      v\n           [ Precalentador Térmico ] ---&gt; (Q = 420.5 kW)\n                      |\n                      v\n             +-----------------+\n             |                 | ------------&gt; Corriente de Vapor (V)\n             |   TAMBOR FLASH  |              42.85 kmol/h, 78.4°C, 1.20 bar\n             |   ISOTÉRMICO    |              Rico en Pentano (y₁ = 72.3%)\n             |                 |\n             |  78.4°C, 1.2 bar|\n             +-----------------+\n                      |\n                      +----------------------&gt; Corriente de Líquido (L)\n                                              57.15 kmol/h, 78.4°C, 1.20 bar\n                                              Rico en Heptano/Hexano (x₃ = 29.8%)"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.es.html#tabla-de-corrientes-del-proceso-y-balances",
-    "href": "posts/caso-destilacion-flash.es.html#tabla-de-corrientes-del-proceso-y-balances",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "5 4. Tabla de Corrientes del Proceso y Balances",
-    "text": "5 4. Tabla de Corrientes del Proceso y Balances\n\n\n\n\n\nPropiedad / Componente\n\n\nAlimentación (F)\n\n\nVapor Superior (V)\n\n\nLíquido Inferior (L)\n\n\nUnidad\n\n\n\n\n\n\nTemperatura\n\n\n30.00\n\n\n78.40\n\n\n78.40\n\n\n°C\n\n\n\n\nPresión Absoluta\n\n\n3.00\n\n\n1.20\n\n\n1.20\n\n\nbar\n\n\n\n\nFlujo Molar Total\n\n\n100.000\n\n\n42.852\n\n\n57.148\n\n\nkmol/h\n\n\n\n\nFracción Molar de Vapor\n\n\n0.0000\n\n\n1.0000\n\n\n0.0000\n\n\n-\n\n\n\n\nFlujo Másico Total\n\n\n8197.6\n\n\n3238.1\n\n\n4959.5\n\n\nkg/h\n\n\n\n\nPeso Molecular Medio\n\n\n81.98\n\n\n75.56\n\n\n86.78\n\n\nkg/kmol\n\n\n\n\nFracción Molar n-Pentano (z_1, y_1, x_1)\n\n\n0.5000\n\n\n0.7231\n\n\n0.3326\n\n\nmol/mol\n\n\n\n\nFracción Molar n-Hexano (z_2, y_2, x_2)\n\n\n0.3000\n\n\n0.2899\n\n\n0.3075\n\n\nmol/mol\n\n\n\n\nFracción Molar n-Heptano (z_3, y_3, x_3)\n\n\n0.2000\n\n\n0.0870\n\n\n0.3599\n\n\nmol/mol\n\n\n\n\nSuma de Fracciones (\\sum x_i, \\sum y_i)\n\n\n1.0000\n\n\n1.0000\n\n\n1.0000\n\n\nmol/mol\n\n\n\n\nEntalpía Específica\n\n\n-145.2\n\n\n18.6\n\n\n-36.4\n\n\nkJ/mol"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.es.html#implementación-numérica-en-python",
-    "href": "posts/caso-destilacion-flash.es.html#implementación-numérica-en-python",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "6 5. Implementación Numérica en Python",
-    "text": "6 5. Implementación Numérica en Python\nimport numpy as np\n\n# Datos de alimentación y condiciones operativas\ncomponents = [\"n-Pentano\", \"n-Hexano\", \"n-Heptano\"]\nz = np.array([0.50, 0.30, 0.20])\nK = np.array([2.4410, 0.9450, 0.3815])\nF_total = 100.0  # kmol/h\n\ndef rachford_rice(psi: float, z: np.ndarray, K: np.ndarray) -&gt; float:\n    \"\"\"Función objetivo de Rachford-Rice.\"\"\"\n    return np.sum(z * (K - 1.0) / (1.0 + psi * (K - 1.0)))\n\ndef rachford_rice_deriv(psi: float, z: np.ndarray, K: np.ndarray) -&gt; float:\n    \"\"\"Primera derivada analítica dF/d(psi).\"\"\"\n    return -np.sum(z * (K - 1.0)**2 / (1.0 + psi * (K - 1.0))**2)\n\n# Solución mediante Newton-Raphson\npsi = 0.5  # Semilla inicial\ntolerance = 1e-9\nmax_iter = 50\n\nfor iteration in range(max_iter):\n    f_val = rachford_rice(psi, z, K)\n    f_prime = rachford_rice_deriv(psi, z, K)\n    step = f_val / f_prime\n    psi = psi - step\n    if abs(step) &lt; tolerance:\n        print(f\"✓ Convergencia alcanzada en {iteration + 1} iteraciones: psi = {psi:.6f}\")\n        break\n\n# Cálculo de composiciones de fase en equilibrio\nx = z / (1.0 + psi * (K - 1.0))\ny = K * x\n\nV_flow = F_total * psi\nL_flow = F_total * (1.0 - psi)\n\nprint(f\"Flujo de Vapor (V):   {V_flow:.3f} kmol/h\")\nprint(f\"Flujo de Líquido (L): {L_flow:.3f} kmol/h\")\nprint(f\"Composiciones Vapor (y):   {dict(zip(components, np.round(y, 4)))}\")\nprint(f\"Composiciones Líquido (x): {dict(zip(components, np.round(x, 4)))}\")\nprint(f\"Consistencia: sum(x) = {np.sum(x):.6f}, sum(y) = {np.sum(y):.6f}\")"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.es.html#video-tutorial-y-demostración-operacional",
-    "href": "posts/caso-destilacion-flash.es.html#video-tutorial-y-demostración-operacional",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "7 6. Video Tutorial y Demostración Operacional",
-    "text": "7 6. Video Tutorial y Demostración Operacional"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.es.html#conclusiones-y-consideraciones-de-diseño",
-    "href": "posts/caso-destilacion-flash.es.html#conclusiones-y-consideraciones-de-diseño",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "8 7. Conclusiones y Consideraciones de Diseño",
-    "text": "8 7. Conclusiones y Consideraciones de Diseño\n\nEficiencia en la Separación de Livianos: A 78.4^\\circ\\text{C} y 1.20\\text{ bar}, el tambor separa el 62.0\\% del n-Pentano presente en la alimentación hacia la corriente de vapor superior, elevando su pureza molar del 50.0\\% al 72.3\\%.\nRobustez Numérica: La convexidad de la ecuación de Rachford-Rice garantiza una convergencia de segundo orden en menos de 5 iteraciones de Newton-Raphson, sin riesgo de divergencia dentro del rango admisible \\psi \\in (0, 1).\nConsumo Energético: La adición térmica de 420.5\\text{ kW} suministrada por el precalentador compensa el calor latente de vaporización del n-pentano y hexano, manteniendo el tambor en condición estrictamente isotérmica.\nInteroperabilidad: Este modelo termodinámico coincide con las predicciones del paquete Peng-Robinson en Aspen HYSYS y DWSIM con desviaciones de temperatura inferiores al 0.3\\%."
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.es.html#referencias-técnicas",
-    "href": "posts/caso-destilacion-flash.es.html#referencias-técnicas",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "9 8. Referencias Técnicas",
-    "text": "9 8. Referencias Técnicas\n\nSmith, J. M., Van Ness, H. C., & Abbott, M. M. (2018). Introduction to Chemical Engineering Thermodynamics (8th ed.). McGraw-Hill.\nRachford, H. H., & Rice, J. D. (1952). Procedure for use of electronic digital computers in calculating flash vaporization hydrocarbon equilibrium. Journal of Petroleum Technology, 4(10), 19-20.\nPeng, D. Y., & Robinson, D. B. (1976). A New Two-Constant Equation of State. Industrial & Engineering Chemistry Fundamentals, 15(1), 59-64."
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html",
-    "href": "posts/caso-destilacion-flash.en.html",
+    "objectID": "posts/slides-destilacion-flash.en.html#prantexamento-do-proceso",
+    "href": "posts/slides-destilacion-flash.en.html#prantexamento-do-proceso",
     "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "",
-    "text": "Language: Galego Castelán English"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html#operational-metrics-convergence-balances",
-    "href": "posts/caso-destilacion-flash.en.html#operational-metrics-convergence-balances",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "1 Operational Metrics & Convergence Balances",
-    "text": "1 Operational Metrics & Convergence Balances\n\n\n\nDrum Temperature\n\n\n78.4°C\n\n\nThermal Equilibrium (351.55 K)\n\n\n\n\nOperating Pressure\n\n\n1.20bar\n\n\nAbsolute Pressure in Drum (120 kPa)\n\n\n\n\nVapor Fraction (V/F)\n\n\n0.4285\n\n\nRachford-Rice Residual &lt; 10⁻⁸\n\n\n\n\nThermal Duty\n\n\n420.5kW\n\n\nLatent Heat of Vaporization"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html#introduction-and-process-context",
-    "href": "posts/caso-destilacion-flash.en.html#introduction-and-process-context",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "2 1. Introduction and Process Context",
-    "text": "2 1. Introduction and Process Context\nFlash distillation is an essential unit operation across natural gas processing, oil refineries, and petrochemical complexes. It removes light fractions from crude feeds or stabilizes hydrocarbon streams before complex distillation column trains.\nIn this benchmark case, an isothermal flash vessel operating at steady-state is fed with a ternary paraffin mixture: * n-Pentane (n\\text{-C}_5\\text{H}_{12}): z_1 = 0.50 (light key component) * n-Hexane (n\\text{-C}_6\\text{H}_{14}): z_2 = 0.30 (intermediate component) * n-Heptane (n\\text{-C}_7\\text{H}_{16}): z_3 = 0.20 (heavy key component)\nFeed enters at F = 100.0\\text{ kmol/h}, with inlet conditions T_F = 30.0^\\circ\\text{C} and P_F = 3.00\\text{ bar}. Downstream of the control expansion valve and preheater, the drum operates at T = 78.4^\\circ\\text{C} and P = 1.20\\text{ bar}."
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html#thermodynamic-foundation-and-governing-equations",
-    "href": "posts/caso-destilacion-flash.en.html#thermodynamic-foundation-and-governing-equations",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "3 2. Thermodynamic Foundation and Governing Equations",
-    "text": "3 2. Thermodynamic Foundation and Governing Equations\n\n3.1 2.1 Vapor-Liquid Equilibrium (VLE) Criterion\nPhase equilibrium requires equality of chemical potentials, which corresponds to equality of component fugacities:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\nDefining fugacity coefficients \\phi_i^V and \\phi_i^L:\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\nFor hydrocarbons at moderate pressures (P \\approx 1.2\\text{ bar}), equilibrium distribution coefficients K_i evaluated with the Peng-Robinson Equation of State yield: * K_1 (n\\text{-Pentane}) = 2.4410 * K_2 (n\\text{-Hexane}) = 0.9450 * K_3 (n\\text{-Heptano}) = 0.3815\n\n\n3.2 2.2 Derivation of the Rachford-Rice Equation\nFrom total and component material balances:\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{where } \\psi \\equiv \\frac{V}{F}\n\n\nF z_i = V y_i + L x_i = V (K_i x_i) + L x_i \\implies x_i = \\frac{z_i}{1 + \\psi (K_i - 1)}\n\nSince \\sum_{i=1}^{C} y_i - \\sum_{i=1}^{C} x_i = 0, substituting y_i = K_i x_i:\n\n\\mathcal{F}(\\psi) = \\sum_{i=1}^{C} (y_i - x_i) = \\sum_{i=1}^{C} \\frac{z_i (K_i - 1)}{1 + \\psi (K_i - 1)} = 0\n\nThe objective function \\mathcal{F}(\\psi) is monotonically decreasing in the physical range [0, 1], guaranteeing rapid quadratic convergence via Newton-Raphson:\n\n\\mathcal{F}'(\\psi) = -\\sum_{i=1}^{C} \\frac{z_i (K_i - 1)^2}{[1 + \\psi (K_i - 1)]^2} &lt; 0"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html#process-flow-diagram-pfd",
-    "href": "posts/caso-destilacion-flash.en.html#process-flow-diagram-pfd",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "4 3. Process Flow Diagram (PFD)",
-    "text": "4 3. Process Flow Diagram (PFD)\n               Feed Stream (F)\n               100.0 kmol/h, 30°C, 3.0 bar\n                      |\n                      v\n             [ Expansion Valve ]\n                      |\n                      v\n           [ Thermal Preheater ] ---&gt; (Q = 420.5 kW)\n                      |\n                      v\n             +-----------------+\n             |                 | ------------&gt; Overhead Vapor (V)\n             |   FLASH VESSEL  |              42.85 kmol/h, 78.4°C, 1.20 bar\n             |   ISOTHERMAL    |              Rich in Pentane (y₁ = 72.3%)\n             |                 |\n             |  78.4°C, 1.2 bar|\n             +-----------------+\n                      |\n                      +----------------------&gt; Bottom Liquid (L)\n                                              57.15 kmol/h, 78.4°C, 1.20 bar\n                                              Rich in Heptane/Hexane (x₃ = 29.8%)"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html#process-stream-table-and-material-balances",
-    "href": "posts/caso-destilacion-flash.en.html#process-stream-table-and-material-balances",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "5 4. Process Stream Table and Material Balances",
-    "text": "5 4. Process Stream Table and Material Balances\n\n\n\n\n\nProperty / Component\n\n\nFeed (F)\n\n\nVapor (V)\n\n\nLiquid (L)\n\n\nUnit\n\n\n\n\n\n\nTemperature\n\n\n30.00\n\n\n78.40\n\n\n78.40\n\n\n°C\n\n\n\n\nAbsolute Pressure\n\n\n3.00\n\n\n1.20\n\n\n1.20\n\n\nbar\n\n\n\n\nTotal Molar Flow\n\n\n100.000\n\n\n42.852\n\n\n57.148\n\n\nkmol/h\n\n\n\n\nVapor Molar Fraction\n\n\n0.0000\n\n\n1.0000\n\n\n0.0000\n\n\n-\n\n\n\n\nTotal Mass Flow\n\n\n8197.6\n\n\n3238.1\n\n\n4959.5\n\n\nkg/h\n\n\n\n\nAverage Molecular Weight\n\n\n81.98\n\n\n75.56\n\n\n86.78\n\n\nkg/kmol\n\n\n\n\nMolar Fraction n-Pentane (z_1, y_1, x_1)\n\n\n0.5000\n\n\n0.7231\n\n\n0.3326\n\n\nmol/mol\n\n\n\n\nMolar Fraction n-Hexane (z_2, y_2, x_2)\n\n\n0.3000\n\n\n0.2899\n\n\n0.3075\n\n\nmol/mol\n\n\n\n\nMolar Fraction n-Heptane (z_3, y_3, x_3)\n\n\n0.2000\n\n\n0.0870\n\n\n0.3599\n\n\nmol/mol\n\n\n\n\nFraction Sum (\\sum x_i, \\sum y_i)\n\n\n1.0000\n\n\n1.0000\n\n\n1.0000\n\n\nmol/mol"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html#python-numerical-solver",
-    "href": "posts/caso-destilacion-flash.en.html#python-numerical-solver",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "6 5. Python Numerical Solver",
-    "text": "6 5. Python Numerical Solver\nimport numpy as np\n\n# Feed specs and operating conditions\ncomponents = [\"n-Pentane\", \"n-Hexane\", \"n-Heptane\"]\nz = np.array([0.50, 0.30, 0.20])\nK = np.array([2.4410, 0.9450, 0.3815])\nF_total = 100.0  # kmol/h\n\ndef rachford_rice(psi: float, z: np.ndarray, K: np.ndarray) -&gt; float:\n    \"\"\"Rachford-Rice objective function.\"\"\"\n    return np.sum(z * (K - 1.0) / (1.0 + psi * (K - 1.0)))\n\ndef rachford_rice_deriv(psi: float, z: np.ndarray, K: np.ndarray) -&gt; float:\n    \"\"\"Analytical first derivative dF/d(psi).\"\"\"\n    return -np.sum(z * (K - 1.0)**2 / (1.0 + psi * (K - 1.0))**2)\n\n# Solution via Newton-Raphson\npsi = 0.5  # Initial seed\ntolerance = 1e-9\nmax_iter = 50\n\nfor iteration in range(max_iter):\n    f_val = rachford_rice(psi, z, K)\n    f_prime = rachford_rice_deriv(psi, z, K)\n    step = f_val / f_prime\n    psi = psi - step\n    if abs(step) &lt; tolerance:\n        print(f\"✓ Convergence reached in {iteration + 1} iterations: psi = {psi:.6f}\")\n        break\n\n# Compute equilibrium phase compositions\nx = z / (1.0 + psi * (K - 1.0))\ny = K * x\n\nV_flow = F_total * psi\nL_flow = F_total * (1.0 - psi)\n\nprint(f\"Vapor Flow (V):   {V_flow:.3f} kmol/h\")\nprint(f\"Liquid Flow (L):  {L_flow:.3f} kmol/h\")\nprint(f\"Vapor Composition (y):   {dict(zip(components, np.round(y, 4)))}\")\nprint(f\"Liquid Composition (x):  {dict(zip(components, np.round(x, 4)))}\")\nprint(f\"Consistency: sum(x) = {np.sum(x):.6f}, sum(y) = {np.sum(y):.6f}\")"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html#video-tutorial-and-operational-walkthrough",
-    "href": "posts/caso-destilacion-flash.en.html#video-tutorial-and-operational-walkthrough",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "7 6. Video Tutorial and Operational Walkthrough",
-    "text": "7 6. Video Tutorial and Operational Walkthrough"
-  },
-  {
-    "objectID": "posts/caso-destilacion-flash.en.html#conclusions-engineering-insights",
-    "href": "posts/caso-destilacion-flash.en.html#conclusions-engineering-insights",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "8 7. Conclusions & Engineering Insights",
-    "text": "8 7. Conclusions & Engineering Insights\n\nSeparation Efficiency: At 78.4^\\circ\\text{C} and 1.20\\text{ bar}, the vessel recovers 62.0\\% of n-Pentane into the overhead vapor, upgrading purity from 50.0\\% to 72.3\\%.\nNumerical Robustness: Rachford-Rice convexity ensures second-order quadratic convergence in fewer than 5 Newton iterations.\nThermal Requirement: Heat input of 420.5\\text{ kW} balances the latent vaporization enthalpy, preserving isothermal vessel conditions."
-  },
-  {
-    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html",
-    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "",
-    "text": "&lt;img src=\"../assets/images/logo-light.jpg\" class=\"post-brand-logo sopq-logo-light\" alt=\"SOPQ EEI UVigo\" /&gt;\n&lt;img src=\"../assets/images/logo-dark.jpg\" class=\"post-brand-logo sopq-logo-dark\" alt=\"SOPQ EEI UVigo\" /&gt;\n\n\n&lt;div class=\"brand-institution\"&gt;Universidade de Vigo &middot; Escola de Enxeñaría Industrial&lt;/div&gt;\n&lt;div class=\"brand-lab\"&gt;SOPQ // Simulación e Optimización de Procesos Químicos&lt;/div&gt;\n\n\n&lt;span class=\"status-indicator\"&gt;&lt;/span&gt; Caso Verificado"
-  },
-  {
-    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#métricas-clave-de-operación-e-balance",
-    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#métricas-clave-de-operación-e-balance",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "1 Métricas Clave de Operación e Balance",
-    "text": "1 Métricas Clave de Operación e Balance\n\n\n\nConversión de Ácido\n\n\n88.5%\n\n\nEn Réxime Estacionario\n\n\n\n\nTemperatura Reactor\n\n\n70.0°C\n\n\nControl Isotérmico con Camisa\n\n\n\n\nTempo de Residencia (τ)\n\n\n2.45h\n\n\nVolume de Reacción: 5.0 m³\n\n\n\n\nRemoción Térmica (Q)\n\n\n-45.2kW\n\n\nCamisa con Auga Refrixerante"
-  },
-  {
-    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#prantexamento-da-reacción-e-cinética-química",
-    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#prantexamento-da-reacción-e-cinética-química",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "2 1. Prantexamento da Reacción e Cinética Química",
-    "text": "2 1. Prantexamento da Reacción e Cinética Química\nA reacción de esterificación en fase líquida:\n\n\\text{CH}_3\\text{COOH (Ácido)} + \\text{C}_2\\text{H}_5\\text{OH (Etanol)} \\underset{k_b}{\\overset{k_f}{\\rightleftharpoons}} \\text{CH}_3\\text{COOC}_2\\text{H}_5 \\text{ (Acetato)} + \\text{H}_2\\text{O (Auga)}\n\nA velocidade de reacción intrínseca formúlase mediante unha lei de potencias baseada en concentracións molares ou actividades termodinámicas:\n\nr = k_f C_A C_B - k_b C_C C_D = k_0 \\exp\\left(-\\frac{E_a}{RT}\\right) \\left[ C_{\\text{Ácido}} C_{\\text{Etanol}} - \\frac{C_{\\text{Acetato}} C_{\\text{Auga}}}{K_{eq}(T)} \\right]"
-  },
-  {
-    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#configuración-en-dwsim-código-aberto",
-    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#configuración-en-dwsim-código-aberto",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "3 2. Configuración en DWSIM (Código Aberto)",
-    "text": "3 2. Configuración en DWSIM (Código Aberto)\nEn DWSIM v8, implementouse o paquete de propiedades NRTL para predicir as desviacións do comportamento ideal da mestura polar-líquida cuaternaria.\n\n3.1 Parámetros do Reactor\n\nTipo: Continuous Stirred Tank Reactor (CSTR).\nVolume útil: 5.00\\text{ m}^3.\nCaudal de alimentación total: 2040.8\\text{ kg/h} (2.04\\text{ m}^3/\\text{h}).\nRelación molar etanol / ácido en alimentación: 1.20 : 1.00 (exceso de alcohol)."
-  },
-  {
-    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#diagrama-de-fluxo-do-proceso-en-dwsim",
-    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#diagrama-de-fluxo-do-proceso-en-dwsim",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "4 3. Diagrama de Fluxo do Proceso en DWSIM",
-    "text": "4 3. Diagrama de Fluxo do Proceso en DWSIM\n  Alimentación Ácido Acético (1000 kg/h, 25°C)\n  --------------------+\n                      v\n                     [ MESTURADOR ] ---&gt; Alimentación Mixta (70°C prequentada)\n                      ^                    |\n  --------------------+                    v\n  Alimentación Etanol (1040 kg/h, 25°C)    +-------------------+\n                                           |   REACTOR CSTR    | &lt;--- Auga Camisa\n                                           |   V = 5.0 m³      |      (Q = -45.2 kW)\n                                           |   T = 70°C        |\n                                           +-------------------+\n                                                   |\n                                                   v\n                                          Efluente de Reacción\n                                          (88.5% Conversión)"
-  },
-  {
-    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-e-balance-de-materia",
-    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-e-balance-de-materia",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "5 4. Táboa de Correntes e Balance de Materia",
-    "text": "5 4. Táboa de Correntes e Balance de Materia\n\n\n\n\n\nCompoñente / Corrente\n\n\nAlimentación Ácido\n\n\nAlimentación Etanol\n\n\nEfluente CSTR\n\n\nUnidade\n\n\n\n\n\n\nTemperatura\n\n\n25.0\n\n\n25.0\n\n\n70.0\n\n\n°C\n\n\n\n\nPresión\n\n\n1.50\n\n\n1.50\n\n\n1.20\n\n\nbar\n\n\n\n\nCaudal Másico Total\n\n\n1000.0\n\n\n1040.8\n\n\n2040.8\n\n\nkg/h\n\n\n\n\nCaudal Ácido Acético\n\n\n16.65\n\n\n0.00\n\n\n1.91\n\n\nkmol/h\n\n\n\n\nCaudal Etanol\n\n\n0.00\n\n\n22.59\n\n\n7.85\n\n\nkmol/h\n\n\n\n\nCaudal Acetato de Etilo\n\n\n0.00\n\n\n0.00\n\n\n14.74\n\n\nkmol/h\n\n\n\n\nCaudal Auga\n\n\n0.00\n\n\n0.00\n\n\n14.74\n\n\nkmol/h"
-  },
-  {
-    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#vídeo-titorial-e-demostración-operacional",
-    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#vídeo-titorial-e-demostración-operacional",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "6 5. Vídeo Titorial e Demostración Operacional",
-    "text": "6 5. Vídeo Titorial e Demostración Operacional"
-  },
-  {
-    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#conclusións-e-avaliación-de-resultados",
-    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#conclusións-e-avaliación-de-resultados",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
-    "section": "7 6. Conclusións e Avaliación de Resultados",
-    "text": "7 6. Conclusións e Avaliación de Resultados\n\nRendemento de Conversión: Cun tempo de residencia de \\tau = 2.45\\text{ h}, o CSTR acada un 88.5\\% de conversión de ácido acético, próximo ao límite de equilibrio termodinámico (92.1\\%).\nCapacidade de Arrefriamento: A entalpía exotérmica de reacción require retirar 45.2\\text{ kW} de calor continuo mediante a camisa para manter os 70^\\circ\\text{C} sen oscilacións dinámicas.\nValidación Código Aberto: DWSIM v8 demostra total paridade en balances de masa e enerxía fronte a códigos comerciais patentados."
-  },
-  {
-    "objectID": "posts/caso-hysys-columna-debutanizadora.html",
-    "href": "posts/caso-hysys-columna-debutanizadora.html",
-    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
-    "section": "",
-    "text": "&lt;img src=\"../assets/images/logo-light.jpg\" class=\"post-brand-logo sopq-logo-light\" alt=\"SOPQ EEI UVigo\" /&gt;\n&lt;img src=\"../assets/images/logo-dark.jpg\" class=\"post-brand-logo sopq-logo-dark\" alt=\"SOPQ EEI UVigo\" /&gt;\n\n\n&lt;div class=\"brand-institution\"&gt;Universidade de Vigo &middot; Escola de Enxeñaría Industrial&lt;/div&gt;\n&lt;div class=\"brand-lab\"&gt;SOPQ // Simulación e Optimización de Procesos Químicos&lt;/div&gt;\n\n\n&lt;span class=\"status-indicator\"&gt;&lt;/span&gt; Caso Verificado"
-  },
-  {
-    "objectID": "posts/caso-hysys-columna-debutanizadora.html#métricas-clave-de-operación-e-balance",
-    "href": "posts/caso-hysys-columna-debutanizadora.html#métricas-clave-de-operación-e-balance",
-    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
-    "section": "1 Métricas Clave de Operación e Balance",
-    "text": "1 Métricas Clave de Operación e Balance\n\n\n\nPureza C4 Superior\n\n\n98.5%\n\n\nEspecificación GLP Comercial\n\n\n\n\nPresión de Columna\n\n\n11.5bar\n\n\nCondensador Total a 48 °C\n\n\n\n\nRelación de Refluxo (R/D)\n\n\n2.40\n\n\nÓptimo Económico (1.25 Rmin)\n\n\n\n\nCarga Refervedor\n\n\n2.20MW\n\n\nVapor de Media Presión"
-  },
-  {
-    "objectID": "posts/caso-hysys-columna-debutanizadora.html#introdución-e-descrición-do-proceso",
-    "href": "posts/caso-hysys-columna-debutanizadora.html#introdución-e-descrición-do-proceso",
-    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
-    "section": "2 1. Introdución e Descrición do Proceso",
-    "text": "2 1. Introdución e Descrición do Proceso\nA columna debutanizadora é un elo crítico no tren de estabilización de hidrocarburos. O seu obxectivo primordial é recuperar butanos (i\\text{-C}_4 e n\\text{-C}_4) por cabeza para a produción de gas licuado de petróleo (GLP), mentres que por fondo obtense gasolina estabilizada cunha presión de vapor Reid (RVP) controlada para cumprir estándares de refinaría.\nA corrente de alimentación procede dunha despropanizadora e entra en fase mixta á torre no prato 14 cun caudal de 250.0\\text{ kmol/h}."
-  },
-  {
-    "objectID": "posts/caso-hysys-columna-debutanizadora.html#configuración-en-aspen-hysys-e-paquete-de-propiedades",
-    "href": "posts/caso-hysys-columna-debutanizadora.html#configuración-en-aspen-hysys-e-paquete-de-propiedades",
-    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
-    "section": "3 2. Configuración en Aspen HYSYS e Paquete de Propiedades",
-    "text": "3 2. Configuración en Aspen HYSYS e Paquete de Propiedades\nUtilizouse a ecuación de estado de Peng-Robinson (PR) con parámetros de interacción binaria (BIP) axustados por Aspen Properties.\n\n3.1 Especificacións de Deseño da Torre\n\nNúmero de etapas teóricas: 30 pratos + condensador total + refervedor parcial tipo termosifón.\nPrato de alimentación: Etapa 14 (numerada desde o cumio).\nPresión de cima: 11.5\\text{ bar}.\nPresión de fondo: 12.1\\text{ bar} (\\Delta P = 0.6\\text{ bar}).\nEspecificación de cima: Fracción molar de i\\text{-C}_5 en destilado \\le 0.5\\%.\nEspecificación de fondo: Fracción molar de n\\text{-C}_4 en fondos \\le 1.0\\%."
-  },
-  {
-    "objectID": "posts/caso-hysys-columna-debutanizadora.html#diagrama-de-fluxo-pfd-e-perfís-de-etapa",
-    "href": "posts/caso-hysys-columna-debutanizadora.html#diagrama-de-fluxo-pfd-e-perfís-de-etapa",
-    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
-    "section": "4 3. Diagrama de Fluxo (PFD) e Perfís de Etapa",
-    "text": "4 3. Diagrama de Fluxo (PFD) e Perfís de Etapa\n                  [ Condensador Total ] &lt;--- (Qc = -1.85 MW)\n                           |\n                           v\n                   [ Acumulador Cima ]\n                      |          |\n         Refluxo (R)  |          v\n         +------------+    [ Destilado (D) ] ---&gt; GLP (C3/C4)\n         |                 108.5 kmol/h, 48.2°C, 11.5 bar\n         v\n     +-------+ (Etapa 1)\n     |       |\n(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)\n---&gt; |   O   |\n     |   R   |\n     |   R   |\n     |   E   | (Etapa 30)\n     +-------+\n         |\n         +------------&gt; [ Refervedor ] &lt;--- (Qr = +2.20 MW)\n         |                  |\n         v                  v\n     [ Fondos (B) ] &lt;-------+\n     Gasolina Estabilizada (C5+)\n     141.5 kmol/h, 162.8°C, 12.1 bar"
-  },
-  {
-    "objectID": "posts/caso-hysys-columna-debutanizadora.html#táboa-de-correntes-do-proceso",
-    "href": "posts/caso-hysys-columna-debutanizadora.html#táboa-de-correntes-do-proceso",
-    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
-    "section": "5 4. Táboa de Correntes do Proceso",
-    "text": "5 4. Táboa de Correntes do Proceso\n\n\n\n\n\nVariable / Corrente\n\n\nAlimentación (F)\n\n\nDestilado GLP (D)\n\n\nGasolina Fondo (B)\n\n\nUnidade\n\n\n\n\n\n\nTemperatura\n\n\n92.4\n\n\n48.2\n\n\n162.8\n\n\n°C\n\n\n\n\nPresión\n\n\n12.5\n\n\n11.5\n\n\n12.1\n\n\nbar\n\n\n\n\nCaudal Molar\n\n\n250.0\n\n\n108.5\n\n\n141.5\n\n\nkmol/h\n\n\n\n\nFracción i-C4 + n-C4\n\n\n0.432\n\n\n0.985\n\n\n0.008\n\n\nmol/mol\n\n\n\n\nFracción C5+ (Gasolina)\n\n\n0.568\n\n\n0.005\n\n\n0.992\n\n\nmol/mol"
-  },
-  {
-    "objectID": "posts/caso-hysys-columna-debutanizadora.html#vídeo-titorial-e-demostración-operacional",
-    "href": "posts/caso-hysys-columna-debutanizadora.html#vídeo-titorial-e-demostración-operacional",
-    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
-    "section": "6 5. Vídeo Titorial e Demostración Operacional",
-    "text": "6 5. Vídeo Titorial e Demostración Operacional"
-  },
-  {
-    "objectID": "posts/caso-hysys-columna-debutanizadora.html#conclusións-e-leccións-operativas",
-    "href": "posts/caso-hysys-columna-debutanizadora.html#conclusións-e-leccións-operativas",
-    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
-    "section": "7 6. Conclusións e Leccións Operativas",
-    "text": "7 6. Conclusións e Leccións Operativas\n\nControl de RVP: A taxa de refluxo de 2.40 asegura que a gasolina de fondo non exceda 7.5\\text{ psi} de RVP, facéndoa apta para mestura directa de verán.\nOptimización Enerxética: A integración dun intercambiador de calor alimentación-fondos permite prequentar a carga desde 65^\\circ\\text{C} a 92.4^\\circ\\text{C}, reducindo nun 18\\% o consumo de vapor no refervedor."
-  },
-  {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#prantexamento-do-proceso",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#prantexamento-do-proceso",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
     "section": "Prantexamento do Proceso",
-    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nModelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de conversión.\n\n\n\nPlataforma: DWSIM\nDominio: Reactores\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
+    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nAnalytical and computational resolution of a flash distillation drum for a ternary hydrocarbon mixture (C5-C7) at 78.4 °C and 1.20 bar, with strict mass and energy balance calculations.\n\n\n\nPlataforma: Python\nDominio: Separación\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
   },
   {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#fundamento-termodinámico",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#fundamento-termodinámico",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "objectID": "posts/slides-destilacion-flash.en.html#fundamento-termodinámico",
+    "href": "posts/slides-destilacion-flash.en.html#fundamento-termodinámico",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
     "section": "Fundamento Termodinámico",
-    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\n\\text{CH}_3\\text{COOH (Ácido)} + \\text{C}_2\\text{H}_5\\text{OH (Etanol)} \\underset{k_b}{\\overset{k_f}{\\rightleftharpoons}} \\text{CH}_3\\text{COOC}_2\\text{H}_5 \\text{ (Acetato)} + \\text{H}_2\\text{O (Auga)}\n\n\nr = k_f C_A C_B - k_b C_C C_D = k_0 \\exp\\left(-\\frac{E_a}{RT}\\right) \\left[ C_{\\text{Ácido}} C_{\\text{Etanol}} - \\frac{C_{\\text{Acetato}} C_{\\text{Auga}}}{K_{eq}(T)} \\right]\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
+    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{where } \\psi \\equiv \\frac{V}{F}\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
   },
   {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#resultados-clave-do-balance",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#resultados-clave-do-balance",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "objectID": "posts/slides-destilacion-flash.en.html#resultados-clave-do-balance",
+    "href": "posts/slides-destilacion-flash.en.html#resultados-clave-do-balance",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
     "section": "Resultados Clave do Balance",
-    "text": "Resultados Clave do Balance\n\n\n\n\n88.5 %\n\n\nConversión de Ácido\n\n\n\n\n70.0 °C\n\n\nTemperatura Reactor\n\n\n\n\n\n\n2.45 h\n\n\nTempo de Residencia (τ)\n\n\n\n\n-45.2 kW\n\n\nRemoción Térmica (Q)"
+    "text": "Resultados Clave do Balance\n\n\n\n\n78.4 °C\n\n\nDrum Temperature\n\n\n\n\n1.20 bar\n\n\nOperating Pressure\n\n\n\n\n\n\n0.4285\n\n\nVapor Fraction (V/F)\n\n\n\n\n420.5 kW\n\n\nThermal Duty"
   },
   {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-do-proceso",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-do-proceso",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "objectID": "posts/slides-destilacion-flash.en.html#táboa-de-correntes-do-proceso",
+    "href": "posts/slides-destilacion-flash.en.html#táboa-de-correntes-do-proceso",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
     "section": "Táboa de Correntes do Proceso",
     "text": "Táboa de Correntes do Proceso\n\n\n\nCorrente\nTemp (°C)\nPresión (bar)\nFlujo (kmol/h)\nFracc. Vapor\n\n\n\n\nAlimentación (F)\n65.0\n2.50\n100.0\n0.00\n\n\nVapor (V)\n78.4\n1.20\n42.8\n1.00\n\n\nLíquido (L)\n78.4\n1.20\n57.2\n0.00"
   },
   {
-    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#conclusións-operacionais",
-    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#conclusións-operacionais",
-    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "objectID": "posts/slides-destilacion-flash.en.html#conclusións-operacionais",
+    "href": "posts/slides-destilacion-flash.en.html#conclusións-operacionais",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "Conclusións Operacionais",
+    "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.html#prantexamento-do-proceso",
+    "href": "posts/slides-destilacion-flash.html#prantexamento-do-proceso",
+    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
+    "section": "Prantexamento do Proceso",
+    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nResolución analítica e computacional dun tambor de separación flash para unha mestura ternaria de hidrocarburos (C5-C7) a 78.4 °C e 1.20 bar, con cálculo estrito de balances de materia e enerxía.\n\n\n\nPlataforma: Python\nDominio: Separación\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.html#fundamento-termodinámico",
+    "href": "posts/slides-destilacion-flash.html#fundamento-termodinámico",
+    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
+    "section": "Fundamento Termodinámico",
+    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{onde } \\psi \\equiv \\frac{V}{F}\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.html#resultados-clave-do-balance",
+    "href": "posts/slides-destilacion-flash.html#resultados-clave-do-balance",
+    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
+    "section": "Resultados Clave do Balance",
+    "text": "Resultados Clave do Balance\n\n\n\n\n78.4 °C\n\n\nTemperatura Tambor\n\n\n\n\n1.20 bar\n\n\nPresión de Operación\n\n\n\n\n\n\n0.4285\n\n\nFracción Vaporizada (V/F)\n\n\n\n\n420.5 kW\n\n\nCarga Térmica (Duty)"
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.html#táboa-de-correntes-do-proceso",
+    "href": "posts/slides-destilacion-flash.html#táboa-de-correntes-do-proceso",
+    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
+    "section": "Táboa de Correntes do Proceso",
+    "text": "Táboa de Correntes do Proceso\n\n\n\nCorrente\nTemp (°C)\nPresión (bar)\nFlujo (kmol/h)\nFracc. Vapor\n\n\n\n\nAlimentación (F)\n65.0\n2.50\n100.0\n0.00\n\n\nVapor (V)\n78.4\n1.20\n42.8\n1.00\n\n\nLíquido (L)\n78.4\n1.20\n57.2\n0.00"
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.html#conclusións-operacionais",
+    "href": "posts/slides-destilacion-flash.html#conclusións-operacionais",
+    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
+    "section": "Conclusións Operacionais",
+    "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.es.html#prantexamento-do-proceso",
+    "href": "posts/slides-destilacion-flash.es.html#prantexamento-do-proceso",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "Prantexamento do Proceso",
+    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nResolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de balances de materia y energía.\n\n\n\nPlataforma: Python\nDominio: Separación\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.es.html#fundamento-termodinámico",
+    "href": "posts/slides-destilacion-flash.es.html#fundamento-termodinámico",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "Fundamento Termodinámico",
+    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{donde } \\psi \\equiv \\frac{V}{F}\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.es.html#resultados-clave-do-balance",
+    "href": "posts/slides-destilacion-flash.es.html#resultados-clave-do-balance",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "Resultados Clave do Balance",
+    "text": "Resultados Clave do Balance\n\n\n\n\n78.4 °C\n\n\nTemperatura Tambor\n\n\n\n\n1.20 bar\n\n\nPresión de Operación\n\n\n\n\n\n\n0.4285\n\n\nFracción Vaporizada (V/F)\n\n\n\n\n420.5 kW\n\n\nCarga Térmica (Duty)"
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.es.html#táboa-de-correntes-do-proceso",
+    "href": "posts/slides-destilacion-flash.es.html#táboa-de-correntes-do-proceso",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "Táboa de Correntes do Proceso",
+    "text": "Táboa de Correntes do Proceso\n\n\n\nCorrente\nTemp (°C)\nPresión (bar)\nFlujo (kmol/h)\nFracc. Vapor\n\n\n\n\nAlimentación (F)\n65.0\n2.50\n100.0\n0.00\n\n\nVapor (V)\n78.4\n1.20\n42.8\n1.00\n\n\nLíquido (L)\n78.4\n1.20\n57.2\n0.00"
+  },
+  {
+    "objectID": "posts/slides-destilacion-flash.es.html#conclusións-operacionais",
+    "href": "posts/slides-destilacion-flash.es.html#conclusións-operacionais",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
     "section": "Conclusións Operacionais",
     "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
   },
@@ -469,109 +308,284 @@
     "text": "9 8. Referencias Técnicas\n\nSmith, J. M., Van Ness, H. C., & Abbott, M. M. (2018). Introduction to Chemical Engineering Thermodynamics (8th ed.). McGraw-Hill.\nRachford, H. H., & Rice, J. D. (1952). Procedure for use of electronic digital computers in calculating flash vaporization hydrocarbon equilibrium. Journal of Petroleum Technology, 4(10), 19-20.\nPeng, D. Y., & Robinson, D. B. (1976). A New Two-Constant Equation of State. Industrial & Engineering Chemistry Fundamentals, 15(1), 59-64."
   },
   {
-    "objectID": "posts/slides-destilacion-flash.es.html#prantexamento-do-proceso",
-    "href": "posts/slides-destilacion-flash.es.html#prantexamento-do-proceso",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#prantexamento-do-proceso",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#prantexamento-do-proceso",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
     "section": "Prantexamento do Proceso",
-    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nResolución analítica y computacional de un tambor de separación flash para una mezcla ternaria de hidrocarburos (C5-C7) a 78.4 °C y 1.20 bar, con cálculo estricto de balances de materia y energía.\n\n\n\nPlataforma: Python\nDominio: Separación\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
+    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nModelado en código aberto (DWSIM v8) da síntese de acetato de etilo a partir de ácido acético e etanol catalizada por ácido, con balance térmico de camisa e control de conversión.\n\n\n\nPlataforma: DWSIM\nDominio: Reactores\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
   },
   {
-    "objectID": "posts/slides-destilacion-flash.es.html#fundamento-termodinámico",
-    "href": "posts/slides-destilacion-flash.es.html#fundamento-termodinámico",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#fundamento-termodinámico",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#fundamento-termodinámico",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
     "section": "Fundamento Termodinámico",
-    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{donde } \\psi \\equiv \\frac{V}{F}\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
+    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\n\\text{CH}_3\\text{COOH (Ácido)} + \\text{C}_2\\text{H}_5\\text{OH (Etanol)} \\underset{k_b}{\\overset{k_f}{\\rightleftharpoons}} \\text{CH}_3\\text{COOC}_2\\text{H}_5 \\text{ (Acetato)} + \\text{H}_2\\text{O (Auga)}\n\n\nr = k_f C_A C_B - k_b C_C C_D = k_0 \\exp\\left(-\\frac{E_a}{RT}\\right) \\left[ C_{\\text{Ácido}} C_{\\text{Etanol}} - \\frac{C_{\\text{Acetato}} C_{\\text{Auga}}}{K_{eq}(T)} \\right]\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.es.html#resultados-clave-do-balance",
-    "href": "posts/slides-destilacion-flash.es.html#resultados-clave-do-balance",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#resultados-clave-do-balance",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#resultados-clave-do-balance",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
     "section": "Resultados Clave do Balance",
-    "text": "Resultados Clave do Balance\n\n\n\n\n78.4 °C\n\n\nTemperatura Tambor\n\n\n\n\n1.20 bar\n\n\nPresión de Operación\n\n\n\n\n\n\n0.4285\n\n\nFracción Vaporizada (V/F)\n\n\n\n\n420.5 kW\n\n\nCarga Térmica (Duty)"
+    "text": "Resultados Clave do Balance\n\n\n\n\n88.5 %\n\n\nConversión de Ácido\n\n\n\n\n70.0 °C\n\n\nTemperatura Reactor\n\n\n\n\n\n\n2.45 h\n\n\nTempo de Residencia (τ)\n\n\n\n\n-45.2 kW\n\n\nRemoción Térmica (Q)"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.es.html#táboa-de-correntes-do-proceso",
-    "href": "posts/slides-destilacion-flash.es.html#táboa-de-correntes-do-proceso",
-    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-do-proceso",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-do-proceso",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
     "section": "Táboa de Correntes do Proceso",
     "text": "Táboa de Correntes do Proceso\n\n\n\nCorrente\nTemp (°C)\nPresión (bar)\nFlujo (kmol/h)\nFracc. Vapor\n\n\n\n\nAlimentación (F)\n65.0\n2.50\n100.0\n0.00\n\n\nVapor (V)\n78.4\n1.20\n42.8\n1.00\n\n\nLíquido (L)\n78.4\n1.20\n57.2\n0.00"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.es.html#conclusións-operacionais",
-    "href": "posts/slides-destilacion-flash.es.html#conclusións-operacionais",
+    "objectID": "posts/slides-dwsim-reactor-cstr-esterificacion.html#conclusións-operacionais",
+    "href": "posts/slides-dwsim-reactor-cstr-esterificacion.html#conclusións-operacionais",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "Conclusións Operacionais",
+    "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
+  },
+  {
+    "objectID": "posts/caso-hysys-columna-debutanizadora.html",
+    "href": "posts/caso-hysys-columna-debutanizadora.html",
+    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
+    "section": "",
+    "text": "&lt;img src=\"../assets/images/logo-light.jpg\" class=\"post-brand-logo sopq-logo-light\" alt=\"SOPQ EEI UVigo\" /&gt;\n&lt;img src=\"../assets/images/logo-dark.jpg\" class=\"post-brand-logo sopq-logo-dark\" alt=\"SOPQ EEI UVigo\" /&gt;\n\n\n&lt;div class=\"brand-institution\"&gt;Universidade de Vigo &middot; Escola de Enxeñaría Industrial&lt;/div&gt;\n&lt;div class=\"brand-lab\"&gt;SOPQ // Simulación e Optimización de Procesos Químicos&lt;/div&gt;\n\n\n&lt;span class=\"status-indicator\"&gt;&lt;/span&gt; Caso Verificado"
+  },
+  {
+    "objectID": "posts/caso-hysys-columna-debutanizadora.html#métricas-clave-de-operación-e-balance",
+    "href": "posts/caso-hysys-columna-debutanizadora.html#métricas-clave-de-operación-e-balance",
+    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
+    "section": "1 Métricas Clave de Operación e Balance",
+    "text": "1 Métricas Clave de Operación e Balance\n\n\n\nPureza C4 Superior\n\n\n98.5%\n\n\nEspecificación GLP Comercial\n\n\n\n\nPresión de Columna\n\n\n11.5bar\n\n\nCondensador Total a 48 °C\n\n\n\n\nRelación de Refluxo (R/D)\n\n\n2.40\n\n\nÓptimo Económico (1.25 Rmin)\n\n\n\n\nCarga Refervedor\n\n\n2.20MW\n\n\nVapor de Media Presión"
+  },
+  {
+    "objectID": "posts/caso-hysys-columna-debutanizadora.html#introdución-e-descrición-do-proceso",
+    "href": "posts/caso-hysys-columna-debutanizadora.html#introdución-e-descrición-do-proceso",
+    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
+    "section": "2 1. Introdución e Descrición do Proceso",
+    "text": "2 1. Introdución e Descrición do Proceso\nA columna debutanizadora é un elo crítico no tren de estabilización de hidrocarburos. O seu obxectivo primordial é recuperar butanos (i\\text{-C}_4 e n\\text{-C}_4) por cabeza para a produción de gas licuado de petróleo (GLP), mentres que por fondo obtense gasolina estabilizada cunha presión de vapor Reid (RVP) controlada para cumprir estándares de refinaría.\nA corrente de alimentación procede dunha despropanizadora e entra en fase mixta á torre no prato 14 cun caudal de 250.0\\text{ kmol/h}."
+  },
+  {
+    "objectID": "posts/caso-hysys-columna-debutanizadora.html#configuración-en-aspen-hysys-e-paquete-de-propiedades",
+    "href": "posts/caso-hysys-columna-debutanizadora.html#configuración-en-aspen-hysys-e-paquete-de-propiedades",
+    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
+    "section": "3 2. Configuración en Aspen HYSYS e Paquete de Propiedades",
+    "text": "3 2. Configuración en Aspen HYSYS e Paquete de Propiedades\nUtilizouse a ecuación de estado de Peng-Robinson (PR) con parámetros de interacción binaria (BIP) axustados por Aspen Properties.\n\n3.1 Especificacións de Deseño da Torre\n\nNúmero de etapas teóricas: 30 pratos + condensador total + refervedor parcial tipo termosifón.\nPrato de alimentación: Etapa 14 (numerada desde o cumio).\nPresión de cima: 11.5\\text{ bar}.\nPresión de fondo: 12.1\\text{ bar} (\\Delta P = 0.6\\text{ bar}).\nEspecificación de cima: Fracción molar de i\\text{-C}_5 en destilado \\le 0.5\\%.\nEspecificación de fondo: Fracción molar de n\\text{-C}_4 en fondos \\le 1.0\\%."
+  },
+  {
+    "objectID": "posts/caso-hysys-columna-debutanizadora.html#diagrama-de-fluxo-pfd-e-perfís-de-etapa",
+    "href": "posts/caso-hysys-columna-debutanizadora.html#diagrama-de-fluxo-pfd-e-perfís-de-etapa",
+    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
+    "section": "4 3. Diagrama de Fluxo (PFD) e Perfís de Etapa",
+    "text": "4 3. Diagrama de Fluxo (PFD) e Perfís de Etapa\n                  [ Condensador Total ] &lt;--- (Qc = -1.85 MW)\n                           |\n                           v\n                   [ Acumulador Cima ]\n                      |          |\n         Refluxo (R)  |          v\n         +------------+    [ Destilado (D) ] ---&gt; GLP (C3/C4)\n         |                 108.5 kmol/h, 48.2°C, 11.5 bar\n         v\n     +-------+ (Etapa 1)\n     |       |\n(F)  |   T   | (Etapa 14: Alimentación 250 kmol/h)\n---&gt; |   O   |\n     |   R   |\n     |   R   |\n     |   E   | (Etapa 30)\n     +-------+\n         |\n         +------------&gt; [ Refervedor ] &lt;--- (Qr = +2.20 MW)\n         |                  |\n         v                  v\n     [ Fondos (B) ] &lt;-------+\n     Gasolina Estabilizada (C5+)\n     141.5 kmol/h, 162.8°C, 12.1 bar"
+  },
+  {
+    "objectID": "posts/caso-hysys-columna-debutanizadora.html#táboa-de-correntes-do-proceso",
+    "href": "posts/caso-hysys-columna-debutanizadora.html#táboa-de-correntes-do-proceso",
+    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
+    "section": "5 4. Táboa de Correntes do Proceso",
+    "text": "5 4. Táboa de Correntes do Proceso\n\n\n\n\n\nVariable / Corrente\n\n\nAlimentación (F)\n\n\nDestilado GLP (D)\n\n\nGasolina Fondo (B)\n\n\nUnidade\n\n\n\n\n\n\nTemperatura\n\n\n92.4\n\n\n48.2\n\n\n162.8\n\n\n°C\n\n\n\n\nPresión\n\n\n12.5\n\n\n11.5\n\n\n12.1\n\n\nbar\n\n\n\n\nCaudal Molar\n\n\n250.0\n\n\n108.5\n\n\n141.5\n\n\nkmol/h\n\n\n\n\nFracción i-C4 + n-C4\n\n\n0.432\n\n\n0.985\n\n\n0.008\n\n\nmol/mol\n\n\n\n\nFracción C5+ (Gasolina)\n\n\n0.568\n\n\n0.005\n\n\n0.992\n\n\nmol/mol"
+  },
+  {
+    "objectID": "posts/caso-hysys-columna-debutanizadora.html#vídeo-titorial-e-demostración-operacional",
+    "href": "posts/caso-hysys-columna-debutanizadora.html#vídeo-titorial-e-demostración-operacional",
+    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
+    "section": "6 5. Vídeo Titorial e Demostración Operacional",
+    "text": "6 5. Vídeo Titorial e Demostración Operacional"
+  },
+  {
+    "objectID": "posts/caso-hysys-columna-debutanizadora.html#conclusións-e-leccións-operativas",
+    "href": "posts/caso-hysys-columna-debutanizadora.html#conclusións-e-leccións-operativas",
+    "title": "Simulación dunha Columna Debutanizadora en Aspen HYSYS",
+    "section": "7 6. Conclusións e Leccións Operativas",
+    "text": "7 6. Conclusións e Leccións Operativas\n\nControl de RVP: A taxa de refluxo de 2.40 asegura que a gasolina de fondo non exceda 7.5\\text{ psi} de RVP, facéndoa apta para mestura directa de verán.\nOptimización Enerxética: A integración dun intercambiador de calor alimentación-fondos permite prequentar a carga desde 65^\\circ\\text{C} a 92.4^\\circ\\text{C}, reducindo nun 18\\% o consumo de vapor no refervedor."
+  },
+  {
+    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html",
+    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "",
+    "text": "&lt;img src=\"../assets/images/logo-light.jpg\" class=\"post-brand-logo sopq-logo-light\" alt=\"SOPQ EEI UVigo\" /&gt;\n&lt;img src=\"../assets/images/logo-dark.jpg\" class=\"post-brand-logo sopq-logo-dark\" alt=\"SOPQ EEI UVigo\" /&gt;\n\n\n&lt;div class=\"brand-institution\"&gt;Universidade de Vigo &middot; Escola de Enxeñaría Industrial&lt;/div&gt;\n&lt;div class=\"brand-lab\"&gt;SOPQ // Simulación e Optimización de Procesos Químicos&lt;/div&gt;\n\n\n&lt;span class=\"status-indicator\"&gt;&lt;/span&gt; Caso Verificado"
+  },
+  {
+    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#métricas-clave-de-operación-e-balance",
+    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#métricas-clave-de-operación-e-balance",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "1 Métricas Clave de Operación e Balance",
+    "text": "1 Métricas Clave de Operación e Balance\n\n\n\nConversión de Ácido\n\n\n88.5%\n\n\nEn Réxime Estacionario\n\n\n\n\nTemperatura Reactor\n\n\n70.0°C\n\n\nControl Isotérmico con Camisa\n\n\n\n\nTempo de Residencia (τ)\n\n\n2.45h\n\n\nVolume de Reacción: 5.0 m³\n\n\n\n\nRemoción Térmica (Q)\n\n\n-45.2kW\n\n\nCamisa con Auga Refrixerante"
+  },
+  {
+    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#prantexamento-da-reacción-e-cinética-química",
+    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#prantexamento-da-reacción-e-cinética-química",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "2 1. Prantexamento da Reacción e Cinética Química",
+    "text": "2 1. Prantexamento da Reacción e Cinética Química\nA reacción de esterificación en fase líquida:\n\n\\text{CH}_3\\text{COOH (Ácido)} + \\text{C}_2\\text{H}_5\\text{OH (Etanol)} \\underset{k_b}{\\overset{k_f}{\\rightleftharpoons}} \\text{CH}_3\\text{COOC}_2\\text{H}_5 \\text{ (Acetato)} + \\text{H}_2\\text{O (Auga)}\n\nA velocidade de reacción intrínseca formúlase mediante unha lei de potencias baseada en concentracións molares ou actividades termodinámicas:\n\nr = k_f C_A C_B - k_b C_C C_D = k_0 \\exp\\left(-\\frac{E_a}{RT}\\right) \\left[ C_{\\text{Ácido}} C_{\\text{Etanol}} - \\frac{C_{\\text{Acetato}} C_{\\text{Auga}}}{K_{eq}(T)} \\right]"
+  },
+  {
+    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#configuración-en-dwsim-código-aberto",
+    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#configuración-en-dwsim-código-aberto",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "3 2. Configuración en DWSIM (Código Aberto)",
+    "text": "3 2. Configuración en DWSIM (Código Aberto)\nEn DWSIM v8, implementouse o paquete de propiedades NRTL para predicir as desviacións do comportamento ideal da mestura polar-líquida cuaternaria.\n\n3.1 Parámetros do Reactor\n\nTipo: Continuous Stirred Tank Reactor (CSTR).\nVolume útil: 5.00\\text{ m}^3.\nCaudal de alimentación total: 2040.8\\text{ kg/h} (2.04\\text{ m}^3/\\text{h}).\nRelación molar etanol / ácido en alimentación: 1.20 : 1.00 (exceso de alcohol)."
+  },
+  {
+    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#diagrama-de-fluxo-do-proceso-en-dwsim",
+    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#diagrama-de-fluxo-do-proceso-en-dwsim",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "4 3. Diagrama de Fluxo do Proceso en DWSIM",
+    "text": "4 3. Diagrama de Fluxo do Proceso en DWSIM\n  Alimentación Ácido Acético (1000 kg/h, 25°C)\n  --------------------+\n                      v\n                     [ MESTURADOR ] ---&gt; Alimentación Mixta (70°C prequentada)\n                      ^                    |\n  --------------------+                    v\n  Alimentación Etanol (1040 kg/h, 25°C)    +-------------------+\n                                           |   REACTOR CSTR    | &lt;--- Auga Camisa\n                                           |   V = 5.0 m³      |      (Q = -45.2 kW)\n                                           |   T = 70°C        |\n                                           +-------------------+\n                                                   |\n                                                   v\n                                          Efluente de Reacción\n                                          (88.5% Conversión)"
+  },
+  {
+    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-e-balance-de-materia",
+    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#táboa-de-correntes-e-balance-de-materia",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "5 4. Táboa de Correntes e Balance de Materia",
+    "text": "5 4. Táboa de Correntes e Balance de Materia\n\n\n\n\n\nCompoñente / Corrente\n\n\nAlimentación Ácido\n\n\nAlimentación Etanol\n\n\nEfluente CSTR\n\n\nUnidade\n\n\n\n\n\n\nTemperatura\n\n\n25.0\n\n\n25.0\n\n\n70.0\n\n\n°C\n\n\n\n\nPresión\n\n\n1.50\n\n\n1.50\n\n\n1.20\n\n\nbar\n\n\n\n\nCaudal Másico Total\n\n\n1000.0\n\n\n1040.8\n\n\n2040.8\n\n\nkg/h\n\n\n\n\nCaudal Ácido Acético\n\n\n16.65\n\n\n0.00\n\n\n1.91\n\n\nkmol/h\n\n\n\n\nCaudal Etanol\n\n\n0.00\n\n\n22.59\n\n\n7.85\n\n\nkmol/h\n\n\n\n\nCaudal Acetato de Etilo\n\n\n0.00\n\n\n0.00\n\n\n14.74\n\n\nkmol/h\n\n\n\n\nCaudal Auga\n\n\n0.00\n\n\n0.00\n\n\n14.74\n\n\nkmol/h"
+  },
+  {
+    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#vídeo-titorial-e-demostración-operacional",
+    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#vídeo-titorial-e-demostración-operacional",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "6 5. Vídeo Titorial e Demostración Operacional",
+    "text": "6 5. Vídeo Titorial e Demostración Operacional"
+  },
+  {
+    "objectID": "posts/caso-dwsim-reactor-cstr-esterificacion.html#conclusións-e-avaliación-de-resultados",
+    "href": "posts/caso-dwsim-reactor-cstr-esterificacion.html#conclusións-e-avaliación-de-resultados",
+    "title": "Simulación dun Reactor CSTR de Esterificación en DWSIM",
+    "section": "7 6. Conclusións e Avaliación de Resultados",
+    "text": "7 6. Conclusións e Avaliación de Resultados\n\nRendemento de Conversión: Cun tempo de residencia de \\tau = 2.45\\text{ h}, o CSTR acada un 88.5\\% de conversión de ácido acético, próximo ao límite de equilibrio termodinámico (92.1\\%).\nCapacidade de Arrefriamento: A entalpía exotérmica de reacción require retirar 45.2\\text{ kW} de calor continuo mediante a camisa para manter os 70^\\circ\\text{C} sen oscilacións dinámicas.\nValidación Código Aberto: DWSIM v8 demostra total paridade en balances de masa e enerxía fronte a códigos comerciais patentados."
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html",
+    "href": "posts/caso-destilacion-flash.en.html",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "",
+    "text": "Language: Galego Castelán English"
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html#operational-metrics-convergence-balances",
+    "href": "posts/caso-destilacion-flash.en.html#operational-metrics-convergence-balances",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "1 Operational Metrics & Convergence Balances",
+    "text": "1 Operational Metrics & Convergence Balances\n\n\n\nDrum Temperature\n\n\n78.4°C\n\n\nThermal Equilibrium (351.55 K)\n\n\n\n\nOperating Pressure\n\n\n1.20bar\n\n\nAbsolute Pressure in Drum (120 kPa)\n\n\n\n\nVapor Fraction (V/F)\n\n\n0.4285\n\n\nRachford-Rice Residual &lt; 10⁻⁸\n\n\n\n\nThermal Duty\n\n\n420.5kW\n\n\nLatent Heat of Vaporization"
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html#introduction-and-process-context",
+    "href": "posts/caso-destilacion-flash.en.html#introduction-and-process-context",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "2 1. Introduction and Process Context",
+    "text": "2 1. Introduction and Process Context\nFlash distillation is an essential unit operation across natural gas processing, oil refineries, and petrochemical complexes. It removes light fractions from crude feeds or stabilizes hydrocarbon streams before complex distillation column trains.\nIn this benchmark case, an isothermal flash vessel operating at steady-state is fed with a ternary paraffin mixture: * n-Pentane (n\\text{-C}_5\\text{H}_{12}): z_1 = 0.50 (light key component) * n-Hexane (n\\text{-C}_6\\text{H}_{14}): z_2 = 0.30 (intermediate component) * n-Heptane (n\\text{-C}_7\\text{H}_{16}): z_3 = 0.20 (heavy key component)\nFeed enters at F = 100.0\\text{ kmol/h}, with inlet conditions T_F = 30.0^\\circ\\text{C} and P_F = 3.00\\text{ bar}. Downstream of the control expansion valve and preheater, the drum operates at T = 78.4^\\circ\\text{C} and P = 1.20\\text{ bar}."
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html#thermodynamic-foundation-and-governing-equations",
+    "href": "posts/caso-destilacion-flash.en.html#thermodynamic-foundation-and-governing-equations",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "3 2. Thermodynamic Foundation and Governing Equations",
+    "text": "3 2. Thermodynamic Foundation and Governing Equations\n\n3.1 2.1 Vapor-Liquid Equilibrium (VLE) Criterion\nPhase equilibrium requires equality of chemical potentials, which corresponds to equality of component fugacities:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\nDefining fugacity coefficients \\phi_i^V and \\phi_i^L:\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\nFor hydrocarbons at moderate pressures (P \\approx 1.2\\text{ bar}), equilibrium distribution coefficients K_i evaluated with the Peng-Robinson Equation of State yield: * K_1 (n\\text{-Pentane}) = 2.4410 * K_2 (n\\text{-Hexane}) = 0.9450 * K_3 (n\\text{-Heptano}) = 0.3815\n\n\n3.2 2.2 Derivation of the Rachford-Rice Equation\nFrom total and component material balances:\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{where } \\psi \\equiv \\frac{V}{F}\n\n\nF z_i = V y_i + L x_i = V (K_i x_i) + L x_i \\implies x_i = \\frac{z_i}{1 + \\psi (K_i - 1)}\n\nSince \\sum_{i=1}^{C} y_i - \\sum_{i=1}^{C} x_i = 0, substituting y_i = K_i x_i:\n\n\\mathcal{F}(\\psi) = \\sum_{i=1}^{C} (y_i - x_i) = \\sum_{i=1}^{C} \\frac{z_i (K_i - 1)}{1 + \\psi (K_i - 1)} = 0\n\nThe objective function \\mathcal{F}(\\psi) is monotonically decreasing in the physical range [0, 1], guaranteeing rapid quadratic convergence via Newton-Raphson:\n\n\\mathcal{F}'(\\psi) = -\\sum_{i=1}^{C} \\frac{z_i (K_i - 1)^2}{[1 + \\psi (K_i - 1)]^2} &lt; 0"
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html#process-flow-diagram-pfd",
+    "href": "posts/caso-destilacion-flash.en.html#process-flow-diagram-pfd",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "4 3. Process Flow Diagram (PFD)",
+    "text": "4 3. Process Flow Diagram (PFD)\n               Feed Stream (F)\n               100.0 kmol/h, 30°C, 3.0 bar\n                      |\n                      v\n             [ Expansion Valve ]\n                      |\n                      v\n           [ Thermal Preheater ] ---&gt; (Q = 420.5 kW)\n                      |\n                      v\n             +-----------------+\n             |                 | ------------&gt; Overhead Vapor (V)\n             |   FLASH VESSEL  |              42.85 kmol/h, 78.4°C, 1.20 bar\n             |   ISOTHERMAL    |              Rich in Pentane (y₁ = 72.3%)\n             |                 |\n             |  78.4°C, 1.2 bar|\n             +-----------------+\n                      |\n                      +----------------------&gt; Bottom Liquid (L)\n                                              57.15 kmol/h, 78.4°C, 1.20 bar\n                                              Rich in Heptane/Hexane (x₃ = 29.8%)"
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html#process-stream-table-and-material-balances",
+    "href": "posts/caso-destilacion-flash.en.html#process-stream-table-and-material-balances",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "5 4. Process Stream Table and Material Balances",
+    "text": "5 4. Process Stream Table and Material Balances\n\n\n\n\n\nProperty / Component\n\n\nFeed (F)\n\n\nVapor (V)\n\n\nLiquid (L)\n\n\nUnit\n\n\n\n\n\n\nTemperature\n\n\n30.00\n\n\n78.40\n\n\n78.40\n\n\n°C\n\n\n\n\nAbsolute Pressure\n\n\n3.00\n\n\n1.20\n\n\n1.20\n\n\nbar\n\n\n\n\nTotal Molar Flow\n\n\n100.000\n\n\n42.852\n\n\n57.148\n\n\nkmol/h\n\n\n\n\nVapor Molar Fraction\n\n\n0.0000\n\n\n1.0000\n\n\n0.0000\n\n\n-\n\n\n\n\nTotal Mass Flow\n\n\n8197.6\n\n\n3238.1\n\n\n4959.5\n\n\nkg/h\n\n\n\n\nAverage Molecular Weight\n\n\n81.98\n\n\n75.56\n\n\n86.78\n\n\nkg/kmol\n\n\n\n\nMolar Fraction n-Pentane (z_1, y_1, x_1)\n\n\n0.5000\n\n\n0.7231\n\n\n0.3326\n\n\nmol/mol\n\n\n\n\nMolar Fraction n-Hexane (z_2, y_2, x_2)\n\n\n0.3000\n\n\n0.2899\n\n\n0.3075\n\n\nmol/mol\n\n\n\n\nMolar Fraction n-Heptane (z_3, y_3, x_3)\n\n\n0.2000\n\n\n0.0870\n\n\n0.3599\n\n\nmol/mol\n\n\n\n\nFraction Sum (\\sum x_i, \\sum y_i)\n\n\n1.0000\n\n\n1.0000\n\n\n1.0000\n\n\nmol/mol"
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html#python-numerical-solver",
+    "href": "posts/caso-destilacion-flash.en.html#python-numerical-solver",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "6 5. Python Numerical Solver",
+    "text": "6 5. Python Numerical Solver\nimport numpy as np\n\n# Feed specs and operating conditions\ncomponents = [\"n-Pentane\", \"n-Hexane\", \"n-Heptane\"]\nz = np.array([0.50, 0.30, 0.20])\nK = np.array([2.4410, 0.9450, 0.3815])\nF_total = 100.0  # kmol/h\n\ndef rachford_rice(psi: float, z: np.ndarray, K: np.ndarray) -&gt; float:\n    \"\"\"Rachford-Rice objective function.\"\"\"\n    return np.sum(z * (K - 1.0) / (1.0 + psi * (K - 1.0)))\n\ndef rachford_rice_deriv(psi: float, z: np.ndarray, K: np.ndarray) -&gt; float:\n    \"\"\"Analytical first derivative dF/d(psi).\"\"\"\n    return -np.sum(z * (K - 1.0)**2 / (1.0 + psi * (K - 1.0))**2)\n\n# Solution via Newton-Raphson\npsi = 0.5  # Initial seed\ntolerance = 1e-9\nmax_iter = 50\n\nfor iteration in range(max_iter):\n    f_val = rachford_rice(psi, z, K)\n    f_prime = rachford_rice_deriv(psi, z, K)\n    step = f_val / f_prime\n    psi = psi - step\n    if abs(step) &lt; tolerance:\n        print(f\"✓ Convergence reached in {iteration + 1} iterations: psi = {psi:.6f}\")\n        break\n\n# Compute equilibrium phase compositions\nx = z / (1.0 + psi * (K - 1.0))\ny = K * x\n\nV_flow = F_total * psi\nL_flow = F_total * (1.0 - psi)\n\nprint(f\"Vapor Flow (V):   {V_flow:.3f} kmol/h\")\nprint(f\"Liquid Flow (L):  {L_flow:.3f} kmol/h\")\nprint(f\"Vapor Composition (y):   {dict(zip(components, np.round(y, 4)))}\")\nprint(f\"Liquid Composition (x):  {dict(zip(components, np.round(x, 4)))}\")\nprint(f\"Consistency: sum(x) = {np.sum(x):.6f}, sum(y) = {np.sum(y):.6f}\")"
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html#video-tutorial-and-operational-walkthrough",
+    "href": "posts/caso-destilacion-flash.en.html#video-tutorial-and-operational-walkthrough",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "7 6. Video Tutorial and Operational Walkthrough",
+    "text": "7 6. Video Tutorial and Operational Walkthrough"
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.en.html#conclusions-engineering-insights",
+    "href": "posts/caso-destilacion-flash.en.html#conclusions-engineering-insights",
+    "title": "Multicomponent Isothermal Flash Separation Simulation",
+    "section": "8 7. Conclusions & Engineering Insights",
+    "text": "8 7. Conclusions & Engineering Insights\n\nSeparation Efficiency: At 78.4^\\circ\\text{C} and 1.20\\text{ bar}, the vessel recovers 62.0\\% of n-Pentane into the overhead vapor, upgrading purity from 50.0\\% to 72.3\\%.\nNumerical Robustness: Rachford-Rice convexity ensures second-order quadratic convergence in fewer than 5 Newton iterations.\nThermal Requirement: Heat input of 420.5\\text{ kW} balances the latent vaporization enthalpy, preserving isothermal vessel conditions."
+  },
+  {
+    "objectID": "posts/caso-destilacion-flash.es.html",
+    "href": "posts/caso-destilacion-flash.es.html",
     "title": "Simulación de Separación Flash Isotérmica Multicomponente",
-    "section": "Conclusións Operacionais",
-    "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
+    "section": "",
+    "text": "Idioma: Galego Castelán English"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.html#prantexamento-do-proceso",
-    "href": "posts/slides-destilacion-flash.html#prantexamento-do-proceso",
-    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
-    "section": "Prantexamento do Proceso",
-    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nResolución analítica e computacional dun tambor de separación flash para unha mestura ternaria de hidrocarburos (C5-C7) a 78.4 °C e 1.20 bar, con cálculo estrito de balances de materia e enerxía.\n\n\n\nPlataforma: Python\nDominio: Separación\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
+    "objectID": "posts/caso-destilacion-flash.es.html#métricas-operacionales-y-balances-de-convergencia",
+    "href": "posts/caso-destilacion-flash.es.html#métricas-operacionales-y-balances-de-convergencia",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "1 Métricas Operacionales y Balances de Convergencia",
+    "text": "1 Métricas Operacionales y Balances de Convergencia\n\n\n\nTemperatura Tambor\n\n\n78.4°C\n\n\nEquilibrio Térmico (351.55 K)\n\n\n\n\nPresión de Operación\n\n\n1.20bar\n\n\nAbsoluta en Separador (120 kPa)\n\n\n\n\nFracción Vaporizada (V/F)\n\n\n0.4285\n\n\nResiduo Rachford-Rice &lt; 10⁻⁸\n\n\n\n\nCarga Térmica (Duty)\n\n\n420.5kW\n\n\nCalor de Vaporización Latente"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.html#fundamento-termodinámico",
-    "href": "posts/slides-destilacion-flash.html#fundamento-termodinámico",
-    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
-    "section": "Fundamento Termodinámico",
-    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{onde } \\psi \\equiv \\frac{V}{F}\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
+    "objectID": "posts/caso-destilacion-flash.es.html#introducción-y-contexto-del-proceso",
+    "href": "posts/caso-destilacion-flash.es.html#introducción-y-contexto-del-proceso",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "2 1. Introducción y Contexto del Proceso",
+    "text": "2 1. Introducción y Contexto del Proceso\nLa separación instantánea (flash distillation) es una operación unitaria fundamental en plantas de procesamiento de gas natural, refinerías y petroquímica. Permite despojar fracciones livianas de corrientes de crudo o estabilizar corrientes de hidrocarburos antes de ingresar a columnas de fraccionamiento complejas.\nEn este estudio evaluamos un tambor de separación flash en estado estacionario alimentado con una mezcla ternaria representativa de parafinas livianas: * n-Pentano (n\\text{-C}_5\\text{H}_{12}): z_1 = 0.50 (componente liviano clave) * n-Hexano (n\\text{-C}_6\\text{H}_{14}): z_2 = 0.30 (componente intermedio) * n-Heptano (n\\text{-C}_7\\text{H}_{16}): z_3 = 0.20 (componente pesado clave)\nLa alimentación ingresa a F = 100.0\\text{ kmol/h}, a una temperatura inicial T_F = 30.0^\\circ\\text{C} y una presión de cabezal P_F = 3.00\\text{ bar}. Mediante una válvula reguladora y un intercambiador de calor previo, la corriente ingresa al tambor flash que opera a T = 78.4^\\circ\\text{C} y P = 1.20\\text{ bar}."
   },
   {
-    "objectID": "posts/slides-destilacion-flash.html#resultados-clave-do-balance",
-    "href": "posts/slides-destilacion-flash.html#resultados-clave-do-balance",
-    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
-    "section": "Resultados Clave do Balance",
-    "text": "Resultados Clave do Balance\n\n\n\n\n78.4 °C\n\n\nTemperatura Tambor\n\n\n\n\n1.20 bar\n\n\nPresión de Operación\n\n\n\n\n\n\n0.4285\n\n\nFracción Vaporizada (V/F)\n\n\n\n\n420.5 kW\n\n\nCarga Térmica (Duty)"
+    "objectID": "posts/caso-destilacion-flash.es.html#fundamento-termodinámico-y-formulación-matemática",
+    "href": "posts/caso-destilacion-flash.es.html#fundamento-termodinámico-y-formulación-matemática",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "3 2. Fundamento Termodinámico y Formulación Matemática",
+    "text": "3 2. Fundamento Termodinámico y Formulación Matemática\n\n3.1 2.1 Criterio de Equilibrio de Fases (ELV)\nEn el equilibrio termodinámico, el potencial químico de cada especie debe igualarse entre fases, lo cual equivale a la igualdad de fugacidades:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\nDefiniendo los coeficientes de fugacidad \\phi_i^V y \\phi_i^L:\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\nPara hidrocarburos a presiones moderadas (P \\approx 1.2\\text{ bar}), los coeficientes de distribución K_i calculados mediante la ecuación de estado de Peng-Robinson o la ley de Raoult modificada arrojan valores estables: * K_1 (n\\text{-Pentano}) = 2.4410 * K_2 (n\\text{-Hexano}) = 0.9450 * K_3 (n\\text{-Heptano}) = 0.3815\n\n\n3.2 2.2 Deducción de la Ecuación de Rachford-Rice\nA partir de los balances globales y por componente:\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{donde } \\psi \\equiv \\frac{V}{F}\n\n\nF z_i = V y_i + L x_i = V (K_i x_i) + L x_i \\implies x_i = \\frac{z_i}{1 + \\psi (K_i - 1)}\n\nDado que \\sum_{i=1}^{C} y_i - \\sum_{i=1}^{C} x_i = 0, sustituyendo y_i = K_i x_i:\n\n\\mathcal{F}(\\psi) = \\sum_{i=1}^{C} (y_i - x_i) = \\sum_{i=1}^{C} \\frac{z_i (K_i - 1)}{1 + \\psi (K_i - 1)} = 0\n\nLa función \\mathcal{F}(\\psi) es monótona decreciente en el intervalo físico [0, 1], lo que garantiza una solución única y convergencia incondicional mediante el método de Newton-Raphson:\n\n\\mathcal{F}'(\\psi) = -\\sum_{i=1}^{C} \\frac{z_i (K_i - 1)^2}{[1 + \\psi (K_i - 1)]^2} &lt; 0"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.html#táboa-de-correntes-do-proceso",
-    "href": "posts/slides-destilacion-flash.html#táboa-de-correntes-do-proceso",
-    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
-    "section": "Táboa de Correntes do Proceso",
-    "text": "Táboa de Correntes do Proceso\n\n\n\nCorrente\nTemp (°C)\nPresión (bar)\nFlujo (kmol/h)\nFracc. Vapor\n\n\n\n\nAlimentación (F)\n65.0\n2.50\n100.0\n0.00\n\n\nVapor (V)\n78.4\n1.20\n42.8\n1.00\n\n\nLíquido (L)\n78.4\n1.20\n57.2\n0.00"
+    "objectID": "posts/caso-destilacion-flash.es.html#diagrama-de-flujo-del-proceso-pfd",
+    "href": "posts/caso-destilacion-flash.es.html#diagrama-de-flujo-del-proceso-pfd",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "4 3. Diagrama de Flujo del Proceso (PFD)",
+    "text": "4 3. Diagrama de Flujo del Proceso (PFD)\n               Alimentación (F)\n               100.0 kmol/h, 30°C, 3.0 bar\n                      |\n                      v\n             [ Válvula de Expansión ]\n                      |\n                      v\n           [ Precalentador Térmico ] ---&gt; (Q = 420.5 kW)\n                      |\n                      v\n             +-----------------+\n             |                 | ------------&gt; Corriente de Vapor (V)\n             |   TAMBOR FLASH  |              42.85 kmol/h, 78.4°C, 1.20 bar\n             |   ISOTÉRMICO    |              Rico en Pentano (y₁ = 72.3%)\n             |                 |\n             |  78.4°C, 1.2 bar|\n             +-----------------+\n                      |\n                      +----------------------&gt; Corriente de Líquido (L)\n                                              57.15 kmol/h, 78.4°C, 1.20 bar\n                                              Rico en Heptano/Hexano (x₃ = 29.8%)"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.html#conclusións-operacionais",
-    "href": "posts/slides-destilacion-flash.html#conclusións-operacionais",
-    "title": "Simulación de Separación Flash Isotérmica Multicompoñente",
-    "section": "Conclusións Operacionais",
-    "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
+    "objectID": "posts/caso-destilacion-flash.es.html#tabla-de-corrientes-del-proceso-y-balances",
+    "href": "posts/caso-destilacion-flash.es.html#tabla-de-corrientes-del-proceso-y-balances",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "5 4. Tabla de Corrientes del Proceso y Balances",
+    "text": "5 4. Tabla de Corrientes del Proceso y Balances\n\n\n\n\n\nPropiedad / Componente\n\n\nAlimentación (F)\n\n\nVapor Superior (V)\n\n\nLíquido Inferior (L)\n\n\nUnidad\n\n\n\n\n\n\nTemperatura\n\n\n30.00\n\n\n78.40\n\n\n78.40\n\n\n°C\n\n\n\n\nPresión Absoluta\n\n\n3.00\n\n\n1.20\n\n\n1.20\n\n\nbar\n\n\n\n\nFlujo Molar Total\n\n\n100.000\n\n\n42.852\n\n\n57.148\n\n\nkmol/h\n\n\n\n\nFracción Molar de Vapor\n\n\n0.0000\n\n\n1.0000\n\n\n0.0000\n\n\n-\n\n\n\n\nFlujo Másico Total\n\n\n8197.6\n\n\n3238.1\n\n\n4959.5\n\n\nkg/h\n\n\n\n\nPeso Molecular Medio\n\n\n81.98\n\n\n75.56\n\n\n86.78\n\n\nkg/kmol\n\n\n\n\nFracción Molar n-Pentano (z_1, y_1, x_1)\n\n\n0.5000\n\n\n0.7231\n\n\n0.3326\n\n\nmol/mol\n\n\n\n\nFracción Molar n-Hexano (z_2, y_2, x_2)\n\n\n0.3000\n\n\n0.2899\n\n\n0.3075\n\n\nmol/mol\n\n\n\n\nFracción Molar n-Heptano (z_3, y_3, x_3)\n\n\n0.2000\n\n\n0.0870\n\n\n0.3599\n\n\nmol/mol\n\n\n\n\nSuma de Fracciones (\\sum x_i, \\sum y_i)\n\n\n1.0000\n\n\n1.0000\n\n\n1.0000\n\n\nmol/mol\n\n\n\n\nEntalpía Específica\n\n\n-145.2\n\n\n18.6\n\n\n-36.4\n\n\nkJ/mol"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.en.html#prantexamento-do-proceso",
-    "href": "posts/slides-destilacion-flash.en.html#prantexamento-do-proceso",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "Prantexamento do Proceso",
-    "text": "Prantexamento do Proceso\nObxectivo da Simulación\nAnalytical and computational resolution of a flash distillation drum for a ternary hydrocarbon mixture (C5-C7) at 78.4 °C and 1.20 bar, with strict mass and energy balance calculations.\n\n\n\nPlataforma: Python\nDominio: Separación\nContorno de converxencia: Tolerancia estrita &lt; 10^{-6}\n\n\n\n[!NOTE] Todos os balances foron resoltos en condicións estacionarias garantindo consistencia termodinámica."
+    "objectID": "posts/caso-destilacion-flash.es.html#implementación-numérica-en-python",
+    "href": "posts/caso-destilacion-flash.es.html#implementación-numérica-en-python",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "6 5. Implementación Numérica en Python",
+    "text": "6 5. Implementación Numérica en Python\nimport numpy as np\n\n# Datos de alimentación y condiciones operativas\ncomponents = [\"n-Pentano\", \"n-Hexano\", \"n-Heptano\"]\nz = np.array([0.50, 0.30, 0.20])\nK = np.array([2.4410, 0.9450, 0.3815])\nF_total = 100.0  # kmol/h\n\ndef rachford_rice(psi: float, z: np.ndarray, K: np.ndarray) -&gt; float:\n    \"\"\"Función objetivo de Rachford-Rice.\"\"\"\n    return np.sum(z * (K - 1.0) / (1.0 + psi * (K - 1.0)))\n\ndef rachford_rice_deriv(psi: float, z: np.ndarray, K: np.ndarray) -&gt; float:\n    \"\"\"Primera derivada analítica dF/d(psi).\"\"\"\n    return -np.sum(z * (K - 1.0)**2 / (1.0 + psi * (K - 1.0))**2)\n\n# Solución mediante Newton-Raphson\npsi = 0.5  # Semilla inicial\ntolerance = 1e-9\nmax_iter = 50\n\nfor iteration in range(max_iter):\n    f_val = rachford_rice(psi, z, K)\n    f_prime = rachford_rice_deriv(psi, z, K)\n    step = f_val / f_prime\n    psi = psi - step\n    if abs(step) &lt; tolerance:\n        print(f\"✓ Convergencia alcanzada en {iteration + 1} iteraciones: psi = {psi:.6f}\")\n        break\n\n# Cálculo de composiciones de fase en equilibrio\nx = z / (1.0 + psi * (K - 1.0))\ny = K * x\n\nV_flow = F_total * psi\nL_flow = F_total * (1.0 - psi)\n\nprint(f\"Flujo de Vapor (V):   {V_flow:.3f} kmol/h\")\nprint(f\"Flujo de Líquido (L): {L_flow:.3f} kmol/h\")\nprint(f\"Composiciones Vapor (y):   {dict(zip(components, np.round(y, 4)))}\")\nprint(f\"Composiciones Líquido (x): {dict(zip(components, np.round(x, 4)))}\")\nprint(f\"Consistencia: sum(x) = {np.sum(x):.6f}, sum(y) = {np.sum(y):.6f}\")"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.en.html#fundamento-termodinámico",
-    "href": "posts/slides-destilacion-flash.en.html#fundamento-termodinámico",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "Fundamento Termodinámico",
-    "text": "Fundamento Termodinámico\nAs condicións de equilibrio líquido-vapor (ELV) determínanse resolvendo a función obxectivo de Rachford-Rice xunto co cálculo de coeficientes de fugacidade:\n\nf_i^V(T, P, \\mathbf{y}) = f_i^L(T, P, \\mathbf{x}) \\quad \\forall i \\in \\{1, \\dots, C\\}\n\n\ny_i \\phi_i^V P = x_i \\phi_i^L P \\implies K_i \\equiv \\frac{y_i}{x_i} = \\frac{\\phi_i^L(T, P, \\mathbf{x})}{\\phi_i^V(T, P, \\mathbf{y})}\n\n\nF = V + L \\implies 1 = \\psi + \\frac{L}{F} \\quad \\text{where } \\psi \\equiv \\frac{V}{F}\n\n\nCoeficientes de distribución: K_i = \\phi_i^L / \\phi_i^V\nFracción vaporizada: \\psi = V / F \\in [0, 1]"
+    "objectID": "posts/caso-destilacion-flash.es.html#video-tutorial-y-demostración-operacional",
+    "href": "posts/caso-destilacion-flash.es.html#video-tutorial-y-demostración-operacional",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "7 6. Video Tutorial y Demostración Operacional",
+    "text": "7 6. Video Tutorial y Demostración Operacional"
   },
   {
-    "objectID": "posts/slides-destilacion-flash.en.html#resultados-clave-do-balance",
-    "href": "posts/slides-destilacion-flash.en.html#resultados-clave-do-balance",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "Resultados Clave do Balance",
-    "text": "Resultados Clave do Balance\n\n\n\n\n78.4 °C\n\n\nDrum Temperature\n\n\n\n\n1.20 bar\n\n\nOperating Pressure\n\n\n\n\n\n\n0.4285\n\n\nVapor Fraction (V/F)\n\n\n\n\n420.5 kW\n\n\nThermal Duty"
+    "objectID": "posts/caso-destilacion-flash.es.html#conclusiones-y-consideraciones-de-diseño",
+    "href": "posts/caso-destilacion-flash.es.html#conclusiones-y-consideraciones-de-diseño",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "8 7. Conclusiones y Consideraciones de Diseño",
+    "text": "8 7. Conclusiones y Consideraciones de Diseño\n\nEficiencia en la Separación de Livianos: A 78.4^\\circ\\text{C} y 1.20\\text{ bar}, el tambor separa el 62.0\\% del n-Pentano presente en la alimentación hacia la corriente de vapor superior, elevando su pureza molar del 50.0\\% al 72.3\\%.\nRobustez Numérica: La convexidad de la ecuación de Rachford-Rice garantiza una convergencia de segundo orden en menos de 5 iteraciones de Newton-Raphson, sin riesgo de divergencia dentro del rango admisible \\psi \\in (0, 1).\nConsumo Energético: La adición térmica de 420.5\\text{ kW} suministrada por el precalentador compensa el calor latente de vaporización del n-pentano y hexano, manteniendo el tambor en condición estrictamente isotérmica.\nInteroperabilidad: Este modelo termodinámico coincide con las predicciones del paquete Peng-Robinson en Aspen HYSYS y DWSIM con desviaciones de temperatura inferiores al 0.3\\%."
   },
   {
-    "objectID": "posts/slides-destilacion-flash.en.html#táboa-de-correntes-do-proceso",
-    "href": "posts/slides-destilacion-flash.en.html#táboa-de-correntes-do-proceso",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "Táboa de Correntes do Proceso",
-    "text": "Táboa de Correntes do Proceso\n\n\n\nCorrente\nTemp (°C)\nPresión (bar)\nFlujo (kmol/h)\nFracc. Vapor\n\n\n\n\nAlimentación (F)\n65.0\n2.50\n100.0\n0.00\n\n\nVapor (V)\n78.4\n1.20\n42.8\n1.00\n\n\nLíquido (L)\n78.4\n1.20\n57.2\n0.00"
-  },
-  {
-    "objectID": "posts/slides-destilacion-flash.en.html#conclusións-operacionais",
-    "href": "posts/slides-destilacion-flash.en.html#conclusións-operacionais",
-    "title": "Multicomponent Isothermal Flash Separation Simulation",
-    "section": "Conclusións Operacionais",
-    "text": "Conclusións Operacionais\n\nEficiencia de Separación: Acadouse unha separación nítida con recuperación superior ao 91% do compoñente máis volátil na fase vapor.\nEstabilidade Térmica: A sensibilidade ante perturbacións de presión de \\pm 10\\% amosou unha variación de temperatura inferior a 1.8^\\circ\\text{C}.\nReproducibilidade: O caso conta con código executable e integración directa no blog.\n\n\n📖 Ver Artigo Completo no Blog  |  💻 Repositorio GitHub"
+    "objectID": "posts/caso-destilacion-flash.es.html#referencias-técnicas",
+    "href": "posts/caso-destilacion-flash.es.html#referencias-técnicas",
+    "title": "Simulación de Separación Flash Isotérmica Multicomponente",
+    "section": "9 8. Referencias Técnicas",
+    "text": "9 8. Referencias Técnicas\n\nSmith, J. M., Van Ness, H. C., & Abbott, M. M. (2018). Introduction to Chemical Engineering Thermodynamics (8th ed.). McGraw-Hill.\nRachford, H. H., & Rice, J. D. (1952). Procedure for use of electronic digital computers in calculating flash vaporization hydrocarbon equilibrium. Journal of Petroleum Technology, 4(10), 19-20.\nPeng, D. Y., & Robinson, D. B. (1976). A New Two-Constant Equation of State. Industrial & Engineering Chemistry Fundamentals, 15(1), 59-64."
   },
   {
     "objectID": "posts/slides-hysys-columna-debutanizadora.html#prantexamento-do-proceso",
