@@ -64,8 +64,10 @@ listing:
   <a href="index.en.html" class="lang-pill active">English</a>
 </div>
 
+::: {.hero-layout}
+::: {.hero-text-col}
 <div class="hero-pill">
-  <span class="pulse-dot"></span> Operational Environment Verified &middot; Steady State v3.4
+  <span class="pulse-dot"></span> SOPQ &middot; EEI University of Vigo &middot; v3.4
 </div>
 
 <h1 class="hero-title">
@@ -78,6 +80,17 @@ listing:
   <strong>DWSIM</strong>, and <strong>Python</strong> with rigorous mass and energy balances, reproducible code, 
   downloadable files, and executive slide decks.
 </p>
+:::
+
+::: {.hero-brand-card}
+<img src="assets/images/logo-light.jpg" class="hero-brand-img sopq-logo-light" alt="SOPQ - Simulation and Optimization of Chemical Processes · EEI UVigo" />
+<img src="assets/images/logo-dark.jpg" class="hero-brand-img sopq-logo-dark" alt="SOPQ - Simulation and Optimization of Chemical Processes · EEI UVigo" />
+<div class="hero-brand-caption">
+  <strong>SOPQ // EEI UVigo</strong>
+  Simulation and Optimization of Chemical Processes
+</div>
+:::
+:::
 
 ::: {.status-grid}
 ::: {.status-card}

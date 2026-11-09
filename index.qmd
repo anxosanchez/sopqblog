@@ -63,8 +63,10 @@ listing:
   <a href="index.en.html" class="lang-pill">English</a>
 </div>
 
+::: {.hero-layout}
+::: {.hero-text-col}
 <div class="hero-pill">
-  <span class="pulse-dot"></span> Contorno Operacional Verificado &middot; v3.4 Estacionario
+  <span class="pulse-dot"></span> SOPQ &middot; EEI Universidade de Vigo &middot; v3.4
 </div>
 
 <h1 class="hero-title">
@@ -77,6 +79,17 @@ listing:
   <strong>DWSIM</strong> e <strong>Python</strong> con balances rigorosos de materia e enerxía, código reproducible, 
   ficheiros descargables e presentacións executivas.
 </p>
+:::
+
+::: {.hero-brand-card}
+<img src="assets/images/logo-light.jpg" class="hero-brand-img sopq-logo-light" alt="SOPQ - Simulación e Optimización de Procesos Químicos · EEI UVigo" />
+<img src="assets/images/logo-dark.jpg" class="hero-brand-img sopq-logo-dark" alt="SOPQ - Simulación e Optimización de Procesos Químicos · EEI UVigo" />
+<div class="hero-brand-caption">
+  <strong>SOPQ // EEI UVigo</strong>
+  Simulación e Optimización de Procesos Químicos
+</div>
+:::
+:::
 
 ::: {.status-grid}
 ::: {.status-card}

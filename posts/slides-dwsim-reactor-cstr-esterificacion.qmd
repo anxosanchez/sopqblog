@@ -8,6 +8,7 @@ format:
   revealjs:
     theme: [night, ../styles/custom.scss]
     css: ../styles/custom.scss
+    logo: ../assets/images/logo-dark.jpg
     html-math-method: katex
     slide-number: "c/t"
     show-slide-number: all

@@ -5,14 +5,17 @@ project:
     - "assets/**"
 
 website:
-  title: "ProcessSim // Laboratorio de Enxeñaría"
-  description: "Blog de Enxeñaría Química, Simulación de Procesos & Termodinámica Computacional"
+  title: "SOPQ // ProcessSim"
+  description: "Simulación e Optimización de Procesos Químicos · EEI Universidade de Vigo"
   site-url: "https://anxosanchez.github.io/sopqblog"
   repo-url: "https://github.com/anxosanchez/sopqblog"
   repo-branch: main
   issue-url: "https://github.com/anxosanchez/sopqblog/issues"
+  favicon: assets/images/favicon.png
 
   navbar:
+    logo: assets/images/logo-light.jpg
+    logo-alt: "SOPQ // ProcessSim · EEI Universidade de Vigo"
     background: primary
     search: true
     collapse: true
@@ -46,7 +49,9 @@ website:
   page-footer:
     left: |
       <div class="footer-legal">
-        <strong>ProcessSim Lab</strong> &copy; 2026 &middot; Modelado de Procesos e Termodinámica Computacional.
+        <img src="assets/images/logo-light.jpg" class="footer-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+        <img src="assets/images/logo-dark.jpg" class="footer-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+        <span><strong>SOPQ // ProcessSim</strong> &copy; 2026 &middot; Escola de Enxeñaría Industrial &middot; Universidade de Vigo</span>
       </div>
     right: |
       <div class="footer-license">
@@ -59,7 +64,7 @@ format:
     theme:
       light: [cosmo, styles/custom.scss]
       dark: [darkly, styles/custom.scss]
-    css: styles/custom.scss
+    include-after-body: assets/theme-switcher.html
     html-math-method: katex
     body-width: 900px
     toc: true

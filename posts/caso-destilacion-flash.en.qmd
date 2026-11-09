@@ -21,6 +21,13 @@ lang: en
   <a href="caso-destilacion-flash.en.html" class="lang-pill active">English</a>
 </div>
 
+<!-- SOPQ Institutional Badge -->
+<div class="post-institutional-badge">
+  <img src="../assets/images/logo-light.jpg" class="post-badge-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+  <img src="../assets/images/logo-dark.jpg" class="post-badge-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  <span>SOPQ &middot; School of Industrial Engineering &middot; University of Vigo</span>
+</div>
+
 <!-- Interactive Resource Badges -->
 <div class="resource-badge-bar">
   <span class="badge-label">Case Resources:</span>

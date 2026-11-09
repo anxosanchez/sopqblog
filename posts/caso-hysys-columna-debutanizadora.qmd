@@ -13,6 +13,13 @@ code-tools: true
 lang: gl
 ---
 
+<!-- Distintivo Institucional SOPQ -->
+<div class="post-institutional-badge">
+  <img src="../assets/images/logo-light.jpg" class="post-badge-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+  <img src="../assets/images/logo-dark.jpg" class="post-badge-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  <span>SOPQ &middot; Escola de Enxeñaría Industrial &middot; Universidade de Vigo</span>
+</div>
+
 <!-- Barra de Recursos Interactivos -->
 <div class="resource-badge-bar">
   <span class="badge-label">Recursos do Caso:</span>

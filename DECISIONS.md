@@ -92,3 +92,37 @@ Garantizar despliegue continuo en GitHub Pages tras cada commit en la rama `main
 - Concurrencia de despliegue: `group: "pages"`, `cancel-in-progress: false` para evitar artefactos huérfanos.
 - Cache de pip integrado mediante `actions/setup-python@v5`.
 - Ejecución obligatoria de la suite de pruebas unitarias (`python -m unittest discover tests -v`) y auditoría de taxonomía (`python pipeline/publish_pipeline.py --check-all`) antes de compilar y desplegar la web con `actions/deploy-pages@v4`.
+
+---
+
+## 7. Estratexia de Internacionalización Trilingüe (Galego, Castelán, English)
+
+### Contexto
+O blog requiría soporte trilingüe onde o **galego** é a lingua principal e nativa do proxecto institucional (Escola de Enxeñaría Industrial, Universidade de Vigo), con equivalentes completos en castelán e inglés para máxima visibilidade internacional.
+
+### Decisión de Enxeñaría
+- **Canonicidade e Enrutamento:** 
+  - `index.qmd` e `posts/caso-*.qmd` en galego como punto de entrada predeterminado (`lang: gl`).
+  - Páxinas paralelas `index.es.qmd` e `index.en.qmd` (así como `posts/caso-*.es.qmd`, `posts/caso-*.en.qmd`) con selector interactivo (`.lang-switcher-bar`) enlazado dinamicamente.
+- **Terminoloxía Técnica:** Rigor terminolóxico en enxeñaría química galega (*mestura ternaria*, *fraccionamento*, *refervedor*, *equilibrio líquido-vapor*, *balanzo de materia e enerxía*).
+
+---
+
+## 8. Integración da Identidade Visual e Logos Dual (Light & Dark)
+
+### Contexto
+Deseñáronse dous logotipos institucionais oficiais con Google Gemini para o laboratorio **SOPQ** (Simulación e Optimización de Procesos Químicos · EEI UVigo): unha versión sobre fondo branco para tema claro e unha versión con iluminación neón cian/azul escuro para tema escuro. O requirimento esixía aplicar ambos logos dun xeito orgánico, elegante e non invasivo ao longo de todo o portal.
+
+### Decisión de Enxeñaría
+1. **Cabeceira e Barra de Navegación (`navbar`):**
+   - Integrado mediante Quarto `navbar: logo: assets/images/logo-light.jpg` e conmutado dinamicamente a `logo-dark.jpg` vía Javascript ultralixeiro con `MutationObserver` (`assets/theme-switcher.html`) e regras CSS reactivas.
+   - Efecto *neon cyan glow* (`drop-shadow: 0 0 10px rgba(0, 212, 170, 0.4)`) ao activar o modo escuro.
+2. **Hero da Portada (`index.qmd` / `.es` / `.en`):**
+   - Tarxeta de marca (`.hero-brand-card`) con efecto de cristal esmerilado (*glassmorphism*) e marco de monitor a xogo co propio deseño do logo.
+   - Emprego de parellas de etiquetas `<img>` con clases `.sopq-logo-light` e `.sopq-logo-dark` controladas por visualización CSS pura (`display: none` / `display: inline-block`), evitando calquera pestanexo (*FOUC*).
+3. **Pé de Páxina (`page-footer`):**
+   - Miniatura de dobre logo con ligazón institucional á Escola de Enxeñaría Industrial da Universidade de Vigo.
+4. **Artigos e Cadernos de Simulación (`posts/`):**
+   - Distintivo institucional superior (`.post-institutional-badge`) que valida formalmente a orixe académica e o rigor do caso.
+5. **Presentacións Revealjs:**
+   - Incorporación automática de `logo: ../assets/images/logo-dark.jpg` nos decks xerados polo pipeline, mantendo presenza de marca corporativa durante exposicións e conferencias.

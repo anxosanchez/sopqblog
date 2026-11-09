@@ -154,6 +154,7 @@ format:
   revealjs:
     theme: [night, {self.scss_path}]
     css: {self.scss_path}
+    logo: ../assets/images/logo-dark.jpg
     html-math-method: katex
     slide-number: "c/t"
     show-slide-number: all

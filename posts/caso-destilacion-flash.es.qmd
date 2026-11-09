@@ -21,7 +21,14 @@ lang: es
   <a href="caso-destilacion-flash.en.html" class="lang-pill">English</a>
 </div>
 
-<!-- Barra de Recursos Interactivos -->
+<!-- Distintivo Institucional SOPQ -->
+<div class="post-institutional-badge">
+  <img src="../assets/images/logo-light.jpg" class="post-badge-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+  <img src="../assets/images/logo-dark.jpg" class="post-badge-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+  <span>SOPQ &middot; Escuela de Ingeniería Industrial &middot; Universidad de Vigo</span>
+</div>
+
+<!-- Barra de Recursos del Caso -->
 <div class="resource-badge-bar">
   <span class="badge-label">Recursos del Caso:</span>
   <a href="https://colab.research.google.com/drive/1exampleProcessSimFlashDistillation" target="_blank" rel="noopener" class="resource-badge resource-badge-colab">⚡ Abrir en Google Colab</a>
