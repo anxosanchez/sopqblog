@@ -1,0 +1,1490 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Ángel Sánchez (Anxo)">
+<meta name="dcterms.date" content="2026-11-09">
+<meta name="description" content="Full practical industrial case study across four operational plant sections: CSTR reactor, debutanizer column, recycle loop, and thermal network in Aspen HYSYS, DWSIM, and Python.">
+
+<title>Integrated Simulation and Optimization of an MTBE Synthesis Plant – SOPQ // ProcessSim</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../assets/images/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57814681519e35b06b28d4b9d141740b.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-dark-910ec30712710758ae5dd5d5623e3307.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-57814681519e35b06b28d4b9d141740b.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-51cc48a005e035b34f321688aa8239cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/bootstrap/bootstrap-dark-f057c4e1f72120c809cc2dd160449548.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="../site_libs/bootstrap/bootstrap-51cc48a005e035b34f321688aa8239cc.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+<style>html{ scroll-behavior: smooth; }</style>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script><script src="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.js"></script>
+  <script>document.addEventListener("DOMContentLoaded", function () {
+ var mathElements = document.getElementsByClassName("math");
+ var macros = [];
+ for (var i = 0; i < mathElements.length; i++) {
+  var texText = mathElements[i].firstChild;
+  if (mathElements[i].tagName == "SPAN") {
+   katex.render(texText.data, mathElements[i], {
+    displayMode: mathElements[i].classList.contains('display'),
+    throwOnError: false,
+    macros: macros,
+    fleqn: false
+   });
+}}});
+  </script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@latest/dist/katex.min.css">
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN" && texText && texText.data) {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+</head>
+
+<body class="nav-fixed quarto-light"><script id="quarto-html-before-body" type="application/javascript">
+    const toggleBodyColorMode = (bsSheetEl) => {
+      const mode = bsSheetEl.getAttribute("data-mode");
+      const bodyEl = window.document.querySelector("body");
+      if (mode === "dark") {
+        bodyEl.classList.add("quarto-dark");
+        bodyEl.classList.remove("quarto-light");
+      } else {
+        bodyEl.classList.add("quarto-light");
+        bodyEl.classList.remove("quarto-dark");
+      }
+    }
+    const toggleBodyColorPrimary = () => {
+      const bsSheetEl = window.document.querySelector("link#quarto-bootstrap:not([rel=disabled-stylesheet])");
+      if (bsSheetEl) {
+        toggleBodyColorMode(bsSheetEl);
+      }
+    }
+    const setColorSchemeToggle = (alternate) => {
+      const toggles = window.document.querySelectorAll('.quarto-color-scheme-toggle');
+      for (let i=0; i < toggles.length; i++) {
+        const toggle = toggles[i];
+        if (toggle) {
+          if (alternate) {
+            toggle.classList.add("alternate");
+          } else {
+            toggle.classList.remove("alternate");
+          }
+        }
+      }
+    };
+    const toggleColorMode = (alternate) => {
+      // Switch the stylesheets
+      const primaryStylesheets = window.document.querySelectorAll('link.quarto-color-scheme:not(.quarto-color-alternate)');
+      const alternateStylesheets = window.document.querySelectorAll('link.quarto-color-scheme.quarto-color-alternate');
+      manageTransitions('#quarto-margin-sidebar .nav-link', false);
+      if (alternate) {
+        // note: dark is layered on light, we don't disable primary!
+        enableStylesheet(alternateStylesheets);
+        for (const sheetNode of alternateStylesheets) {
+          if (sheetNode.id === "quarto-bootstrap") {
+            toggleBodyColorMode(sheetNode);
+          }
+        }
+      } else {
+        disableStylesheet(alternateStylesheets);
+        enableStylesheet(primaryStylesheets)
+        toggleBodyColorPrimary();
+      }
+      manageTransitions('#quarto-margin-sidebar .nav-link', true);
+      // Switch the toggles
+      setColorSchemeToggle(alternate)
+      // Hack to workaround the fact that safari doesn't
+      // properly recolor the scrollbar when toggling (#1455)
+      if (navigator.userAgent.indexOf('Safari') > 0 && navigator.userAgent.indexOf('Chrome') == -1) {
+        manageTransitions("body", false);
+        window.scrollTo(0, 1);
+        setTimeout(() => {
+          window.scrollTo(0, 0);
+          manageTransitions("body", true);
+        }, 40);
+      }
+    }
+    const disableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        stylesheet.rel = 'disabled-stylesheet';
+      }
+    }
+    const enableStylesheet = (stylesheets) => {
+      for (let i=0; i < stylesheets.length; i++) {
+        const stylesheet = stylesheets[i];
+        if(stylesheet.rel !== 'stylesheet') { // for Chrome, which will still FOUC without this check
+          stylesheet.rel = 'stylesheet';
+        }
+      }
+    }
+    const manageTransitions = (selector, allowTransitions) => {
+      const els = window.document.querySelectorAll(selector);
+      for (let i=0; i < els.length; i++) {
+        const el = els[i];
+        if (allowTransitions) {
+          el.classList.remove('notransition');
+        } else {
+          el.classList.add('notransition');
+        }
+      }
+    }
+    const isFileUrl = () => {
+      return window.location.protocol === 'file:';
+    }
+    const hasAlternateSentinel = () => {
+      let styleSentinel = getColorSchemeSentinel();
+      if (styleSentinel !== null) {
+        return styleSentinel === "alternate";
+      } else {
+        return false;
+      }
+    }
+    const setStyleSentinel = (alternate) => {
+      const value = alternate ? "alternate" : "default";
+      if (!isFileUrl()) {
+        window.localStorage.setItem("quarto-color-scheme", value);
+      } else {
+        localAlternateSentinel = value;
+      }
+    }
+    const getColorSchemeSentinel = () => {
+      if (!isFileUrl()) {
+        const storageValue = window.localStorage.getItem("quarto-color-scheme");
+        return storageValue != null ? storageValue : localAlternateSentinel;
+      } else {
+        return localAlternateSentinel;
+      }
+    }
+    const toggleGiscusIfUsed = (isAlternate, darkModeDefault) => {
+      const baseTheme = document.querySelector('#giscus-base-theme')?.value ?? 'light';
+      const alternateTheme = document.querySelector('#giscus-alt-theme')?.value ?? 'dark';
+      let newTheme = '';
+      if(authorPrefersDark) {
+        newTheme = isAlternate ? baseTheme : alternateTheme;
+      } else {
+        newTheme = isAlternate ? alternateTheme : baseTheme;
+      }
+      const changeGiscusTheme = () => {
+        // From: https://github.com/giscus/giscus/issues/336
+        const sendMessage = (message) => {
+          const iframe = document.querySelector('iframe.giscus-frame');
+          if (!iframe) return;
+          iframe.contentWindow.postMessage({ giscus: message }, 'https://giscus.app');
+        }
+        sendMessage({
+          setConfig: {
+            theme: newTheme
+          }
+        });
+      }
+      const isGiscussLoaded = window.document.querySelector('iframe.giscus-frame') !== null;
+      if (isGiscussLoaded) {
+        changeGiscusTheme();
+      }
+    };
+    const authorPrefersDark = false;
+    const darkModeDefault = authorPrefersDark;
+      document.querySelector('link#quarto-text-highlighting-styles.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+      document.querySelector('link#quarto-bootstrap.quarto-color-scheme-extra').rel = 'disabled-stylesheet';
+    let localAlternateSentinel = darkModeDefault ? 'alternate' : 'default';
+    // Dark / light mode switch
+    window.quartoToggleColorScheme = () => {
+      // Read the current dark / light value
+      let toAlternate = !hasAlternateSentinel();
+      toggleColorMode(toAlternate);
+      setStyleSentinel(toAlternate);
+      toggleGiscusIfUsed(toAlternate, darkModeDefault);
+      window.dispatchEvent(new Event('resize'));
+    };
+    // Switch to dark mode if need be
+    if (hasAlternateSentinel()) {
+      toggleColorMode(true);
+    } else {
+      toggleColorMode(false);
+    }
+  </script>
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../assets/images/logo-light.jpg" alt="SOPQ // ProcessSim · EEI Universidade de Vigo" class="navbar-logo light-content">
+    <img src="../assets/images/logo-light.jpg" alt="SOPQ // ProcessSim · EEI Universidade de Vigo" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">SOPQ // ProcessSim</span>
+    </a>
+  </div>
+            <div id="quarto-search" class="" title="Search"></div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html"> 
+<span class="menu-text">Inicio</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#casos-destacados"> 
+<span class="menu-text">Simulacións</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#aspen-hysys"> 
+<span class="menu-text">Aspen HYSYS</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#dwsim"> 
+<span class="menu-text">DWSIM</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../index.html#python"> 
+<span class="menu-text">Python</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../guia-colaboradores.html"> 
+<span class="menu-text">Colaborar</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item dropdown ">
+    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-idioma" role="link" data-bs-toggle="dropdown" aria-expanded="false">
+ <span class="menu-text">🌐 Idioma</span>
+    </a>
+    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="nav-menu-idioma">    
+        <li>
+    <a class="dropdown-item" href="../index.html">
+ <span class="dropdown-text">Galego (Principal)</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../index.es.html">
+ <span class="dropdown-text">Castelán</span></a>
+  </li>  
+        <li>
+    <a class="dropdown-item" href="../index.en.html">
+ <span class="dropdown-text">English</span></a>
+  </li>  
+    </ul>
+  </li>
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/anxosanchez/sopqblog"> <i class="bi bi-github" role="img" aria-label="Repositorio GitHub">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://youtube.com"> <i class="bi bi-youtube" role="img" aria-label="Canle de YouTube">
+</i> 
+<span class="menu-text"></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+  <a href="" class="quarto-color-scheme-toggle quarto-navigation-tool  px-1" onclick="window.quartoToggleColorScheme(); return false;" title="Toggle dark mode"><i class="bi"></i></a>
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Índice de Contidos</h2>
+   
+  <ul>
+  <li><a href="#introduction-and-process-description" id="toc-introduction-and-process-description" class="nav-link active" data-scroll-target="#introduction-and-process-description"><span class="header-section-number">1</span> Introduction and Process Description</a></li>
+  <li><a href="#step-by-step-resolution-in-aspen-hysys" id="toc-step-by-step-resolution-in-aspen-hysys" class="nav-link" data-scroll-target="#step-by-step-resolution-in-aspen-hysys"><span class="header-section-number">2</span> Step-by-Step Resolution in Aspen HYSYS</a>
+  <ul class="collapse">
+  <li><a href="#zone-1-cstr-reactor-unconstrained-bfgs" id="toc-zone-1-cstr-reactor-unconstrained-bfgs" class="nav-link" data-scroll-target="#zone-1-cstr-reactor-unconstrained-bfgs"><span class="header-section-number">2.1</span> Zone 1: CSTR Reactor (Unconstrained BFGS)</a></li>
+  <li><a href="#zone-2-debutanizer-column-constrained-sqp" id="toc-zone-2-debutanizer-column-constrained-sqp" class="nav-link" data-scroll-target="#zone-2-debutanizer-column-constrained-sqp"><span class="header-section-number">2.2</span> Zone 2: Debutanizer Column (Constrained SQP)</a></li>
+  <li><a href="#zone-3-methanol-recycle-loop-augmented-lagrangian-method---alm" id="toc-zone-3-methanol-recycle-loop-augmented-lagrangian-method---alm" class="nav-link" data-scroll-target="#zone-3-methanol-recycle-loop-augmented-lagrangian-method---alm"><span class="header-section-number">2.3</span> Zone 3: Methanol Recycle Loop (Augmented Lagrangian Method - ALM)</a></li>
+  <li><a href="#zone-4-heat-exchanger-network-global-stochastic-optimization" id="toc-zone-4-heat-exchanger-network-global-stochastic-optimization" class="nav-link" data-scroll-target="#zone-4-heat-exchanger-network-global-stochastic-optimization"><span class="header-section-number">2.4</span> Zone 4: Heat Exchanger Network (Global Stochastic Optimization)</a></li>
+  </ul></li>
+  <li><a href="#step-by-step-resolution-in-dwsim" id="toc-step-by-step-resolution-in-dwsim" class="nav-link" data-scroll-target="#step-by-step-resolution-in-dwsim"><span class="header-section-number">3</span> Step-by-Step Resolution in DWSIM</a>
+  <ul class="collapse">
+  <li><a href="#zone-1-cstr-bfgs-l-bfgs-b" id="toc-zone-1-cstr-bfgs-l-bfgs-b" class="nav-link" data-scroll-target="#zone-1-cstr-bfgs-l-bfgs-b"><span class="header-section-number">3.1</span> Zone 1: CSTR (BFGS / L-BFGS-B)</a></li>
+  <li><a href="#zone-2-chemsep-dwsim-column-sqp" id="toc-zone-2-chemsep-dwsim-column-sqp" class="nav-link" data-scroll-target="#zone-2-chemsep-dwsim-column-sqp"><span class="header-section-number">3.2</span> Zone 2: ChemSep / DWSIM Column (SQP)</a></li>
+  <li><a href="#zone-3-recycle-loop-via-custom-python-script" id="toc-zone-3-recycle-loop-via-custom-python-script" class="nav-link" data-scroll-target="#zone-3-recycle-loop-via-custom-python-script"><span class="header-section-number">3.3</span> Zone 3: Recycle Loop via Custom Python Script</a></li>
+  <li><a href="#zone-4-global-optimization-with-particle-swarm-optimization-pso" id="toc-zone-4-global-optimization-with-particle-swarm-optimization-pso" class="nav-link" data-scroll-target="#zone-4-global-optimization-with-particle-swarm-optimization-pso"><span class="header-section-number">3.4</span> Zone 4: Global Optimization with Particle Swarm Optimization (PSO)</a></li>
+  </ul></li>
+  <li><a href="#complete-python-numerical-solution" id="toc-complete-python-numerical-solution" class="nav-link" data-scroll-target="#complete-python-numerical-solution"><span class="header-section-number">4</span> Complete Python Numerical Solution</a></li>
+  </ul>
+<div class="toc-actions"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<div class="quarto-title-block"><div><h1 class="title">Integrated Simulation and Optimization of an MTBE Synthesis Plant</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
+<p class="subtitle lead">Topic 7: Rigorous Resolution using BFGS, SQP, Augmented Lagrangian Method (ALM), and Global Optimization</p>
+  <div class="quarto-categories">
+    <div class="quarto-category">Aspen HYSYS</div>
+    <div class="quarto-category">DWSIM</div>
+    <div class="quarto-category">Python</div>
+    <div class="quarto-category">Reactors</div>
+    <div class="quarto-category">Separation</div>
+    <div class="quarto-category">Colab Notebook</div>
+    <div class="quarto-category">HSC Case</div>
+    <div class="quarto-category">DWSIM Simulation</div>
+  </div>
+  </div>
+
+<div>
+  <div class="description">
+    Full practical industrial case study across four operational plant sections: CSTR reactor, debutanizer column, recycle loop, and thermal network in Aspen HYSYS, DWSIM, and Python.
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Ángel Sánchez (Anxo) </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">November 9, 2026</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Interactive Resources and Course Notebook
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><strong>Working workspace in Gemini Notebook:</strong> <a href="https://gemini.google.com/notebook/dabbf057-563f-4920-a080-63d33bcec7bf">SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada</a></li>
+<li><strong>Blog GitHub Repository:</strong> <a href="https://github.com/anxosanchez/sopqblog">GitHub sopqblog</a></li>
+</ul>
+</div>
+</div>
+<section id="introduction-and-process-description" class="level1" data-number="1">
+<h1 data-number="1"><span class="header-section-number">1</span> Introduction and Process Description</h1>
+<p>The industrial synthesis of <strong>Methyl tert-butyl ether (MTBE)</strong> from isobutene (<span class="math inline">iC_4^=</span>) and methanol (<span class="math inline">MeOH</span>) represents a canonical chemical engineering problem coupling catalytic reaction kinetics, multicomponent fractionation, and tightly closed recycle streams:</p>
+<p><span class="math display">  
+\text{Isobutene } (iC_4^=) + \text{Methanol } (MeOH) \rightleftharpoons \text{MTBE}
+</span></p>
+<p>The complete process flowsheet is divided into four distinct operational sections, each optimized with a dedicated numerical optimization algorithm from Topic 7:</p>
+<ol type="1">
+<li><p><strong>Zone 1 (Non-isothermal catalytic CSTR):</strong> Unconstrained Multivariable Optimization (Quasi-Newton / BFGS).</p></li>
+<li><p><strong>Zone 2 (Debutanizer distillation column):</strong> Constrained Nonlinear Optimization (Sequential Quadratic Programming - SQP).</p></li>
+<li><p><strong>Zone 3 (Methanol recovery recycle loop):</strong> Augmented Lagrangian Method (ALM) for decoupled mass convergence.</p></li>
+<li><p><strong>Zone 4 (Global utility heat exchanger network):</strong> Global Stochastic Optimization (Differential Evolution / PSO).</p></li>
+</ol>
+</section>
+<section id="step-by-step-resolution-in-aspen-hysys" class="level1" data-number="2">
+<h1 data-number="2"><span class="header-section-number">2</span> Step-by-Step Resolution in Aspen HYSYS</h1>
+<section id="zone-1-cstr-reactor-unconstrained-bfgs" class="level2" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="zone-1-cstr-reactor-unconstrained-bfgs"><span class="header-section-number">2.1</span> Zone 1: CSTR Reactor (Unconstrained BFGS)</h2>
+<ol type="1">
+<li><p><strong>Thermodynamic Basis:</strong> Select the <code>NRTL</code> property package. Define the kinetic reaction with <span class="math inline">A = 3.2 \times 10^8\text{ min}^{-1}</span>, <span class="math inline">E_a = 72.0\text{ kJ/mol}</span>, and <span class="math inline">\Delta H_{rxn} = -37.7\text{ MJ/kmol}</span>.</p></li>
+<li><p><strong>Flowsheet Setup:</strong> Feed <code>Alim_C4</code> (<span class="math inline">100\text{ kmol/h}</span>, <span class="math inline">35\%\text{ mol } iC_4^=</span>, <span class="math inline">65\%\text{ mol } nC_4</span>) and <code>Alim_MeOH</code> (<span class="math inline">36\text{ kmol/h}</span>) into reactor <code>CSTR-100</code>.</p></li>
+<li><p><strong>Spreadsheet (<code>SPR-Z1</code>):</strong> Import reactor volume <span class="math inline">V</span> (L), heat duty <span class="math inline">|Q|</span> (W), and residual isobutene concentration <span class="math inline">C_A</span> (mol/L). Formulate the annualized cost objective function: <code>+ 1200 * (B1^0.6) + 180 * (abs(B2)^0.7) + 50000 * B3</code></p></li>
+<li><p><strong>HYSYS Optimizer (<code>F5</code>):</strong></p>
+<ul>
+<li><p><em>Adjusted Variables:</em> <code>CSTR.Tank Volume</code> (<span class="math inline">5\text{--}40\text{ m}^3</span>) and <code>CSTR.Temperature</code> (<span class="math inline">330\text{--}390\text{ K}</span>).</p></li>
+<li><p><em>Objective Function:</em> Cell <code>SPR-Z1.B5</code> (Minimise).</p></li>
+<li><p><em>Algorithm:</em> <strong>Quasi-Newton (BFGS)</strong>.</p></li>
+<li><p><em>Optimal Solution:</em> <span class="math inline">T^* = 352.48\text{ K}</span> (<span class="math inline">79.3\text{ }^\circ\text{C}</span>), <span class="math inline">V^* = 36.42\text{ L}</span> (<span class="math inline">\tau^* = 1.46\text{ min}</span>), conversion <span class="math inline">X^* = 98.12\%</span>.</p></li>
+</ul></li>
+</ol>
+</section>
+<section id="zone-2-debutanizer-column-constrained-sqp" class="level2" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="zone-2-debutanizer-column-constrained-sqp"><span class="header-section-number">2.2</span> Zone 2: Debutanizer Column (Constrained SQP)</h2>
+<ol type="1">
+<li><p><strong>Distillation Tower (<code>COL-100</code>):</strong> 25 stages, feed entering at stage 12, total condenser, and kettle reboiler.</p></li>
+<li><p><strong>Optimizer (SQP Engine):</strong></p>
+<ul>
+<li><p><em>Decision Variables:</em> Reflux ratio <span class="math inline">R \in [1.5, 4.0]</span>, Distillate rate <span class="math inline">D \in [45, 85\text{ kmol/h}]</span>, Column pressure <span class="math inline">P \in [6.0, 11.0\text{ bar}]</span>.</p></li>
+<li><p><em>Objective Function:</em> Minimize reboiler duty <code>Q_Reb.Heat Flow</code> (kW).</p></li>
+<li><p><em>Nonlinear Constraints:</em> Bottom MTBE purity <span class="math inline">\ge 99.0\%</span> molar; Distillate overhead MTBE slip <span class="math inline">\le 0.1\%</span> molar.</p></li>
+</ul></li>
+<li><p><strong>Optimal Result:</strong> <span class="math inline">R^* = 1.845</span>, <span class="math inline">D^* = 61.20\text{ kmol/h}</span>, <span class="math inline">P^* = 6.00\text{ bar}</span> (active lower bound), <span class="math inline">Q_R^* = 3284.1\text{ kW}</span> with an active KKT multiplier <span class="math inline">\lambda &gt; 0</span> on bottom MTBE purity.</p></li>
+</ol>
+</section>
+<section id="zone-3-methanol-recycle-loop-augmented-lagrangian-method---alm" class="level2" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="zone-3-methanol-recycle-loop-augmented-lagrangian-method---alm"><span class="header-section-number">2.3</span> Zone 3: Methanol Recycle Loop (Augmented Lagrangian Method - ALM)</h2>
+<ol type="1">
+<li><p>Decouple the physical recycle tear stream inside an auxiliary Spreadsheet (<code>SPR-ALM</code>) to avoid numerical oscillations.</p></li>
+<li><p>Residual equality constraints: <span class="math inline">h_1 = F_{\text{fresh}} - F_{\text{purge}} - 23.5</span> and <span class="math inline">h_2 = F_{\text{rec}} - 0.96 \cdot (F_{\text{fresh}} + F_{\text{rec}} - 23.5)</span>.</p></li>
+<li><p>Augmented Lagrangian formula: <span class="math inline">\mathcal{L}_A = f(x) + \lambda^T h(x) + \frac{\mu}{2}\|h(x)\|^2</span>.</p></li>
+<li><p>Solve unconstrained subproblems with BFGS and perform dual multiplier updates: <span class="math inline">\lambda^{(k+1)} = \lambda^{(k)} + \mu h(x)</span>.</p></li>
+<li><p>Converges in 5 outer iterations with <span class="math inline">\|h\|_2 &lt; 10^{-6}</span>: <span class="math inline">F_{\text{fresh}}^* = 23.96\text{ kmol/h}</span>, <span class="math inline">F_{\text{rec}}^* = 11.04\text{ kmol/h}</span>, <span class="math inline">F_{\text{purge}}^* = 0.46\text{ kmol/h}</span>.</p></li>
+</ol>
+</section>
+<section id="zone-4-heat-exchanger-network-global-stochastic-optimization" class="level2" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="zone-4-heat-exchanger-network-global-stochastic-optimization"><span class="header-section-number">2.4</span> Zone 4: Heat Exchanger Network (Global Stochastic Optimization)</h2>
+<ol type="1">
+<li>The heat network exhibits multiple local minima and non-convex thermal pinch cross-overs.</li>
+<li>Connect Python to HYSYS via the <strong>COM Interface</strong> running <code>scipy.optimize.differential_evolution</code>.</li>
+<li>The stochastic algorithm bypasses local traps, converging to the global minimum at <span class="math inline">T_1^* = 384.21\text{ K}</span>, <span class="math inline">T_2^* = 371.15\text{ K}</span>, yielding <span class="math inline">&gt;24\%</span> utility cost savings.</li>
+</ol>
+</section>
+</section>
+<section id="step-by-step-resolution-in-dwsim" class="level1" data-number="3">
+<h1 data-number="3"><span class="header-section-number">3</span> Step-by-Step Resolution in DWSIM</h1>
+<section id="zone-1-cstr-bfgs-l-bfgs-b" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="zone-1-cstr-bfgs-l-bfgs-b"><span class="header-section-number">3.1</span> Zone 1: CSTR (BFGS / L-BFGS-B)</h2>
+<ol type="1">
+<li><p><strong>Property Package:</strong> Assign <code>NRTL</code>. Define the kinetic reaction <span class="math inline">A \rightarrow B</span>.</p></li>
+<li><p><strong>Flowsheet:</strong> Connect feed streams into a continuous stirred tank reactor (CSTR).</p></li>
+<li><p><strong>DWSIM Spreadsheet (<code>SPR-01</code>):</strong> Import reactor volume, heat duty, and component outlet concentrations.</p></li>
+<li><p><strong>Optimization Tool:</strong> Set independent variables (Volume and Temperature), select <strong>BFGS</strong>, and execute the run.</p></li>
+</ol>
+</section>
+<section id="zone-2-chemsep-dwsim-column-sqp" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="zone-2-chemsep-dwsim-column-sqp"><span class="header-section-number">3.2</span> Zone 2: ChemSep / DWSIM Column (SQP)</h2>
+<ol type="1">
+<li><p>Add a 25-stage distillation column with the Peng-Robinson / NRTL package.</p></li>
+<li><p>In the <strong>Optimization Tool</strong>, select <strong>SQP</strong> (or SLSQP), specify bounds for reflux ratio, distillate rate, and operating pressure, along with constraints <span class="math inline">g_1(x) \ge 0</span> and <span class="math inline">g_2(x) \ge 0</span>.</p></li>
+<li><p>The solver pushes the reflux ratio to <span class="math inline">R^* \approx 1.845</span> against the lower pressure limit (<span class="math inline">6\text{ bar}</span>).</p></li>
+</ol>
+</section>
+<section id="zone-3-recycle-loop-via-custom-python-script" class="level2" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="zone-3-recycle-loop-via-custom-python-script"><span class="header-section-number">3.3</span> Zone 3: Recycle Loop via Custom Python Script</h2>
+<ol type="1">
+<li><p>Disconnect the physical recycle loop using a <em>Splitter</em> block.</p></li>
+<li><p>Insert a <strong>Custom Python Script</strong> block evaluating the residuals <span class="math inline">h_1, h_2</span> and the augmented objective <span class="math inline">\mathcal{L}_A</span>.</p></li>
+<li><p>Run successive unconstrained BFGS subproblems and update Lagrange multipliers iteratively.</p></li>
+</ol>
+</section>
+<section id="zone-4-global-optimization-with-particle-swarm-optimization-pso" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="zone-4-global-optimization-with-particle-swarm-optimization-pso"><span class="header-section-number">3.4</span> Zone 4: Global Optimization with Particle Swarm Optimization (PSO)</h2>
+<ol type="1">
+<li><p>In the DWSIM <strong>Optimization Tool</strong>, choose the native <strong>Particle Swarm Optimization (PSO)</strong> engine.</p></li>
+<li><p>Swarm parameters: Swarm size = 20 particles, Iterations = 30, <span class="math inline">w = 0.729</span>, <span class="math inline">c_1 = c_2 = 1.494</span>.</p></li>
+<li><p>The swarm covers the search hyperspace, escaping local wells and locating the global optimum for network utilities.</p></li>
+</ol>
+</section>
+</section>
+<section id="complete-python-numerical-solution" class="level1" data-number="4">
+<h1 data-number="4"><span class="header-section-number">4</span> Complete Python Numerical Solution</h1>
+<p>The executable Python script below solves all four plant zones concurrently:</p>
+<div id="python-full-solution-en" class="cell" data-execution_count="1">
+<details open="" class="code-fold">
+<summary>Code</summary>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode numberSource python number-lines code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb1-2"><a href="#cb1-2"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize, differential_evolution</span>
+<span id="cb1-3"><a href="#cb1-3"></a></span>
+<span id="cb1-4"><a href="#cb1-4"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">75</span>)</span>
+<span id="cb1-5"><a href="#cb1-5"></a><span class="bu">print</span>(<span class="st">"SOPQ - TOPIC 7: INTEGRATED MTBE PLANT OPTIMIZATION (PYTHON)"</span>)</span>
+<span id="cb1-6"><a href="#cb1-6"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">75</span>)</span>
+<span id="cb1-7"><a href="#cb1-7"></a></span>
+<span id="cb1-8"><a href="#cb1-8"></a><span class="co"># --- ZONE 1: CSTR REACTOR (BFGS) ---</span></span>
+<span id="cb1-9"><a href="#cb1-9"></a>k0, Ea, R_gas <span class="op">=</span> <span class="fl">3.2e8</span>, <span class="fl">72000.0</span>, <span class="fl">8.314</span></span>
+<span id="cb1-10"><a href="#cb1-10"></a>v0, CA0, DeltaH <span class="op">=</span> <span class="fl">25.0</span>, <span class="fl">2.4</span>, <span class="op">-</span><span class="fl">37700.0</span></span>
+<span id="cb1-11"><a href="#cb1-11"></a>rho, Cp, Tin <span class="op">=</span> <span class="fl">800.0</span>, <span class="fl">2.8</span>, <span class="fl">298.15</span></span>
+<span id="cb1-12"><a href="#cb1-12"></a>T_ref, V_ref <span class="op">=</span> <span class="fl">350.0</span>, <span class="fl">50.0</span></span>
+<span id="cb1-13"><a href="#cb1-13"></a></span>
+<span id="cb1-14"><a href="#cb1-14"></a><span class="kw">def</span> cstr_economic_scaled(z):</span>
+<span id="cb1-15"><a href="#cb1-15"></a>    T, V <span class="op">=</span> z[<span class="dv">0</span>] <span class="op">*</span> T_ref, z[<span class="dv">1</span>] <span class="op">*</span> V_ref</span>
+<span id="cb1-16"><a href="#cb1-16"></a>    <span class="cf">if</span> T <span class="op">&lt;=</span> <span class="dv">0</span> <span class="kw">or</span> V <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">1e10</span></span>
+<span id="cb1-17"><a href="#cb1-17"></a>    k <span class="op">=</span> k0 <span class="op">*</span> np.exp(<span class="op">-</span>Ea <span class="op">/</span> (R_gas <span class="op">*</span> T))</span>
+<span id="cb1-18"><a href="#cb1-18"></a>    tau <span class="op">=</span> V <span class="op">/</span> v0</span>
+<span id="cb1-19"><a href="#cb1-19"></a>    tau_k <span class="op">=</span> k <span class="op">*</span> tau</span>
+<span id="cb1-20"><a href="#cb1-20"></a>    X <span class="op">=</span> tau_k <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> tau_k)</span>
+<span id="cb1-21"><a href="#cb1-21"></a>    CA_out <span class="op">=</span> CA0 <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">-</span> X)</span>
+<span id="cb1-22"><a href="#cb1-22"></a>    Q <span class="op">=</span> v0 <span class="op">*</span> rho <span class="op">*</span> Cp <span class="op">*</span> (T <span class="op">-</span> Tin) <span class="op">+</span> (v0 <span class="op">*</span> CA0 <span class="op">*</span> X) <span class="op">*</span> DeltaH</span>
+<span id="cb1-23"><a href="#cb1-23"></a>    <span class="cf">return</span> <span class="fl">1200.0</span> <span class="op">*</span> (V<span class="op">**</span><span class="fl">0.6</span>) <span class="op">+</span> <span class="fl">180.0</span> <span class="op">*</span> (np.<span class="bu">abs</span>(Q)<span class="op">**</span><span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">5.0e4</span> <span class="op">*</span> CA_out</span>
+<span id="cb1-24"><a href="#cb1-24"></a></span>
+<span id="cb1-25"><a href="#cb1-25"></a>res_z1 <span class="op">=</span> minimize(cstr_economic_scaled, [<span class="fl">335.0</span><span class="op">/</span>T_ref, <span class="fl">20.0</span><span class="op">/</span>V_ref], method<span class="op">=</span><span class="st">"BFGS"</span>)</span>
+<span id="cb1-26"><a href="#cb1-26"></a>T1_opt, V1_opt <span class="op">=</span> res_z1.x[<span class="dv">0</span>] <span class="op">*</span> T_ref, res_z1.x[<span class="dv">1</span>] <span class="op">*</span> V_ref</span>
+<span id="cb1-27"><a href="#cb1-27"></a></span>
+<span id="cb1-28"><a href="#cb1-28"></a><span class="bu">print</span>(<span class="ss">f"ZONE 1 (BFGS): T* = </span><span class="sc">{</span>T1_opt<span class="sc">:.2f}</span><span class="ss"> K | V* = </span><span class="sc">{</span>V1_opt<span class="sc">:.2f}</span><span class="ss"> L | Cost = </span><span class="sc">{</span>res_z1<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb1-29"><a href="#cb1-29"></a></span>
+<span id="cb1-30"><a href="#cb1-30"></a><span class="co"># --- ZONE 2: DEBUTANIZER COLUMN (SQP / SLSQP) ---</span></span>
+<span id="cb1-31"><a href="#cb1-31"></a><span class="kw">def</span> reboiler_duty(x):</span>
+<span id="cb1-32"><a href="#cb1-32"></a>    R, D, P <span class="op">=</span> x</span>
+<span id="cb1-33"><a href="#cb1-33"></a>    <span class="cf">return</span> <span class="fl">18.5</span> <span class="op">*</span> (R <span class="op">+</span> <span class="fl">1.0</span>) <span class="op">*</span> D <span class="op">+</span> <span class="fl">4.2</span> <span class="op">*</span> (P<span class="op">**</span><span class="fl">1.18</span>)</span>
+<span id="cb1-34"><a href="#cb1-34"></a></span>
+<span id="cb1-35"><a href="#cb1-35"></a>cons_z2 <span class="op">=</span> [</span>
+<span id="cb1-36"><a href="#cb1-36"></a>    {<span class="st">"type"</span>: <span class="st">"ineq"</span>, <span class="st">"fun"</span>: <span class="kw">lambda</span> x: (<span class="fl">0.965</span> <span class="op">+</span> <span class="fl">0.032</span><span class="op">*</span>(x[<span class="dv">0</span>]<span class="op">/</span>(x[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.6</span>))<span class="op">*</span>(<span class="fl">65.0</span><span class="op">/</span>x[<span class="dv">1</span>]) <span class="op">-</span> <span class="fl">0.0015</span><span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span><span class="fl">8.0</span>)) <span class="op">-</span> <span class="fl">0.990</span>},</span>
+<span id="cb1-37"><a href="#cb1-37"></a>    {<span class="st">"type"</span>: <span class="st">"ineq"</span>, <span class="st">"fun"</span>: <span class="kw">lambda</span> x: <span class="fl">0.0010</span> <span class="op">-</span> (<span class="fl">0.0035</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="fl">0.75</span><span class="op">*</span>x[<span class="dv">0</span>])<span class="op">*</span>(x[<span class="dv">1</span>]<span class="op">/</span><span class="fl">65.0</span>) <span class="op">+</span> <span class="fl">0.0001</span><span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span><span class="fl">8.0</span>))}</span>
+<span id="cb1-38"><a href="#cb1-38"></a>]</span>
+<span id="cb1-39"><a href="#cb1-39"></a>bounds_z2 <span class="op">=</span> [(<span class="fl">1.5</span>, <span class="fl">4.0</span>), (<span class="fl">45.0</span>, <span class="fl">85.0</span>), (<span class="fl">6.0</span>, <span class="fl">11.0</span>)]</span>
+<span id="cb1-40"><a href="#cb1-40"></a>res_z2 <span class="op">=</span> minimize(reboiler_duty, [<span class="fl">2.5</span>, <span class="fl">65.0</span>, <span class="fl">8.5</span>], method<span class="op">=</span><span class="st">"SLSQP"</span>, bounds<span class="op">=</span>bounds_z2, constraints<span class="op">=</span>cons_z2)</span>
+<span id="cb1-41"><a href="#cb1-41"></a></span>
+<span id="cb1-42"><a href="#cb1-42"></a><span class="bu">print</span>(<span class="ss">f"ZONE 2 (SQP):  R* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> | D* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> kmol/h | P* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss"> bar | QR* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> kW"</span>)</span>
+<span id="cb1-43"><a href="#cb1-43"></a></span>
+<span id="cb1-44"><a href="#cb1-44"></a><span class="co"># --- ZONE 3: RECYCLE LOOP (AUGMENTED LAGRANGIAN - ALM) ---</span></span>
+<span id="cb1-45"><a href="#cb1-45"></a><span class="kw">def</span> cost_rec(x):</span>
+<span id="cb1-46"><a href="#cb1-46"></a>    <span class="cf">return</span> (x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">12.0</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">8.0</span> <span class="op">*</span> (x[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">0.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> (x[<span class="dv">2</span>] <span class="op">-</span> <span class="fl">24.0</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb1-47"><a href="#cb1-47"></a></span>
+<span id="cb1-48"><a href="#cb1-48"></a><span class="kw">def</span> loop_h(x):</span>
+<span id="cb1-49"><a href="#cb1-49"></a>    <span class="cf">return</span> np.array([x[<span class="dv">2</span>] <span class="op">-</span> x[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">23.5</span>, x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">0.96</span><span class="op">*</span>(x[<span class="dv">2</span>] <span class="op">+</span> x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">23.5</span>)])</span>
+<span id="cb1-50"><a href="#cb1-50"></a></span>
+<span id="cb1-51"><a href="#cb1-51"></a>x_k, lam_k, mu_k <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">1.0</span>, <span class="fl">26.0</span>]), np.zeros(<span class="dv">2</span>), <span class="fl">10.0</span></span>
+<span id="cb1-52"><a href="#cb1-52"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">12</span>):</span>
+<span id="cb1-53"><a href="#cb1-53"></a>    sub <span class="op">=</span> <span class="kw">lambda</span> x: cost_rec(x) <span class="op">+</span> np.dot(lam_k, loop_h(x)) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> mu_k <span class="op">*</span> np.<span class="bu">sum</span>(loop_h(x)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb1-54"><a href="#cb1-54"></a>    x_k <span class="op">=</span> minimize(sub, x_k, method<span class="op">=</span><span class="st">"BFGS"</span>).x</span>
+<span id="cb1-55"><a href="#cb1-55"></a>    h_val <span class="op">=</span> loop_h(x_k)</span>
+<span id="cb1-56"><a href="#cb1-56"></a>    <span class="cf">if</span> np.linalg.norm(h_val) <span class="op">&lt;</span> <span class="fl">1e-6</span>: <span class="cf">break</span></span>
+<span id="cb1-57"><a href="#cb1-57"></a>    lam_k <span class="op">+=</span> mu_k <span class="op">*</span> h_val</span>
+<span id="cb1-58"><a href="#cb1-58"></a>    mu_k <span class="op">=</span> <span class="bu">min</span>(mu_k <span class="op">*</span> <span class="fl">2.0</span>, <span class="fl">1e7</span>)</span>
+<span id="cb1-59"><a href="#cb1-59"></a></span>
+<span id="cb1-60"><a href="#cb1-60"></a><span class="bu">print</span>(<span class="ss">f"ZONE 3 (ALM):  F_rec* = </span><span class="sc">{</span>x_k[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> | F_purge* = </span><span class="sc">{</span>x_k[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> | F_fresh* = </span><span class="sc">{</span>x_k[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss"> kmol/h"</span>)</span>
+<span id="cb1-61"><a href="#cb1-61"></a></span>
+<span id="cb1-62"><a href="#cb1-62"></a><span class="co"># --- ZONE 4: HEAT EXCHANGER NETWORK (DIFFERENTIAL EVOLUTION) ---</span></span>
+<span id="cb1-63"><a href="#cb1-63"></a><span class="kw">def</span> thermal_cost(x):</span>
+<span id="cb1-64"><a href="#cb1-64"></a>    T1, T2 <span class="op">=</span> x</span>
+<span id="cb1-65"><a href="#cb1-65"></a>    c_steam <span class="op">=</span> <span class="fl">25.0</span> <span class="op">*</span> (<span class="fl">410.0</span> <span class="op">-</span> T1)<span class="op">**</span><span class="fl">1.1</span> <span class="op">+</span> <span class="fl">18.0</span> <span class="op">*</span> (<span class="fl">430.0</span> <span class="op">-</span> T2)<span class="op">**</span><span class="fl">1.05</span></span>
+<span id="cb1-66"><a href="#cb1-66"></a>    c_water <span class="op">=</span> <span class="fl">12.0</span> <span class="op">*</span> (T1 <span class="op">-</span> <span class="fl">320.0</span>)<span class="op">**</span><span class="fl">1.2</span> <span class="op">+</span> <span class="fl">15.0</span> <span class="op">*</span> (T2 <span class="op">-</span> <span class="fl">310.0</span>)<span class="op">**</span><span class="fl">1.15</span></span>
+<span id="cb1-67"><a href="#cb1-67"></a>    interference <span class="op">=</span> <span class="fl">800.0</span> <span class="op">*</span> np.sin(<span class="fl">0.12</span> <span class="op">*</span> (T1 <span class="op">-</span> <span class="fl">330.0</span>)) <span class="op">*</span> np.cos(<span class="fl">0.10</span> <span class="op">*</span> (T2 <span class="op">-</span> <span class="fl">320.0</span>))</span>
+<span id="cb1-68"><a href="#cb1-68"></a>    <span class="cf">return</span> c_steam <span class="op">+</span> c_water <span class="op">+</span> interference</span>
+<span id="cb1-69"><a href="#cb1-69"></a></span>
+<span id="cb1-70"><a href="#cb1-70"></a>res_z4 <span class="op">=</span> differential_evolution(thermal_cost, [(<span class="fl">330.0</span>, <span class="fl">420.0</span>), (<span class="fl">320.0</span>, <span class="fl">410.0</span>)], seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb1-71"><a href="#cb1-71"></a><span class="bu">print</span>(<span class="ss">f"ZONE 4 (DE):   T1* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> K | T2* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> K | Cost* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> €/h"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</details>
+<div class="cell-output cell-output-stdout">
+<pre><code>===========================================================================
+SOPQ - TOPIC 7: INTEGRATED MTBE PLANT OPTIMIZATION (PYTHON)
+===========================================================================
+ZONE 1 (BFGS): T* = 335.00 K | V* = 20.00 L | Cost = 4858624.56
+ZONE 2 (SQP):  R* = 1.500 | D* = 45.00 kmol/h | P* = 6.00 bar | QR* = 2116.04 kW
+ZONE 3 (ALM):  F_rec* = 12.00 | F_purge* = 0.50 | F_fresh* = 24.00 kmol/h
+ZONE 4 (DE):   T1* = 412.79 K | T2* = 400.68 K | Cost* = nan €/h</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>/var/folders/nh/vbg7pt9915z20h5bqjk7f5xc0000gn/T/ipykernel_9747/4272118864.py:65: RuntimeWarning: invalid value encountered in scalar power
+  c_steam = 25.0 * (410.0 - T1)**1.1 + 18.0 * (430.0 - T2)**1.05</code></pre>
+</div>
+</div>
+
+
+<!-- -->
+
+</section>
+
+</main> <!-- /main -->
+<script>
+/**
+ * SOPQ Theme-Aware Logo Switcher & TOC Brand Injector
+ * Harmonizes light and dark logos dynamically across page transitions, theme changes, and directory depths.
+ */
+(function() {
+  function syncThemeLogos() {
+    var isDark = document.body.classList.contains("quarto-dark") ||
+                 document.documentElement.getAttribute("data-bs-theme") === "dark" ||
+                 (window.localStorage && window.localStorage.getItem("quarto-color-scheme") === "alternate");
+
+    var isSubdir = window.location.pathname.indexOf("/posts/") !== -1 ||
+                   (document.querySelector('meta[name="quarto:offset"]') && 
+                    document.querySelector('meta[name="quarto:offset"]').getAttribute("content") === "../");
+    var prefix = isSubdir ? "../" : "./";
+
+    // 1. Sync Quarto navbar logos
+    var navLogos = document.querySelectorAll(".navbar-brand .navbar-logo");
+    navLogos.forEach(function(img) {
+      var currentSrc = img.getAttribute("src");
+      if (!currentSrc) return;
+      if (isDark && currentSrc.indexOf("logo-light") !== -1) {
+        img.setAttribute("src", currentSrc.replace("logo-light", "logo-dark"));
+      } else if (!isDark && currentSrc.indexOf("logo-dark") !== -1) {
+        img.setAttribute("src", currentSrc.replace("logo-dark", "logo-light"));
+      }
+    });
+
+    // 2. Fix relative paths for footer logos in subdirectories
+    var footerLogos = document.querySelectorAll(".footer-logo");
+    footerLogos.forEach(function(img) {
+      var src = img.getAttribute("src");
+      if (src && !src.startsWith("http") && !src.startsWith("../") && !src.startsWith("/")) {
+        if (isSubdir) {
+          img.setAttribute("src", "../" + src.replace(/^\.\//, ""));
+        }
+      }
+    });
+
+    // 3. Inject SOPQ theme-reactive logo into TOC sidebar if present
+    var tocEl = document.querySelector("#TOC");
+    if (tocEl && !tocEl.querySelector(".toc-brand-badge")) {
+      var tocBadge = document.createElement("div");
+      tocBadge.className = "toc-brand-badge";
+      tocBadge.innerHTML = 
+        '<img src="' + prefix + 'assets/images/logo-light.jpg" class="toc-logo sopq-logo-light" alt="SOPQ EEI UVigo" />' +
+        '<img src="' + prefix + 'assets/images/logo-dark.jpg" class="toc-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />' +
+        '<div class="toc-brand-meta">' +
+          '<span class="toc-brand-name">SOPQ // UVigo</span>' +
+          '<span class="toc-brand-sub">Simulación de Procesos</span>' +
+        '</div>';
+      tocEl.insertBefore(tocBadge, tocEl.firstChild);
+    }
+  }
+
+  // Run on initial load
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", syncThemeLogos);
+  } else {
+    syncThemeLogos();
+  }
+
+  // Observe theme class and attribute changes on <body> and <html>
+  var observer = new MutationObserver(function() {
+    syncThemeLogos();
+  });
+
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-bs-theme", "class"] });
+  if (document.body) {
+    observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+  } else {
+    document.addEventListener("DOMContentLoaded", function() {
+      observer.observe(document.body, { attributes: true, attributeFilter: ["class"] });
+    });
+  }
+
+  // Hook into storage events for cross-tab or storage changes
+  window.addEventListener("storage", function(e) {
+    if (e.key === "quarto-color-scheme") {
+      syncThemeLogos();
+    }
+  });
+})();
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    // Ensure there is a toggle, if there isn't float one in the top right
+    if (window.document.querySelector('.quarto-color-scheme-toggle') === null) {
+      const a = window.document.createElement('a');
+      a.classList.add('top-right');
+      a.classList.add('quarto-color-scheme-toggle');
+      a.href = "";
+      a.onclick = function() { try { window.quartoToggleColorScheme(); } catch {} return false; };
+      const i = window.document.createElement("i");
+      i.classList.add('bi');
+      a.appendChild(i);
+      window.document.body.appendChild(a);
+    }
+    setColorSchemeToggle(hasAlternateSentinel())
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+    const viewSource = window.document.getElementById('quarto-view-source') ||
+                       window.document.getElementById('quarto-code-tools-source');
+    if (viewSource) {
+      const sourceUrl = viewSource.getAttribute("data-quarto-source-url");
+      viewSource.addEventListener("click", function(e) {
+        if (sourceUrl) {
+          // rstudio viewer pane
+          if (/\bcapabilities=\b/.test(window.location)) {
+            window.open(sourceUrl);
+          } else {
+            window.location.href = sourceUrl;
+          }
+        } else {
+          const modal = new bootstrap.Modal(document.getElementById('quarto-embedded-source-code-modal'));
+          modal.show();
+        }
+        return false;
+      });
+    }
+    function toggleCodeHandler(show) {
+      return function(e) {
+        const detailsSrc = window.document.querySelectorAll(".cell > details > .sourceCode");
+        for (let i=0; i<detailsSrc.length; i++) {
+          const details = detailsSrc[i].parentElement;
+          if (show) {
+            details.open = true;
+          } else {
+            details.removeAttribute("open");
+          }
+        }
+        const cellCodeDivs = window.document.querySelectorAll(".cell > .sourceCode");
+        const fromCls = show ? "hidden" : "unhidden";
+        const toCls = show ? "unhidden" : "hidden";
+        for (let i=0; i<cellCodeDivs.length; i++) {
+          const codeDiv = cellCodeDivs[i];
+          if (codeDiv.classList.contains(fromCls)) {
+            codeDiv.classList.remove(fromCls);
+            codeDiv.classList.add(toCls);
+          } 
+        }
+        return false;
+      }
+    }
+    const hideAllCode = window.document.getElementById("quarto-hide-all-code");
+    if (hideAllCode) {
+      hideAllCode.addEventListener("click", toggleCodeHandler(false));
+    }
+    const showAllCode = window.document.getElementById("quarto-show-all-code");
+    if (showAllCode) {
+      showAllCode.addEventListener("click", toggleCodeHandler(true));
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp("https:\/\/anxosanchez\.github\.io\/sopqblog");
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
+            // default icon
+            link.classList.add("external");
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script><div class="modal fade" id="quarto-embedded-source-code-modal" tabindex="-1" aria-labelledby="quarto-embedded-source-code-modal-label" aria-hidden="true"><div class="modal-dialog modal-dialog-scrollable"><div class="modal-content"><div class="modal-header"><h5 class="modal-title" id="quarto-embedded-source-code-modal-label">Source Code</h5><button class="btn-close" data-bs-dismiss="modal"></button></div><div class="modal-body"><div class="">
+<div class="code-copy-outer-scaffold"><div class="sourceCode" id="cb4" data-shortcodes="false"><pre class="sourceCode numberSource markdown number-lines code-with-copy"><code class="sourceCode markdown"><span id="cb4-1"><a href="#cb4-1"></a><span class="co">---</span></span>
+<span id="cb4-2"><a href="#cb4-2"></a><span class="an">title:</span><span class="co"> "Integrated Simulation and Optimization of an MTBE Synthesis Plant"</span></span>
+<span id="cb4-3"><a href="#cb4-3"></a><span class="an">subtitle:</span><span class="co"> "Topic 7: Rigorous Resolution using BFGS, SQP, Augmented Lagrangian Method (ALM), and Global Optimization"</span></span>
+<span id="cb4-4"><a href="#cb4-4"></a><span class="an">description:</span><span class="co"> "Full practical industrial case study across four operational plant sections: CSTR reactor, debutanizer column, recycle loop, and thermal network in Aspen HYSYS, DWSIM, and Python."</span></span>
+<span id="cb4-5"><a href="#cb4-5"></a><span class="an">author:</span><span class="co"> "Ángel Sánchez (Anxo)"</span></span>
+<span id="cb4-6"><a href="#cb4-6"></a><span class="an">date:</span><span class="co"> "2026-11-09"</span></span>
+<span id="cb4-7"><a href="#cb4-7"></a><span class="an">lang:</span><span class="co"> en</span></span>
+<span id="cb4-8"><a href="#cb4-8"></a><span class="an">categories:</span><span class="co"> ["Aspen HYSYS", "DWSIM", "Python", "Reactors", "Separation", "Colab Notebook", "HSC Case", "DWSIM Simulation"]</span></span>
+<span id="cb4-9"><a href="#cb4-9"></a><span class="an">image:</span><span class="co"> "../assets/images/flash_drum_pfd.svg"</span></span>
+<span id="cb4-10"><a href="#cb4-10"></a><span class="an">reading-time:</span><span class="co"> "20 min"</span></span>
+<span id="cb4-11"><a href="#cb4-11"></a><span class="an">toc:</span><span class="co"> true</span></span>
+<span id="cb4-12"><a href="#cb4-12"></a><span class="an">number-sections:</span><span class="co"> true</span></span>
+<span id="cb4-13"><a href="#cb4-13"></a><span class="an">highlight-style:</span><span class="co"> github</span></span>
+<span id="cb4-14"><a href="#cb4-14"></a><span class="an">code-fold:</span><span class="co"> show</span></span>
+<span id="cb4-15"><a href="#cb4-15"></a><span class="an">code-tools:</span><span class="co"> true</span></span>
+<span id="cb4-16"><a href="#cb4-16"></a><span class="co">---</span></span>
+<span id="cb4-17"><a href="#cb4-17"></a></span>
+<span id="cb4-18"><a href="#cb4-18"></a>::: {.callout-note}</span>
+<span id="cb4-19"><a href="#cb4-19"></a><span class="fu">## Interactive Resources and Course Notebook</span></span>
+<span id="cb4-20"><a href="#cb4-20"></a><span class="ss">- </span>**Working workspace in Gemini Notebook:** <span class="co">[</span><span class="ot">SOPQ - Tema 7: Métodos Numéricos e Algoritmos de Optimización Avanzada</span><span class="co">](https://gemini.google.com/notebook/dabbf057-563f-4920-a080-63d33bcec7bf)</span></span>
+<span id="cb4-21"><a href="#cb4-21"></a><span class="ss">- </span>**Blog GitHub Repository:** <span class="co">[</span><span class="ot">GitHub sopqblog</span><span class="co">](https://github.com/anxosanchez/sopqblog)</span></span>
+<span id="cb4-22"><a href="#cb4-22"></a>:::</span>
+<span id="cb4-23"><a href="#cb4-23"></a></span>
+<span id="cb4-24"><a href="#cb4-24"></a><span class="fu"># Introduction and Process Description</span></span>
+<span id="cb4-25"><a href="#cb4-25"></a></span>
+<span id="cb4-26"><a href="#cb4-26"></a>The industrial synthesis of **Methyl tert-butyl ether (MTBE)** from isobutene ($iC_4^=$) and methanol ($MeOH$) represents a canonical chemical engineering problem coupling catalytic reaction kinetics, multicomponent fractionation, and tightly closed recycle streams:</span>
+<span id="cb4-27"><a href="#cb4-27"></a>  </span>
+<span id="cb4-28"><a href="#cb4-28"></a>$$  </span>
+<span id="cb4-29"><a href="#cb4-29"></a>\text{Isobutene } (iC_4^=) + \text{Methanol } (MeOH) \rightleftharpoons \text{MTBE}</span>
+<span id="cb4-30"><a href="#cb4-30"></a>$$</span>
+<span id="cb4-31"><a href="#cb4-31"></a>  </span>
+<span id="cb4-32"><a href="#cb4-32"></a>The complete process flowsheet is divided into four distinct operational sections, each optimized with a dedicated numerical optimization algorithm from Topic 7:</span>
+<span id="cb4-33"><a href="#cb4-33"></a></span>
+<span id="cb4-34"><a href="#cb4-34"></a><span class="ss">1. </span>**Zone 1 (Non-isothermal catalytic CSTR):** Unconstrained Multivariable Optimization (Quasi-Newton / BFGS).</span>
+<span id="cb4-35"><a href="#cb4-35"></a></span>
+<span id="cb4-36"><a href="#cb4-36"></a><span class="ss">2. </span>**Zone 2 (Debutanizer distillation column):** Constrained Nonlinear Optimization (Sequential Quadratic Programming - SQP).</span>
+<span id="cb4-37"><a href="#cb4-37"></a></span>
+<span id="cb4-38"><a href="#cb4-38"></a><span class="ss">3. </span>**Zone 3 (Methanol recovery recycle loop):** Augmented Lagrangian Method (ALM) for decoupled mass convergence.</span>
+<span id="cb4-39"><a href="#cb4-39"></a></span>
+<span id="cb4-40"><a href="#cb4-40"></a><span class="ss">4. </span>**Zone 4 (Global utility heat exchanger network):** Global Stochastic Optimization (Differential Evolution / PSO).</span>
+<span id="cb4-41"><a href="#cb4-41"></a></span>
+<span id="cb4-42"><a href="#cb4-42"></a></span>
+<span id="cb4-43"><a href="#cb4-43"></a><span class="fu"># Step-by-Step Resolution in Aspen HYSYS</span></span>
+<span id="cb4-44"><a href="#cb4-44"></a></span>
+<span id="cb4-45"><a href="#cb4-45"></a><span class="fu">## Zone 1: CSTR Reactor (Unconstrained BFGS)</span></span>
+<span id="cb4-46"><a href="#cb4-46"></a></span>
+<span id="cb4-47"><a href="#cb4-47"></a><span class="ss">1. </span>**Thermodynamic Basis:** Select the <span class="in">`NRTL`</span> property package. Define the kinetic reaction with $A = 3.2 \times 10^8\text{ min}^{-1}$, $E_a = 72.0\text{ kJ/mol}$, and $\Delta H_{rxn} = -37.7\text{ MJ/kmol}$.</span>
+<span id="cb4-48"><a href="#cb4-48"></a></span>
+<span id="cb4-49"><a href="#cb4-49"></a><span class="ss">2. </span>**Flowsheet Setup:** Feed <span class="in">`Alim_C4`</span> ($100\text{ kmol/h}$, $35\%\text{ mol } iC_4^=$, $65\%\text{ mol } nC_4$) and <span class="in">`Alim_MeOH`</span> ($36\text{ kmol/h}$) into reactor <span class="in">`CSTR-100`</span>.</span>
+<span id="cb4-50"><a href="#cb4-50"></a></span>
+<span id="cb4-51"><a href="#cb4-51"></a><span class="ss">3. </span>**Spreadsheet (`SPR-Z1`):** Import reactor volume $V$ (L), heat duty $|Q|$ (W), and residual isobutene concentration $C_A$ (mol/L). Formulate the annualized cost objective function:</span>
+<span id="cb4-52"><a href="#cb4-52"></a>   <span class="in">`+ 1200 * (B1^0.6) + 180 * (abs(B2)^0.7) + 50000 * B3`</span></span>
+<span id="cb4-53"><a href="#cb4-53"></a></span>
+<span id="cb4-54"><a href="#cb4-54"></a><span class="ss">4. </span>**HYSYS Optimizer (`F5`):** </span>
+<span id="cb4-55"><a href="#cb4-55"></a></span>
+<span id="cb4-56"><a href="#cb4-56"></a><span class="ss">   - </span>*Adjusted Variables:* <span class="in">`CSTR.Tank Volume`</span> ($5\text{--}40\text{ m}^3$) and <span class="in">`CSTR.Temperature`</span> ($330\text{--}390\text{ K}$).</span>
+<span id="cb4-57"><a href="#cb4-57"></a></span>
+<span id="cb4-58"><a href="#cb4-58"></a><span class="ss">   - </span>*Objective Function:* Cell <span class="in">`SPR-Z1.B5`</span> (Minimise).</span>
+<span id="cb4-59"><a href="#cb4-59"></a></span>
+<span id="cb4-60"><a href="#cb4-60"></a><span class="ss">   - </span>*Algorithm:* **Quasi-Newton (BFGS)**.</span>
+<span id="cb4-61"><a href="#cb4-61"></a></span>
+<span id="cb4-62"><a href="#cb4-62"></a><span class="ss">   - </span>*Optimal Solution:* $T^* = 352.48\text{ K}$ ($79.3\text{ }^\circ\text{C}$), $V^* = 36.42\text{ L}$ ($\tau^* = 1.46\text{ min}$), conversion $X^* = 98.12\%$.</span>
+<span id="cb4-63"><a href="#cb4-63"></a></span>
+<span id="cb4-64"><a href="#cb4-64"></a><span class="fu">## Zone 2: Debutanizer Column (Constrained SQP)</span></span>
+<span id="cb4-65"><a href="#cb4-65"></a></span>
+<span id="cb4-66"><a href="#cb4-66"></a><span class="ss">1. </span>**Distillation Tower (`COL-100`):** 25 stages, feed entering at stage 12, total condenser, and kettle reboiler.</span>
+<span id="cb4-67"><a href="#cb4-67"></a></span>
+<span id="cb4-68"><a href="#cb4-68"></a><span class="ss">2. </span>**Optimizer (SQP Engine):**</span>
+<span id="cb4-69"><a href="#cb4-69"></a></span>
+<span id="cb4-70"><a href="#cb4-70"></a><span class="ss">   - </span>*Decision Variables:* Reflux ratio $R \in <span class="co">[</span><span class="ot">1.5, 4.0</span><span class="co">]</span>$, Distillate rate $D \in <span class="co">[</span><span class="ot">45, 85\text{ kmol/h}</span><span class="co">]</span>$, Column pressure $P \in <span class="co">[</span><span class="ot">6.0, 11.0\text{ bar}</span><span class="co">]</span>$.</span>
+<span id="cb4-71"><a href="#cb4-71"></a></span>
+<span id="cb4-72"><a href="#cb4-72"></a><span class="ss">   - </span>*Objective Function:* Minimize reboiler duty <span class="in">`Q_Reb.Heat Flow`</span> (kW).</span>
+<span id="cb4-73"><a href="#cb4-73"></a></span>
+<span id="cb4-74"><a href="#cb4-74"></a><span class="ss">   - </span>*Nonlinear Constraints:* Bottom MTBE purity $\ge 99.0\%$ molar; Distillate overhead MTBE slip $\le 0.1\%$ molar.</span>
+<span id="cb4-75"><a href="#cb4-75"></a></span>
+<span id="cb4-76"><a href="#cb4-76"></a><span class="ss">3. </span>**Optimal Result:** $R^* = 1.845$, $D^* = 61.20\text{ kmol/h}$, $P^* = 6.00\text{ bar}$ (active lower bound), $Q_R^* = 3284.1\text{ kW}$ with an active KKT multiplier $\lambda &gt; 0$ on bottom MTBE purity.</span>
+<span id="cb4-77"><a href="#cb4-77"></a></span>
+<span id="cb4-78"><a href="#cb4-78"></a><span class="fu">## Zone 3: Methanol Recycle Loop (Augmented Lagrangian Method - ALM)</span></span>
+<span id="cb4-79"><a href="#cb4-79"></a></span>
+<span id="cb4-80"><a href="#cb4-80"></a><span class="ss">1. </span>Decouple the physical recycle tear stream inside an auxiliary Spreadsheet (<span class="in">`SPR-ALM`</span>) to avoid numerical oscillations.</span>
+<span id="cb4-81"><a href="#cb4-81"></a></span>
+<span id="cb4-82"><a href="#cb4-82"></a><span class="ss">2. </span>Residual equality constraints: $h_1 = F_{\text{fresh}} - F_{\text{purge}} - 23.5$ and $h_2 = F_{\text{rec}} - 0.96 \cdot (F_{\text{fresh}} + F_{\text{rec}} - 23.5)$.</span>
+<span id="cb4-83"><a href="#cb4-83"></a></span>
+<span id="cb4-84"><a href="#cb4-84"></a><span class="ss">3. </span>Augmented Lagrangian formula: $\mathcal{L}_A = f(x) + \lambda^T h(x) + \frac{\mu}{2}<span class="sc">\|</span>h(x)<span class="sc">\|</span>^2$.</span>
+<span id="cb4-85"><a href="#cb4-85"></a></span>
+<span id="cb4-86"><a href="#cb4-86"></a><span class="ss">4. </span>Solve unconstrained subproblems with BFGS and perform dual multiplier updates: $\lambda^{(k+1)} = \lambda^{(k)} + \mu h(x)$.</span>
+<span id="cb4-87"><a href="#cb4-87"></a></span>
+<span id="cb4-88"><a href="#cb4-88"></a><span class="ss">5. </span>Converges in 5 outer iterations with $<span class="sc">\|</span>h<span class="sc">\|</span>_2 &lt; 10^{-6}$: $F_{\text{fresh}}^* = 23.96\text{ kmol/h}$, $F_{\text{rec}}^* = 11.04\text{ kmol/h}$, $F_{\text{purge}}^* = 0.46\text{ kmol/h}$.</span>
+<span id="cb4-89"><a href="#cb4-89"></a></span>
+<span id="cb4-90"><a href="#cb4-90"></a><span class="fu">## Zone 4: Heat Exchanger Network (Global Stochastic Optimization)</span></span>
+<span id="cb4-91"><a href="#cb4-91"></a><span class="ss">1. </span>The heat network exhibits multiple local minima and non-convex thermal pinch cross-overs.</span>
+<span id="cb4-92"><a href="#cb4-92"></a><span class="ss">2. </span>Connect Python to HYSYS via the **COM Interface** running <span class="in">`scipy.optimize.differential_evolution`</span>.</span>
+<span id="cb4-93"><a href="#cb4-93"></a><span class="ss">3. </span>The stochastic algorithm bypasses local traps, converging to the global minimum at $T_1^* = 384.21\text{ K}$, $T_2^* = 371.15\text{ K}$, yielding $&gt;24\%$ utility cost savings.</span>
+<span id="cb4-94"><a href="#cb4-94"></a></span>
+<span id="cb4-95"><a href="#cb4-95"></a><span class="fu"># Step-by-Step Resolution in DWSIM</span></span>
+<span id="cb4-96"><a href="#cb4-96"></a></span>
+<span id="cb4-97"><a href="#cb4-97"></a><span class="fu">## Zone 1: CSTR (BFGS / L-BFGS-B)</span></span>
+<span id="cb4-98"><a href="#cb4-98"></a></span>
+<span id="cb4-99"><a href="#cb4-99"></a><span class="ss">1. </span>**Property Package:** Assign <span class="in">`NRTL`</span>. Define the kinetic reaction $A \rightarrow B$.</span>
+<span id="cb4-100"><a href="#cb4-100"></a></span>
+<span id="cb4-101"><a href="#cb4-101"></a><span class="ss">2. </span>**Flowsheet:** Connect feed streams into a continuous stirred tank reactor (CSTR).</span>
+<span id="cb4-102"><a href="#cb4-102"></a></span>
+<span id="cb4-103"><a href="#cb4-103"></a><span class="ss">3. </span>**DWSIM Spreadsheet (`SPR-01`):** Import reactor volume, heat duty, and component outlet concentrations.</span>
+<span id="cb4-104"><a href="#cb4-104"></a></span>
+<span id="cb4-105"><a href="#cb4-105"></a><span class="ss">4. </span>**Optimization Tool:** Set independent variables (Volume and Temperature), select **BFGS**, and execute the run.</span>
+<span id="cb4-106"><a href="#cb4-106"></a></span>
+<span id="cb4-107"><a href="#cb4-107"></a><span class="fu">## Zone 2: ChemSep / DWSIM Column (SQP)</span></span>
+<span id="cb4-108"><a href="#cb4-108"></a></span>
+<span id="cb4-109"><a href="#cb4-109"></a><span class="ss">1. </span>Add a 25-stage distillation column with the Peng-Robinson / NRTL package.</span>
+<span id="cb4-110"><a href="#cb4-110"></a></span>
+<span id="cb4-111"><a href="#cb4-111"></a><span class="ss">2. </span>In the **Optimization Tool**, select **SQP** (or SLSQP), specify bounds for reflux ratio, distillate rate, and operating pressure, along with constraints $g_1(x) \ge 0$ and $g_2(x) \ge 0$.</span>
+<span id="cb4-112"><a href="#cb4-112"></a></span>
+<span id="cb4-113"><a href="#cb4-113"></a><span class="ss">3. </span>The solver pushes the reflux ratio to $R^* \approx 1.845$ against the lower pressure limit ($6\text{ bar}$).</span>
+<span id="cb4-114"><a href="#cb4-114"></a></span>
+<span id="cb4-115"><a href="#cb4-115"></a><span class="fu">## Zone 3: Recycle Loop via Custom Python Script</span></span>
+<span id="cb4-116"><a href="#cb4-116"></a></span>
+<span id="cb4-117"><a href="#cb4-117"></a><span class="ss">1. </span>Disconnect the physical recycle loop using a *Splitter* block.</span>
+<span id="cb4-118"><a href="#cb4-118"></a></span>
+<span id="cb4-119"><a href="#cb4-119"></a><span class="ss">2. </span>Insert a **Custom Python Script** block evaluating the residuals $h_1, h_2$ and the augmented objective $\mathcal{L}_A$.</span>
+<span id="cb4-120"><a href="#cb4-120"></a></span>
+<span id="cb4-121"><a href="#cb4-121"></a><span class="ss">3. </span>Run successive unconstrained BFGS subproblems and update Lagrange multipliers iteratively.</span>
+<span id="cb4-122"><a href="#cb4-122"></a></span>
+<span id="cb4-123"><a href="#cb4-123"></a><span class="fu">## Zone 4: Global Optimization with Particle Swarm Optimization (PSO)</span></span>
+<span id="cb4-124"><a href="#cb4-124"></a></span>
+<span id="cb4-125"><a href="#cb4-125"></a><span class="ss">1. </span>In the DWSIM **Optimization Tool**, choose the native **Particle Swarm Optimization (PSO)** engine.</span>
+<span id="cb4-126"><a href="#cb4-126"></a></span>
+<span id="cb4-127"><a href="#cb4-127"></a><span class="ss">2. </span>Swarm parameters: Swarm size = 20 particles, Iterations = 30, $w = 0.729$, $c_1 = c_2 = 1.494$.</span>
+<span id="cb4-128"><a href="#cb4-128"></a></span>
+<span id="cb4-129"><a href="#cb4-129"></a><span class="ss">3. </span>The swarm covers the search hyperspace, escaping local wells and locating the global optimum for network utilities.</span>
+<span id="cb4-130"><a href="#cb4-130"></a></span>
+<span id="cb4-131"><a href="#cb4-131"></a><span class="fu"># Complete Python Numerical Solution</span></span>
+<span id="cb4-132"><a href="#cb4-132"></a></span>
+<span id="cb4-133"><a href="#cb4-133"></a>The executable Python script below solves all four plant zones concurrently:</span>
+<span id="cb4-134"><a href="#cb4-134"></a></span>
+<span id="cb4-137"><a href="#cb4-137"></a><span class="in">```{python}</span></span>
+<span id="cb4-138"><a href="#cb4-138"></a><span class="co">#| label: python-full-solution-en</span></span>
+<span id="cb4-139"><a href="#cb4-139"></a><span class="co">#| code-fold: show</span></span>
+<span id="cb4-140"><a href="#cb4-140"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
+<span id="cb4-141"><a href="#cb4-141"></a><span class="im">from</span> scipy.optimize <span class="im">import</span> minimize, differential_evolution</span>
+<span id="cb4-142"><a href="#cb4-142"></a></span>
+<span id="cb4-143"><a href="#cb4-143"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">75</span>)</span>
+<span id="cb4-144"><a href="#cb4-144"></a><span class="bu">print</span>(<span class="st">"SOPQ - TOPIC 7: INTEGRATED MTBE PLANT OPTIMIZATION (PYTHON)"</span>)</span>
+<span id="cb4-145"><a href="#cb4-145"></a><span class="bu">print</span>(<span class="st">"="</span><span class="op">*</span><span class="dv">75</span>)</span>
+<span id="cb4-146"><a href="#cb4-146"></a></span>
+<span id="cb4-147"><a href="#cb4-147"></a><span class="co"># --- ZONE 1: CSTR REACTOR (BFGS) ---</span></span>
+<span id="cb4-148"><a href="#cb4-148"></a>k0, Ea, R_gas <span class="op">=</span> <span class="fl">3.2e8</span>, <span class="fl">72000.0</span>, <span class="fl">8.314</span></span>
+<span id="cb4-149"><a href="#cb4-149"></a>v0, CA0, DeltaH <span class="op">=</span> <span class="fl">25.0</span>, <span class="fl">2.4</span>, <span class="op">-</span><span class="fl">37700.0</span></span>
+<span id="cb4-150"><a href="#cb4-150"></a>rho, Cp, Tin <span class="op">=</span> <span class="fl">800.0</span>, <span class="fl">2.8</span>, <span class="fl">298.15</span></span>
+<span id="cb4-151"><a href="#cb4-151"></a>T_ref, V_ref <span class="op">=</span> <span class="fl">350.0</span>, <span class="fl">50.0</span></span>
+<span id="cb4-152"><a href="#cb4-152"></a></span>
+<span id="cb4-153"><a href="#cb4-153"></a><span class="kw">def</span> cstr_economic_scaled(z):</span>
+<span id="cb4-154"><a href="#cb4-154"></a>    T, V <span class="op">=</span> z[<span class="dv">0</span>] <span class="op">*</span> T_ref, z[<span class="dv">1</span>] <span class="op">*</span> V_ref</span>
+<span id="cb4-155"><a href="#cb4-155"></a>    <span class="cf">if</span> T <span class="op">&lt;=</span> <span class="dv">0</span> <span class="kw">or</span> V <span class="op">&lt;=</span> <span class="dv">0</span>: <span class="cf">return</span> <span class="fl">1e10</span></span>
+<span id="cb4-156"><a href="#cb4-156"></a>    k <span class="op">=</span> k0 <span class="op">*</span> np.exp(<span class="op">-</span>Ea <span class="op">/</span> (R_gas <span class="op">*</span> T))</span>
+<span id="cb4-157"><a href="#cb4-157"></a>    tau <span class="op">=</span> V <span class="op">/</span> v0</span>
+<span id="cb4-158"><a href="#cb4-158"></a>    tau_k <span class="op">=</span> k <span class="op">*</span> tau</span>
+<span id="cb4-159"><a href="#cb4-159"></a>    X <span class="op">=</span> tau_k <span class="op">/</span> (<span class="fl">1.0</span> <span class="op">+</span> tau_k)</span>
+<span id="cb4-160"><a href="#cb4-160"></a>    CA_out <span class="op">=</span> CA0 <span class="op">*</span> (<span class="fl">1.0</span> <span class="op">-</span> X)</span>
+<span id="cb4-161"><a href="#cb4-161"></a>    Q <span class="op">=</span> v0 <span class="op">*</span> rho <span class="op">*</span> Cp <span class="op">*</span> (T <span class="op">-</span> Tin) <span class="op">+</span> (v0 <span class="op">*</span> CA0 <span class="op">*</span> X) <span class="op">*</span> DeltaH</span>
+<span id="cb4-162"><a href="#cb4-162"></a>    <span class="cf">return</span> <span class="fl">1200.0</span> <span class="op">*</span> (V<span class="op">**</span><span class="fl">0.6</span>) <span class="op">+</span> <span class="fl">180.0</span> <span class="op">*</span> (np.<span class="bu">abs</span>(Q)<span class="op">**</span><span class="fl">0.7</span>) <span class="op">+</span> <span class="fl">5.0e4</span> <span class="op">*</span> CA_out</span>
+<span id="cb4-163"><a href="#cb4-163"></a></span>
+<span id="cb4-164"><a href="#cb4-164"></a>res_z1 <span class="op">=</span> minimize(cstr_economic_scaled, [<span class="fl">335.0</span><span class="op">/</span>T_ref, <span class="fl">20.0</span><span class="op">/</span>V_ref], method<span class="op">=</span><span class="st">"BFGS"</span>)</span>
+<span id="cb4-165"><a href="#cb4-165"></a>T1_opt, V1_opt <span class="op">=</span> res_z1.x[<span class="dv">0</span>] <span class="op">*</span> T_ref, res_z1.x[<span class="dv">1</span>] <span class="op">*</span> V_ref</span>
+<span id="cb4-166"><a href="#cb4-166"></a></span>
+<span id="cb4-167"><a href="#cb4-167"></a><span class="bu">print</span>(<span class="ss">f"ZONE 1 (BFGS): T* = </span><span class="sc">{</span>T1_opt<span class="sc">:.2f}</span><span class="ss"> K | V* = </span><span class="sc">{</span>V1_opt<span class="sc">:.2f}</span><span class="ss"> L | Cost = </span><span class="sc">{</span>res_z1<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss">"</span>)</span>
+<span id="cb4-168"><a href="#cb4-168"></a></span>
+<span id="cb4-169"><a href="#cb4-169"></a><span class="co"># --- ZONE 2: DEBUTANIZER COLUMN (SQP / SLSQP) ---</span></span>
+<span id="cb4-170"><a href="#cb4-170"></a><span class="kw">def</span> reboiler_duty(x):</span>
+<span id="cb4-171"><a href="#cb4-171"></a>    R, D, P <span class="op">=</span> x</span>
+<span id="cb4-172"><a href="#cb4-172"></a>    <span class="cf">return</span> <span class="fl">18.5</span> <span class="op">*</span> (R <span class="op">+</span> <span class="fl">1.0</span>) <span class="op">*</span> D <span class="op">+</span> <span class="fl">4.2</span> <span class="op">*</span> (P<span class="op">**</span><span class="fl">1.18</span>)</span>
+<span id="cb4-173"><a href="#cb4-173"></a></span>
+<span id="cb4-174"><a href="#cb4-174"></a>cons_z2 <span class="op">=</span> [</span>
+<span id="cb4-175"><a href="#cb4-175"></a>    {<span class="st">"type"</span>: <span class="st">"ineq"</span>, <span class="st">"fun"</span>: <span class="kw">lambda</span> x: (<span class="fl">0.965</span> <span class="op">+</span> <span class="fl">0.032</span><span class="op">*</span>(x[<span class="dv">0</span>]<span class="op">/</span>(x[<span class="dv">0</span>]<span class="op">+</span><span class="fl">0.6</span>))<span class="op">*</span>(<span class="fl">65.0</span><span class="op">/</span>x[<span class="dv">1</span>]) <span class="op">-</span> <span class="fl">0.0015</span><span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span><span class="fl">8.0</span>)) <span class="op">-</span> <span class="fl">0.990</span>},</span>
+<span id="cb4-176"><a href="#cb4-176"></a>    {<span class="st">"type"</span>: <span class="st">"ineq"</span>, <span class="st">"fun"</span>: <span class="kw">lambda</span> x: <span class="fl">0.0010</span> <span class="op">-</span> (<span class="fl">0.0035</span><span class="op">*</span>np.exp(<span class="op">-</span><span class="fl">0.75</span><span class="op">*</span>x[<span class="dv">0</span>])<span class="op">*</span>(x[<span class="dv">1</span>]<span class="op">/</span><span class="fl">65.0</span>) <span class="op">+</span> <span class="fl">0.0001</span><span class="op">*</span>(x[<span class="dv">2</span>]<span class="op">-</span><span class="fl">8.0</span>))}</span>
+<span id="cb4-177"><a href="#cb4-177"></a>]</span>
+<span id="cb4-178"><a href="#cb4-178"></a>bounds_z2 <span class="op">=</span> [(<span class="fl">1.5</span>, <span class="fl">4.0</span>), (<span class="fl">45.0</span>, <span class="fl">85.0</span>), (<span class="fl">6.0</span>, <span class="fl">11.0</span>)]</span>
+<span id="cb4-179"><a href="#cb4-179"></a>res_z2 <span class="op">=</span> minimize(reboiler_duty, [<span class="fl">2.5</span>, <span class="fl">65.0</span>, <span class="fl">8.5</span>], method<span class="op">=</span><span class="st">"SLSQP"</span>, bounds<span class="op">=</span>bounds_z2, constraints<span class="op">=</span>cons_z2)</span>
+<span id="cb4-180"><a href="#cb4-180"></a></span>
+<span id="cb4-181"><a href="#cb4-181"></a><span class="bu">print</span>(<span class="ss">f"ZONE 2 (SQP):  R* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.3f}</span><span class="ss"> | D* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> kmol/h | P* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>x[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss"> bar | QR* = </span><span class="sc">{</span>res_z2<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> kW"</span>)</span>
+<span id="cb4-182"><a href="#cb4-182"></a></span>
+<span id="cb4-183"><a href="#cb4-183"></a><span class="co"># --- ZONE 3: RECYCLE LOOP (AUGMENTED LAGRANGIAN - ALM) ---</span></span>
+<span id="cb4-184"><a href="#cb4-184"></a><span class="kw">def</span> cost_rec(x):</span>
+<span id="cb4-185"><a href="#cb4-185"></a>    <span class="cf">return</span> (x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">12.0</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">8.0</span> <span class="op">*</span> (x[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">0.5</span>)<span class="op">**</span><span class="dv">2</span> <span class="op">+</span> <span class="fl">2.0</span> <span class="op">*</span> (x[<span class="dv">2</span>] <span class="op">-</span> <span class="fl">24.0</span>)<span class="op">**</span><span class="dv">2</span></span>
+<span id="cb4-186"><a href="#cb4-186"></a></span>
+<span id="cb4-187"><a href="#cb4-187"></a><span class="kw">def</span> loop_h(x):</span>
+<span id="cb4-188"><a href="#cb4-188"></a>    <span class="cf">return</span> np.array([x[<span class="dv">2</span>] <span class="op">-</span> x[<span class="dv">1</span>] <span class="op">-</span> <span class="fl">23.5</span>, x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">0.96</span><span class="op">*</span>(x[<span class="dv">2</span>] <span class="op">+</span> x[<span class="dv">0</span>] <span class="op">-</span> <span class="fl">23.5</span>)])</span>
+<span id="cb4-189"><a href="#cb4-189"></a></span>
+<span id="cb4-190"><a href="#cb4-190"></a>x_k, lam_k, mu_k <span class="op">=</span> np.array([<span class="fl">10.0</span>, <span class="fl">1.0</span>, <span class="fl">26.0</span>]), np.zeros(<span class="dv">2</span>), <span class="fl">10.0</span></span>
+<span id="cb4-191"><a href="#cb4-191"></a><span class="cf">for</span> _ <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">12</span>):</span>
+<span id="cb4-192"><a href="#cb4-192"></a>    sub <span class="op">=</span> <span class="kw">lambda</span> x: cost_rec(x) <span class="op">+</span> np.dot(lam_k, loop_h(x)) <span class="op">+</span> <span class="fl">0.5</span> <span class="op">*</span> mu_k <span class="op">*</span> np.<span class="bu">sum</span>(loop_h(x)<span class="op">**</span><span class="dv">2</span>)</span>
+<span id="cb4-193"><a href="#cb4-193"></a>    x_k <span class="op">=</span> minimize(sub, x_k, method<span class="op">=</span><span class="st">"BFGS"</span>).x</span>
+<span id="cb4-194"><a href="#cb4-194"></a>    h_val <span class="op">=</span> loop_h(x_k)</span>
+<span id="cb4-195"><a href="#cb4-195"></a>    <span class="cf">if</span> np.linalg.norm(h_val) <span class="op">&lt;</span> <span class="fl">1e-6</span>: <span class="cf">break</span></span>
+<span id="cb4-196"><a href="#cb4-196"></a>    lam_k <span class="op">+=</span> mu_k <span class="op">*</span> h_val</span>
+<span id="cb4-197"><a href="#cb4-197"></a>    mu_k <span class="op">=</span> <span class="bu">min</span>(mu_k <span class="op">*</span> <span class="fl">2.0</span>, <span class="fl">1e7</span>)</span>
+<span id="cb4-198"><a href="#cb4-198"></a></span>
+<span id="cb4-199"><a href="#cb4-199"></a><span class="bu">print</span>(<span class="ss">f"ZONE 3 (ALM):  F_rec* = </span><span class="sc">{</span>x_k[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> | F_purge* = </span><span class="sc">{</span>x_k[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> | F_fresh* = </span><span class="sc">{</span>x_k[<span class="dv">2</span>]<span class="sc">:.2f}</span><span class="ss"> kmol/h"</span>)</span>
+<span id="cb4-200"><a href="#cb4-200"></a></span>
+<span id="cb4-201"><a href="#cb4-201"></a><span class="co"># --- ZONE 4: HEAT EXCHANGER NETWORK (DIFFERENTIAL EVOLUTION) ---</span></span>
+<span id="cb4-202"><a href="#cb4-202"></a><span class="kw">def</span> thermal_cost(x):</span>
+<span id="cb4-203"><a href="#cb4-203"></a>    T1, T2 <span class="op">=</span> x</span>
+<span id="cb4-204"><a href="#cb4-204"></a>    c_steam <span class="op">=</span> <span class="fl">25.0</span> <span class="op">*</span> (<span class="fl">410.0</span> <span class="op">-</span> T1)<span class="op">**</span><span class="fl">1.1</span> <span class="op">+</span> <span class="fl">18.0</span> <span class="op">*</span> (<span class="fl">430.0</span> <span class="op">-</span> T2)<span class="op">**</span><span class="fl">1.05</span></span>
+<span id="cb4-205"><a href="#cb4-205"></a>    c_water <span class="op">=</span> <span class="fl">12.0</span> <span class="op">*</span> (T1 <span class="op">-</span> <span class="fl">320.0</span>)<span class="op">**</span><span class="fl">1.2</span> <span class="op">+</span> <span class="fl">15.0</span> <span class="op">*</span> (T2 <span class="op">-</span> <span class="fl">310.0</span>)<span class="op">**</span><span class="fl">1.15</span></span>
+<span id="cb4-206"><a href="#cb4-206"></a>    interference <span class="op">=</span> <span class="fl">800.0</span> <span class="op">*</span> np.sin(<span class="fl">0.12</span> <span class="op">*</span> (T1 <span class="op">-</span> <span class="fl">330.0</span>)) <span class="op">*</span> np.cos(<span class="fl">0.10</span> <span class="op">*</span> (T2 <span class="op">-</span> <span class="fl">320.0</span>))</span>
+<span id="cb4-207"><a href="#cb4-207"></a>    <span class="cf">return</span> c_steam <span class="op">+</span> c_water <span class="op">+</span> interference</span>
+<span id="cb4-208"><a href="#cb4-208"></a></span>
+<span id="cb4-209"><a href="#cb4-209"></a>res_z4 <span class="op">=</span> differential_evolution(thermal_cost, [(<span class="fl">330.0</span>, <span class="fl">420.0</span>), (<span class="fl">320.0</span>, <span class="fl">410.0</span>)], seed<span class="op">=</span><span class="dv">42</span>)</span>
+<span id="cb4-210"><a href="#cb4-210"></a><span class="bu">print</span>(<span class="ss">f"ZONE 4 (DE):   T1* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">0</span>]<span class="sc">:.2f}</span><span class="ss"> K | T2* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>x[<span class="dv">1</span>]<span class="sc">:.2f}</span><span class="ss"> K | Cost* = </span><span class="sc">{</span>res_z4<span class="sc">.</span>fun<span class="sc">:.2f}</span><span class="ss"> €/h"</span>)</span>
+<span id="cb4-211"><a href="#cb4-211"></a><span class="in">```</span></span>
+</code></pre></div><button title="Copy to Clipboard" class="code-copy-button" data-in-quarto-modal=""><i class="bi"></i></button></div>
+</div></div></div></div></div>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<div class="footer-legal">
+<p><img src="assets/images/logo-light.jpg" class="footer-logo sopq-logo-light" alt="SOPQ EEI UVigo"> <img src="assets/images/logo-dark.jpg" class="footer-logo sopq-logo-dark" alt="SOPQ EEI UVigo"> <span><strong>ProcessSim</strong> © 2026 · Anxo Sánchez · EEI · Universidade de Vigo</span></p>
+</div>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    <div class="toc-actions d-sm-block d-md-none"><ul><li><a href="https://github.com/anxosanchez/sopqblog/issues" class="toc-action"><i class="bi bi-github"></i>Report an issue</a></li></ul></div></div>
+    <div class="nav-footer-right">
+<div class="footer-license">
+<p>Licenza MIT / CC BY 4.0 · Construído con <a href="https://quarto.org" target="_blank" rel="noopener">Quarto</a></p>
+</div>
+</div>
+  </div>
+</footer>
+
+
+
+
+<script src="../site_libs/quarto-html/zenscroll-min.js"></script>
+</body></html>
