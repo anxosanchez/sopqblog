@@ -8,19 +8,17 @@
 [![Idiomas](https://img.shields.io/badge/idiomas-Galego%20(Principal)%20%7C%20Castel%C3%A1n%20%7C%20English-00d4aa.svg)](#arquitectura-trilingüe)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](https://opensource.org/licenses/MIT)
 
----
-
-## 🌐 Arquitectura Trilingüe (Galego, Castelán, English)
+## Arquitectura Trilingüe (Galego, Castelán, English)
 
 O portal está deseñado cunha arquitectura trilingüe nativa onde o **galego é o idioma vehicular e principal**, ofrecendo navegación integrada e selector de lingua na barra superior e en cada artigo:
 
-* **Galego (Idioma Principal):** Contorno por defecto (`/`, `index.html`), toda a terminoloxía técnica de enxeñaría de procesos, táboas de correntes, métricas operacionais e presentacións executivas.
-* **Castelán:** Versión completa do explorador (`index.es.html`) e artigos equivalentes (`caso-[slug].es.html`).
-* **English:** Versión completa para a comunidade internacional (`index.en.html`) e artigos correspondentes (`caso-[slug].en.html`).
+- **Galego (Idioma Principal):** Contorno por defecto (`/`, `index.html`), toda a terminoloxía técnica de enxeñaría de procesos, táboas de correntes, métricas operacionais e presentacións executivas.
 
----
+- **Castelán:** Versión completa do explorador (`index.es.html`) e artigos equivalentes (`caso-[slug].es.html`).
 
-## 🔬 Visión Xeral do Proxecto
+- **English:** Versión completa para a comunidade internacional (`index.en.html`) e artigos correspondentes (`caso-[slug].en.html`).
+
+## Visión Xeral do Proxecto
 
 **ProcessSim** é unha plataforma editorial de enxeñaría química e termodinámica computacional deseñada baixo estándares visuais de nivel *Awwwards* e rigor matemático estrito. Combina:
 
@@ -40,9 +38,7 @@ O portal está deseñado cunha arquitectura trilingüe nativa onde o **galego é
 3. **Integración e Despregamento Continuo (CI/CD):**
    - Workflow de GitHub Actions (`.github_disabled/publish.yml`) con probas unitarias automáticas, auditoría taxonómica e despregamento continuo en **GitHub Pages** mediante `quarto publish gh-pages`.
 
----
-
-## 📁 Estrutura do Repositorio
+## Estrutura do Repositorio
 
 ```text
 .
@@ -83,12 +79,12 @@ O portal está deseñado cunha arquitectura trilingüe nativa onde o **galego é
 └── README.md                       # Documentación técnica completa
 ```
 
----
-
 ## ⚡ Instalación e Uso
 
 ### 1. Requisitos
+
 - **Python 3.11+**
+
 - **Quarto CLI 1.5+**
 
 ```bash
@@ -117,9 +113,7 @@ quarto render
 quarto publish gh-pages
 ```
 
----
-
-## 🏷️ Taxonomía Canónica Ortogonal de 3 Niveis
+## Taxonomía Canónica Ortogonal de 3 Niveis
 
 | Nivel | Nome | Valores Canónicos (Galego) | Sinónimos Mapeados (GL / ES / EN) |
 | :---: | :--- | :--- | :--- |
@@ -127,8 +121,7 @@ quarto publish gh-pages
 | **2** | **Dominio** | `Separación`, `Reactores`, `Intercambio Térmico`, `Termodinámica`, `Control de Procesos`, `Servizos Industriais`, `Dinámica de Fluídos`, `Optimización` | `destilacion`, `distillation`, `cstr`, `cinetica`, `heat exchange`, `utilities`, `fluid dynamics` |
 | **3** | **Entregable** | `Caso HSC`, `Simulación DWSIM`, `Caderno Colab`, `Vídeo Titorial`, `Slide Deck` | `hsc`, `dwxml`, `notebook colab`, `video tutorial`, `slides`, `presentacion` |
 
----
 
-## 📄 Licenza
+## Licenza
 
 Este proxecto está baixo a Licenza **MIT** para o código fonte e **Creative Commons Attribution 4.0 International (CC BY 4.0)** para os contidos e modelos de simulación.
