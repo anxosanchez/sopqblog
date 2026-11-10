@@ -8,27 +8,10 @@ number-sections: true
 lang: es
 ---
 
-<!-- Distintivo Institucional SOPQ -->
-<div class="post-header-brand">
-  <div class="brand-visual">
-    <img src="assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
-    <img src="assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
-  </div>
-  <div class="brand-text">
-    <div class="brand-institution">Universidad de Vigo &middot; Escuela de Ingeniería Industrial</div>
-    <div class="brand-lab">SOPQ // Simulación y Optimización de Procesos Químicos</div>
-  </div>
-  <div class="brand-status">
-    <span class="status-indicator"></span> Normativa Editorial v1.0
-  </div>
-</div>
-
 ::: {.callout-note appearance="simple"}
 ## Bienvenido/a al equipo editorial de SOPQ // ProcessSim
 Este blog es el repositorio abierto de ingeniería química y termodinámica computacional de la **Escuela de Ingeniería Industrial (Universidad de Vigo)**. Toda aportación técnica es revisada por el editor antes de su publicación definitiva para asegurar rigor físico, reproducibilidad numérica y coherencia estética.
 :::
-
----
 
 ## Flujo de Publicación y Supervisión Editorial
 
@@ -46,18 +29,25 @@ flowchart TD
     G -->|"Solicitar ajustes"| H["Comentarios de revisión al autor"]
     H --> A
     G -->|"Aprobado"| I["Merge / draft: false"]
-    I --> J["🚀 Despliegue automático en GitHub Pages"]
+    I --> J["Despliegue automático en GitHub Pages"]
 ```
 
 ### Opción A: Propuesta mediante Pull Request en GitHub (Recomendada)
+
 1. Haz un **fork** del repositorio oficial [`github.com/anxosanchez/sopqblog`](https://github.com/anxosanchez/sopqblog).
+
 2. Crea una nueva rama con nombre descriptivo (ej: `post/cstr-bioetanol` o `post/hysys-amoniaco`).
+
 3. Redacta el artículo tomando como base la plantilla canónica [`posts/_template_post.qmd`](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd).
+
 4. Adjunta los archivos de simulación en `assets/simulations/` y los diagramas gráficos en `assets/images/`.
+
 5. Abre una **Pull Request** dirigida a la rama `main`.
+
 6. Nuestro sistema automatizado notificará de inmediato al editor por **Telegram** y ejecutará la auditoría técnica de taxonomía.
 
 ### Opción B: Publicación en modo borrador oculto (`draft: true`)
+
 Si cuentas con permisos de acceso directo al repositorio, puedes subir tu archivo `.qmd` dentro de la carpeta `posts/` añadiendo la siguiente propiedad en el encabezado YAML:
 
 ```yaml
@@ -68,8 +58,6 @@ draft: true   # <-- MANTIENE EL POST OCULTO
 ```
 
 > **¿Qué hace `draft: true`?** Quarto compila el artículo de forma privada pero **no lo incluye en los listados públicos de portada, ni en el buscador, ni en el sitemap ni en las fuentes RSS**. El editor podrá revisar el resultado renderizado, validar los balances y, una vez aprobado, retirar la etiqueta `draft: true` para su pase a producción pública.
-
----
 
 ## Autoría: Cómo Indicar Autor o Múltiples Autores
 
@@ -93,12 +81,10 @@ categories: ["Aspen HYSYS", "Separación", "Caso HSC", "Vídeo Titorial"]
 ---
 ```
 
----
-
 ## Descarga de Plantillas y Contacto
 
-- 📄 **[Plantilla Canónica de Post (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**
-- 📁 **[Repositorio GitHub Oficial (sopqblog)](https://github.com/anxosanchez/sopqblog)**
+- **[Plantilla Canónica de Post (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**
+- **[Repositorio GitHub Oficial (sopqblog)](https://github.com/anxosanchez/sopqblog)**
 
 Para dudas sobre el modelado o propuesta de temas, contacta directamente con el editor:  
-📧 **Anxo Sánchez** &middot; `anxo.sanchez@uvigo.gal` &middot; Escuela de Ingeniería Industrial, Universidad de Vigo.
+- **Anxo Sánchez** &middot; `anxo.sanchez@uvigo.gal` &middot; Escuela de Ingeniería Industrial, Universidad de Vigo.

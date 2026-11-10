@@ -8,27 +8,11 @@ number-sections: true
 lang: gl
 ---
 
-<!-- Distintivo Institucional SOPQ -->
-<div class="post-header-brand">
-  <div class="brand-visual">
-    <img src="assets/images/logo-light.jpeg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
-    <img src="assets/images/logo-dark.jpeg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
-  </div>
-  <div class="brand-text">
-    <div class="brand-institution">Universidade de Vigo &middot; Escola de Enxeñaría Industrial</div>
-    <div class="brand-lab">SOPQ // Simulación e Optimización de Procesos Químicos</div>
-  </div>
-  <div class="brand-status">
-    <span class="status-indicator"></span> Normativa Editorial v1.0
-  </div>
-</div>
 
 ::: {.callout-note appearance="simple"}
 ## Benvido/a ao equipo editorial de SOPQ // ProcessSim
 Este blog é o repositorio aberto de enxeñaría química e termodinámica computacional da **Escola de Enxeñaría Industrial (Universidade de Vigo)**. Toda achega técnica é revisada polo editor antes da súa publicación definitiva para asegurar rigor físico, reproducibilidade numérica e coherencia estética.
 :::
-
----
 
 ## Fluxo de Publicación e Supervisión Editorial
 
@@ -46,18 +30,25 @@ flowchart TD
     G -->|"Solicitar axustes"| H["Comentarios de revisión ao autor"]
     H --> A
     G -->|"Aprobado"| I["Merge / draft: false"]
-    I --> J["🚀 Despregamento automático en GitHub Pages"]
+    I --> J["Despregamento automático en GitHub Pages"]
 ```
 
 ### Opción A: Proposta mediante Pull Request en GitHub (Recomendada)
+
 1. Fai un **fork** do repositorio oficial [`github.com/anxosanchez/sopqblog`](https://github.com/anxosanchez/sopqblog).
+  
 2. Crea unha nova rama con nome descritivo (ex: `post/cstr-bioetanol` ou `post/hysys-amoniaco`).
+
 3. Redacta o artigo tomando como base o modelo canónico [`posts/_template_post.qmd`](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd).
+
 4. Adxunta os ficheiros de simulación en `assets/simulations/` e os diagramas gráficos en `assets/images/`.
+
 5. Abre unha **Pull Request** dirixida á rama `main`.
+
 6. O noso sistema automatizado notificará de inmediato ao editor por **Telegram** e executará a auditoría técnica de taxonomía.
 
 ### Opción B: Publicación en modo borrador oculto (`draft: true`)
+
 Se tes permisos de acceso directo ao repositorio, podes subir o teu ficheiro `.qmd` dentro do cartafol `posts/` engadindo a seguinte propiedade no encabezado YAML:
 
 ```yaml
@@ -68,8 +59,6 @@ draft: true   # <-- MANTÉN O POST OCULTO
 ```
 
 > **Que fai `draft: true`?** Quarto compila o artigo de forma privada pero **non o inclúe nas listaxes públicas da portada, nin no buscador, nin no sitemap nin nas canles RSS**. O editor poderá revisar o resultado renderizado, validar os balances e, unha vez aprobado, retirar a etiqueta `draft: true` para que pase a produción pública.
-
----
 
 ## Autoría: Como Indicar Autor ou Varios Autores
 
@@ -110,8 +99,6 @@ categories: ["Python", "Termodinámica", "Caderno Colab"]
 
 O sistema de deseño do blog estila automaticamente estas entradas como tarxetas de autor con distintivos visuais, garantindo atribución profesional en formato editorial.
 
----
-
 ## Estrutura de Arquivos e Subida de Recursos
 
 Todos os recursos deben organizarse de acordo á estrutura estandarizada do proxecto:
@@ -138,18 +125,21 @@ sopqblog/
 - **Grandes volumes:** Se o ficheiro supera os $25\text{ MB}$, recoméndase aloxalo no cartafol oficial de Google Drive do SOPQ e ligalo mediante a barra de recursos.
 
 ### 2. Diagramas de Fluxo PFD e Gráficas
+
 - **Formato prioritario para PFD:** Emprega ficheiros **SVG** vectoriais para diagramas de fluxo de proceso. Mantéñense nítidos a calquera resolución e teñen un peso mínimo.
+
 - **Gráficas de variables:** As figuras de perfís de temperatura, curvas de equilibrio ou fraccións molares pódense achegar en `.svg` ou `.png` a alta resolución ($300\text{ dpi}$ mínima).
 
 ### 3. Vídeos Explicativos e Screencasts
+
 - Se dispós dunha gravación en vídeo da resolución do caso (simulación interactiva, navegación polas ventás de HYSYS ou DWSIM):
+
   - Sube o vídeo á canle oficial de YouTube de SOPQ ou envía o ficheiro `.mp4` ao editor.
+
   - Para incrustar o reprodutor nativo responsive en Quarto, engade no teu `.qmd`:
     ```markdown
     {{{< video https://www.youtube.com/watch?v=ID_DO_TEU_VIDEO >}}}
     ```
-
----
 
 ## Cadros de Métricas e Recursos Visuais Dispoñibles
 
@@ -219,14 +209,14 @@ Para presentar os balances de materia e enerxía de correntes con aliñación nu
 Para que os filtros automáticos da portada funcionen correctamente, cada post **debe ter exactamente as 3 categorías canónicas ortogonais**:
 
 1. **Nivel 1 (Unha única plataforma):** `"Aspen HYSYS"`, `"DWSIM"` ou `"Python"`.
+
 2. **Nivel 2 (Polo menos un dominio):** `"Separación"`, `"Reactores"`, `"Intercambio Térmico"`, `"Termodinámica"`, `"Control de Procesos"`, `"Servicios Industriais"`, `"Dinámica de Fluidos"` ou `"Optimización"`.
+
 3. **Nivel 3 (Entregables dispoñibles):** `"Caso HSC"`, `"Simulación DWSIM"`, `"Caderno Colab"`, `"Vídeo Titorial"` ou `"Slide Deck"`.
 
 ```yaml
 categories: ["Aspen HYSYS", "Separación", "Caso HSC", "Vídeo Titorial"]
 ```
-
----
 
 ## Notificación ao Editor e Sistema de Avisos
 
@@ -239,15 +229,16 @@ O noso pipeline inclúe un servizo de notificación instantánea en Telegram. Ca
 2. O editor revisará a consistencia dos datos, comprobará a ausencia de residuos termodinámicos ($< 10^{-7}$) e confirmará a publicación.
 3. Tras a aprobación, o motor de Integración Continua (CI/CD) publica automaticamente o artigo na web sen ningunha intervención adicional.
 
----
-
 ## Descarga de Modelos e Contacto
 
 Podes descargar directamente os modelos e recursos oficiais do blog:
 
-- 📄 **[Modelo Canónico de Post (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**
-- 📊 **[Exemplo Completo: Destilación Flash (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/caso-destilacion-flash.qmd)**
-- 📁 **[Repositorio GitHub Oficial (sopqblog)](https://github.com/anxosanchez/sopqblog)**
+- **[Modelo Canónico de Post (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/_template_post.qmd)**
+
+- **[Exemplo Completo: Destilación Flash (.qmd)](https://github.com/anxosanchez/sopqblog/blob/main/posts/caso-destilacion-flash.qmd)**
+
+- **[Repositorio GitHub Oficial (sopqblog)](https://github.com/anxosanchez/sopqblog)**
 
 Para dúbidas sobre o modelado ou asignación de temas de simulación, contacta directamente co editor:  
-📧 **Anxo Sánchez** &middot; `anxo.sanchez@uvigo.gal` &middot; Escola de Enxeñaría Industrial, Universidade de Vigo.
+
+- **Anxo Sánchez** &middot; `anxo.sanchez@uvigo.gal` &middot; Escola de Enxeñaría Industrial, Universidade de Vigo.
