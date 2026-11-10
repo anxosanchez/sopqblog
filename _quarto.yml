@@ -77,7 +77,7 @@ format:
     code-tools: true
     code-copy: true
     code-line-numbers: true
-    code-overflow: wrap
+    code-overflow: scroll
     highlight-style: monokai
     smooth-scroll: true
     fig-responsive: true

@@ -5,7 +5,7 @@ description: "Resolución práctica completa dunha planta química en catro zona
 author: "Ángel Sánchez (Anxo)"
 date: "2026-11-09"
 categories: ["Aspen HYSYS", "DWSIM", "Python", "Reactores", "Separación", "Caderno Colab", "Caso HSC", "Simulación DWSIM"]
-image: "../assets/images/mtbe-dark.jpg"
+image: "../assets/images/mtbe-dark.jpeg"
 reading-time: "20 min"
 toc: true
 number-sections: true
@@ -14,10 +14,10 @@ code-fold: show
 code-tools: true
 ---
 
-<div class="quarto-figure quarto-figure-center figure-img">
-  <img src="../assets/images/mtbe-light.jpg" class="sopq-logo-light img-fluid" alt="PFD Planta MTBE" width="100%" />
-  <img src="../assets/images/mtbe-dark.jpg" class="sopq-logo-dark img-fluid" alt="PFD Planta MTBE" width="100%" />
-</div>
+<p align="center">
+  <img src="../assets/images/mtbe-light.jpeg" class="sopq-logo-light img-fluid" alt="PFD Planta MTBE" style="width: 100%; max-width: 950px;" />
+  <img src="../assets/images/mtbe-dark.jpeg" class="sopq-logo-dark img-fluid" alt="PFD Planta MTBE" style="width: 100%; max-width: 950px;" />
+</p>
 
 ::: {.callout-note}
 
@@ -66,8 +66,8 @@ O diagrama de fluxo da planta divídese en catro zonas de operación correlativa
 
    - *Resultado óptimo:* $T^* = 352.48\text{ K}$ ($79.3\text{ }^\circ\text{C}$), $V^* = 36.42\text{ L}$ ($\tau^* = 1.46\text{ min}$), conversión $X^* = 98.12\%$.
 
-## Zona 2: Columna Desbutanizadora (SQP con Restricións)
-
+## Zona 2: Columna Desbutanizadora (SQ<div class="quarto-figure quarto-figure-center figure-img"P con Restricións)
+ 
 1. **Torre de destilación (`COL-100`):** 25 pratos, alimentación no prato 12, condensador total e refervedor kettle.
 
 2. **Optimizer (Motor SQP):**

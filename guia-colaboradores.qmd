@@ -11,8 +11,8 @@ lang: gl
 <!-- Distintivo Institucional SOPQ -->
 <div class="post-header-brand">
   <div class="brand-visual">
-    <img src="assets/images/logo-light.jpg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
-    <img src="assets/images/logo-dark.jpg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
+    <img src="assets/images/logo-light.jpeg" class="post-brand-logo sopq-logo-light" alt="SOPQ EEI UVigo" />
+    <img src="assets/images/logo-dark.jpeg" class="post-brand-logo sopq-logo-dark" alt="SOPQ EEI UVigo" />
   </div>
   <div class="brand-text">
     <div class="brand-institution">Universidade de Vigo &middot; Escola de Enxeñaría Industrial</div>

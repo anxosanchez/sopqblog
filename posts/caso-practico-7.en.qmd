@@ -6,7 +6,7 @@ author: "Ángel Sánchez (Anxo)"
 date: "2026-11-09"
 lang: en
 categories: ["Aspen HYSYS", "DWSIM", "Python", "Reactors", "Separation", "Colab Notebook", "HSC Case", "DWSIM Simulation"]
-image: "../assets/images/flash_drum_pfd.svg"
+image: "../assets/images/mtbe-dark.jpeg"
 reading-time: "20 min"
 toc: true
 number-sections: true
@@ -14,6 +14,11 @@ highlight-style: github
 code-fold: show
 code-tools: true
 ---
+
+<p align="center">
+  <img src="../assets/images/mtbe-light.jpeg" class="sopq-logo-light img-fluid" alt="PFD Planta MTBE" style="width: 100%; max-width: 950px;" />
+  <img src="../assets/images/mtbe-dark.jpeg" class="sopq-logo-dark img-fluid" alt="PFD Planta MTBE" style="width: 100%; max-width: 950px;" />
+</p>
 
 ::: {.callout-note}
 ## Interactive Resources and Course Notebook
